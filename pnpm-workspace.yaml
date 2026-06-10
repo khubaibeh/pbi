@@ -1,0 +1,5 @@
+packages:
+  - packages/*
+
+minimumReleaseAge: 4320 # 3 days
+minimumReleaseAgeStrict: true

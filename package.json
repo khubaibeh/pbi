@@ -1,0 +1,8 @@
+{
+	"name": "pbi",
+	"version": "0.1.0",
+	"type": "module",
+	"license": "MIT",
+	"description": "[EXPERIMENTAL] Tool(s) for interacting with power bi reports.",
+	"packageManager": "pnpm@11.5.3"
+}
