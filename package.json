@@ -4,5 +4,13 @@
 	"type": "module",
 	"license": "MIT",
 	"description": "[EXPERIMENTAL] Tool(s) for interacting with power bi reports.",
-	"packageManager": "pnpm@11.5.3"
+	"packageManager": "pnpm@11.5.3",
+	"workspaces": {
+		"packages": [
+			"packages/*"
+		],
+		"catalog": {
+			"effect": "^3.21.3"
+		}
+	}
 }

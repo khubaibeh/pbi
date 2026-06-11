@@ -1,5 +1,11 @@
 packages:
   - packages/*
 
+catalog:
+  '@types/node': ^25.9.2
+  effect: ^3.21.3
+  typescript: ^6.0.3
+  typescript-eslint: ^8.60.1
+
 minimumReleaseAge: 4320 # 3 days
 minimumReleaseAgeStrict: true

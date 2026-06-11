@@ -1,0 +1,12 @@
+{
+	"name": "@pbi/formatter",
+	"version": "1.0.0",
+	"license": "MIT",
+	"type": "module",
+	"dependencies": {
+		"@types/node": "catalog:",
+		"effect": "catalog:",
+		"typescript": "catalog:",
+		"typescript-eslint": "catalog:"
+	}
+}
