@@ -1,7 +1,5 @@
 import { Effect } from "effect";
-import { formatMany } from "./effect";
+import { formatMany, type Options } from "./effect";
 
-export const format = (
-  input: string[],
-  options?: { concurrency: number; retries: number },
-) => Effect.runPromise(formatMany(input, options));
+export const format = (input: string[], options?: Options) =>
+  Effect.runPromise(Effect.scoped(formatMany(input, options)));

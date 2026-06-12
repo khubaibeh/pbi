@@ -1,8 +1,9 @@
-import { Data, Effect, Schema, Schedule } from "effect";
+import { Data, Effect, Schema, Schedule, RateLimiter } from "effect";
 
 const API_URL = "https://api.daxformatter.com/api/daxtextformat";
 const CONCURRENCY = 5;
 const RETRIES = 3;
+const RATE_LIMIT = 5; // 5 per second
 
 export class HTTPError extends Data.TaggedError("HTTPError")<{
   status: number;
@@ -68,17 +69,29 @@ const isRetryable = (e: HTTPError | NetworkError) => {
   return e._tag === "HTTPError" || e._tag === "NetworkError";
 };
 
+export type Options = {
+  concurrency: number;
+  rateLimit: number;
+  retries: number;
+};
+
 export const formatMany = Effect.fn("formatMany")(function* (
   input: string[],
-  options?: { concurrency: number; retries: number },
+  options?: Options,
 ) {
-  const concurrency = options ? options.concurrency : CONCURRENCY;
-  const retries = options ? options.retries : RETRIES;
+  const retries = options?.retries ?? RETRIES;
+  const concurrency = options?.concurrency ?? CONCURRENCY;
+  const limit = options?.rateLimit ?? RATE_LIMIT;
+
+  const rateLimit = yield* RateLimiter.make({
+    interval: "1 second",
+    limit: limit,
+  });
 
   const formatted = yield* Effect.all(
     input
       .map((val) =>
-        format(val).pipe(
+        rateLimit(format(val)).pipe(
           Effect.retry({
             schedule: Schedule.recurs(retries),
             while: isRetryable,
