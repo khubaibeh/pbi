@@ -1,7 +1,8 @@
-import { Data, Effect, Schema } from "effect";
+import { Data, Effect, Schema, Schedule } from "effect";
 
 const API_URL = "https://api.daxformatter.com/api/daxtextformat";
 const CONCURRENCY = 5;
+const RETRIES = 3;
 
 export class HTTPError extends Data.TaggedError("HTTPError")<{
   status: number;
@@ -63,15 +64,27 @@ const format = (input: string) =>
     return decoded.formatted;
   }).pipe(Effect.catchTag("JSONError", (e) => Effect.succeed(e.input)));
 
+const isRetryable = (e: HTTPError | NetworkError) => {
+  return e._tag === "HTTPError" || e._tag === "NetworkError";
+};
+
 export const formatMany = Effect.fn("formatMany")(function* (
   input: string[],
-  options?: { concurrency: number },
+  options?: { concurrency: number; retries: number },
 ) {
   const concurrency = options ? options.concurrency : CONCURRENCY;
+  const retries = options ? options.retries : RETRIES;
 
   const formatted = yield* Effect.all(
     input
-      .map((val) => format(val))
+      .map((val) =>
+        format(val).pipe(
+          Effect.retry({
+            schedule: Schedule.recurs(retries),
+            while: isRetryable,
+          }),
+        ),
+      )
       .map((f) => f.pipe(Effect.catchAll((e) => Effect.succeed(e.input)))),
     {
       concurrency: concurrency,
