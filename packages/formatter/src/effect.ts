@@ -88,21 +88,29 @@ export const formatMany = Effect.fn("formatMany")(function* (
     limit: limit,
   });
 
-  const formatted = yield* Effect.all(
-    input
-      .map((val) =>
-        rateLimit(format(val)).pipe(
-          Effect.retry({
-            schedule: Schedule.recurs(retries),
-            while: isRetryable,
-          }),
-        ),
-      )
-      .map((f) => f.pipe(Effect.catchAll((e) => Effect.succeed(e.input)))),
+  const mapped = new Map<string, string>();
+  input.forEach((val) => {
+    const trimmed = val.trim();
+    if (trimmed.length > 0) {
+      mapped.set(trimmed, trimmed);
+    }
+  });
+
+  yield* Effect.all(
+    [...mapped.keys()].map((val) =>
+      rateLimit(format(val)).pipe(
+        Effect.retry({
+          schedule: Schedule.recurs(retries),
+          while: isRetryable,
+        }),
+        Effect.catchAll((e) => Effect.succeed(e.input)),
+        Effect.map((v) => (mapped.set(val, v), v)),
+      ),
+    ),
     {
       concurrency: concurrency,
     },
   );
 
-  return formatted;
+  return input.map((val) => mapped.get(val) ?? val);
 });

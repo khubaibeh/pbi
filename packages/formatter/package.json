@@ -11,8 +11,10 @@
 		}
 	},
 	"dependencies": {
+		"effect": "catalog:"
+	},
+	"devDependencies": {
 		"@types/node": "catalog:",
-		"effect": "catalog:",
 		"typescript": "catalog:",
 		"typescript-eslint": "catalog:"
 	}

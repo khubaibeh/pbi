@@ -9,6 +9,9 @@ catalogs:
     '@types/node':
       specifier: ^25.9.2
       version: 25.9.2
+    effect:
+      specifier: ^3.21.3
+      version: 3.21.3
     typescript:
       specifier: ^6.0.3
       version: 6.0.3
@@ -22,12 +25,13 @@ importers:
 
   packages/formatter:
     dependencies:
-      '@types/node':
-        specifier: 'catalog:'
-        version: 25.9.2
       effect:
         specifier: 'catalog:'
         version: 3.21.3
+    devDependencies:
+      '@types/node':
+        specifier: 'catalog:'
+        version: 25.9.2
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
