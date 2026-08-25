@@ -8,9 +8,6 @@
 	"workspaces": {
 		"packages": [
 			"packages/*"
-		],
-		"catalog": {
-			"effect": "^3.21.3"
-		}
+		]
 	}
 }
