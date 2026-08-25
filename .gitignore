@@ -1,5 +1,3 @@
 node_modules
 .gitlocal
-
-TEMP.md
-TODO.md
+.local
