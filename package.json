@@ -1,0 +1,19 @@
+{
+	"name": "pbi",
+	"version": "0.1.0",
+	"type": "module",
+	"license": "MIT",
+	"description": "[EXPERIMENTAL] Tool(s) for interacting with power bi reports.",
+	"packageManager": "pnpm@11.22.0",
+	"scripts": {
+		"typecheck": "tsgo --noEmit"
+	},
+	"dependencies": {
+		"@effect/platform-node": "4.0.0-rc.111",
+		"effect": "4.0.0-rc.111"
+	},
+	"devDependencies": {
+		"@types/node": "^26.2.0",
+		"@typescript/native-preview": "7.0.0-dev.20260707.2"
+	}
+}

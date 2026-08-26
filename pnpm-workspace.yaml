@@ -1,0 +1,5 @@
+allowBuilds:
+  msgpackr-extract: true
+
+minimumReleaseAge: 4320 # 3 days
+minimumReleaseAgeStrict: true
