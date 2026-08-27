@@ -6,6 +6,7 @@
 	"description": "[EXPERIMENTAL] Tool(s) for interacting with power bi reports.",
 	"packageManager": "pnpm@11.22.0",
 	"scripts": {
+		"cli": "bun run src/unstable/cli/index.ts",
 		"typecheck": "tsgo --noEmit",
 		"tests:pbi": "bun test tests/pbi/"
 	},
