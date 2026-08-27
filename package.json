@@ -6,7 +6,8 @@
 	"description": "[EXPERIMENTAL] Tool(s) for interacting with power bi reports.",
 	"packageManager": "pnpm@11.22.0",
 	"scripts": {
-		"typecheck": "tsgo --noEmit"
+		"typecheck": "tsgo --noEmit",
+		"tests:pbi": "bun test tests/pbi/"
 	},
 	"dependencies": {
 		"@effect/platform-node": "4.0.0-rc.111",
