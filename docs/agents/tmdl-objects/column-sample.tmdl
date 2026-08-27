@@ -1,0 +1,37 @@
+createOrReplace
+	table NewTable
+		column NewColumn
+			alignment: default
+			alternateOf AlternateSource
+			annotation SampleAnnotation = "sample"
+			changedProperty = dataType
+			dataCategory: Regular
+			dataType: string
+			displayFolder: SampleFolder
+			displayOrdinal: 10
+			encodingHint: default
+			evaluationBehavior: automatic
+			expression = "sample"
+			extendedProperty SampleExtendedProperty = "sample"
+			formatString: General
+			isAvailableInMdx
+			isDataTypeInferred
+			isDefaultImage
+			isDefaultLabel
+			isHidden
+			isKey
+			isNameInferred
+			isNullable
+			isUnique
+			keepUniqueRows
+			lineageTag: 00000000-0000-0000-0000-000000000000
+			relatedColumnDetails RelatedColumnDetails
+			sortByColumn: NewColumn
+			sourceColumn: NewColumn
+			sourceLineageTag: 00000000-0000-0000-0000-000000000001
+			sourceProviderType: string
+			stringIndex: auto
+			summarizeBy: sum
+			tableDetailPosition: 10
+			type: data
+			variation Variation

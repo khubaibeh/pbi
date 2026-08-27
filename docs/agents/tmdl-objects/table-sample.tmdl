@@ -1,0 +1,35 @@
+createOrReplace
+	table NewTable
+		alternateSourcePrecedence: 0
+		annotation SampleAnnotation = "sample"
+		calculationGroup
+		calendar SampleCalendar
+		changedProperty = isHidden
+		column SampleColumn
+			dataType: string
+		dataCategory: Regular
+		defaultDetailRowsDefinition
+		excludedArtifact SampleExcludedArtifact
+		excludeFromAutomaticAggregations
+		excludeFromModelRefresh
+		extendedProperty SampleExtendedProperty = "sample"
+		extendedProperty SampleExtendedProperty2 = "sample"
+		hierarchy SampleHierarchy
+			level SampleLevel
+				column: SampleColumn
+		isHidden
+		isPrivate
+		lineageTag: 00000000-0000-0000-0000-000000000000
+		measure SampleMeasure = 1
+		partition NewTable = m
+			mode: import
+			source = ```
+				let
+					Source = #table({"SampleColumn"}, {{"sample"}})
+				in
+					Source
+				```
+		refreshPolicy
+		showAsVariationsOnly
+		sourceLineageTag: 00000000-0000-0000-0000-000000000001
+		systemManaged

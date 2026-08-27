@@ -1,0 +1,23 @@
+createOrReplace
+	table Customer
+		column CustomerKey
+			dataType: int64
+
+	table Sales
+		column CustomerKey
+			dataType: int64
+
+	relationship NewRelationship
+		annotation SampleAnnotation = "sample"
+		changedProperty = isActive
+		crossFilteringBehavior: oneDirection
+		extendedProperty SampleExtendedProperty = "sample"
+		fromCardinality: many
+		fromColumn: Sales[CustomerKey]
+		isActive
+		joinOnDateBehavior: datePartOnly
+		relyOnReferentialIntegrity
+		securityFilteringBehavior: oneDirection
+		toCardinality: one
+		toColumn: Customer[CustomerKey]
+		type: SingleColumn

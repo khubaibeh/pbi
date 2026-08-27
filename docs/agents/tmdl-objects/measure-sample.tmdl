@@ -1,0 +1,17 @@
+createOrReplace
+	table NewTable
+		measure SampleMeasure = 1
+			annotation SampleAnnotation = "sample"
+			changedProperty = expression
+			dataCategory: Regular
+			dataType: decimal
+			detailRowsDefinition
+			displayFolder: "Sample"
+			extendedProperty SampleExtendedProperty = "sample"
+			formatString: "#,##0"
+			formatStringDefinition
+			isHidden
+			isSimpleMeasure
+			kpi
+			lineageTag: 00000000-0000-0000-0000-000000000000
+			sourceLineageTag: 00000000-0000-0000-0000-000000000001
