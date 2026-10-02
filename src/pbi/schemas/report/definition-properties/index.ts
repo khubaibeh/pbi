@@ -23,3 +23,5 @@ export const definitionPropertiesSchemaCoverage = [
 export * from "./version-1.0.0.js";
 
 export * from "./version-2.0.0.js";
+
+export { DesktopDefinitionPropertiesByPath } from "./shared.js";

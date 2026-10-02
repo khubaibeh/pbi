@@ -2,7 +2,7 @@ import { Schema } from "effect";
 
 import {
   ArithmeticOperatorKind,
-  ExactlyOne,
+  type ExactlyOne,
   IncludeAllTypes,
   QueryAggregateFunction,
   QueryAnyValueExpression,

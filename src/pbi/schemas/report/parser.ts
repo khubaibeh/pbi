@@ -65,6 +65,8 @@ import { VisualContainerV2_7_0 } from "./visual-container/version-2.7.0.js";
 import { VisualContainerV2_8_0 } from "./visual-container/version-2.8.0.js";
 import { VisualContainerV2_9_0 } from "./visual-container/version-2.9.0.js";
 
+export { DesktopDefinitionPropertiesByPath } from "./definition-properties/shared.js";
+
 export type ReportDocumentKind =
   | "definitionProperties"
   | "report"
