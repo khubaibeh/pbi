@@ -10,10 +10,10 @@ importers:
     dependencies:
       '@effect/platform-node':
         specifier: 4.0.0-rc.111
-        version: 4.0.0-rc.111(effect@4.0.0-rc.111)(redis@6.2.1)
+        version: 4.0.0-rc.111(effect@4.0.0)(redis@6.2.1)
       effect:
-        specifier: 4.0.0-rc.111
-        version: 4.0.0-rc.111
+        specifier: 4.0.0
+        version: 4.0.0
     devDependencies:
       '@types/node':
         specifier: ^26.2.0
@@ -36,36 +36,6 @@ packages:
     peerDependencies:
       effect: ^4.0.0-rc.111
       redis: '>=5.0.0 <7.0.0'
-
-  '@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.4':
-    resolution: {integrity: sha512-LCkGo6JDfaBhgST7UpPWgNgLINpcpabaHfyz5OBx75nUYxBsaEPxjnyNjWpeb/xBup/682QnBfRBy2/LvPutZQ==}
-    cpu: [arm64]
-    os: [darwin]
-
-  '@msgpackr-extract/msgpackr-extract-darwin-x64@3.0.4':
-    resolution: {integrity: sha512-zExlW9zUJKZH/tOtVMttwjKa4Xm/3KcNjnE3dPN92uCktwavMxpgCA3MoJK/DOnTWsQgo224OaST27/mPNAf+w==}
-    cpu: [x64]
-    os: [darwin]
-
-  '@msgpackr-extract/msgpackr-extract-linux-arm64@3.0.4':
-    resolution: {integrity: sha512-dgX0P/9wGPJeHFBG+ZmhgE6bmtMt7NP5CRBGyyktpopdk/mW4POnrpQsSLtKI1dwpc+pPLuXHDh6vvskyQE/sw==}
-    cpu: [arm64]
-    os: [linux]
-
-  '@msgpackr-extract/msgpackr-extract-linux-arm@3.0.4':
-    resolution: {integrity: sha512-Tg3yX65f5GbtXLkrYEHE5oibZG9epyYWas7FogTTEJeDEF9JlXJzKgXaNhT3UXlTOeA+AfZpYZYZ0uPj7Cfquw==}
-    cpu: [arm]
-    os: [linux]
-
-  '@msgpackr-extract/msgpackr-extract-linux-x64@3.0.4':
-    resolution: {integrity: sha512-8TNXMEjJc3QEy7R/x1INhgiU+XakDAFUzBhaz7+Rbrs8NH5UQeHQxxmzsSBJGyV6I1jW79undiQm8tOI+D+8FQ==}
-    cpu: [x64]
-    os: [linux]
-
-  '@msgpackr-extract/msgpackr-extract-win32-x64@3.0.4':
-    resolution: {integrity: sha512-CmCXPQrkbwExx3j946/PtHWHbYJiCRBRDl4BlkRQcJB/YOwQxJRTpoo7aTsortjgoJ1x7opzTSxn7C+ASSLVjQ==}
-    cpu: [x64]
-    os: [win32]
 
   '@redis/bloom@6.2.1':
     resolution: {integrity: sha512-huQgNLaCIZfQ9SeLn4q9124uOUd8HbZDYHwwUzNcRgHqCHiHKl2dDxMqJCeWh8cMqZAoWuHR8XnWbDMIf+o7ag==}
@@ -102,9 +72,6 @@ packages:
     engines: {node: '>= 20.0.0'}
     peerDependencies:
       '@redis/client': ^6.2.1
-
-  '@standard-schema/spec@1.1.0':
-    resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
   '@types/node@26.2.0':
     resolution: {integrity: sha512-5IviulTZeRNp2vAJ514cc/HUlY5nZ9fCbq9DMyC52BrhFZACo3nI0R7qBxhQmo/d27NFe96ur/b7Wwxklda+kg==}
@@ -163,35 +130,13 @@ packages:
     resolution: {integrity: sha512-RMr0FhtfXemyinomL4hrWcYJxmX6deFdCxpJzhDttxgO1+bcCnkk+9drydLVDmAMG7NE6aN/fl4F7ucU/90gAA==}
     engines: {node: '>=0.10.0'}
 
-  detect-libc@2.1.2:
-    resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
-    engines: {node: '>=8'}
-
-  effect@4.0.0-rc.111:
-    resolution: {integrity: sha512-ASd5L58EIR0CUNueZNKKjSsyOCd+2alxOAIaTcHaqkJkPsaYSsw5Cg/cfANk5K4Jr2YsX756xvX11shzqsreWA==}
-
-  fast-check@4.9.0:
-    resolution: {integrity: sha512-7ms6T7SybUev/PQITciI0yLM2pOSFy5zpG8Ty7tQofcVaQUvrMXp6CBwqF6fThLCLOrfBtuHAtwq6Yu4XPCllg==}
-    engines: {node: '>=12.17.0'}
+  effect@4.0.0:
+    resolution: {integrity: sha512-ooc1TG5t+FfzgYnFz2ff6BBKyZ7EwBRVXC7c4RhQUAD6/TZ2gTXXMeb4WX7a19ozQo4J73/QW+S00YAIresoMQ==}
 
   mime@4.1.0:
     resolution: {integrity: sha512-X5ju04+cAzsojXKes0B/S4tcYtFAJ6tTMuSPBEn9CPGlrWr8Fiw7qYeLT0XyH80HSoAoqWCaz+MWKh22P7G1cw==}
     engines: {node: '>=16'}
     hasBin: true
-
-  msgpackr-extract@3.0.4:
-    resolution: {integrity: sha512-4kmO/MdyUIkLIvTPr8VHLil4AtoKIoniWPIEk5+CDy0xnWC84azhSFmuJ7PxZdsYtiP5kEeQsORAVIeMgxT+Hw==}
-    hasBin: true
-
-  msgpackr@2.0.5:
-    resolution: {integrity: sha512-cef05H/dSYpLpqp3sj/qyZh5vhUYCalnaLO7j1yOmpsR0y/XwLVtK7r5gn+U/F7CTEfMowcGhlUQJDLcLf7jcA==}
-
-  node-gyp-build-optional-packages@5.2.2:
-    resolution: {integrity: sha512-s+w+rBWnpTMwSFbaE0UXsRlg7hU4FjekKU4eyAih5T8nJuNZT1nNsskXpxmeqSK9UzkBl6UgRlnKc8hz8IEqOw==}
-    hasBin: true
-
-  pure-rand@8.4.2:
-    resolution: {integrity: sha512-vvuOGgcuPJAirlHvuQw1TrOiw7ptaIXXmIbNuiNOY6lNGJJH49PQ1Kj4nd783nPdQhQdicgOjVI2yI/9BD6/Ng==}
 
   redis@6.2.1:
     resolution: {integrity: sha512-Z9VHtgYs48PiQC77X9O2Er8Hj4T+5BtFjT91/vi5Is1D04N72cA946ZslM1ImJw8ZctFBZWAVjM7S5wJNeHMpg==}
@@ -218,43 +163,25 @@ packages:
 
 snapshots:
 
-  '@effect/platform-node-shared@4.0.0-rc.111(effect@4.0.0-rc.111)':
+  '@effect/platform-node-shared@4.0.0-rc.111(effect@4.0.0)':
     dependencies:
       '@types/ws': 8.18.1
-      effect: 4.0.0-rc.111
+      effect: 4.0.0
       ws: 8.21.3
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
 
-  '@effect/platform-node@4.0.0-rc.111(effect@4.0.0-rc.111)(redis@6.2.1)':
+  '@effect/platform-node@4.0.0-rc.111(effect@4.0.0)(redis@6.2.1)':
     dependencies:
-      '@effect/platform-node-shared': 4.0.0-rc.111(effect@4.0.0-rc.111)
-      effect: 4.0.0-rc.111
+      '@effect/platform-node-shared': 4.0.0-rc.111(effect@4.0.0)
+      effect: 4.0.0
       mime: 4.1.0
       redis: 6.2.1
       undici: 8.10.0
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
-
-  '@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.4':
-    optional: true
-
-  '@msgpackr-extract/msgpackr-extract-darwin-x64@3.0.4':
-    optional: true
-
-  '@msgpackr-extract/msgpackr-extract-linux-arm64@3.0.4':
-    optional: true
-
-  '@msgpackr-extract/msgpackr-extract-linux-arm@3.0.4':
-    optional: true
-
-  '@msgpackr-extract/msgpackr-extract-linux-x64@3.0.4':
-    optional: true
-
-  '@msgpackr-extract/msgpackr-extract-win32-x64@3.0.4':
-    optional: true
 
   '@redis/bloom@6.2.1(@redis/client@6.2.1)':
     dependencies:
@@ -275,8 +202,6 @@ snapshots:
   '@redis/time-series@6.2.1(@redis/client@6.2.1)':
     dependencies:
       '@redis/client': 6.2.1
-
-  '@standard-schema/spec@1.1.0': {}
 
   '@types/node@26.2.0':
     dependencies:
@@ -319,43 +244,9 @@ snapshots:
 
   cluster-key-slot@1.1.2: {}
 
-  detect-libc@2.1.2:
-    optional: true
-
-  effect@4.0.0-rc.111:
-    dependencies:
-      '@standard-schema/spec': 1.1.0
-      fast-check: 4.9.0
-      msgpackr: 2.0.5
-
-  fast-check@4.9.0:
-    dependencies:
-      pure-rand: 8.4.2
+  effect@4.0.0: {}
 
   mime@4.1.0: {}
-
-  msgpackr-extract@3.0.4:
-    dependencies:
-      node-gyp-build-optional-packages: 5.2.2
-    optionalDependencies:
-      '@msgpackr-extract/msgpackr-extract-darwin-arm64': 3.0.4
-      '@msgpackr-extract/msgpackr-extract-darwin-x64': 3.0.4
-      '@msgpackr-extract/msgpackr-extract-linux-arm': 3.0.4
-      '@msgpackr-extract/msgpackr-extract-linux-arm64': 3.0.4
-      '@msgpackr-extract/msgpackr-extract-linux-x64': 3.0.4
-      '@msgpackr-extract/msgpackr-extract-win32-x64': 3.0.4
-    optional: true
-
-  msgpackr@2.0.5:
-    optionalDependencies:
-      msgpackr-extract: 3.0.4
-
-  node-gyp-build-optional-packages@5.2.2:
-    dependencies:
-      detect-libc: 2.1.2
-    optional: true
-
-  pure-rand@8.4.2: {}
 
   redis@6.2.1:
     dependencies:
