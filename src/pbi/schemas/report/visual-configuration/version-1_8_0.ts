@@ -5,7 +5,6 @@ import {
   FormattingObjectDefinitionsDefinitionsV1_3_0,
   FormattingObjectDefinitionsSelectorV1_3_0,
 } from "../formatting-object-definitions/shared.js";
-import { QueryExpressionContainerV1_2_0 } from "../semantic-query/shared.js";
 import {
   VisualConfigurationAIDecompositionMethod,
   VisualConfigurationAILevelInformation,
@@ -19,6 +18,7 @@ import {
   VisualConfigurationNodeExpansionStateV1_5_0,
   VisualConfigurationPadding,
   VisualConfigurationQuerySortV1_5_0,
+  VisualConfigurationRoleFieldParameterV1_8_0,
   VisualConfigurationRoleProjectionV1_5_0,
   VisualConfigurationRootExpansionStateV1_5_0,
   VisualConfigurationSortDefinitionV1_5_0,
@@ -67,23 +67,6 @@ export const VisualConfigurationProjectionStateV1_8_0: Schema.Codec<VisualConfig
     projections: Schema.Array(Schema.suspend(() => VisualConfigurationRoleProjectionV1_5_0)),
     fieldParameters: Schema.optionalKey(
       Schema.Array(Schema.suspend(() => VisualConfigurationRoleFieldParameterV1_8_0)),
-    ),
-  });
-
-export type VisualConfigurationRoleFieldParameterV1_8_0 = {
-  readonly parameterExpr: QueryExpressionContainerV1_2_0;
-  readonly index: number;
-  readonly length?: number;
-  readonly sortDirection?: "Ascending" | "Descending";
-};
-
-export const VisualConfigurationRoleFieldParameterV1_8_0: Schema.Codec<VisualConfigurationRoleFieldParameterV1_8_0> =
-  closed({
-    parameterExpr: Schema.suspend(() => QueryExpressionContainerV1_2_0),
-    index: Schema.Finite,
-    length: Schema.optionalKey(Schema.Finite),
-    sortDirection: Schema.optionalKey(
-      Schema.Union([Schema.Literal("Ascending"), Schema.Literal("Descending")]),
     ),
   });
 

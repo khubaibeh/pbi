@@ -1,8 +1,8 @@
 import { Schema } from "effect";
 import { closed } from "../shared.js";
 import { FilterConfigurationEmbeddedV1_2_0 } from "../filter-configuration/shared.js";
+import { VisualContainerAnnotation } from "../visual-container/shared.js";
 import {
-  ReportAnnotation,
   ReportExplorationSettingsV1_0_0,
   ReportExplorationSlowDataSourceSettings,
   ReportOrganizationCustomVisual,
@@ -30,7 +30,7 @@ export const ReportDefinitionsV2_1_0 = {
   ResourcePackageItem: ReportResourcePackageItem,
   ResourcePackageItemType: ReportResourcePackageItemType,
   OrganizationCustomVisual: ReportOrganizationCustomVisual,
-  Annotation: ReportAnnotation,
+  Annotation: VisualContainerAnnotation,
   ExplorationSettings: ReportExplorationSettingsV1_0_0,
   ExplorationSlowDataSourceSettings: ReportExplorationSlowDataSourceSettings,
 } as const;
@@ -51,7 +51,7 @@ export type ReportV2_1_0 = {
   readonly publicCustomVisuals?: ReadonlyArray<string>;
   readonly resourcePackages?: ReadonlyArray<ReportResourcePackage>;
   readonly organizationCustomVisuals?: ReadonlyArray<ReportOrganizationCustomVisual>;
-  readonly annotations?: ReadonlyArray<ReportAnnotation>;
+  readonly annotations?: ReadonlyArray<VisualContainerAnnotation>;
   readonly dataSourceVariables?: string;
   readonly settings?: ReportExplorationSettingsV1_0_0;
   readonly slowDataSourceSettings?: ReportExplorationSlowDataSourceSettings;
@@ -80,7 +80,7 @@ export const ReportV2_1_0: Schema.Codec<ReportV2_1_0> = closed({
   organizationCustomVisuals: Schema.optionalKey(
     Schema.Array(Schema.suspend(() => ReportOrganizationCustomVisual)),
   ),
-  annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => ReportAnnotation))),
+  annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => VisualContainerAnnotation))),
   dataSourceVariables: Schema.optionalKey(Schema.String),
   settings: Schema.optionalKey(Schema.suspend(() => ReportExplorationSettingsV1_0_0)),
   slowDataSourceSettings: Schema.optionalKey(

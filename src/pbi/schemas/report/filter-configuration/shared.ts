@@ -94,7 +94,7 @@ export const FilterConfigurationEmbeddedFilterContainerV1_0_0: Schema.Codec<Filt
 export type FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_0_0 = {
   readonly general?: ReadonlyArray<{
     readonly selector?: FormattingObjectDefinitionsSelectorV1_2_0;
-    readonly properties: FilterConfigurationEmbeddedFilterContainerFormattingObjectsProperties;
+    readonly properties: FilterConfigurationFilterContainerFormattingObjectsProperties;
   }>;
 };
 
@@ -107,22 +107,11 @@ export const FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_0_0: 
             Schema.suspend(() => FormattingObjectDefinitionsSelectorV1_2_0),
           ),
           properties: Schema.suspend(
-            () => FilterConfigurationEmbeddedFilterContainerFormattingObjectsProperties,
+            () => FilterConfigurationFilterContainerFormattingObjectsProperties,
           ),
         }),
       ),
     ),
-  });
-
-export type FilterConfigurationEmbeddedFilterContainerFormattingObjectsProperties = {
-  readonly requireSingleSelect?: Schema.Json;
-  readonly isInvertedSelectionMode?: Schema.Json;
-};
-
-export const FilterConfigurationEmbeddedFilterContainerFormattingObjectsProperties: Schema.Codec<FilterConfigurationEmbeddedFilterContainerFormattingObjectsProperties> =
-  closed({
-    requireSingleSelect: Schema.optionalKey(Schema.Json),
-    isInvertedSelectionMode: Schema.optionalKey(Schema.Json),
   });
 
 export type FilterConfigurationEmbeddedV1_0_0 = {
@@ -212,7 +201,7 @@ export const FilterConfigurationEmbeddedFilterContainerV1_1_0: Schema.Codec<Filt
 export type FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_1_0 = {
   readonly general?: ReadonlyArray<{
     readonly selector?: FormattingObjectDefinitionsSelectorV1_3_0;
-    readonly properties: FilterConfigurationEmbeddedFilterContainerFormattingObjectsProperties;
+    readonly properties: FilterConfigurationFilterContainerFormattingObjectsProperties;
   }>;
 };
 
@@ -225,7 +214,7 @@ export const FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_1_0: 
             Schema.suspend(() => FormattingObjectDefinitionsSelectorV1_3_0),
           ),
           properties: Schema.suspend(
-            () => FilterConfigurationEmbeddedFilterContainerFormattingObjectsProperties,
+            () => FilterConfigurationFilterContainerFormattingObjectsProperties,
           ),
         }),
       ),
@@ -319,7 +308,7 @@ export const FilterConfigurationEmbeddedFilterContainerV1_2_0: Schema.Codec<Filt
 export type FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_2_0 = {
   readonly general?: ReadonlyArray<{
     readonly selector?: FormattingObjectDefinitionsSelectorV1_4_0;
-    readonly properties: FilterConfigurationEmbeddedFilterContainerFormattingObjectsProperties;
+    readonly properties: FilterConfigurationFilterContainerFormattingObjectsProperties;
   }>;
 };
 
@@ -332,7 +321,7 @@ export const FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_2_0: 
             Schema.suspend(() => FormattingObjectDefinitionsSelectorV1_4_0),
           ),
           properties: Schema.suspend(
-            () => FilterConfigurationEmbeddedFilterContainerFormattingObjectsProperties,
+            () => FilterConfigurationFilterContainerFormattingObjectsProperties,
           ),
         }),
       ),
@@ -426,7 +415,7 @@ export const FilterConfigurationEmbeddedFilterContainerV1_3_0: Schema.Codec<Filt
 export type FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_3_0 = {
   readonly general?: ReadonlyArray<{
     readonly selector?: FormattingObjectDefinitionsSelectorV1_5_0;
-    readonly properties: FilterConfigurationEmbeddedFilterContainerFormattingObjectsProperties;
+    readonly properties: FilterConfigurationFilterContainerFormattingObjectsProperties;
   }>;
 };
 
@@ -439,7 +428,7 @@ export const FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_3_0: 
             Schema.suspend(() => FormattingObjectDefinitionsSelectorV1_5_0),
           ),
           properties: Schema.suspend(
-            () => FilterConfigurationEmbeddedFilterContainerFormattingObjectsProperties,
+            () => FilterConfigurationFilterContainerFormattingObjectsProperties,
           ),
         }),
       ),

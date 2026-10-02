@@ -43,17 +43,6 @@ export const ReportLayoutOptimization: Schema.Codec<ReportLayoutOptimization> = 
   Schema.Literal("PhonePortrait"),
 ]);
 
-export type ReportFilterContainerFormattingObjectsProperties = {
-  readonly requireSingleSelect?: Schema.Json;
-  readonly isInvertedSelectionMode?: Schema.Json;
-};
-
-export const ReportFilterContainerFormattingObjectsProperties: Schema.Codec<ReportFilterContainerFormattingObjectsProperties> =
-  closed({
-    requireSingleSelect: Schema.optionalKey(Schema.Json),
-    isInvertedSelectionMode: Schema.optionalKey(Schema.Json),
-  });
-
 export type ReportOutspacePane = {
   readonly expanded?: Schema.Json;
   readonly visible?: Schema.Json;
@@ -163,16 +152,6 @@ export const ReportOrganizationCustomVisual: Schema.Codec<ReportOrganizationCust
   name: Schema.String,
   path: Schema.String,
   disabled: Schema.optionalKey(Schema.Boolean),
-});
-
-export type ReportAnnotation = {
-  readonly name: string;
-  readonly value: string;
-};
-
-export const ReportAnnotation: Schema.Codec<ReportAnnotation> = closed({
-  name: Schema.String,
-  value: Schema.String,
 });
 
 export type ReportExplorationSettingsV1_0_0 = {

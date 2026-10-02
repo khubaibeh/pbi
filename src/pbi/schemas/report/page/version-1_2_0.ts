@@ -1,13 +1,6 @@
 import { Schema } from "effect";
 import { closed } from "../shared.js";
-import {
-  FormattingObjectDefinitionsDefinitionsV1_2_0,
-  FormattingObjectDefinitionsSelectorV1_2_0,
-} from "../formatting-object-definitions/shared.js";
-import {
-  FilterDefinitionV1_2_0,
-  QueryExpressionContainerV1_2_0,
-} from "../semantic-query/shared.js";
+import { VisualContainerFilterContainerFormattingObjectsProperties } from "../visual-container/shared.js";
 import {
   PageAnnotation,
   PageAutoPageGenerationConfigV1_2_0,
@@ -16,7 +9,9 @@ import {
   PageBindingType,
   PageDisplayArea,
   PageFilterCard,
-  PageFilterContainerFormattingObjectsProperties,
+  PageFilterConfigV1_2_0,
+  PageFilterContainerFormattingObjectsV1_2_0,
+  PageFilterContainerV1_2_0,
   PageOutspacePane,
   PagePageBindingV1_2_0,
   PagePageDisplayOption,
@@ -33,111 +28,13 @@ import {
   PageVisualInteractionFilterType,
 } from "./shared.js";
 
-export type PageFilterConfigV1_2_0 = {
-  readonly filters?: ReadonlyArray<PageFilterContainerV1_2_0>;
-  readonly filterSortOrder?: "Ascending" | "Descending" | "Custom";
-};
-
-export const PageFilterConfigV1_2_0: Schema.Codec<PageFilterConfigV1_2_0> = closed({
-  filters: Schema.optionalKey(Schema.Array(Schema.suspend(() => PageFilterContainerV1_2_0))),
-  filterSortOrder: Schema.optionalKey(
-    Schema.Union([
-      Schema.Literal("Ascending"),
-      Schema.Literal("Descending"),
-      Schema.Literal("Custom"),
-    ]),
-  ),
-});
-
-export type PageFilterContainerV1_2_0 = {
-  readonly name: string;
-  readonly displayName?: string;
-  readonly ordinal?: number;
-  readonly field?: QueryExpressionContainerV1_2_0;
-  readonly type?:
-    | "Categorical"
-    | "Range"
-    | "Advanced"
-    | "Passthrough"
-    | "TopN"
-    | "Include"
-    | "Exclude"
-    | "RelativeDate"
-    | "Tuple"
-    | "RelativeTime"
-    | "VisualTopN";
-  readonly filter?: FilterDefinitionV1_2_0;
-  readonly restatement?: string;
-  readonly howCreated?: "Auto" | "User" | "Drill" | "Include" | "Exclude" | "Drillthrough";
-  readonly isHiddenInViewMode?: boolean;
-  readonly isLockedInViewMode?: boolean;
-  readonly objects?: PageFilterContainerFormattingObjectsV1_2_0;
-};
-
-export const PageFilterContainerV1_2_0: Schema.Codec<PageFilterContainerV1_2_0> = closed({
-  name: Schema.String,
-  displayName: Schema.optionalKey(Schema.String),
-  ordinal: Schema.optionalKey(Schema.Finite),
-  field: Schema.optionalKey(Schema.suspend(() => QueryExpressionContainerV1_2_0)),
-  type: Schema.optionalKey(
-    Schema.Union([
-      Schema.Literal("Categorical"),
-      Schema.Literal("Range"),
-      Schema.Literal("Advanced"),
-      Schema.Literal("Passthrough"),
-      Schema.Literal("TopN"),
-      Schema.Literal("Include"),
-      Schema.Literal("Exclude"),
-      Schema.Literal("RelativeDate"),
-      Schema.Literal("Tuple"),
-      Schema.Literal("RelativeTime"),
-      Schema.Literal("VisualTopN"),
-    ]),
-  ),
-  filter: Schema.optionalKey(Schema.suspend(() => FilterDefinitionV1_2_0)),
-  restatement: Schema.optionalKey(Schema.String),
-  howCreated: Schema.optionalKey(
-    Schema.Union([
-      Schema.Literal("Auto"),
-      Schema.Literal("User"),
-      Schema.Literal("Drill"),
-      Schema.Literal("Include"),
-      Schema.Literal("Exclude"),
-      Schema.Literal("Drillthrough"),
-    ]),
-  ),
-  isHiddenInViewMode: Schema.optionalKey(Schema.Boolean),
-  isLockedInViewMode: Schema.optionalKey(Schema.Boolean),
-  objects: Schema.optionalKey(Schema.suspend(() => PageFilterContainerFormattingObjectsV1_2_0)),
-});
-
-export type PageFilterContainerFormattingObjectsV1_2_0 = {
-  readonly general?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_2_0;
-    readonly properties: PageFilterContainerFormattingObjectsProperties;
-  }>;
-};
-
-export const PageFilterContainerFormattingObjectsV1_2_0: Schema.Codec<PageFilterContainerFormattingObjectsV1_2_0> =
-  closed({
-    general: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_2_0.Selector),
-          ),
-          properties: Schema.suspend(() => PageFilterContainerFormattingObjectsProperties),
-        }),
-      ),
-    ),
-  });
-
 export const PageDefinitionsV1_2_0 = {
   PageDisplayOption: PagePageDisplayOption,
   FilterConfig: PageFilterConfigV1_2_0,
   FilterContainer: PageFilterContainerV1_2_0,
   FilterContainerFormattingObjects: PageFilterContainerFormattingObjectsV1_2_0,
-  FilterContainerFormattingObjectsProperties: PageFilterContainerFormattingObjectsProperties,
+  FilterContainerFormattingObjectsProperties:
+    VisualContainerFilterContainerFormattingObjectsProperties,
   PageBinding: PagePageBindingV1_2_0,
   BindingType: PageBindingType,
   BindingParameter: PageBindingParameterV1_2_0,

@@ -8,13 +8,13 @@ import {
   VisualConfigurationEmbeddedDefinitionsV1_8_0,
   VisualConfigurationEmbeddedVisualContainerFormattingObjectsV1_8_0,
 } from "../visual-configuration/shared.js";
-import { VisualContainerMobileStateVisualContainerPositionV1_2_0 } from "./shared.js";
+import { VisualContainerVisualContainerPositionV1_2_0 } from "../visual-container/shared.js";
 
 export type VisualContainerMobileStateV1_5_0 = {
   readonly $schema: "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/1.5.0/schema.json";
   readonly objects?: FormattingObjectDefinitionsDataViewObjectDefinitionsV1_3_0;
   readonly visualContainerObjects?: VisualConfigurationEmbeddedVisualContainerFormattingObjectsV1_8_0;
-  readonly position: VisualContainerMobileStateVisualContainerPositionV1_2_0;
+  readonly position: VisualContainerVisualContainerPositionV1_2_0;
 };
 
 export const VisualContainerMobileStateV1_5_0: Schema.Codec<VisualContainerMobileStateV1_5_0> =
@@ -30,7 +30,7 @@ export const VisualContainerMobileStateV1_5_0: Schema.Codec<VisualContainerMobil
         () => VisualConfigurationEmbeddedDefinitionsV1_8_0.VisualContainerFormattingObjects,
       ),
     ),
-    position: Schema.suspend(() => VisualContainerMobileStateVisualContainerPositionV1_2_0),
+    position: Schema.suspend(() => VisualContainerVisualContainerPositionV1_2_0),
   });
 
 export { VisualContainerMobileStateDefinitionsV1_3_0 as VisualContainerMobileStateDefinitionsV1_5_0 } from "./shared.js";

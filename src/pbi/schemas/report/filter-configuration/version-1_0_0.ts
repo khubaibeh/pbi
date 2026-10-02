@@ -6,7 +6,6 @@ import {
   QueryExpressionContainerV1_2_0,
 } from "../semantic-query/shared.js";
 import {
-  FilterConfigurationEmbeddedFilterContainerFormattingObjectsProperties,
   FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_0_0,
   FilterConfigurationEmbeddedFilterContainerV1_0_0,
   FilterConfigurationFilterContainerFormattingObjectsProperties,
@@ -134,7 +133,7 @@ export const FilterConfigurationEmbeddedDefinitionsV1_0_0 = {
   FilterContainerFormattingObjects:
     FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_0_0,
   FilterContainerFormattingObjectsProperties:
-    FilterConfigurationEmbeddedFilterContainerFormattingObjectsProperties,
+    FilterConfigurationFilterContainerFormattingObjectsProperties,
 } as const;
 
 export { FilterConfigurationEmbeddedV1_0_0 } from "./shared.js";

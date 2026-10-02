@@ -1,8 +1,8 @@
 import { Schema } from "effect";
 import { closed } from "../shared.js";
 import { FilterConfigurationEmbeddedV1_3_0 } from "../filter-configuration/shared.js";
+import { VisualContainerAnnotation } from "../visual-container/shared.js";
 import {
-  ReportAnnotation,
   ReportExplorationSlowDataSourceSettings,
   ReportFieldParameterReportSettings,
   ReportOrganizationCustomVisual,
@@ -118,7 +118,7 @@ export const ReportDefinitionsV3_3_0 = {
   ResourcePackageItem: ReportResourcePackageItem,
   ResourcePackageItemType: ReportResourcePackageItemType,
   OrganizationCustomVisual: ReportOrganizationCustomVisual,
-  Annotation: ReportAnnotation,
+  Annotation: VisualContainerAnnotation,
   ExplorationSettings: ReportExplorationSettingsV3_3_0,
   FieldParameterReportSettings: ReportFieldParameterReportSettings,
   ExplorationSlowDataSourceSettings: ReportExplorationSlowDataSourceSettings,
@@ -140,7 +140,7 @@ export type ReportV3_3_0 = {
   readonly publicCustomVisuals?: ReadonlyArray<string>;
   readonly resourcePackages?: ReadonlyArray<ReportResourcePackage>;
   readonly organizationCustomVisuals?: ReadonlyArray<ReportOrganizationCustomVisual>;
-  readonly annotations?: ReadonlyArray<ReportAnnotation>;
+  readonly annotations?: ReadonlyArray<VisualContainerAnnotation>;
   readonly dataSourceVariables?: string;
   readonly settings?: ReportExplorationSettingsV3_3_0;
   readonly slowDataSourceSettings?: ReportExplorationSlowDataSourceSettings;
@@ -169,7 +169,7 @@ export const ReportV3_3_0: Schema.Codec<ReportV3_3_0> = closed({
   organizationCustomVisuals: Schema.optionalKey(
     Schema.Array(Schema.suspend(() => ReportOrganizationCustomVisual)),
   ),
-  annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => ReportAnnotation))),
+  annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => VisualContainerAnnotation))),
   dataSourceVariables: Schema.optionalKey(Schema.String),
   settings: Schema.optionalKey(Schema.suspend(() => ReportExplorationSettingsV3_3_0)),
   slowDataSourceSettings: Schema.optionalKey(

@@ -13,8 +13,11 @@ import {
   VisualConfigurationBorder,
   VisualConfigurationDivider,
   VisualConfigurationDropShadow,
+  VisualConfigurationLevelExpansionStateV2_3_0,
   VisualConfigurationLockAspect,
   VisualConfigurationPadding,
+  VisualConfigurationRoleFieldParameterV2_3_0,
+  VisualConfigurationRoleProjectionV2_3_0,
   VisualConfigurationSortDirection,
   VisualConfigurationSpacing,
   VisualConfigurationStylePreset,
@@ -87,44 +90,6 @@ export const VisualConfigurationProjectionStateV2_3_0: Schema.Codec<VisualConfig
     ),
   });
 
-export type VisualConfigurationRoleProjectionV2_3_0 = {
-  readonly field: QueryExpressionContainerV1_4_0;
-  readonly queryRef: string;
-  readonly nativeQueryRef?: string;
-  readonly displayName?: string;
-  readonly format?: string;
-  readonly active?: boolean;
-  readonly hidden?: boolean;
-};
-
-export const VisualConfigurationRoleProjectionV2_3_0: Schema.Codec<VisualConfigurationRoleProjectionV2_3_0> =
-  closed({
-    field: Schema.suspend(() => QueryExpressionContainerV1_4_0),
-    queryRef: Schema.String,
-    nativeQueryRef: Schema.optionalKey(Schema.String),
-    displayName: Schema.optionalKey(Schema.String),
-    format: Schema.optionalKey(Schema.String.check(Schema.isMaxCodePoints(255))),
-    active: Schema.optionalKey(Schema.Boolean),
-    hidden: Schema.optionalKey(Schema.Boolean),
-  });
-
-export type VisualConfigurationRoleFieldParameterV2_3_0 = {
-  readonly parameterExpr: QueryExpressionContainerV1_4_0;
-  readonly index: number;
-  readonly length?: number;
-  readonly sortDirection?: "Ascending" | "Descending";
-};
-
-export const VisualConfigurationRoleFieldParameterV2_3_0: Schema.Codec<VisualConfigurationRoleFieldParameterV2_3_0> =
-  closed({
-    parameterExpr: Schema.suspend(() => QueryExpressionContainerV1_4_0),
-    index: Schema.Finite,
-    length: Schema.optionalKey(Schema.Finite),
-    sortDirection: Schema.optionalKey(
-      Schema.Union([Schema.Literal("Ascending"), Schema.Literal("Descending")]),
-    ),
-  });
-
 export type VisualConfigurationExpansionStateV2_3_0 = {
   readonly roles: ReadonlyArray<string>;
   readonly root?: VisualConfigurationRootExpansionStateV2_3_0;
@@ -170,27 +135,6 @@ export const VisualConfigurationNodeExpansionStateV2_3_0: Schema.Codec<VisualCon
     children: Schema.optionalKey(
       Schema.Array(Schema.suspend(() => VisualConfigurationNodeExpansionStateV2_3_0)),
     ),
-  });
-
-export type VisualConfigurationLevelExpansionStateV2_3_0 = {
-  readonly identityKeys?: ReadonlyArray<QueryExpressionContainerV1_4_0>;
-  readonly isCollapsed?: boolean;
-  readonly queryRefs: ReadonlyArray<string>;
-  readonly isPinned?: boolean;
-  readonly isLocked?: boolean;
-  readonly AIInformation?: VisualConfigurationAILevelInformation;
-};
-
-export const VisualConfigurationLevelExpansionStateV2_3_0: Schema.Codec<VisualConfigurationLevelExpansionStateV2_3_0> =
-  closed({
-    identityKeys: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => QueryExpressionContainerV1_4_0)),
-    ),
-    isCollapsed: Schema.optionalKey(Schema.Boolean),
-    queryRefs: Schema.Array(Schema.String),
-    isPinned: Schema.optionalKey(Schema.Boolean),
-    isLocked: Schema.optionalKey(Schema.Boolean),
-    AIInformation: Schema.optionalKey(Schema.suspend(() => VisualConfigurationAILevelInformation)),
   });
 
 export type VisualConfigurationVisualContainerFormattingObjectsV2_3_0 = {

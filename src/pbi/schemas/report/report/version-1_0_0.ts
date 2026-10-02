@@ -5,14 +5,17 @@ import {
   FormattingObjectDefinitionsSelectorV1_0_0,
 } from "../formatting-object-definitions/shared.js";
 import {
-  FilterDefinitionV1_0_0,
-  QueryExpressionContainerV1_0_0,
-} from "../semantic-query/shared.js";
+  PageFilterConfigV1_0_0,
+  PageFilterContainerFormattingObjectsV1_0_0,
+  PageFilterContainerV1_0_0,
+} from "../page/shared.js";
 import {
-  ReportAnnotation,
+  VisualContainerAnnotation,
+  VisualContainerFilterContainerFormattingObjectsProperties,
+} from "../visual-container/shared.js";
+import {
   ReportExplorationSettingsV1_0_0,
   ReportExplorationSlowDataSourceSettings,
-  ReportFilterContainerFormattingObjectsProperties,
   ReportLayoutOptimization,
   ReportOrganizationCustomVisual,
   ReportOutspacePane,
@@ -25,103 +28,6 @@ import {
   ReportThemeMetadataV1_0_0,
   ReportThemeResourcePackageType,
 } from "./shared.js";
-
-export type ReportFilterConfigV1_0_0 = {
-  readonly filters?: ReadonlyArray<ReportFilterContainerV1_0_0>;
-  readonly filterSortOrder?: "Ascending" | "Descending" | "Custom";
-};
-
-export const ReportFilterConfigV1_0_0: Schema.Codec<ReportFilterConfigV1_0_0> = closed({
-  filters: Schema.optionalKey(Schema.Array(Schema.suspend(() => ReportFilterContainerV1_0_0))),
-  filterSortOrder: Schema.optionalKey(
-    Schema.Union([
-      Schema.Literal("Ascending"),
-      Schema.Literal("Descending"),
-      Schema.Literal("Custom"),
-    ]),
-  ),
-});
-
-export type ReportFilterContainerV1_0_0 = {
-  readonly name: string;
-  readonly displayName?: string;
-  readonly ordinal?: number;
-  readonly field?: QueryExpressionContainerV1_0_0;
-  readonly type?:
-    | "Categorical"
-    | "Range"
-    | "Advanced"
-    | "Passthrough"
-    | "TopN"
-    | "Include"
-    | "Exclude"
-    | "RelativeDate"
-    | "Tuple"
-    | "RelativeTime";
-  readonly filter?: FilterDefinitionV1_0_0;
-  readonly restatement?: string;
-  readonly howCreated?: "Auto" | "User" | "Drill" | "Include" | "Exclude" | "Drillthrough";
-  readonly isHiddenInViewMode?: boolean;
-  readonly isLockedInViewMode?: boolean;
-  readonly objects?: ReportFilterContainerFormattingObjectsV1_0_0;
-};
-
-export const ReportFilterContainerV1_0_0: Schema.Codec<ReportFilterContainerV1_0_0> = closed({
-  name: Schema.String,
-  displayName: Schema.optionalKey(Schema.String),
-  ordinal: Schema.optionalKey(Schema.Finite),
-  field: Schema.optionalKey(Schema.suspend(() => QueryExpressionContainerV1_0_0)),
-  type: Schema.optionalKey(
-    Schema.Union([
-      Schema.Literal("Categorical"),
-      Schema.Literal("Range"),
-      Schema.Literal("Advanced"),
-      Schema.Literal("Passthrough"),
-      Schema.Literal("TopN"),
-      Schema.Literal("Include"),
-      Schema.Literal("Exclude"),
-      Schema.Literal("RelativeDate"),
-      Schema.Literal("Tuple"),
-      Schema.Literal("RelativeTime"),
-    ]),
-  ),
-  filter: Schema.optionalKey(Schema.suspend(() => FilterDefinitionV1_0_0)),
-  restatement: Schema.optionalKey(Schema.String),
-  howCreated: Schema.optionalKey(
-    Schema.Union([
-      Schema.Literal("Auto"),
-      Schema.Literal("User"),
-      Schema.Literal("Drill"),
-      Schema.Literal("Include"),
-      Schema.Literal("Exclude"),
-      Schema.Literal("Drillthrough"),
-    ]),
-  ),
-  isHiddenInViewMode: Schema.optionalKey(Schema.Boolean),
-  isLockedInViewMode: Schema.optionalKey(Schema.Boolean),
-  objects: Schema.optionalKey(Schema.suspend(() => ReportFilterContainerFormattingObjectsV1_0_0)),
-});
-
-export type ReportFilterContainerFormattingObjectsV1_0_0 = {
-  readonly general?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_0_0;
-    readonly properties: ReportFilterContainerFormattingObjectsProperties;
-  }>;
-};
-
-export const ReportFilterContainerFormattingObjectsV1_0_0: Schema.Codec<ReportFilterContainerFormattingObjectsV1_0_0> =
-  closed({
-    general: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.Selector),
-          ),
-          properties: Schema.suspend(() => ReportFilterContainerFormattingObjectsProperties),
-        }),
-      ),
-    ),
-  });
 
 export type ReportReportFormattingObjectsV1_0_0 = {
   readonly outspacePane?: ReadonlyArray<{
@@ -163,10 +69,11 @@ export const ReportDefinitionsV1_0_0 = {
   ThemeMetadata: ReportThemeMetadataV1_0_0,
   ThemeResourcePackageType: ReportThemeResourcePackageType,
   LayoutOptimization: ReportLayoutOptimization,
-  FilterConfig: ReportFilterConfigV1_0_0,
-  FilterContainer: ReportFilterContainerV1_0_0,
-  FilterContainerFormattingObjects: ReportFilterContainerFormattingObjectsV1_0_0,
-  FilterContainerFormattingObjectsProperties: ReportFilterContainerFormattingObjectsProperties,
+  FilterConfig: PageFilterConfigV1_0_0,
+  FilterContainer: PageFilterContainerV1_0_0,
+  FilterContainerFormattingObjects: PageFilterContainerFormattingObjectsV1_0_0,
+  FilterContainerFormattingObjectsProperties:
+    VisualContainerFilterContainerFormattingObjectsProperties,
   ReportFormattingObjects: ReportReportFormattingObjectsV1_0_0,
   OutspacePane: ReportOutspacePane,
   Section: ReportSection,
@@ -175,7 +82,7 @@ export const ReportDefinitionsV1_0_0 = {
   ResourcePackageItem: ReportResourcePackageItem,
   ResourcePackageItemType: ReportResourcePackageItemType,
   OrganizationCustomVisual: ReportOrganizationCustomVisual,
-  Annotation: ReportAnnotation,
+  Annotation: VisualContainerAnnotation,
   ExplorationSettings: ReportExplorationSettingsV1_0_0,
   ExplorationSlowDataSourceSettings: ReportExplorationSlowDataSourceSettings,
 } as const;
@@ -183,7 +90,7 @@ export const ReportDefinitionsV1_0_0 = {
 export type ReportV1_0_0 = {
   readonly themeCollection: ReportThemeCollectionV1_0_0;
   readonly layoutOptimization: ReportLayoutOptimization;
-  readonly filterConfig?: ReportFilterConfigV1_0_0;
+  readonly filterConfig?: PageFilterConfigV1_0_0;
   readonly objects?: ReportReportFormattingObjectsV1_0_0;
   readonly reportSource?:
     | "Default"
@@ -196,7 +103,7 @@ export type ReportV1_0_0 = {
   readonly publicCustomVisuals?: ReadonlyArray<string>;
   readonly resourcePackages?: ReadonlyArray<ReportResourcePackage>;
   readonly organizationCustomVisuals?: ReadonlyArray<ReportOrganizationCustomVisual>;
-  readonly annotations?: ReadonlyArray<ReportAnnotation>;
+  readonly annotations?: ReadonlyArray<VisualContainerAnnotation>;
   readonly dataSourceVariables?: string;
   readonly settings?: ReportExplorationSettingsV1_0_0;
   readonly slowDataSourceSettings?: ReportExplorationSlowDataSourceSettings;
@@ -206,7 +113,7 @@ export type ReportV1_0_0 = {
 export const ReportV1_0_0: Schema.Codec<ReportV1_0_0> = closed({
   themeCollection: Schema.suspend(() => ReportThemeCollectionV1_0_0),
   layoutOptimization: Schema.suspend(() => ReportLayoutOptimization),
-  filterConfig: Schema.optionalKey(Schema.suspend(() => ReportFilterConfigV1_0_0)),
+  filterConfig: Schema.optionalKey(Schema.suspend(() => PageFilterConfigV1_0_0)),
   objects: Schema.optionalKey(Schema.suspend(() => ReportReportFormattingObjectsV1_0_0)),
   reportSource: Schema.optionalKey(
     Schema.Union([
@@ -224,7 +131,7 @@ export const ReportV1_0_0: Schema.Codec<ReportV1_0_0> = closed({
   organizationCustomVisuals: Schema.optionalKey(
     Schema.Array(Schema.suspend(() => ReportOrganizationCustomVisual)),
   ),
-  annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => ReportAnnotation))),
+  annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => VisualContainerAnnotation))),
   dataSourceVariables: Schema.optionalKey(Schema.String),
   settings: Schema.optionalKey(Schema.suspend(() => ReportExplorationSettingsV1_0_0)),
   slowDataSourceSettings: Schema.optionalKey(
