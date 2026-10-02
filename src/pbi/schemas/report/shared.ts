@@ -374,6 +374,15 @@ export const Divider: Schema.Codec<Divider> = closed({
 
 export function closed<const Fields extends Schema.Struct.Fields>(
   fields: Fields,
+): Schema.Codec<
+  Schema.Struct.Type<Fields>,
+  Schema.Struct.Encoded<Fields>,
+  Schema.Struct.DecodingServices<Fields>,
+  Schema.Struct.EncodingServices<Fields>
+>;
+
+export function closed<const Fields extends Schema.Struct.Fields>(
+  fields: Fields,
 ) {
   const allowed = new Set(Object.keys(fields));
 
