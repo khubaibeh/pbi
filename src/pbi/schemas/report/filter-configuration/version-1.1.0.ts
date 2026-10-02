@@ -1,13 +1,11 @@
 import { Schema } from "effect";
-import {
-  FilterContainerFormattingObjectsV1_1_0,
-  FilterContainerV1_1_0,
-} from "./shared.js";
-import { closed, FilterContainerFormattingProperties } from "../shared.js";
+
+import { FilterContainerV1_1_0 as FilterConfigurationFilterContainerV1_1_0 } from "./shared.js";
+import { closed } from "../shared.js";
 
 export type FilterConfigurationV1_1_0 = {
   readonly $schema: "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/filterConfiguration/1.1.0/schema.json";
-  readonly filters?: ReadonlyArray<FilterContainerV1_1_0>;
+  readonly filters?: ReadonlyArray<FilterConfigurationFilterContainerV1_1_0>;
   readonly filterSortOrder?: "Ascending" | "Descending" | "Custom";
 };
 
@@ -17,7 +15,9 @@ export const FilterConfigurationV1_1_0: Schema.Codec<FilterConfigurationV1_1_0> 
       "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/filterConfiguration/1.1.0/schema.json",
     ),
     filters: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => FilterContainerV1_1_0)),
+      Schema.Array(
+        Schema.suspend(() => FilterConfigurationFilterContainerV1_1_0),
+      ),
     ),
     filterSortOrder: Schema.optionalKey(
       Schema.Union([
@@ -29,14 +29,16 @@ export const FilterConfigurationV1_1_0: Schema.Codec<FilterConfigurationV1_1_0> 
   });
 
 export type FilterConfigurationEmbeddedV1_1_0 = {
-  readonly filters?: ReadonlyArray<FilterContainerV1_1_0>;
+  readonly filters?: ReadonlyArray<FilterConfigurationFilterContainerV1_1_0>;
   readonly filterSortOrder?: "Ascending" | "Descending" | "Custom";
 };
 
 export const FilterConfigurationEmbeddedV1_1_0: Schema.Codec<FilterConfigurationEmbeddedV1_1_0> =
   closed({
     filters: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => FilterContainerV1_1_0)),
+      Schema.Array(
+        Schema.suspend(() => FilterConfigurationFilterContainerV1_1_0),
+      ),
     ),
     filterSortOrder: Schema.optionalKey(
       Schema.Union([
@@ -47,25 +49,13 @@ export const FilterConfigurationEmbeddedV1_1_0: Schema.Codec<FilterConfiguration
     ),
   });
 
-export const FilterConfigurationDefinitionsV1_1_0 = {
-  FilterContainer: FilterContainerV1_1_0,
-  FilterContainerFormattingObjects: FilterContainerFormattingObjectsV1_1_0,
-  FilterContainerFormattingObjectsProperties:
-    FilterContainerFormattingProperties,
-} as const;
-
-export const FilterConfigurationEmbeddedDefinitionsV1_1_0 = {
-  FilterContainer: FilterContainerV1_1_0,
-  FilterContainerFormattingObjects: FilterContainerFormattingObjectsV1_1_0,
-  FilterContainerFormattingObjectsProperties:
-    FilterContainerFormattingProperties,
-} as const;
-
 export {
   FilterContainerV1_1_0 as FilterConfigurationFilterContainerV1_1_0,
   FilterContainerFormattingObjectsV1_1_0 as FilterConfigurationFilterContainerFormattingObjectsV1_1_0,
+  FilterConfigurationDefinitionsV1_1_0,
   FilterContainerV1_1_0 as FilterConfigurationEmbeddedFilterContainerV1_1_0,
   FilterContainerFormattingObjectsV1_1_0 as FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_1_0,
+  FilterConfigurationEmbeddedDefinitionsV1_1_0,
 } from "./shared.js";
 
 export {

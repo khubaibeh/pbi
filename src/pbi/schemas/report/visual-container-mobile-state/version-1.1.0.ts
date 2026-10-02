@@ -1,27 +1,9 @@
 import { Schema } from "effect";
+
 import { DataViewObjectDefinitionsV1_1_0 } from "../formatting-object-definitions/version-1.1.0.js";
-import {
-  Background,
-  Border,
-  closed,
-  Divider,
-  DropShadow,
-  LockAspect,
-  Padding,
-  Spacing,
-  StylePreset,
-  SubTitle,
-  Title,
-  VisualContainerGeneralFormattingObjects,
-  VisualHeader,
-  VisualHeaderTooltip,
-  VisualLink,
-  VisualTooltip,
-} from "../shared.js";
-import {
-  VisualContainerFormattingObjectsV1_1_0,
-  VisualContainerPositionV1_0_0,
-} from "../visual-container/shared.js";
+import { closed } from "../shared.js";
+import { VisualContainerPositionV1_0_0 } from "../visual-container/shared.js";
+import { VisualContainerFormattingObjectsV1_1_0 } from "../visual-container/version-1.1.0.js";
 
 export type VisualContainerMobileStateV1_1_0 = {
   readonly $schema: "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/1.1.0/schema.json";
@@ -44,31 +26,7 @@ export const VisualContainerMobileStateV1_1_0: Schema.Codec<VisualContainerMobil
     position: Schema.suspend(() => VisualContainerPositionV1_0_0),
   });
 
-export const VisualContainerMobileStateDefinitionsV1_1_0 = {
-  VisualContainerFormattingObjects: VisualContainerFormattingObjectsV1_1_0,
-  Title: Title,
-  SubTitle: SubTitle,
-  Divider: Divider,
-  Spacing: Spacing,
-  Background: Background,
-  Padding: Padding,
-  LockAspect: LockAspect,
-  VisualContainerGeneralFormattingObjects:
-    VisualContainerGeneralFormattingObjects,
-  Border: Border,
-  DropShadow: DropShadow,
-  VisualLink: VisualLink,
-  VisualTooltip: VisualTooltip,
-  StylePreset: StylePreset,
-  VisualHeader: VisualHeader,
-  VisualHeaderTooltip: VisualHeaderTooltip,
-  VisualContainerPosition: VisualContainerPositionV1_0_0,
-} as const;
-
-export {
-  VisualContainerFormattingObjectsV1_1_0 as VisualContainerMobileStateVisualContainerFormattingObjectsV1_1_0,
-  VisualContainerPositionV1_0_0 as VisualContainerMobileStateVisualContainerPositionV1_1_0,
-} from "../visual-container/shared.js";
+export { VisualContainerFormattingObjectsV1_1_0 as VisualContainerMobileStateVisualContainerFormattingObjectsV1_1_0 } from "../visual-container/version-1.1.0.js";
 
 export {
   Title as VisualContainerMobileStateTitleV1_1_0,
@@ -87,3 +45,7 @@ export {
   VisualHeader as VisualContainerMobileStateVisualHeaderV1_1_0,
   VisualHeaderTooltip as VisualContainerMobileStateVisualHeaderTooltipV1_1_0,
 } from "../shared.js";
+
+export { VisualContainerPositionV1_0_0 as VisualContainerMobileStateVisualContainerPositionV1_1_0 } from "../visual-container/shared.js";
+
+export { VisualContainerMobileStateDefinitionsV1_1_0 } from "./shared.js";

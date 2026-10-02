@@ -1,23 +1,7 @@
 import { Schema } from "effect";
+
 import { DataViewObjectDefinitionsV1_2_0 } from "../formatting-object-definitions/version-1.2.0.js";
-import {
-  Background,
-  Border,
-  closed,
-  Divider,
-  DropShadow,
-  LockAspect,
-  Padding,
-  Spacing,
-  StylePreset,
-  SubTitle,
-  Title,
-  VisualContainerGeneralFormattingObjects,
-  VisualHeader,
-  VisualHeaderTooltip,
-  VisualLink,
-  VisualTooltip,
-} from "../shared.js";
+import { closed } from "../shared.js";
 import { VisualContainerFormattingObjectsV1_5_0 } from "../visual-configuration/shared.js";
 import { VisualContainerPositionV1_2_0 } from "../visual-container/shared.js";
 
@@ -42,27 +26,6 @@ export const VisualContainerMobileStateV1_2_0: Schema.Codec<VisualContainerMobil
     position: Schema.suspend(() => VisualContainerPositionV1_2_0),
   });
 
-export const VisualContainerMobileStateDefinitionsV1_2_0 = {
-  VisualContainerFormattingObjects: VisualContainerFormattingObjectsV1_5_0,
-  Title: Title,
-  SubTitle: SubTitle,
-  Divider: Divider,
-  Spacing: Spacing,
-  Background: Background,
-  Padding: Padding,
-  LockAspect: LockAspect,
-  VisualContainerGeneralFormattingObjects:
-    VisualContainerGeneralFormattingObjects,
-  Border: Border,
-  DropShadow: DropShadow,
-  VisualLink: VisualLink,
-  VisualTooltip: VisualTooltip,
-  StylePreset: StylePreset,
-  VisualHeader: VisualHeader,
-  VisualHeaderTooltip: VisualHeaderTooltip,
-  VisualContainerPosition: VisualContainerPositionV1_2_0,
-} as const;
-
 export { VisualContainerFormattingObjectsV1_5_0 as VisualContainerMobileStateVisualContainerFormattingObjectsV1_2_0 } from "../visual-configuration/shared.js";
 
 export {
@@ -84,3 +47,5 @@ export {
 } from "../shared.js";
 
 export { VisualContainerPositionV1_2_0 as VisualContainerMobileStateVisualContainerPositionV1_2_0 } from "../visual-container/shared.js";
+
+export { VisualContainerMobileStateDefinitionsV1_2_0 } from "./shared.js";

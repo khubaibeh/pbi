@@ -1,4 +1,5 @@
 import { Schema } from "effect";
+
 import { closed } from "../shared.js";
 
 export type PagesMetadataV1_0_0 = {
@@ -15,4 +16,4 @@ export const PagesMetadataV1_0_0: Schema.Codec<PagesMetadataV1_0_0> = closed({
   ),
 });
 
-export const PagesMetadataDefinitionsV1_0_0 = {} as const;
+export { PagesMetadataDefinitionsV1_0_0 } from "./shared.js";

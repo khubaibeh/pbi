@@ -1,14 +1,15 @@
 import { Schema } from "effect";
+
 import { FilterConfigurationEmbeddedV1_1_0 } from "../filter-configuration/version-1.1.0.js";
 import { SelectorV1_3_0 } from "../formatting-object-definitions/version-1.3.0.js";
 import {
   AutoPageGenerationConfigV1_2_0,
-  Background,
+  Background as PageBackground,
   BindingParameterV1_2_0,
   BindingType,
   DisplayArea,
   FilterCard,
-  OutspacePane,
+  OutspacePane as PageOutspacePane,
   PageBindingV1_2_0,
   PageDisplayOption,
   PageInformation,
@@ -34,7 +35,7 @@ export type PageFormattingObjectsV1_4_0 = {
   }>;
   readonly background?: ReadonlyArray<{
     readonly selector?: SelectorV1_3_0;
-    readonly properties: Background;
+    readonly properties: PageBackground;
   }>;
   readonly displayArea?: ReadonlyArray<{
     readonly selector?: SelectorV1_3_0;
@@ -42,11 +43,11 @@ export type PageFormattingObjectsV1_4_0 = {
   }>;
   readonly outspace?: ReadonlyArray<{
     readonly selector?: SelectorV1_3_0;
-    readonly properties: Background;
+    readonly properties: PageBackground;
   }>;
   readonly outspacePane?: ReadonlyArray<{
     readonly selector?: SelectorV1_3_0;
-    readonly properties: OutspacePane;
+    readonly properties: PageOutspacePane;
   }>;
   readonly filterCard?: ReadonlyArray<{
     readonly selector?: SelectorV1_3_0;
@@ -84,7 +85,7 @@ export const PageFormattingObjectsV1_4_0: Schema.Codec<PageFormattingObjectsV1_4
       Schema.Array(
         closed({
           selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_3_0)),
-          properties: Schema.suspend(() => Background),
+          properties: Schema.suspend(() => PageBackground),
         }),
       ),
     ),
@@ -100,7 +101,7 @@ export const PageFormattingObjectsV1_4_0: Schema.Codec<PageFormattingObjectsV1_4
       Schema.Array(
         closed({
           selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_3_0)),
-          properties: Schema.suspend(() => Background),
+          properties: Schema.suspend(() => PageBackground),
         }),
       ),
     ),
@@ -108,7 +109,7 @@ export const PageFormattingObjectsV1_4_0: Schema.Codec<PageFormattingObjectsV1_4
       Schema.Array(
         closed({
           selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_3_0)),
-          properties: Schema.suspend(() => OutspacePane),
+          properties: Schema.suspend(() => PageOutspacePane),
         }),
       ),
     ),
@@ -203,9 +204,9 @@ export const PageDefinitionsV1_4_0 = {
   PageFormattingObjects: PageFormattingObjectsV1_4_0,
   PageInformation: PageInformation,
   PageSize: PageSize,
-  Background: Background,
+  Background: PageBackground,
   DisplayArea: DisplayArea,
-  OutspacePane: OutspacePane,
+  OutspacePane: PageOutspacePane,
   FilterCard: FilterCard,
   PageRefresh: PageRefresh,
   PersonalizeVisual: PersonalizeVisual,

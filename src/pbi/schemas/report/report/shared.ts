@@ -1,4 +1,5 @@
 import { Schema } from "effect";
+
 import { SelectorV1_3_0 } from "../formatting-object-definitions/version-1.3.0.js";
 import { SelectorV1_4_0 } from "../formatting-object-definitions/version-1.4.0.js";
 import { SelectorV1_5_0 } from "../formatting-object-definitions/version-1.5.0.js";

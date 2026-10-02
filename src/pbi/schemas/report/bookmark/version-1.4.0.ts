@@ -1,4 +1,5 @@
 import { Schema } from "effect";
+
 import {
   BookmarkOptions,
   DecomposedFilterExpressionMetadataV1_4_0,
@@ -24,7 +25,7 @@ import {
   DataViewObjectDefinitionsV1_4_0,
   SelectorV1_4_0,
 } from "../formatting-object-definitions/version-1.4.0.js";
-import { QuerySortClauseV1_3_0 } from "../semantic-query/shared.js";
+import { QuerySortClauseV1_3_0 } from "../semantic-query/version-1.3.0.js";
 import { closed } from "../shared.js";
 
 export type ExplorationStateV1_4_0 = {

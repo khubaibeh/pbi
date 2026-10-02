@@ -1,7 +1,8 @@
 import { Schema } from "effect";
+
 import { DataViewObjectDefinitionsV1_4_0 } from "../formatting-object-definitions/version-1.4.0.js";
 import { closed } from "../shared.js";
-import { VisualContainerFormattingObjectsV2_2_0 } from "../visual-configuration/shared.js";
+import { VisualContainerFormattingObjectsV2_2_0 } from "../visual-configuration/version-2.2.0.js";
 import { VisualContainerPositionV1_2_0 } from "../visual-container/shared.js";
 
 export type VisualContainerMobileStateV2_2_0 = {
@@ -25,8 +26,6 @@ export const VisualContainerMobileStateV2_2_0: Schema.Codec<VisualContainerMobil
     position: Schema.suspend(() => VisualContainerPositionV1_2_0),
   });
 
-export const VisualContainerMobileStateDefinitionsV2_2_0 = {
-  VisualContainerPosition: VisualContainerPositionV1_2_0,
-} as const;
-
 export { VisualContainerPositionV1_2_0 as VisualContainerMobileStateVisualContainerPositionV2_2_0 } from "../visual-container/shared.js";
+
+export { VisualContainerMobileStateDefinitionsV2_2_0 } from "./shared.js";

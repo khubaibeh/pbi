@@ -1,5 +1,7 @@
-import { FilterConfigurationEmbeddedV1_0_0 } from "./shared.js";
-import { FilterConfigurationV1_0_0 } from "./version-1.0.0.js";
+import {
+  FilterConfigurationEmbeddedV1_0_0,
+  FilterConfigurationV1_0_0,
+} from "./version-1.0.0.js";
 import {
   FilterConfigurationEmbeddedV1_1_0,
   FilterConfigurationV1_1_0,

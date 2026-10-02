@@ -1,4 +1,5 @@
 import { Schema } from "effect";
+
 import { closed } from "../shared.js";
 
 export type VersionMetadata = {
@@ -15,6 +16,6 @@ export const VersionMetadata: Schema.Codec<VersionMetadata> = closed({
   ),
 });
 
-export const VersionMetadataDefinitionsV1_0_0 = {} as const;
+export { VersionMetadataDefinitionsV1_0_0 } from "./shared.js";
 
 export { VersionMetadata as VersionMetadataV1_0_0 };

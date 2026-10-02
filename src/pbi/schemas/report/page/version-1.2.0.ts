@@ -1,17 +1,18 @@
 import { Schema } from "effect";
+
 import {
-  FilterConfigurationEmbeddedV1_0_0,
-  FilterContainerFormattingObjectsV1_0_0,
-  FilterContainerV1_0_0,
+  FilterContainerFormattingObjectsV1_0_0 as FilterConfigurationFilterContainerFormattingObjectsV1_0_0,
+  FilterContainerV1_0_0 as FilterConfigurationFilterContainerV1_0_0,
 } from "../filter-configuration/shared.js";
+import { FilterConfigurationEmbeddedV1_0_0 } from "../filter-configuration/version-1.0.0.js";
 import {
   AutoPageGenerationConfigV1_2_0,
-  Background,
+  Background as PageBackground,
   BindingParameterV1_2_0,
   BindingType,
   DisplayArea,
   FilterCard,
-  OutspacePane,
+  OutspacePane as PageOutspacePane,
   PageBindingV1_2_0,
   PageDisplayOption,
   PageFormattingObjectsV1_2_0,
@@ -87,8 +88,9 @@ export const PageV1_2_0: Schema.Codec<PageV1_2_0> = closed({
 export const PageDefinitionsV1_2_0 = {
   PageDisplayOption: PageDisplayOption,
   FilterConfig: FilterConfigurationEmbeddedV1_0_0,
-  FilterContainer: FilterContainerV1_0_0,
-  FilterContainerFormattingObjects: FilterContainerFormattingObjectsV1_0_0,
+  FilterContainer: FilterConfigurationFilterContainerV1_0_0,
+  FilterContainerFormattingObjects:
+    FilterConfigurationFilterContainerFormattingObjectsV1_0_0,
   FilterContainerFormattingObjectsProperties:
     FilterContainerFormattingProperties,
   PageBinding: PageBindingV1_2_0,
@@ -97,9 +99,9 @@ export const PageDefinitionsV1_2_0 = {
   PageFormattingObjects: PageFormattingObjectsV1_2_0,
   PageInformation: PageInformation,
   PageSize: PageSize,
-  Background: Background,
+  Background: PageBackground,
   DisplayArea: DisplayArea,
-  OutspacePane: OutspacePane,
+  OutspacePane: PageOutspacePane,
   FilterCard: FilterCard,
   PageRefresh: PageRefresh,
   PersonalizeVisual: PersonalizeVisual,
@@ -136,8 +138,9 @@ export {
   QuickExploreRelatedLayout as PageQuickExploreCombinationLayoutV1_2_0,
 } from "./shared.js";
 
+export { FilterConfigurationEmbeddedV1_0_0 as PageFilterConfigV1_2_0 } from "../filter-configuration/version-1.0.0.js";
+
 export {
-  FilterConfigurationEmbeddedV1_0_0 as PageFilterConfigV1_2_0,
   FilterContainerV1_0_0 as PageFilterContainerV1_2_0,
   FilterContainerFormattingObjectsV1_0_0 as PageFilterContainerFormattingObjectsV1_2_0,
 } from "../filter-configuration/shared.js";

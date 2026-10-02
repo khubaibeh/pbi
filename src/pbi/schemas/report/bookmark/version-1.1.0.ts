@@ -1,4 +1,5 @@
 import { Schema } from "effect";
+
 import {
   BookmarkOptions,
   numericDictionary,
@@ -12,10 +13,10 @@ import {
   SelectorV1_1_0,
 } from "../formatting-object-definitions/version-1.1.0.js";
 import {
+  FilterDefinitionV1_1_0,
   QueryExpressionContainerV1_1_0,
   QuerySortClauseV1_1_0,
-} from "../semantic-query/shared.js";
-import { FilterDefinitionV1_1_0 } from "../semantic-query/version-1.1.0.js";
+} from "../semantic-query/version-1.1.0.js";
 import { closed } from "../shared.js";
 
 export type ExplorationStateV1_1_0 = {

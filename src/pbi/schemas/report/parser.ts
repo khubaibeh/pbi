@@ -1,4 +1,5 @@
 import { Effect, Schema } from "effect";
+
 import { BookmarkV1_0_0 } from "./bookmark/version-1.0.0.js";
 import { BookmarkV1_1_0 } from "./bookmark/version-1.1.0.js";
 import { BookmarkV1_2_0 } from "./bookmark/version-1.2.0.js";
@@ -79,6 +80,7 @@ export type ReportDocumentKind =
 
 export class MalformedReportJson extends Error {
   readonly _tag = "MalformedReportJson";
+
   constructor(
     readonly path: string,
     readonly cause: unknown,
@@ -89,6 +91,7 @@ export class MalformedReportJson extends Error {
 
 export class UnsupportedReportDocumentKind extends Error {
   readonly _tag = "UnsupportedReportDocumentKind";
+
   constructor(readonly path: string) {
     super(`Unsupported report document path: ${path}`);
   }
@@ -96,6 +99,7 @@ export class UnsupportedReportDocumentKind extends Error {
 
 export class UnsupportedReportSchemaVersion extends Error {
   readonly _tag = "UnsupportedReportSchemaVersion";
+
   constructor(
     readonly path: string,
     readonly kind: ReportDocumentKind,
@@ -107,6 +111,7 @@ export class UnsupportedReportSchemaVersion extends Error {
 
 export class ReportSchemaFamilyMismatch extends Error {
   readonly _tag = "ReportSchemaFamilyMismatch";
+
   constructor(
     readonly path: string,
     readonly kind: ReportDocumentKind,
@@ -121,6 +126,7 @@ export class ReportSchemaFamilyMismatch extends Error {
 
 export class ReportSchemaSelectorRequired extends Error {
   readonly _tag = "ReportSchemaSelectorRequired";
+
   constructor(
     readonly path: string,
     readonly kind: ReportDocumentKind,
@@ -134,6 +140,7 @@ export class ReportSchemaSelectorRequired extends Error {
 export class ReportSchemaMismatch extends Error {
   readonly _tag = "ReportSchemaMismatch";
   readonly issue: Schema.SchemaError["issue"];
+
   constructor(
     readonly path: string,
     readonly kind: ReportDocumentKind,
@@ -141,6 +148,7 @@ export class ReportSchemaMismatch extends Error {
     readonly cause: Schema.SchemaError,
   ) {
     super(`Schema mismatch at ${path}: ${cause.message}`);
+
     this.issue = cause.issue;
   }
 }
@@ -155,20 +163,31 @@ export type ReportFileParseError =
 
 function documentKind(path: string): ReportDocumentKind | undefined {
   if (path === "definition.pbir") return "definitionProperties";
+
   if (path === ".pbi/localSettings.json") return "localSettings";
+
   if (path === "definition/report.json") return "report";
+
   if (path === "definition/version.json") return "versionMetadata";
+
   if (path === "definition/reportExtensions.json") return "reportExtension";
+
   if (path === "definition/pages/pages.json") return "pagesMetadata";
+
   if (/^definition\/pages\/[^/]+\/page\.json$/.test(path)) return "page";
+
   if (/^definition\/pages\/[^/]+\/visuals\/[^/]+\/visual\.json$/.test(path))
     return "visualContainer";
+
   if (/^definition\/pages\/[^/]+\/visuals\/[^/]+\/mobile\.json$/.test(path))
     return "visualContainerMobileState";
+
   if (path === "definition/bookmarks/bookmarks.json")
     return "bookmarksMetadata";
+
   if (/^definition\/bookmarks\/[^/]+\.bookmark\.json$/.test(path))
     return "bookmark";
+
   return undefined;
 }
 
@@ -599,9 +618,12 @@ export function parseReportFile(
 ): Effect.Effect<ParsedReportFile, ReportFileParseError> {
   return Effect.gen(function* () {
     const kind = documentKind(input.path);
+
     if (kind === undefined)
       return yield* Effect.fail(new UnsupportedReportDocumentKind(input.path));
+
     const value = yield* jsonObject(input, kind);
+
     const tag =
       value.$schema === undefined
         ? undefined
@@ -611,20 +633,26 @@ export function parseReportFile(
                 new ReportSchemaMismatch(input.path, kind, undefined, cause),
             ),
           );
+
     const selector = tag ?? input.schemaSelector;
+
     if (selector === undefined)
       return yield* Effect.fail(
         new ReportSchemaSelectorRequired(input.path, kind),
       );
+
     const coverage = reportSchemaCoverageAll.find(
       (entry) =>
         entry.schemaId === selector ||
         ("aliases" in entry &&
           entry.aliases.some((alias) => alias === selector)),
     );
+
     if (coverage !== undefined) {
       const parts = coverage.source.split("/");
+
       const family = parts[0] === "definition" ? parts[1] : parts[0];
+
       if (family !== kind || coverage.variant === "embedded") {
         return yield* Effect.fail(
           new ReportSchemaFamilyMismatch(
@@ -636,13 +664,16 @@ export function parseReportFile(
         );
       }
     }
+
     const selected = reportFileSchemas.find(
       (entry) => entry.schemaId === selector,
     );
+
     if (selected === undefined)
       return yield* Effect.fail(
         new UnsupportedReportSchemaVersion(input.path, kind, selector),
       );
+
     if (selected.kind !== kind)
       return yield* Effect.fail(
         new ReportSchemaFamilyMismatch(
@@ -652,6 +683,7 @@ export function parseReportFile(
           selected.kind,
         ),
       );
+
     return yield* selected.decode(value, input.path);
   });
 }
@@ -671,9 +703,12 @@ export function parseReportFileDesktopCompatibility(
 > {
   if (input.path !== "definition.pbir" || input.schemaSelector !== undefined)
     return parseReportFile(input);
+
   return Effect.gen(function* () {
     const value = yield* jsonObject(input, "definitionProperties");
+
     if (value.$schema !== undefined) return yield* parseReportFile(input);
+
     const parsed = yield* Schema.decodeUnknownEffect(
       DesktopDefinitionPropertiesByPath,
       { errors: "all" },
@@ -688,12 +723,14 @@ export function parseReportFileDesktopCompatibility(
           ),
       ),
     );
+
     const result: ParsedDesktopDefinitionProperties = {
       kind: "definitionProperties",
       version: "desktop-by-path",
       compatibleSchemaVersions: ["1.0.0", "2.0.0"],
       value: parsed,
     };
+
     return result;
   });
 }

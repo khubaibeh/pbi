@@ -1,12 +1,15 @@
 import { Schema } from "effect";
+
 import { DataRepetitionSelectorV1_2_0 } from "../formatting-object-definitions/shared.js";
 import { DataRepetitionSelectorV1_4_0 } from "../formatting-object-definitions/version-1.4.0.js";
 import {
+  FilterDefinitionV1_2_0,
   QueryExpressionContainerV1_2_0,
+} from "../semantic-query/version-1.2.0.js";
+import {
+  FilterDefinitionV1_3_0,
   QueryExpressionContainerV1_3_0,
-} from "../semantic-query/shared.js";
-import { FilterDefinitionV1_2_0 } from "../semantic-query/version-1.2.0.js";
-import { FilterDefinitionV1_3_0 } from "../semantic-query/version-1.3.0.js";
+} from "../semantic-query/version-1.3.0.js";
 import { closed } from "../shared.js";
 
 export type BookmarkOptions = {

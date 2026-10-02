@@ -1,25 +1,7 @@
 import { Schema } from "effect";
+
+import { BookmarkGroupMetadata, SingleBookmarkMetadata } from "./shared.js";
 import { closed } from "../shared.js";
-
-export type SingleBookmarkMetadata = {
-  readonly name: string;
-};
-
-export const SingleBookmarkMetadata: Schema.Codec<SingleBookmarkMetadata> =
-  closed({ name: Schema.String });
-
-export type BookmarkGroupMetadata = {
-  readonly name: string;
-  readonly displayName: string;
-  readonly children: ReadonlyArray<string>;
-};
-
-export const BookmarkGroupMetadata: Schema.Codec<BookmarkGroupMetadata> =
-  closed({
-    name: Schema.String,
-    displayName: Schema.String,
-    children: Schema.Array(Schema.String),
-  });
 
 export type BookmarksMetadata = {
   readonly items: ReadonlyArray<SingleBookmarkMetadata | BookmarkGroupMetadata>;
@@ -46,5 +28,6 @@ export const BookmarksMetadataDefinitionsV1_0_0 = {
 export {
   SingleBookmarkMetadata as BookmarksMetadataSingleBookmarkMetadataV1_0_0,
   BookmarkGroupMetadata as BookmarksMetadataBookmarkGroupMetadataV1_0_0,
-  BookmarksMetadata as BookmarksMetadataV1_0_0,
-};
+} from "./shared.js";
+
+export { BookmarksMetadata as BookmarksMetadataV1_0_0 };

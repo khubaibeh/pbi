@@ -1,11 +1,12 @@
 import { Schema } from "effect";
+
 import { FilterConfigurationEmbeddedV1_3_0 } from "../filter-configuration/version-1.3.0.js";
 import { DisplayArea } from "../page/shared.js";
 import {
   ExplorationSlowDataSourceSettings,
   FieldParameterReportSettings,
   OrganizationCustomVisual,
-  OutspacePane,
+  OutspacePane as ReportOutspacePane,
   ReportFormattingObjectsV3_2_0,
   ResourcePackage,
   ResourcePackageItem,
@@ -172,7 +173,7 @@ export const ReportDefinitionsV3_3_0 = {
   ThemeVersion: ThemeVersion,
   ThemeResourcePackageType: ThemeResourcePackageType,
   ReportFormattingObjects: ReportFormattingObjectsV3_2_0,
-  OutspacePane: OutspacePane,
+  OutspacePane: ReportOutspacePane,
   Section: DisplayArea,
   ResourcePackage: ResourcePackage,
   ResourcePackageType: ResourcePackageType,

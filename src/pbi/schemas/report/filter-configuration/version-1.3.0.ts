@@ -1,9 +1,7 @@
 import { Schema } from "effect";
-import {
-  FilterContainerFormattingObjectsV1_3_0,
-  FilterContainerV1_3_0,
-} from "./shared.js";
-import { closed, FilterContainerFormattingProperties } from "../shared.js";
+
+import { FilterContainerV1_3_0 } from "./shared.js";
+import { closed } from "../shared.js";
 
 export type FilterConfigurationV1_3_0 = {
   readonly $schema: "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/filterConfiguration/1.3.0/schema.json";
@@ -47,25 +45,13 @@ export const FilterConfigurationEmbeddedV1_3_0: Schema.Codec<FilterConfiguration
     ),
   });
 
-export const FilterConfigurationDefinitionsV1_3_0 = {
-  FilterContainer: FilterContainerV1_3_0,
-  FilterContainerFormattingObjects: FilterContainerFormattingObjectsV1_3_0,
-  FilterContainerFormattingObjectsProperties:
-    FilterContainerFormattingProperties,
-} as const;
-
-export const FilterConfigurationEmbeddedDefinitionsV1_3_0 = {
-  FilterContainer: FilterContainerV1_3_0,
-  FilterContainerFormattingObjects: FilterContainerFormattingObjectsV1_3_0,
-  FilterContainerFormattingObjectsProperties:
-    FilterContainerFormattingProperties,
-} as const;
-
 export {
   FilterContainerV1_3_0 as FilterConfigurationFilterContainerV1_3_0,
   FilterContainerFormattingObjectsV1_3_0 as FilterConfigurationFilterContainerFormattingObjectsV1_3_0,
+  FilterConfigurationDefinitionsV1_3_0,
   FilterContainerV1_3_0 as FilterConfigurationEmbeddedFilterContainerV1_3_0,
   FilterContainerFormattingObjectsV1_3_0 as FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_3_0,
+  FilterConfigurationEmbeddedDefinitionsV1_3_0,
 } from "./shared.js";
 
 export {

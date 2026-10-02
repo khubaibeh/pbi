@@ -1,1 +1,117 @@
-export {};
+import { Schema } from "effect";
+
+import { Annotation, closed } from "../shared.js";
+
+export type ReportExtensionEntity = {
+  readonly name: string;
+  readonly measures?: ReadonlyArray<ReportExtensionMeasure>;
+};
+
+export const ReportExtensionEntity: Schema.Codec<ReportExtensionEntity> =
+  closed({
+    name: Schema.String,
+    measures: Schema.optionalKey(
+      Schema.Array(Schema.suspend(() => ReportExtensionMeasure)),
+    ),
+  });
+
+export type ReportExtensionMeasure = {
+  readonly name: string;
+  readonly dataType: PrimitiveTypeName;
+  readonly dataCategory?: string;
+  readonly expression: string;
+  readonly hidden?: boolean;
+  readonly formatString?: string;
+  readonly measureTemplate?: ReportExtensionMeasureTemplate;
+  readonly description?: string;
+  readonly displayFolder?: string;
+  readonly annotations?: ReadonlyArray<Annotation>;
+  readonly references?: ExpressionReferences;
+};
+
+export const ReportExtensionMeasure: Schema.Codec<ReportExtensionMeasure> =
+  closed({
+    name: Schema.String,
+    dataType: Schema.suspend(() => PrimitiveTypeName),
+    dataCategory: Schema.optionalKey(Schema.String),
+    expression: Schema.String,
+    hidden: Schema.optionalKey(Schema.Boolean),
+    formatString: Schema.optionalKey(Schema.String),
+    measureTemplate: Schema.optionalKey(
+      Schema.suspend(() => ReportExtensionMeasureTemplate),
+    ),
+    description: Schema.optionalKey(Schema.String),
+    displayFolder: Schema.optionalKey(Schema.String),
+    annotations: Schema.optionalKey(
+      Schema.Array(Schema.suspend(() => Annotation)),
+    ),
+    references: Schema.optionalKey(Schema.suspend(() => ExpressionReferences)),
+  });
+
+export type PrimitiveTypeName =
+  | "Binary"
+  | "Boolean"
+  | "Date"
+  | "DateTime"
+  | "DateTimeZone"
+  | "Decimal"
+  | "Double"
+  | "Duration"
+  | "Integer"
+  | "Json"
+  | "None"
+  | "Null"
+  | "Text"
+  | "Time"
+  | "Variant";
+
+export const PrimitiveTypeName: Schema.Codec<PrimitiveTypeName> =
+  Schema.Literals([
+    "Binary",
+    "Boolean",
+    "Date",
+    "DateTime",
+    "DateTimeZone",
+    "Decimal",
+    "Double",
+    "Duration",
+    "Integer",
+    "Json",
+    "None",
+    "Null",
+    "Text",
+    "Time",
+    "Variant",
+  ]);
+
+export type ReportExtensionMeasureTemplate = {
+  readonly daxTemplateName: string;
+  readonly version: number;
+};
+
+export const ReportExtensionMeasureTemplate: Schema.Codec<ReportExtensionMeasureTemplate> =
+  closed({ daxTemplateName: Schema.String, version: Schema.Finite });
+
+export type ExpressionReferences = {
+  readonly unrecognizedReferences?: boolean;
+  readonly measures?: ReadonlyArray<MeasureReference>;
+};
+
+export const ExpressionReferences: Schema.Codec<ExpressionReferences> = closed({
+  unrecognizedReferences: Schema.optionalKey(Schema.Boolean),
+  measures: Schema.optionalKey(
+    Schema.Array(Schema.suspend(() => MeasureReference)),
+  ),
+});
+
+export type MeasureReference = {
+  readonly schema?: string;
+  readonly entity: string;
+  readonly name: string;
+};
+
+export const MeasureReference: Schema.Codec<MeasureReference> = closed({
+  schema: Schema.optionalKey(Schema.String),
+  entity: Schema.String,
+  name: Schema.String,
+});

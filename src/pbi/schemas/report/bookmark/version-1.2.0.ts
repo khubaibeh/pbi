@@ -1,4 +1,5 @@
 import { Schema } from "effect";
+
 import {
   BookmarkOptions,
   DecomposedIdentitiesV1_2_0,
@@ -21,7 +22,7 @@ import {
 import {
   QueryExpressionContainerV1_2_0,
   QuerySortClauseV1_2_0,
-} from "../semantic-query/shared.js";
+} from "../semantic-query/version-1.2.0.js";
 import { closed } from "../shared.js";
 
 export type ExplorationStateV1_2_0 = {

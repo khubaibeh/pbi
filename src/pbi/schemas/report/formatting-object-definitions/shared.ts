@@ -1,8 +1,7 @@
 import { Schema } from "effect";
-import {
-  IncludeAllTypes,
-  QueryExpressionContainerV1_2_0,
-} from "../semantic-query/shared.js";
+
+import { IncludeAllTypes } from "../semantic-query/shared.js";
+import { QueryExpressionContainerV1_2_0 } from "../semantic-query/version-1.2.0.js";
 import { closed } from "../shared.js";
 
 export type DataViewObjectPropertyDefinitions = {} & {

@@ -1,13 +1,7 @@
 import { Schema } from "effect";
+
+import { ReportRemoteArtifact } from "./shared.js";
 import { closed } from "../shared.js";
-
-export type ReportRemoteArtifact = {
-  readonly reportId: string | null;
-};
-
-export const ReportRemoteArtifact: Schema.Codec<ReportRemoteArtifact> = closed({
-  reportId: Schema.Union([Schema.String, Schema.Null]),
-});
 
 export type LocalSettings = {
   readonly $schema: string;
@@ -38,7 +32,6 @@ export const LocalSettingsDefinitionsV1_0_0 = {
   ReportRemoteArtifact: ReportRemoteArtifact,
 } as const;
 
-export {
-  ReportRemoteArtifact as LocalSettingsReportRemoteArtifactV1_0_0,
-  LocalSettings as LocalSettingsV1_0_0,
-};
+export { ReportRemoteArtifact as LocalSettingsReportRemoteArtifactV1_0_0 } from "./shared.js";
+
+export { LocalSettings as LocalSettingsV1_0_0 };

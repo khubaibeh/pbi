@@ -1,4 +1,5 @@
 import { Schema } from "effect";
+
 import { FilterConfigurationEmbeddedV1_2_0 } from "../filter-configuration/version-1.2.0.js";
 import { Annotation, closed } from "../shared.js";
 import { VisualConfigurationEmbeddedV2_2_0 } from "../visual-configuration/version-2.2.0.js";

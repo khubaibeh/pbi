@@ -1,12 +1,11 @@
 import { Schema } from "effect";
+
 import {
   DataViewObjectPropertyDefinitions,
   DataViewWildcard,
 } from "./shared.js";
-import {
-  IncludeAllTypes,
-  QueryExpressionContainerV1_1_0,
-} from "../semantic-query/shared.js";
+import { IncludeAllTypes } from "../semantic-query/shared.js";
+import { QueryExpressionContainerV1_1_0 } from "../semantic-query/version-1.1.0.js";
 import { closed } from "../shared.js";
 
 export type DataViewObjectDefinitionsV1_1_0 = {} & {

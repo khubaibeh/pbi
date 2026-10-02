@@ -1,17 +1,18 @@
 import { Schema } from "effect";
+
 import { SelectorV1_1_0 } from "../formatting-object-definitions/version-1.1.0.js";
+import { DisplayArea } from "../page/shared.js";
 import {
-  DisplayArea,
   FilterConfigV1_1_0,
-  FilterContainerFormattingObjectsV1_1_0,
-  FilterContainerV1_1_0,
-} from "../page/shared.js";
+  FilterContainerFormattingObjectsV1_1_0 as PageFilterContainerFormattingObjectsV1_1_0,
+  FilterContainerV1_1_0 as PageFilterContainerV1_1_0,
+} from "../page/version-1.1.0.js";
 import {
   ExplorationSettingsV1_0_0,
   ExplorationSlowDataSourceSettings,
   LayoutOptimization,
   OrganizationCustomVisual,
-  OutspacePane,
+  OutspacePane as ReportOutspacePane,
   ResourcePackage,
   ResourcePackageItem,
   ResourcePackageItemType,
@@ -29,7 +30,7 @@ import {
 export type ReportFormattingObjectsV1_1_0 = {
   readonly outspacePane?: ReadonlyArray<{
     readonly selector?: SelectorV1_1_0;
-    readonly properties: OutspacePane;
+    readonly properties: ReportOutspacePane;
   }>;
   readonly section?: ReadonlyArray<{
     readonly selector?: SelectorV1_1_0;
@@ -43,7 +44,7 @@ export const ReportFormattingObjectsV1_1_0: Schema.Codec<ReportFormattingObjects
       Schema.Array(
         closed({
           selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_1_0)),
-          properties: Schema.suspend(() => OutspacePane),
+          properties: Schema.suspend(() => ReportOutspacePane),
         }),
       ),
     ),
@@ -124,12 +125,12 @@ export const ReportDefinitionsV1_1_0 = {
   ThemeResourcePackageType: ThemeResourcePackageType,
   LayoutOptimization: LayoutOptimization,
   FilterConfig: FilterConfigV1_1_0,
-  FilterContainer: FilterContainerV1_1_0,
-  FilterContainerFormattingObjects: FilterContainerFormattingObjectsV1_1_0,
+  FilterContainer: PageFilterContainerV1_1_0,
+  FilterContainerFormattingObjects: PageFilterContainerFormattingObjectsV1_1_0,
   FilterContainerFormattingObjectsProperties:
     FilterContainerFormattingProperties,
   ReportFormattingObjects: ReportFormattingObjectsV1_1_0,
-  OutspacePane: OutspacePane,
+  OutspacePane: ReportOutspacePane,
   Section: DisplayArea,
   ResourcePackage: ResourcePackage,
   ResourcePackageType: ResourcePackageType,
@@ -160,8 +161,7 @@ export {
   FilterConfigV1_1_0 as ReportFilterConfigV1_1_0,
   FilterContainerV1_1_0 as ReportFilterContainerV1_1_0,
   FilterContainerFormattingObjectsV1_1_0 as ReportFilterContainerFormattingObjectsV1_1_0,
-  DisplayArea as ReportSectionV1_1_0,
-} from "../page/shared.js";
+} from "../page/version-1.1.0.js";
 
 export {
   FilterContainerFormattingProperties as ReportFilterContainerFormattingObjectsPropertiesV1_1_0,
@@ -169,3 +169,5 @@ export {
 } from "../shared.js";
 
 export { ReportFormattingObjectsV1_1_0 as ReportReportFormattingObjectsV1_1_0 };
+
+export { DisplayArea as ReportSectionV1_1_0 } from "../page/shared.js";

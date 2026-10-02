@@ -1,13 +1,14 @@
 import { Schema } from "effect";
+
 import {
-  FilterConfigurationEmbeddedV1_0_0,
-  FilterContainerFormattingObjectsV1_0_0,
-  FilterContainerV1_0_0,
+  FilterContainerFormattingObjectsV1_0_0 as FilterConfigurationFilterContainerFormattingObjectsV1_0_0,
+  FilterContainerV1_0_0 as FilterConfigurationFilterContainerV1_0_0,
 } from "../filter-configuration/shared.js";
+import { FilterConfigurationEmbeddedV1_0_0 } from "../filter-configuration/version-1.0.0.js";
 import {
   Annotation,
-  Background,
-  Border,
+  Background as SharedBackground,
+  Border as SharedBorder,
   closed,
   Divider,
   DropShadow,
@@ -19,9 +20,9 @@ import {
   SubTitle,
   Title,
   VisualContainerGeneralFormattingObjects,
-  VisualHeader,
+  VisualHeader as SharedVisualHeader,
   VisualHeaderTooltip,
-  VisualLink,
+  VisualLink as SharedVisualLink,
   VisualTooltip,
 } from "../shared.js";
 import {
@@ -37,7 +38,7 @@ import {
   RoleProjectionV1_5_0,
   RootExpansionStateV1_5_0,
   SortDefinitionV1_5_0,
-  SortDirection,
+  SortDirection as VisualConfigurationSortDirection,
   VisualConfigurationEmbeddedV1_5_0,
   VisualContainerFormattingObjectsV1_5_0,
   VisualQueryOptions,
@@ -193,7 +194,7 @@ export const VisualContainerDefinitionsV1_3_0 = {
   Query: QueryV1_5_0,
   SortDefinition: SortDefinitionV1_5_0,
   QuerySort: QuerySortV1_5_0,
-  SortDirection: SortDirection,
+  SortDirection: VisualConfigurationSortDirection,
   VisualQueryOptions: VisualQueryOptions,
   ProjectionState: ProjectionStateV1_5_0,
   RoleProjection: RoleProjectionV1_5_0,
@@ -209,17 +210,17 @@ export const VisualContainerDefinitionsV1_3_0 = {
   SubTitle: SubTitle,
   Divider: Divider,
   Spacing: Spacing,
-  Background: Background,
+  Background: SharedBackground,
   Padding: Padding,
   LockAspect: LockAspect,
   VisualContainerGeneralFormattingObjects:
     VisualContainerGeneralFormattingObjects,
-  Border: Border,
+  Border: SharedBorder,
   DropShadow: DropShadow,
-  VisualLink: VisualLink,
+  VisualLink: SharedVisualLink,
   VisualTooltip: VisualTooltip,
   StylePreset: StylePreset,
-  VisualHeader: VisualHeader,
+  VisualHeader: SharedVisualHeader,
   VisualHeaderTooltip: VisualHeaderTooltip,
   VisualSyncGroup: VisualSyncGroup,
   VisualGroupConfig: VisualGroupConfigV1_2_0,
@@ -227,8 +228,9 @@ export const VisualContainerDefinitionsV1_3_0 = {
   VisualGroupFormattingObjects: VisualGroupFormattingObjectsV1_2_0,
   VisualGroupGeneralFormattingObjects: VisualGroupGeneralFormattingObjects,
   FilterConfig: FilterConfigurationEmbeddedV1_0_0,
-  FilterContainer: FilterContainerV1_0_0,
-  FilterContainerFormattingObjects: FilterContainerFormattingObjectsV1_0_0,
+  FilterContainer: FilterConfigurationFilterContainerV1_0_0,
+  FilterContainerFormattingObjects:
+    FilterConfigurationFilterContainerFormattingObjectsV1_0_0,
   FilterContainerFormattingObjectsProperties:
     FilterContainerFormattingProperties,
   Annotation: Annotation,
@@ -282,8 +284,9 @@ export {
   Annotation as VisualContainerAnnotationV1_3_0,
 } from "../shared.js";
 
+export { FilterConfigurationEmbeddedV1_0_0 as VisualContainerFilterConfigV1_3_0 } from "../filter-configuration/version-1.0.0.js";
+
 export {
-  FilterConfigurationEmbeddedV1_0_0 as VisualContainerFilterConfigV1_3_0,
   FilterContainerV1_0_0 as VisualContainerFilterContainerV1_3_0,
   FilterContainerFormattingObjectsV1_0_0 as VisualContainerFilterContainerFormattingObjectsV1_3_0,
 } from "../filter-configuration/shared.js";

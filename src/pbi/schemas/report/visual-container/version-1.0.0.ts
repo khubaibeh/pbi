@@ -1,17 +1,18 @@
 import { Schema } from "effect";
+
 import {
   DataViewObjectDefinitionsV1_0_0,
   SelectorV1_0_0,
 } from "../formatting-object-definitions/version-1.0.0.js";
 import {
   FilterConfigV1_0_0,
-  FilterContainerFormattingObjectsV1_0_0,
-  FilterContainerV1_0_0,
-} from "../page/shared.js";
-import { QueryExpressionContainerV1_0_0 } from "../semantic-query/shared.js";
+  FilterContainerFormattingObjectsV1_0_0 as PageFilterContainerFormattingObjectsV1_0_0,
+  FilterContainerV1_0_0 as PageFilterContainerV1_0_0,
+} from "../page/version-1.0.0.js";
+import { QueryExpressionContainerV1_0_0 } from "../semantic-query/version-1.0.0.js";
 import {
   Annotation,
-  Background,
+  Background as SharedBackground,
   closed,
   Divider,
   DropShadow,
@@ -24,23 +25,20 @@ import {
   Title,
   VisualContainerGeneralFormattingObjects,
   VisualHeaderTooltip,
-  VisualLink,
+  VisualLink as SharedVisualLink,
   VisualTooltip,
 } from "../shared.js";
 import {
   AIDecompositionMethod,
   AILevelInformation,
-  SortDirection,
+  SortDirection as VisualConfigurationSortDirection,
   VisualQueryOptions,
   VisualSyncGroup,
 } from "../visual-configuration/shared.js";
 import {
-  Border,
   GroupLayoutMode,
-  VisualContainerFormattingObjectsV1_0_0,
   VisualContainerPositionV1_0_0,
   VisualGroupGeneralFormattingObjects,
-  VisualHeader,
 } from "./shared.js";
 
 export type VisualConfigV1_0_0 = {
@@ -104,12 +102,12 @@ export const SortDefinitionV1_0_0: Schema.Codec<SortDefinitionV1_0_0> = closed({
 
 export type QuerySortV1_0_0 = {
   readonly field: QueryExpressionContainerV1_0_0;
-  readonly direction: SortDirection;
+  readonly direction: VisualConfigurationSortDirection;
 };
 
 export const QuerySortV1_0_0: Schema.Codec<QuerySortV1_0_0> = closed({
   field: Schema.suspend(() => QueryExpressionContainerV1_0_0),
-  direction: Schema.suspend(() => SortDirection),
+  direction: Schema.suspend(() => VisualConfigurationSortDirection),
 });
 
 export type ProjectionStateV1_0_0 = {
@@ -229,6 +227,259 @@ export const LevelExpansionStateV1_0_0: Schema.Codec<LevelExpansionStateV1_0_0> 
     AIInformation: Schema.optionalKey(Schema.suspend(() => AILevelInformation)),
   });
 
+export type VisualContainerFormattingObjectsV1_0_0 = {
+  readonly title?: ReadonlyArray<{
+    readonly selector?: SelectorV1_0_0;
+    readonly properties: Title;
+  }>;
+  readonly subTitle?: ReadonlyArray<{
+    readonly selector?: SelectorV1_0_0;
+    readonly properties: SubTitle;
+  }>;
+  readonly divider?: ReadonlyArray<{
+    readonly selector?: SelectorV1_0_0;
+    readonly properties: Divider;
+  }>;
+  readonly spacing?: ReadonlyArray<{
+    readonly selector?: SelectorV1_0_0;
+    readonly properties: Spacing;
+  }>;
+  readonly background?: ReadonlyArray<{
+    readonly selector?: SelectorV1_0_0;
+    readonly properties: SharedBackground;
+  }>;
+  readonly padding?: ReadonlyArray<{
+    readonly selector?: SelectorV1_0_0;
+    readonly properties: Padding;
+  }>;
+  readonly lockAspect?: ReadonlyArray<{
+    readonly selector?: SelectorV1_0_0;
+    readonly properties: LockAspect;
+  }>;
+  readonly general?: ReadonlyArray<{
+    readonly selector?: SelectorV1_0_0;
+    readonly properties: VisualContainerGeneralFormattingObjects;
+  }>;
+  readonly border?: ReadonlyArray<{
+    readonly selector?: SelectorV1_0_0;
+    readonly properties: Border;
+  }>;
+  readonly dropShadow?: ReadonlyArray<{
+    readonly selector?: SelectorV1_0_0;
+    readonly properties: DropShadow;
+  }>;
+  readonly visualLink?: ReadonlyArray<{
+    readonly selector?: SelectorV1_0_0;
+    readonly properties: SharedVisualLink;
+  }>;
+  readonly visualTooltip?: ReadonlyArray<{
+    readonly selector?: SelectorV1_0_0;
+    readonly properties: VisualTooltip;
+  }>;
+  readonly stylePreset?: ReadonlyArray<{
+    readonly selector?: SelectorV1_0_0;
+    readonly properties: StylePreset;
+  }>;
+  readonly visualHeader?: ReadonlyArray<{
+    readonly selector?: SelectorV1_0_0;
+    readonly properties: VisualHeader;
+  }>;
+  readonly visualHeaderTooltip?: ReadonlyArray<{
+    readonly selector?: SelectorV1_0_0;
+    readonly properties: VisualHeaderTooltip;
+  }>;
+};
+
+export const VisualContainerFormattingObjectsV1_0_0: Schema.Codec<VisualContainerFormattingObjectsV1_0_0> =
+  closed({
+    title: Schema.optionalKey(
+      Schema.Array(
+        closed({
+          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_0_0)),
+          properties: Schema.suspend(() => Title),
+        }),
+      ),
+    ),
+    subTitle: Schema.optionalKey(
+      Schema.Array(
+        closed({
+          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_0_0)),
+          properties: Schema.suspend(() => SubTitle),
+        }),
+      ),
+    ),
+    divider: Schema.optionalKey(
+      Schema.Array(
+        closed({
+          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_0_0)),
+          properties: Schema.suspend(() => Divider),
+        }),
+      ),
+    ),
+    spacing: Schema.optionalKey(
+      Schema.Array(
+        closed({
+          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_0_0)),
+          properties: Schema.suspend(() => Spacing),
+        }),
+      ),
+    ),
+    background: Schema.optionalKey(
+      Schema.Array(
+        closed({
+          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_0_0)),
+          properties: Schema.suspend(() => SharedBackground),
+        }),
+      ),
+    ),
+    padding: Schema.optionalKey(
+      Schema.Array(
+        closed({
+          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_0_0)),
+          properties: Schema.suspend(() => Padding),
+        }),
+      ),
+    ),
+    lockAspect: Schema.optionalKey(
+      Schema.Array(
+        closed({
+          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_0_0)),
+          properties: Schema.suspend(() => LockAspect),
+        }),
+      ),
+    ),
+    general: Schema.optionalKey(
+      Schema.Array(
+        closed({
+          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_0_0)),
+          properties: Schema.suspend(
+            () => VisualContainerGeneralFormattingObjects,
+          ),
+        }),
+      ),
+    ),
+    border: Schema.optionalKey(
+      Schema.Array(
+        closed({
+          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_0_0)),
+          properties: Schema.suspend(() => Border),
+        }),
+      ),
+    ),
+    dropShadow: Schema.optionalKey(
+      Schema.Array(
+        closed({
+          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_0_0)),
+          properties: Schema.suspend(() => DropShadow),
+        }),
+      ),
+    ),
+    visualLink: Schema.optionalKey(
+      Schema.Array(
+        closed({
+          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_0_0)),
+          properties: Schema.suspend(() => SharedVisualLink),
+        }),
+      ),
+    ),
+    visualTooltip: Schema.optionalKey(
+      Schema.Array(
+        closed({
+          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_0_0)),
+          properties: Schema.suspend(() => VisualTooltip),
+        }),
+      ),
+    ),
+    stylePreset: Schema.optionalKey(
+      Schema.Array(
+        closed({
+          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_0_0)),
+          properties: Schema.suspend(() => StylePreset),
+        }),
+      ),
+    ),
+    visualHeader: Schema.optionalKey(
+      Schema.Array(
+        closed({
+          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_0_0)),
+          properties: Schema.suspend(() => VisualHeader),
+        }),
+      ),
+    ),
+    visualHeaderTooltip: Schema.optionalKey(
+      Schema.Array(
+        closed({
+          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_0_0)),
+          properties: Schema.suspend(() => VisualHeaderTooltip),
+        }),
+      ),
+    ),
+  });
+
+export type Border = {
+  readonly show?: Schema.Json;
+  readonly color?: Schema.Json;
+  readonly radius?: Schema.Json;
+};
+
+export const Border: Schema.Codec<Border> = closed({
+  show: Schema.optionalKey(Schema.Json),
+  color: Schema.optionalKey(Schema.Json),
+  radius: Schema.optionalKey(Schema.Json),
+});
+
+export type VisualHeader = {
+  readonly show?: Schema.Json;
+  readonly background?: Schema.Json;
+  readonly border?: Schema.Json;
+  readonly transparency?: Schema.Json;
+  readonly foreground?: Schema.Json;
+  readonly showVisualInformationButton?: Schema.Json;
+  readonly showVisualWarningButton?: Schema.Json;
+  readonly showVisualErrorButton?: Schema.Json;
+  readonly showDrillRoleSelector?: Schema.Json;
+  readonly showDrillUpButton?: Schema.Json;
+  readonly showDrillToggleButton?: Schema.Json;
+  readonly showDrillDownLevelButton?: Schema.Json;
+  readonly showDrillDownExpandButton?: Schema.Json;
+  readonly showPinButton?: Schema.Json;
+  readonly showFilterRestatementButton?: Schema.Json;
+  readonly showFocusModeButton?: Schema.Json;
+  readonly showCopyVisualImageButton?: Schema.Json;
+  readonly showSeeDataLayoutToggleButton?: Schema.Json;
+  readonly showOptionsMenu?: Schema.Json;
+  readonly showCommentButton?: Schema.Json;
+  readonly showTooltipButton?: Schema.Json;
+  readonly showPersonalizeVisualButton?: Schema.Json;
+  readonly showSmartNarrativeButton?: Schema.Json;
+};
+
+export const VisualHeader: Schema.Codec<VisualHeader> = closed({
+  show: Schema.optionalKey(Schema.Json),
+  background: Schema.optionalKey(Schema.Json),
+  border: Schema.optionalKey(Schema.Json),
+  transparency: Schema.optionalKey(Schema.Json),
+  foreground: Schema.optionalKey(Schema.Json),
+  showVisualInformationButton: Schema.optionalKey(Schema.Json),
+  showVisualWarningButton: Schema.optionalKey(Schema.Json),
+  showVisualErrorButton: Schema.optionalKey(Schema.Json),
+  showDrillRoleSelector: Schema.optionalKey(Schema.Json),
+  showDrillUpButton: Schema.optionalKey(Schema.Json),
+  showDrillToggleButton: Schema.optionalKey(Schema.Json),
+  showDrillDownLevelButton: Schema.optionalKey(Schema.Json),
+  showDrillDownExpandButton: Schema.optionalKey(Schema.Json),
+  showPinButton: Schema.optionalKey(Schema.Json),
+  showFilterRestatementButton: Schema.optionalKey(Schema.Json),
+  showFocusModeButton: Schema.optionalKey(Schema.Json),
+  showCopyVisualImageButton: Schema.optionalKey(Schema.Json),
+  showSeeDataLayoutToggleButton: Schema.optionalKey(Schema.Json),
+  showOptionsMenu: Schema.optionalKey(Schema.Json),
+  showCommentButton: Schema.optionalKey(Schema.Json),
+  showTooltipButton: Schema.optionalKey(Schema.Json),
+  showPersonalizeVisualButton: Schema.optionalKey(Schema.Json),
+  showSmartNarrativeButton: Schema.optionalKey(Schema.Json),
+});
+
 export type VisualGroupConfigV1_0_0 = {
   readonly displayName: string;
   readonly groupMode: GroupLayoutMode;
@@ -247,7 +498,7 @@ export const VisualGroupConfigV1_0_0: Schema.Codec<VisualGroupConfigV1_0_0> =
 export type VisualGroupFormattingObjectsV1_0_0 = {
   readonly background?: ReadonlyArray<{
     readonly selector?: SelectorV1_0_0;
-    readonly properties: Background;
+    readonly properties: SharedBackground;
   }>;
   readonly lockAspect?: ReadonlyArray<{
     readonly selector?: SelectorV1_0_0;
@@ -265,7 +516,7 @@ export const VisualGroupFormattingObjectsV1_0_0: Schema.Codec<VisualGroupFormatt
       Schema.Array(
         closed({
           selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_0_0)),
-          properties: Schema.suspend(() => Background),
+          properties: Schema.suspend(() => SharedBackground),
         }),
       ),
     ),
@@ -425,7 +676,7 @@ export const VisualContainerDefinitionsV1_0_0 = {
   Query: QueryV1_0_0,
   SortDefinition: SortDefinitionV1_0_0,
   QuerySort: QuerySortV1_0_0,
-  SortDirection: SortDirection,
+  SortDirection: VisualConfigurationSortDirection,
   VisualQueryOptions: VisualQueryOptions,
   ProjectionState: ProjectionStateV1_0_0,
   RoleProjection: RoleProjectionV1_0_0,
@@ -441,14 +692,14 @@ export const VisualContainerDefinitionsV1_0_0 = {
   SubTitle: SubTitle,
   Divider: Divider,
   Spacing: Spacing,
-  Background: Background,
+  Background: SharedBackground,
   Padding: Padding,
   LockAspect: LockAspect,
   VisualContainerGeneralFormattingObjects:
     VisualContainerGeneralFormattingObjects,
   Border: Border,
   DropShadow: DropShadow,
-  VisualLink: VisualLink,
+  VisualLink: SharedVisualLink,
   VisualTooltip: VisualTooltip,
   StylePreset: StylePreset,
   VisualHeader: VisualHeader,
@@ -459,8 +710,8 @@ export const VisualContainerDefinitionsV1_0_0 = {
   VisualGroupFormattingObjects: VisualGroupFormattingObjectsV1_0_0,
   VisualGroupGeneralFormattingObjects: VisualGroupGeneralFormattingObjects,
   FilterConfig: FilterConfigV1_0_0,
-  FilterContainer: FilterContainerV1_0_0,
-  FilterContainerFormattingObjects: FilterContainerFormattingObjectsV1_0_0,
+  FilterContainer: PageFilterContainerV1_0_0,
+  FilterContainerFormattingObjects: PageFilterContainerFormattingObjectsV1_0_0,
   FilterContainerFormattingObjectsProperties:
     FilterContainerFormattingProperties,
   Annotation: Annotation,
@@ -468,9 +719,6 @@ export const VisualContainerDefinitionsV1_0_0 = {
 
 export {
   VisualContainerPositionV1_0_0 as VisualContainerVisualContainerPositionV1_0_0,
-  VisualContainerFormattingObjectsV1_0_0 as VisualContainerVisualContainerFormattingObjectsV1_0_0,
-  Border as VisualContainerBorderV1_0_0,
-  VisualHeader as VisualContainerVisualHeaderV1_0_0,
   GroupLayoutMode as VisualContainerGroupLayoutModeV1_0_0,
   VisualGroupGeneralFormattingObjects as VisualContainerVisualGroupGeneralFormattingObjectsV1_0_0,
 } from "./shared.js";
@@ -487,6 +735,9 @@ export {
   RootExpansionStateV1_0_0 as VisualContainerRootExpansionStateV1_0_0,
   NodeExpansionStateV1_0_0 as VisualContainerNodeExpansionStateV1_0_0,
   LevelExpansionStateV1_0_0 as VisualContainerLevelExpansionStateV1_0_0,
+  VisualContainerFormattingObjectsV1_0_0 as VisualContainerVisualContainerFormattingObjectsV1_0_0,
+  Border as VisualContainerBorderV1_0_0,
+  VisualHeader as VisualContainerVisualHeaderV1_0_0,
   VisualGroupConfigV1_0_0 as VisualContainerVisualGroupConfigV1_0_0,
   VisualGroupFormattingObjectsV1_0_0 as VisualContainerVisualGroupFormattingObjectsV1_0_0,
 };
@@ -521,4 +772,4 @@ export {
   FilterConfigV1_0_0 as VisualContainerFilterConfigV1_0_0,
   FilterContainerV1_0_0 as VisualContainerFilterContainerV1_0_0,
   FilterContainerFormattingObjectsV1_0_0 as VisualContainerFilterContainerFormattingObjectsV1_0_0,
-} from "../page/shared.js";
+} from "../page/version-1.0.0.js";

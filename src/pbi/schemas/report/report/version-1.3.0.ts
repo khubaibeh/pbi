@@ -1,4 +1,5 @@
 import { Schema } from "effect";
+
 import { FilterConfigurationEmbeddedV1_1_0 } from "../filter-configuration/version-1.1.0.js";
 import { DisplayArea } from "../page/shared.js";
 import {
@@ -6,7 +7,7 @@ import {
   ExplorationSlowDataSourceSettings,
   LayoutOptimization,
   OrganizationCustomVisual,
-  OutspacePane,
+  OutspacePane as ReportOutspacePane,
   ReportFormattingObjectsV1_3_0,
   ResourcePackage,
   ResourcePackageItem,
@@ -87,7 +88,7 @@ export const ReportDefinitionsV1_3_0 = {
   ThemeResourcePackageType: ThemeResourcePackageType,
   LayoutOptimization: LayoutOptimization,
   ReportFormattingObjects: ReportFormattingObjectsV1_3_0,
-  OutspacePane: OutspacePane,
+  OutspacePane: ReportOutspacePane,
   Section: DisplayArea,
   ResourcePackage: ResourcePackage,
   ResourcePackageType: ResourcePackageType,

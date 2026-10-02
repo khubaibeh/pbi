@@ -376,6 +376,7 @@ export function closed<const Fields extends Schema.Struct.Fields>(
   fields: Fields,
 ) {
   const allowed = new Set(Object.keys(fields));
+
   return Schema.StructWithRest(Schema.Struct(fields), [
     Schema.Record(Schema.String, Schema.Json),
   ]).check(

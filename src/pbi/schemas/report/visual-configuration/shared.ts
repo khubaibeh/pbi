@@ -1,4 +1,5 @@
 import { Schema } from "effect";
+
 import {
   DataViewObjectDefinitionsV1_2_0,
   SelectorV1_2_0,
@@ -11,15 +12,11 @@ import {
   DataViewObjectDefinitionsV1_4_0,
   SelectorV1_4_0,
 } from "../formatting-object-definitions/version-1.4.0.js";
-import { SelectorV1_5_0 } from "../formatting-object-definitions/version-1.5.0.js";
+import { QueryExpressionContainerV1_2_0 } from "../semantic-query/version-1.2.0.js";
+import { QueryExpressionContainerV1_3_0 } from "../semantic-query/version-1.3.0.js";
 import {
-  QueryExpressionContainerV1_2_0,
-  QueryExpressionContainerV1_3_0,
-  QueryExpressionContainerV1_4_0,
-} from "../semantic-query/shared.js";
-import {
-  Background,
-  Border,
+  Background as SharedBackground,
+  Border as SharedBorder,
   closed,
   Divider,
   DropShadow,
@@ -30,7 +27,7 @@ import {
   SubTitle,
   Title,
   VisualContainerGeneralFormattingObjects,
-  VisualHeader,
+  VisualHeader as SharedVisualHeader,
   VisualHeaderTooltip,
   VisualLink as SharedVisualLink,
   VisualTooltip,
@@ -245,7 +242,7 @@ export type VisualContainerFormattingObjectsV1_5_0 = {
   }>;
   readonly background?: ReadonlyArray<{
     readonly selector?: SelectorV1_2_0;
-    readonly properties: Background;
+    readonly properties: SharedBackground;
   }>;
   readonly padding?: ReadonlyArray<{
     readonly selector?: SelectorV1_2_0;
@@ -261,7 +258,7 @@ export type VisualContainerFormattingObjectsV1_5_0 = {
   }>;
   readonly border?: ReadonlyArray<{
     readonly selector?: SelectorV1_2_0;
-    readonly properties: Border;
+    readonly properties: SharedBorder;
   }>;
   readonly dropShadow?: ReadonlyArray<{
     readonly selector?: SelectorV1_2_0;
@@ -281,7 +278,7 @@ export type VisualContainerFormattingObjectsV1_5_0 = {
   }>;
   readonly visualHeader?: ReadonlyArray<{
     readonly selector?: SelectorV1_2_0;
-    readonly properties: VisualHeader;
+    readonly properties: SharedVisualHeader;
   }>;
   readonly visualHeaderTooltip?: ReadonlyArray<{
     readonly selector?: SelectorV1_2_0;
@@ -327,7 +324,7 @@ export const VisualContainerFormattingObjectsV1_5_0: Schema.Codec<VisualContaine
       Schema.Array(
         closed({
           selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_2_0)),
-          properties: Schema.suspend(() => Background),
+          properties: Schema.suspend(() => SharedBackground),
         }),
       ),
     ),
@@ -361,7 +358,7 @@ export const VisualContainerFormattingObjectsV1_5_0: Schema.Codec<VisualContaine
       Schema.Array(
         closed({
           selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_2_0)),
-          properties: Schema.suspend(() => Border),
+          properties: Schema.suspend(() => SharedBorder),
         }),
       ),
     ),
@@ -401,7 +398,7 @@ export const VisualContainerFormattingObjectsV1_5_0: Schema.Codec<VisualContaine
       Schema.Array(
         closed({
           selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_2_0)),
-          properties: Schema.suspend(() => VisualHeader),
+          properties: Schema.suspend(() => SharedVisualHeader),
         }),
       ),
     ),
@@ -528,7 +525,7 @@ export type VisualContainerFormattingObjectsV1_8_0 = {
   }>;
   readonly background?: ReadonlyArray<{
     readonly selector?: SelectorV1_3_0;
-    readonly properties: Background;
+    readonly properties: SharedBackground;
   }>;
   readonly padding?: ReadonlyArray<{
     readonly selector?: SelectorV1_3_0;
@@ -544,7 +541,7 @@ export type VisualContainerFormattingObjectsV1_8_0 = {
   }>;
   readonly border?: ReadonlyArray<{
     readonly selector?: SelectorV1_3_0;
-    readonly properties: Border;
+    readonly properties: SharedBorder;
   }>;
   readonly dropShadow?: ReadonlyArray<{
     readonly selector?: SelectorV1_3_0;
@@ -564,7 +561,7 @@ export type VisualContainerFormattingObjectsV1_8_0 = {
   }>;
   readonly visualHeader?: ReadonlyArray<{
     readonly selector?: SelectorV1_3_0;
-    readonly properties: VisualHeader;
+    readonly properties: SharedVisualHeader;
   }>;
   readonly visualHeaderTooltip?: ReadonlyArray<{
     readonly selector?: SelectorV1_3_0;
@@ -610,7 +607,7 @@ export const VisualContainerFormattingObjectsV1_8_0: Schema.Codec<VisualContaine
       Schema.Array(
         closed({
           selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_3_0)),
-          properties: Schema.suspend(() => Background),
+          properties: Schema.suspend(() => SharedBackground),
         }),
       ),
     ),
@@ -644,7 +641,7 @@ export const VisualContainerFormattingObjectsV1_8_0: Schema.Codec<VisualContaine
       Schema.Array(
         closed({
           selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_3_0)),
-          properties: Schema.suspend(() => Border),
+          properties: Schema.suspend(() => SharedBorder),
         }),
       ),
     ),
@@ -684,7 +681,7 @@ export const VisualContainerFormattingObjectsV1_8_0: Schema.Codec<VisualContaine
       Schema.Array(
         closed({
           selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_3_0)),
-          properties: Schema.suspend(() => VisualHeader),
+          properties: Schema.suspend(() => SharedVisualHeader),
         }),
       ),
     ),
@@ -908,7 +905,7 @@ export type VisualContainerFormattingObjectsV2_0_0 = {
   }>;
   readonly background?: ReadonlyArray<{
     readonly selector?: SelectorV1_4_0;
-    readonly properties: Background;
+    readonly properties: SharedBackground;
   }>;
   readonly padding?: ReadonlyArray<{
     readonly selector?: SelectorV1_4_0;
@@ -924,7 +921,7 @@ export type VisualContainerFormattingObjectsV2_0_0 = {
   }>;
   readonly border?: ReadonlyArray<{
     readonly selector?: SelectorV1_4_0;
-    readonly properties: Border;
+    readonly properties: SharedBorder;
   }>;
   readonly dropShadow?: ReadonlyArray<{
     readonly selector?: SelectorV1_4_0;
@@ -944,7 +941,7 @@ export type VisualContainerFormattingObjectsV2_0_0 = {
   }>;
   readonly visualHeader?: ReadonlyArray<{
     readonly selector?: SelectorV1_4_0;
-    readonly properties: VisualHeader;
+    readonly properties: SharedVisualHeader;
   }>;
   readonly visualHeaderTooltip?: ReadonlyArray<{
     readonly selector?: SelectorV1_4_0;
@@ -990,7 +987,7 @@ export const VisualContainerFormattingObjectsV2_0_0: Schema.Codec<VisualContaine
       Schema.Array(
         closed({
           selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => Background),
+          properties: Schema.suspend(() => SharedBackground),
         }),
       ),
     ),
@@ -1024,7 +1021,7 @@ export const VisualContainerFormattingObjectsV2_0_0: Schema.Codec<VisualContaine
       Schema.Array(
         closed({
           selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => Border),
+          properties: Schema.suspend(() => SharedBorder),
         }),
       ),
     ),
@@ -1064,7 +1061,7 @@ export const VisualContainerFormattingObjectsV2_0_0: Schema.Codec<VisualContaine
       Schema.Array(
         closed({
           selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => VisualHeader),
+          properties: Schema.suspend(() => SharedVisualHeader),
         }),
       ),
     ),
@@ -1111,195 +1108,6 @@ export const VisualConfigurationV2_0_0: Schema.Codec<VisualConfigurationV2_0_0> 
     drillFilterOtherVisuals: Schema.optionalKey(Schema.Boolean),
   });
 
-export type VisualContainerFormattingObjectsV2_2_0 = {
-  readonly title?: ReadonlyArray<{
-    readonly selector?: SelectorV1_4_0;
-    readonly properties: Title;
-  }>;
-  readonly subTitle?: ReadonlyArray<{
-    readonly selector?: SelectorV1_4_0;
-    readonly properties: SubTitle;
-  }>;
-  readonly divider?: ReadonlyArray<{
-    readonly selector?: SelectorV1_4_0;
-    readonly properties: Divider;
-  }>;
-  readonly spacing?: ReadonlyArray<{
-    readonly selector?: SelectorV1_4_0;
-    readonly properties: Spacing;
-  }>;
-  readonly background?: ReadonlyArray<{
-    readonly selector?: SelectorV1_4_0;
-    readonly properties: Background;
-  }>;
-  readonly padding?: ReadonlyArray<{
-    readonly selector?: SelectorV1_4_0;
-    readonly properties: Padding;
-  }>;
-  readonly lockAspect?: ReadonlyArray<{
-    readonly selector?: SelectorV1_4_0;
-    readonly properties: LockAspect;
-  }>;
-  readonly general?: ReadonlyArray<{
-    readonly selector?: SelectorV1_4_0;
-    readonly properties: VisualContainerGeneralFormattingObjects;
-  }>;
-  readonly border?: ReadonlyArray<{
-    readonly selector?: SelectorV1_4_0;
-    readonly properties: Border;
-  }>;
-  readonly dropShadow?: ReadonlyArray<{
-    readonly selector?: SelectorV1_4_0;
-    readonly properties: DropShadow;
-  }>;
-  readonly visualLink?: ReadonlyArray<{
-    readonly selector?: SelectorV1_4_0;
-    readonly properties: VisualLink;
-  }>;
-  readonly visualTooltip?: ReadonlyArray<{
-    readonly selector?: SelectorV1_4_0;
-    readonly properties: VisualTooltip;
-  }>;
-  readonly stylePreset?: ReadonlyArray<{
-    readonly selector?: SelectorV1_4_0;
-    readonly properties: StylePreset;
-  }>;
-  readonly visualHeader?: ReadonlyArray<{
-    readonly selector?: SelectorV1_4_0;
-    readonly properties: VisualHeader;
-  }>;
-  readonly visualHeaderTooltip?: ReadonlyArray<{
-    readonly selector?: SelectorV1_4_0;
-    readonly properties: VisualHeaderTooltip;
-  }>;
-};
-
-export const VisualContainerFormattingObjectsV2_2_0: Schema.Codec<VisualContainerFormattingObjectsV2_2_0> =
-  closed({
-    title: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => Title),
-        }),
-      ),
-    ),
-    subTitle: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => SubTitle),
-        }),
-      ),
-    ),
-    divider: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => Divider),
-        }),
-      ),
-    ),
-    spacing: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => Spacing),
-        }),
-      ),
-    ),
-    background: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => Background),
-        }),
-      ),
-    ),
-    padding: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => Padding),
-        }),
-      ),
-    ),
-    lockAspect: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => LockAspect),
-        }),
-      ),
-    ),
-    general: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(
-            () => VisualContainerGeneralFormattingObjects,
-          ),
-        }),
-      ),
-    ),
-    border: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => Border),
-        }),
-      ),
-    ),
-    dropShadow: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => DropShadow),
-        }),
-      ),
-    ),
-    visualLink: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => VisualLink),
-        }),
-      ),
-    ),
-    visualTooltip: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => VisualTooltip),
-        }),
-      ),
-    ),
-    stylePreset: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => StylePreset),
-        }),
-      ),
-    ),
-    visualHeader: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => VisualHeader),
-        }),
-      ),
-    ),
-    visualHeaderTooltip: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
-          properties: Schema.suspend(() => VisualHeaderTooltip),
-        }),
-      ),
-    ),
-  });
-
 export type VisualLink = {
   readonly show?: Schema.Json;
   readonly type?: Schema.Json;
@@ -1333,354 +1141,3 @@ export const VisualLink: Schema.Codec<VisualLink> = closed({
   webUrl: Schema.optionalKey(Schema.Json),
   dataFunction: Schema.optionalKey(Schema.Json),
 });
-
-export type QueryV2_3_0 = {
-  readonly sortDefinition?: SortDefinitionV2_3_0;
-  readonly options?: VisualQueryOptions;
-  readonly queryState: {} & {
-    readonly [key: string]: ProjectionStateV2_3_0;
-  };
-  readonly isDrillDisabled?: boolean;
-};
-
-export const QueryV2_3_0: Schema.Codec<QueryV2_3_0> = closed({
-  sortDefinition: Schema.optionalKey(
-    Schema.suspend(() => SortDefinitionV2_3_0),
-  ),
-  options: Schema.optionalKey(Schema.suspend(() => VisualQueryOptions)),
-  queryState: Schema.Record(
-    Schema.String,
-    Schema.suspend(() => ProjectionStateV2_3_0),
-  ),
-  isDrillDisabled: Schema.optionalKey(Schema.Boolean),
-});
-
-export type SortDefinitionV2_3_0 = {
-  readonly sort?: ReadonlyArray<QuerySortV2_3_0>;
-  readonly isDefaultSort?: boolean;
-};
-
-export const SortDefinitionV2_3_0: Schema.Codec<SortDefinitionV2_3_0> = closed({
-  sort: Schema.optionalKey(Schema.Array(Schema.suspend(() => QuerySortV2_3_0))),
-  isDefaultSort: Schema.optionalKey(Schema.Boolean),
-});
-
-export type QuerySortV2_3_0 = {
-  readonly field: QueryExpressionContainerV1_4_0;
-  readonly direction: SortDirection;
-};
-
-export const QuerySortV2_3_0: Schema.Codec<QuerySortV2_3_0> = closed({
-  field: Schema.suspend(() => QueryExpressionContainerV1_4_0),
-  direction: Schema.suspend(() => SortDirection),
-});
-
-export type ProjectionStateV2_3_0 = {
-  readonly showAll?: boolean;
-  readonly projections: ReadonlyArray<RoleProjectionV2_3_0>;
-  readonly fieldParameters?: ReadonlyArray<RoleFieldParameterV2_3_0>;
-};
-
-export const ProjectionStateV2_3_0: Schema.Codec<ProjectionStateV2_3_0> =
-  closed({
-    showAll: Schema.optionalKey(Schema.Boolean),
-    projections: Schema.Array(Schema.suspend(() => RoleProjectionV2_3_0)),
-    fieldParameters: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => RoleFieldParameterV2_3_0)),
-    ),
-  });
-
-export type RoleProjectionV2_3_0 = {
-  readonly field: QueryExpressionContainerV1_4_0;
-  readonly queryRef: string;
-  readonly nativeQueryRef?: string;
-  readonly displayName?: string;
-  readonly format?: string;
-  readonly active?: boolean;
-  readonly hidden?: boolean;
-};
-
-export const RoleProjectionV2_3_0: Schema.Codec<RoleProjectionV2_3_0> = closed({
-  field: Schema.suspend(() => QueryExpressionContainerV1_4_0),
-  queryRef: Schema.String,
-  nativeQueryRef: Schema.optionalKey(Schema.String),
-  displayName: Schema.optionalKey(Schema.String),
-  format: Schema.optionalKey(Schema.String.check(Schema.isMaxCodePoints(255))),
-  active: Schema.optionalKey(Schema.Boolean),
-  hidden: Schema.optionalKey(Schema.Boolean),
-});
-
-export type RoleFieldParameterV2_3_0 = {
-  readonly parameterExpr: QueryExpressionContainerV1_4_0;
-  readonly index: number;
-  readonly length?: number;
-  readonly sortDirection?: "Ascending" | "Descending";
-};
-
-export const RoleFieldParameterV2_3_0: Schema.Codec<RoleFieldParameterV2_3_0> =
-  closed({
-    parameterExpr: Schema.suspend(() => QueryExpressionContainerV1_4_0),
-    index: Schema.Finite,
-    length: Schema.optionalKey(Schema.Finite),
-    sortDirection: Schema.optionalKey(
-      Schema.Union([Schema.Literal("Ascending"), Schema.Literal("Descending")]),
-    ),
-  });
-
-export type ExpansionStateV2_3_0 = {
-  readonly roles: ReadonlyArray<string>;
-  readonly root?: RootExpansionStateV2_3_0;
-  readonly levels?: ReadonlyArray<LevelExpansionStateV2_3_0>;
-};
-
-export const ExpansionStateV2_3_0: Schema.Codec<ExpansionStateV2_3_0> = closed({
-  roles: Schema.Array(Schema.String),
-  root: Schema.optionalKey(Schema.suspend(() => RootExpansionStateV2_3_0)),
-  levels: Schema.optionalKey(
-    Schema.Array(Schema.suspend(() => LevelExpansionStateV2_3_0)),
-  ),
-});
-
-export type RootExpansionStateV2_3_0 = {
-  readonly identityValues?: ReadonlyArray<QueryExpressionContainerV1_4_0>;
-  readonly isToggled?: boolean;
-  readonly children?: ReadonlyArray<NodeExpansionStateV2_3_0>;
-};
-
-export const RootExpansionStateV2_3_0: Schema.Codec<RootExpansionStateV2_3_0> =
-  closed({
-    identityValues: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => QueryExpressionContainerV1_4_0)),
-    ),
-    isToggled: Schema.optionalKey(Schema.Boolean),
-    children: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => NodeExpansionStateV2_3_0)),
-    ),
-  });
-
-export type NodeExpansionStateV2_3_0 = {
-  readonly identityValues: ReadonlyArray<QueryExpressionContainerV1_4_0>;
-  readonly isToggled?: boolean;
-  readonly children?: ReadonlyArray<NodeExpansionStateV2_3_0>;
-};
-
-export const NodeExpansionStateV2_3_0: Schema.Codec<NodeExpansionStateV2_3_0> =
-  closed({
-    identityValues: Schema.Array(
-      Schema.suspend(() => QueryExpressionContainerV1_4_0),
-    ),
-    isToggled: Schema.optionalKey(Schema.Boolean),
-    children: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => NodeExpansionStateV2_3_0)),
-    ),
-  });
-
-export type LevelExpansionStateV2_3_0 = {
-  readonly identityKeys?: ReadonlyArray<QueryExpressionContainerV1_4_0>;
-  readonly isCollapsed?: boolean;
-  readonly queryRefs: ReadonlyArray<string>;
-  readonly isPinned?: boolean;
-  readonly isLocked?: boolean;
-  readonly AIInformation?: AILevelInformation;
-};
-
-export const LevelExpansionStateV2_3_0: Schema.Codec<LevelExpansionStateV2_3_0> =
-  closed({
-    identityKeys: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => QueryExpressionContainerV1_4_0)),
-    ),
-    isCollapsed: Schema.optionalKey(Schema.Boolean),
-    queryRefs: Schema.Array(Schema.String),
-    isPinned: Schema.optionalKey(Schema.Boolean),
-    isLocked: Schema.optionalKey(Schema.Boolean),
-    AIInformation: Schema.optionalKey(Schema.suspend(() => AILevelInformation)),
-  });
-
-export type VisualContainerFormattingObjectsV2_3_0 = {
-  readonly title?: ReadonlyArray<{
-    readonly selector?: SelectorV1_5_0;
-    readonly properties: Title;
-  }>;
-  readonly subTitle?: ReadonlyArray<{
-    readonly selector?: SelectorV1_5_0;
-    readonly properties: SubTitle;
-  }>;
-  readonly divider?: ReadonlyArray<{
-    readonly selector?: SelectorV1_5_0;
-    readonly properties: Divider;
-  }>;
-  readonly spacing?: ReadonlyArray<{
-    readonly selector?: SelectorV1_5_0;
-    readonly properties: Spacing;
-  }>;
-  readonly background?: ReadonlyArray<{
-    readonly selector?: SelectorV1_5_0;
-    readonly properties: Background;
-  }>;
-  readonly padding?: ReadonlyArray<{
-    readonly selector?: SelectorV1_5_0;
-    readonly properties: Padding;
-  }>;
-  readonly lockAspect?: ReadonlyArray<{
-    readonly selector?: SelectorV1_5_0;
-    readonly properties: LockAspect;
-  }>;
-  readonly general?: ReadonlyArray<{
-    readonly selector?: SelectorV1_5_0;
-    readonly properties: VisualContainerGeneralFormattingObjects;
-  }>;
-  readonly border?: ReadonlyArray<{
-    readonly selector?: SelectorV1_5_0;
-    readonly properties: Border;
-  }>;
-  readonly dropShadow?: ReadonlyArray<{
-    readonly selector?: SelectorV1_5_0;
-    readonly properties: DropShadow;
-  }>;
-  readonly visualLink?: ReadonlyArray<{
-    readonly selector?: SelectorV1_5_0;
-    readonly properties: VisualLink;
-  }>;
-  readonly visualTooltip?: ReadonlyArray<{
-    readonly selector?: SelectorV1_5_0;
-    readonly properties: VisualTooltip;
-  }>;
-  readonly stylePreset?: ReadonlyArray<{
-    readonly selector?: SelectorV1_5_0;
-    readonly properties: StylePreset;
-  }>;
-  readonly visualHeader?: ReadonlyArray<{
-    readonly selector?: SelectorV1_5_0;
-    readonly properties: VisualHeader;
-  }>;
-  readonly visualHeaderTooltip?: ReadonlyArray<{
-    readonly selector?: SelectorV1_5_0;
-    readonly properties: VisualHeaderTooltip;
-  }>;
-};
-
-export const VisualContainerFormattingObjectsV2_3_0: Schema.Codec<VisualContainerFormattingObjectsV2_3_0> =
-  closed({
-    title: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
-          properties: Schema.suspend(() => Title),
-        }),
-      ),
-    ),
-    subTitle: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
-          properties: Schema.suspend(() => SubTitle),
-        }),
-      ),
-    ),
-    divider: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
-          properties: Schema.suspend(() => Divider),
-        }),
-      ),
-    ),
-    spacing: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
-          properties: Schema.suspend(() => Spacing),
-        }),
-      ),
-    ),
-    background: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
-          properties: Schema.suspend(() => Background),
-        }),
-      ),
-    ),
-    padding: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
-          properties: Schema.suspend(() => Padding),
-        }),
-      ),
-    ),
-    lockAspect: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
-          properties: Schema.suspend(() => LockAspect),
-        }),
-      ),
-    ),
-    general: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
-          properties: Schema.suspend(
-            () => VisualContainerGeneralFormattingObjects,
-          ),
-        }),
-      ),
-    ),
-    border: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
-          properties: Schema.suspend(() => Border),
-        }),
-      ),
-    ),
-    dropShadow: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
-          properties: Schema.suspend(() => DropShadow),
-        }),
-      ),
-    ),
-    visualLink: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
-          properties: Schema.suspend(() => VisualLink),
-        }),
-      ),
-    ),
-    visualTooltip: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
-          properties: Schema.suspend(() => VisualTooltip),
-        }),
-      ),
-    ),
-    stylePreset: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
-          properties: Schema.suspend(() => StylePreset),
-        }),
-      ),
-    ),
-    visualHeader: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
-          properties: Schema.suspend(() => VisualHeader),
-        }),
-      ),
-    ),
-    visualHeaderTooltip: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
-          properties: Schema.suspend(() => VisualHeaderTooltip),
-        }),
-      ),
-    ),
-  });
