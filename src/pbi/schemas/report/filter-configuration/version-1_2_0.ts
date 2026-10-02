@@ -1,15 +1,10 @@
 import { Schema } from "effect";
-import { closed } from "../shared.js";
-import { FormattingObjectDefinitionsSelectorV1_4_0 } from "../formatting-object-definitions/shared.js";
+import { FilterContainerFormattingObjectsProperties, closed } from "../shared.js";
+import { SelectorV1_4_0 } from "../formatting-object-definitions/version-1_4_0.js";
 import {
   FilterDefinitionV1_3_0,
   QueryExpressionContainerV1_3_0,
-} from "../semantic-query/shared.js";
-import {
-  FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_2_0,
-  FilterConfigurationEmbeddedFilterContainerV1_2_0,
-  FilterConfigurationFilterContainerFormattingObjectsProperties,
-} from "./shared.js";
+} from "../semantic-query/version-1_3_0.js";
 
 export type FilterConfigurationFilterContainerV1_2_0 = {
   readonly name: string;
@@ -78,8 +73,8 @@ export const FilterConfigurationFilterContainerV1_2_0: Schema.Codec<FilterConfig
 
 export type FilterConfigurationFilterContainerFormattingObjectsV1_2_0 = {
   readonly general?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_4_0;
-    readonly properties: FilterConfigurationFilterContainerFormattingObjectsProperties;
+    readonly selector?: SelectorV1_4_0;
+    readonly properties: FilterContainerFormattingObjectsProperties;
   }>;
 };
 
@@ -88,12 +83,8 @@ export const FilterConfigurationFilterContainerFormattingObjectsV1_2_0: Schema.C
     general: Schema.optionalKey(
       Schema.Array(
         closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsSelectorV1_4_0),
-          ),
-          properties: Schema.suspend(
-            () => FilterConfigurationFilterContainerFormattingObjectsProperties,
-          ),
+          selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
+          properties: Schema.suspend(() => FilterContainerFormattingObjectsProperties),
         }),
       ),
     ),
@@ -102,8 +93,7 @@ export const FilterConfigurationFilterContainerFormattingObjectsV1_2_0: Schema.C
 export const FilterConfigurationDefinitionsV1_2_0 = {
   FilterContainer: FilterConfigurationFilterContainerV1_2_0,
   FilterContainerFormattingObjects: FilterConfigurationFilterContainerFormattingObjectsV1_2_0,
-  FilterContainerFormattingObjectsProperties:
-    FilterConfigurationFilterContainerFormattingObjectsProperties,
+  FilterContainerFormattingObjectsProperties: FilterContainerFormattingObjectsProperties,
 } as const;
 
 export type FilterConfigurationV1_2_0 = {
@@ -128,12 +118,32 @@ export const FilterConfigurationV1_2_0: Schema.Codec<FilterConfigurationV1_2_0> 
   ),
 });
 
-export const FilterConfigurationEmbeddedDefinitionsV1_2_0 = {
-  FilterContainer: FilterConfigurationEmbeddedFilterContainerV1_2_0,
-  FilterContainerFormattingObjects:
-    FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_2_0,
-  FilterContainerFormattingObjectsProperties:
-    FilterConfigurationFilterContainerFormattingObjectsProperties,
-} as const;
+export type FilterConfigurationEmbeddedV1_2_0 = {
+  readonly filters?: ReadonlyArray<FilterConfigurationFilterContainerV1_2_0>;
+  readonly filterSortOrder?: "Ascending" | "Descending" | "Custom";
+};
 
-export { FilterConfigurationEmbeddedV1_2_0 } from "./shared.js";
+export const FilterConfigurationEmbeddedV1_2_0: Schema.Codec<FilterConfigurationEmbeddedV1_2_0> =
+  closed({
+    filters: Schema.optionalKey(
+      Schema.Array(Schema.suspend(() => FilterConfigurationFilterContainerV1_2_0)),
+    ),
+    filterSortOrder: Schema.optionalKey(
+      Schema.Union([
+        Schema.Literal("Ascending"),
+        Schema.Literal("Descending"),
+        Schema.Literal("Custom"),
+      ]),
+    ),
+  });
+
+export {
+  FilterConfigurationFilterContainerV1_2_0 as FilterConfigurationEmbeddedFilterContainerV1_2_0,
+  FilterConfigurationFilterContainerFormattingObjectsV1_2_0 as FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_2_0,
+  FilterConfigurationDefinitionsV1_2_0 as FilterConfigurationEmbeddedDefinitionsV1_2_0,
+};
+
+export {
+  FilterContainerFormattingObjectsProperties as FilterConfigurationFilterContainerFormattingObjectsPropertiesV1_2_0,
+  FilterContainerFormattingObjectsProperties as FilterConfigurationEmbeddedFilterContainerFormattingObjectsPropertiesV1_2_0,
+} from "../shared.js";

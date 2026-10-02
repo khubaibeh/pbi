@@ -1,23 +1,19 @@
 import { Schema } from "effect";
-import { closed } from "../shared.js";
-import { FilterConfigurationEmbeddedV1_2_0 } from "../filter-configuration/shared.js";
-import { VisualConfigurationEmbeddedV2_2_0 } from "../visual-configuration/shared.js";
-import {
-  VisualContainerAnnotation,
-  VisualContainerVisualContainerPositionV1_2_0,
-  VisualContainerVisualGroupConfigV2_1_0,
-} from "./shared.js";
+import { Annotation, VisualContainerPositionV1_2_0, closed } from "../shared.js";
+import { FilterConfigurationEmbeddedV1_2_0 } from "../filter-configuration/version-1_2_0.js";
+import { VisualConfigurationEmbeddedV2_2_0 } from "../visual-configuration/version-2_2_0.js";
+import { VisualGroupConfigV2_1_0 } from "./shared.js";
 
 export type VisualContainerV2_4_0 =
   | ({
       readonly $schema: "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json";
       readonly name: string;
-      readonly position: VisualContainerVisualContainerPositionV1_2_0;
+      readonly position: VisualContainerPositionV1_2_0;
       readonly visual: VisualConfigurationEmbeddedV2_2_0;
       readonly parentGroupName?: string;
       readonly filterConfig?: FilterConfigurationEmbeddedV1_2_0;
       readonly isHidden?: boolean;
-      readonly annotations?: ReadonlyArray<VisualContainerAnnotation>;
+      readonly annotations?: ReadonlyArray<Annotation>;
       readonly howCreated?:
         | "Default"
         | "Copilot"
@@ -41,12 +37,12 @@ export type VisualContainerV2_4_0 =
   | ({
       readonly $schema: "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json";
       readonly name: string;
-      readonly position: VisualContainerVisualContainerPositionV1_2_0;
-      readonly visualGroup: VisualContainerVisualGroupConfigV2_1_0;
+      readonly position: VisualContainerPositionV1_2_0;
+      readonly visualGroup: VisualGroupConfigV2_1_0;
       readonly parentGroupName?: string;
       readonly filterConfig?: FilterConfigurationEmbeddedV1_2_0;
       readonly isHidden?: boolean;
-      readonly annotations?: ReadonlyArray<VisualContainerAnnotation>;
+      readonly annotations?: ReadonlyArray<Annotation>;
       readonly howCreated?:
         | "Default"
         | "Copilot"
@@ -74,12 +70,12 @@ export const VisualContainerV2_4_0: Schema.Codec<VisualContainerV2_4_0> = Schema
       "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
     ),
     name: Schema.String.check(Schema.isMaxCodePoints(50)),
-    position: Schema.suspend(() => VisualContainerVisualContainerPositionV1_2_0),
+    position: Schema.suspend(() => VisualContainerPositionV1_2_0),
     visual: Schema.suspend(() => VisualConfigurationEmbeddedV2_2_0),
     parentGroupName: Schema.optionalKey(Schema.String),
     filterConfig: Schema.optionalKey(Schema.suspend(() => FilterConfigurationEmbeddedV1_2_0)),
     isHidden: Schema.optionalKey(Schema.Boolean),
-    annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => VisualContainerAnnotation))),
+    annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => Annotation))),
     howCreated: Schema.optionalKey(
       Schema.Union([
         Schema.Literal("Default"),
@@ -106,12 +102,12 @@ export const VisualContainerV2_4_0: Schema.Codec<VisualContainerV2_4_0> = Schema
       "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
     ),
     name: Schema.String.check(Schema.isMaxCodePoints(50)),
-    position: Schema.suspend(() => VisualContainerVisualContainerPositionV1_2_0),
-    visualGroup: Schema.suspend(() => VisualContainerVisualGroupConfigV2_1_0),
+    position: Schema.suspend(() => VisualContainerPositionV1_2_0),
+    visualGroup: Schema.suspend(() => VisualGroupConfigV2_1_0),
     parentGroupName: Schema.optionalKey(Schema.String),
     filterConfig: Schema.optionalKey(Schema.suspend(() => FilterConfigurationEmbeddedV1_2_0)),
     isHidden: Schema.optionalKey(Schema.Boolean),
-    annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => VisualContainerAnnotation))),
+    annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => Annotation))),
     howCreated: Schema.optionalKey(
       Schema.Union([
         Schema.Literal("Default"),
@@ -135,4 +131,15 @@ export const VisualContainerV2_4_0: Schema.Codec<VisualContainerV2_4_0> = Schema
   }),
 ]);
 
-export { VisualContainerDefinitionsV2_1_0 as VisualContainerDefinitionsV2_4_0 } from "./shared.js";
+export {
+  VisualContainerPositionV1_2_0 as VisualContainerVisualContainerPositionV2_4_0,
+  Annotation as VisualContainerAnnotationV2_4_0,
+} from "../shared.js";
+
+export {
+  VisualGroupConfigV2_1_0 as VisualContainerVisualGroupConfigV2_4_0,
+  GroupLayoutMode as VisualContainerGroupLayoutModeV2_4_0,
+  VisualGroupFormattingObjectsV2_1_0 as VisualContainerVisualGroupFormattingObjectsV2_4_0,
+  VisualGroupGeneralFormattingObjects as VisualContainerVisualGroupGeneralFormattingObjectsV2_4_0,
+  VisualContainerDefinitionsV2_1_0 as VisualContainerDefinitionsV2_4_0,
+} from "./shared.js";

@@ -1,20 +1,21 @@
 import { Schema } from "effect";
 import { closed } from "../shared.js";
 
-export type LocalSettingsReportRemoteArtifact = {
+export type ReportRemoteArtifact = {
   readonly reportId: string | null;
 };
 
-export const LocalSettingsReportRemoteArtifact: Schema.Codec<LocalSettingsReportRemoteArtifact> =
-  closed({ reportId: Schema.Union([Schema.String, Schema.Null]) });
+export const ReportRemoteArtifact: Schema.Codec<ReportRemoteArtifact> = closed({
+  reportId: Schema.Union([Schema.String, Schema.Null]),
+});
 
 export const LocalSettingsDefinitions = {
-  ReportRemoteArtifact: LocalSettingsReportRemoteArtifact,
+  ReportRemoteArtifact: ReportRemoteArtifact,
 } as const;
 
 export type LocalSettings = {
   readonly $schema: string;
-  readonly remoteArtifacts?: ReadonlyArray<LocalSettingsReportRemoteArtifact> | null;
+  readonly remoteArtifacts?: ReadonlyArray<ReportRemoteArtifact> | null;
   readonly securityBindingsSignature?: string | null;
 };
 
@@ -27,15 +28,13 @@ export const LocalSettings: Schema.Codec<LocalSettings> = closed({
     ),
   ),
   remoteArtifacts: Schema.optionalKey(
-    Schema.Union([
-      Schema.Array(Schema.suspend(() => LocalSettingsReportRemoteArtifact)),
-      Schema.Null,
-    ]),
+    Schema.Union([Schema.Array(Schema.suspend(() => ReportRemoteArtifact)), Schema.Null]),
   ),
   securityBindingsSignature: Schema.optionalKey(Schema.Union([Schema.String, Schema.Null])),
 });
 
 export {
+  ReportRemoteArtifact as LocalSettingsReportRemoteArtifactV1_0_0,
   LocalSettingsDefinitions as LocalSettingsDefinitionsV1_0_0,
   LocalSettings as LocalSettingsV1_0_0,
 };

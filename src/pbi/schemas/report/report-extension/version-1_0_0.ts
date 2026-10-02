@@ -1,53 +1,45 @@
 import { Schema } from "effect";
-import { closed } from "../shared.js";
+import { Annotation, closed } from "../shared.js";
 
-export type ReportExtensionReportExtensionEntity = {
+export type ReportExtensionEntity = {
   readonly name: string;
-  readonly measures?: ReadonlyArray<ReportExtensionReportExtensionMeasure>;
+  readonly measures?: ReadonlyArray<ReportExtensionMeasure>;
 };
 
-export const ReportExtensionReportExtensionEntity: Schema.Codec<ReportExtensionReportExtensionEntity> =
-  closed({
-    name: Schema.String,
-    measures: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => ReportExtensionReportExtensionMeasure)),
-    ),
-  });
+export const ReportExtensionEntity: Schema.Codec<ReportExtensionEntity> = closed({
+  name: Schema.String,
+  measures: Schema.optionalKey(Schema.Array(Schema.suspend(() => ReportExtensionMeasure))),
+});
 
-export type ReportExtensionReportExtensionMeasure = {
+export type ReportExtensionMeasure = {
   readonly name: string;
-  readonly dataType: ReportExtensionPrimitiveTypeName;
+  readonly dataType: PrimitiveTypeName;
   readonly dataCategory?: string;
   readonly expression: string;
   readonly hidden?: boolean;
   readonly formatString?: string;
-  readonly measureTemplate?: ReportExtensionReportExtensionMeasureTemplate;
+  readonly measureTemplate?: ReportExtensionMeasureTemplate;
   readonly description?: string;
   readonly displayFolder?: string;
-  readonly annotations?: ReadonlyArray<ReportExtensionMeasureExtensionAnnotation>;
-  readonly references?: ReportExtensionExpressionReferences;
+  readonly annotations?: ReadonlyArray<Annotation>;
+  readonly references?: ExpressionReferences;
 };
 
-export const ReportExtensionReportExtensionMeasure: Schema.Codec<ReportExtensionReportExtensionMeasure> =
-  closed({
-    name: Schema.String,
-    dataType: Schema.suspend(() => ReportExtensionPrimitiveTypeName),
-    dataCategory: Schema.optionalKey(Schema.String),
-    expression: Schema.String,
-    hidden: Schema.optionalKey(Schema.Boolean),
-    formatString: Schema.optionalKey(Schema.String),
-    measureTemplate: Schema.optionalKey(
-      Schema.suspend(() => ReportExtensionReportExtensionMeasureTemplate),
-    ),
-    description: Schema.optionalKey(Schema.String),
-    displayFolder: Schema.optionalKey(Schema.String),
-    annotations: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => ReportExtensionMeasureExtensionAnnotation)),
-    ),
-    references: Schema.optionalKey(Schema.suspend(() => ReportExtensionExpressionReferences)),
-  });
+export const ReportExtensionMeasure: Schema.Codec<ReportExtensionMeasure> = closed({
+  name: Schema.String,
+  dataType: Schema.suspend(() => PrimitiveTypeName),
+  dataCategory: Schema.optionalKey(Schema.String),
+  expression: Schema.String,
+  hidden: Schema.optionalKey(Schema.Boolean),
+  formatString: Schema.optionalKey(Schema.String),
+  measureTemplate: Schema.optionalKey(Schema.suspend(() => ReportExtensionMeasureTemplate)),
+  description: Schema.optionalKey(Schema.String),
+  displayFolder: Schema.optionalKey(Schema.String),
+  annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => Annotation))),
+  references: Schema.optionalKey(Schema.suspend(() => ExpressionReferences)),
+});
 
-export type ReportExtensionPrimitiveTypeName =
+export type PrimitiveTypeName =
   | "Binary"
   | "Boolean"
   | "Date"
@@ -64,94 +56,89 @@ export type ReportExtensionPrimitiveTypeName =
   | "Time"
   | "Variant";
 
-export const ReportExtensionPrimitiveTypeName: Schema.Codec<ReportExtensionPrimitiveTypeName> =
-  Schema.Literals([
-    "Binary",
-    "Boolean",
-    "Date",
-    "DateTime",
-    "DateTimeZone",
-    "Decimal",
-    "Double",
-    "Duration",
-    "Integer",
-    "Json",
-    "None",
-    "Null",
-    "Text",
-    "Time",
-    "Variant",
-  ]);
+export const PrimitiveTypeName: Schema.Codec<PrimitiveTypeName> = Schema.Literals([
+  "Binary",
+  "Boolean",
+  "Date",
+  "DateTime",
+  "DateTimeZone",
+  "Decimal",
+  "Double",
+  "Duration",
+  "Integer",
+  "Json",
+  "None",
+  "Null",
+  "Text",
+  "Time",
+  "Variant",
+]);
 
-export type ReportExtensionReportExtensionMeasureTemplate = {
+export type ReportExtensionMeasureTemplate = {
   readonly daxTemplateName: string;
   readonly version: number;
 };
 
-export const ReportExtensionReportExtensionMeasureTemplate: Schema.Codec<ReportExtensionReportExtensionMeasureTemplate> =
-  closed({ daxTemplateName: Schema.String, version: Schema.Finite });
+export const ReportExtensionMeasureTemplate: Schema.Codec<ReportExtensionMeasureTemplate> = closed({
+  daxTemplateName: Schema.String,
+  version: Schema.Finite,
+});
 
-export type ReportExtensionMeasureExtensionAnnotation = {
-  readonly name: string;
-  readonly value: string;
-};
-
-export const ReportExtensionMeasureExtensionAnnotation: Schema.Codec<ReportExtensionMeasureExtensionAnnotation> =
-  closed({ name: Schema.String, value: Schema.String });
-
-export type ReportExtensionExpressionReferences = {
+export type ExpressionReferences = {
   readonly unrecognizedReferences?: boolean;
-  readonly measures?: ReadonlyArray<ReportExtensionMeasureReference>;
+  readonly measures?: ReadonlyArray<MeasureReference>;
 };
 
-export const ReportExtensionExpressionReferences: Schema.Codec<ReportExtensionExpressionReferences> =
-  closed({
-    unrecognizedReferences: Schema.optionalKey(Schema.Boolean),
-    measures: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => ReportExtensionMeasureReference)),
-    ),
-  });
+export const ExpressionReferences: Schema.Codec<ExpressionReferences> = closed({
+  unrecognizedReferences: Schema.optionalKey(Schema.Boolean),
+  measures: Schema.optionalKey(Schema.Array(Schema.suspend(() => MeasureReference))),
+});
 
-export type ReportExtensionMeasureReference = {
+export type MeasureReference = {
   readonly schema?: string;
   readonly entity: string;
   readonly name: string;
 };
 
-export const ReportExtensionMeasureReference: Schema.Codec<ReportExtensionMeasureReference> =
-  closed({
-    schema: Schema.optionalKey(Schema.String),
-    entity: Schema.String,
-    name: Schema.String,
-  });
+export const MeasureReference: Schema.Codec<MeasureReference> = closed({
+  schema: Schema.optionalKey(Schema.String),
+  entity: Schema.String,
+  name: Schema.String,
+});
 
 export const ReportExtensionDefinitions = {
-  ReportExtensionEntity: ReportExtensionReportExtensionEntity,
-  ReportExtensionMeasure: ReportExtensionReportExtensionMeasure,
-  PrimitiveTypeName: ReportExtensionPrimitiveTypeName,
-  ReportExtensionMeasureTemplate: ReportExtensionReportExtensionMeasureTemplate,
-  MeasureExtensionAnnotation: ReportExtensionMeasureExtensionAnnotation,
-  ExpressionReferences: ReportExtensionExpressionReferences,
-  MeasureReference: ReportExtensionMeasureReference,
+  ReportExtensionEntity: ReportExtensionEntity,
+  ReportExtensionMeasure: ReportExtensionMeasure,
+  PrimitiveTypeName: PrimitiveTypeName,
+  ReportExtensionMeasureTemplate: ReportExtensionMeasureTemplate,
+  MeasureExtensionAnnotation: Annotation,
+  ExpressionReferences: ExpressionReferences,
+  MeasureReference: MeasureReference,
 } as const;
 
-export type ReportExtension = {
+export type Extension = {
   readonly name: string;
-  readonly entities?: ReadonlyArray<ReportExtensionReportExtensionEntity>;
+  readonly entities?: ReadonlyArray<ReportExtensionEntity>;
   readonly $schema: "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/reportExtension/1.0.0/schema.json";
 };
 
-export const ReportExtension: Schema.Codec<ReportExtension> = closed({
+export const Extension: Schema.Codec<Extension> = closed({
   name: Schema.String,
-  entities: Schema.optionalKey(
-    Schema.Array(Schema.suspend(() => ReportExtensionReportExtensionEntity)),
-  ),
+  entities: Schema.optionalKey(Schema.Array(Schema.suspend(() => ReportExtensionEntity))),
   $schema: Schema.Literal(
     "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/reportExtension/1.0.0/schema.json",
   ),
 });
 
 export {
+  ReportExtensionEntity as ReportExtensionReportExtensionEntityV1_0_0,
+  ReportExtensionMeasure as ReportExtensionReportExtensionMeasureV1_0_0,
+  PrimitiveTypeName as ReportExtensionPrimitiveTypeNameV1_0_0,
+  ReportExtensionMeasureTemplate as ReportExtensionReportExtensionMeasureTemplateV1_0_0,
+  ExpressionReferences as ReportExtensionExpressionReferencesV1_0_0,
+  MeasureReference as ReportExtensionMeasureReferenceV1_0_0,
   ReportExtensionDefinitions as ReportExtensionDefinitionsV1_0_0,
-  ReportExtension as ReportExtensionV1_0_0,
+  Extension as ReportExtensionV1_0_0,
 };
+
+export { Annotation as ReportExtensionMeasureExtensionAnnotationV1_0_0 } from "../shared.js";

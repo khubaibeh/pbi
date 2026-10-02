@@ -1,47 +1,45 @@
 import { Schema } from "effect";
-import { closed } from "../shared.js";
-import { FilterConfigurationEmbeddedV1_2_0 } from "../filter-configuration/shared.js";
-import { VisualContainerAnnotation } from "../visual-container/shared.js";
+import { Annotation, DisplayArea, closed } from "../shared.js";
+import { FilterConfigurationEmbeddedV1_2_0 } from "../filter-configuration/version-1_2_0.js";
 import {
-  ReportExplorationSettingsV1_0_0,
-  ReportExplorationSlowDataSourceSettings,
-  ReportOrganizationCustomVisual,
+  ExplorationSettingsV1_0_0,
+  ExplorationSlowDataSourceSettings,
+  OrganizationCustomVisual,
+  ReportFormattingObjectsV2_1_0,
   ReportOutspacePane,
-  ReportReportFormattingObjectsV2_1_0,
-  ReportResourcePackage,
-  ReportResourcePackageItem,
-  ReportResourcePackageItemType,
-  ReportResourcePackageType,
-  ReportSection,
-  ReportThemeCollectionV3_0_0,
-  ReportThemeMetadataV3_0_0,
-  ReportThemeResourcePackageType,
-  ReportThemeVersion,
+  ResourcePackage,
+  ResourcePackageItem,
+  ResourcePackageItemType,
+  ResourcePackageType,
+  ThemeCollectionV3_0_0,
+  ThemeMetadataV3_0_0,
+  ThemeResourcePackageType,
+  ThemeVersion,
 } from "./shared.js";
 
 export const ReportDefinitionsV3_0_0 = {
-  ThemeCollection: ReportThemeCollectionV3_0_0,
-  ThemeMetadata: ReportThemeMetadataV3_0_0,
-  ThemeVersion: ReportThemeVersion,
-  ThemeResourcePackageType: ReportThemeResourcePackageType,
-  ReportFormattingObjects: ReportReportFormattingObjectsV2_1_0,
+  ThemeCollection: ThemeCollectionV3_0_0,
+  ThemeMetadata: ThemeMetadataV3_0_0,
+  ThemeVersion: ThemeVersion,
+  ThemeResourcePackageType: ThemeResourcePackageType,
+  ReportFormattingObjects: ReportFormattingObjectsV2_1_0,
   OutspacePane: ReportOutspacePane,
-  Section: ReportSection,
-  ResourcePackage: ReportResourcePackage,
-  ResourcePackageType: ReportResourcePackageType,
-  ResourcePackageItem: ReportResourcePackageItem,
-  ResourcePackageItemType: ReportResourcePackageItemType,
-  OrganizationCustomVisual: ReportOrganizationCustomVisual,
-  Annotation: VisualContainerAnnotation,
-  ExplorationSettings: ReportExplorationSettingsV1_0_0,
-  ExplorationSlowDataSourceSettings: ReportExplorationSlowDataSourceSettings,
+  Section: DisplayArea,
+  ResourcePackage: ResourcePackage,
+  ResourcePackageType: ResourcePackageType,
+  ResourcePackageItem: ResourcePackageItem,
+  ResourcePackageItemType: ResourcePackageItemType,
+  OrganizationCustomVisual: OrganizationCustomVisual,
+  Annotation: Annotation,
+  ExplorationSettings: ExplorationSettingsV1_0_0,
+  ExplorationSlowDataSourceSettings: ExplorationSlowDataSourceSettings,
 } as const;
 
 export type ReportV3_0_0 = {
   readonly $schema: "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.0.0/schema.json";
-  readonly themeCollection: ReportThemeCollectionV3_0_0;
+  readonly themeCollection: ThemeCollectionV3_0_0;
   readonly filterConfig?: FilterConfigurationEmbeddedV1_2_0;
-  readonly objects?: ReportReportFormattingObjectsV2_1_0;
+  readonly objects?: ReportFormattingObjectsV2_1_0;
   readonly reportSource?:
     | "Default"
     | "SharePoint"
@@ -51,21 +49,21 @@ export type ReportV3_0_0 = {
     | "Datamart"
     | "DataExplore";
   readonly publicCustomVisuals?: ReadonlyArray<string>;
-  readonly resourcePackages?: ReadonlyArray<ReportResourcePackage>;
-  readonly organizationCustomVisuals?: ReadonlyArray<ReportOrganizationCustomVisual>;
-  readonly annotations?: ReadonlyArray<VisualContainerAnnotation>;
+  readonly resourcePackages?: ReadonlyArray<ResourcePackage>;
+  readonly organizationCustomVisuals?: ReadonlyArray<OrganizationCustomVisual>;
+  readonly annotations?: ReadonlyArray<Annotation>;
   readonly dataSourceVariables?: string;
-  readonly settings?: ReportExplorationSettingsV1_0_0;
-  readonly slowDataSourceSettings?: ReportExplorationSlowDataSourceSettings;
+  readonly settings?: ExplorationSettingsV1_0_0;
+  readonly slowDataSourceSettings?: ExplorationSlowDataSourceSettings;
 };
 
 export const ReportV3_0_0: Schema.Codec<ReportV3_0_0> = closed({
   $schema: Schema.Literal(
     "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.0.0/schema.json",
   ),
-  themeCollection: Schema.suspend(() => ReportThemeCollectionV3_0_0),
+  themeCollection: Schema.suspend(() => ThemeCollectionV3_0_0),
   filterConfig: Schema.optionalKey(Schema.suspend(() => FilterConfigurationEmbeddedV1_2_0)),
-  objects: Schema.optionalKey(Schema.suspend(() => ReportReportFormattingObjectsV2_1_0)),
+  objects: Schema.optionalKey(Schema.suspend(() => ReportFormattingObjectsV2_1_0)),
   reportSource: Schema.optionalKey(
     Schema.Union([
       Schema.Literal("Default"),
@@ -78,14 +76,35 @@ export const ReportV3_0_0: Schema.Codec<ReportV3_0_0> = closed({
     ]),
   ),
   publicCustomVisuals: Schema.optionalKey(Schema.Array(Schema.String)),
-  resourcePackages: Schema.optionalKey(Schema.Array(Schema.suspend(() => ReportResourcePackage))),
+  resourcePackages: Schema.optionalKey(Schema.Array(Schema.suspend(() => ResourcePackage))),
   organizationCustomVisuals: Schema.optionalKey(
-    Schema.Array(Schema.suspend(() => ReportOrganizationCustomVisual)),
+    Schema.Array(Schema.suspend(() => OrganizationCustomVisual)),
   ),
-  annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => VisualContainerAnnotation))),
+  annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => Annotation))),
   dataSourceVariables: Schema.optionalKey(Schema.String),
-  settings: Schema.optionalKey(Schema.suspend(() => ReportExplorationSettingsV1_0_0)),
+  settings: Schema.optionalKey(Schema.suspend(() => ExplorationSettingsV1_0_0)),
   slowDataSourceSettings: Schema.optionalKey(
-    Schema.suspend(() => ReportExplorationSlowDataSourceSettings),
+    Schema.suspend(() => ExplorationSlowDataSourceSettings),
   ),
 });
+
+export {
+  DisplayArea as ReportSectionV3_0_0,
+  Annotation as ReportAnnotationV3_0_0,
+} from "../shared.js";
+
+export {
+  ThemeCollectionV3_0_0 as ReportThemeCollectionV3_0_0,
+  ThemeMetadataV3_0_0 as ReportThemeMetadataV3_0_0,
+  ThemeVersion as ReportThemeVersionV3_0_0,
+  ThemeResourcePackageType as ReportThemeResourcePackageTypeV3_0_0,
+  ReportFormattingObjectsV2_1_0 as ReportReportFormattingObjectsV3_0_0,
+  ReportOutspacePane as ReportOutspacePaneV3_0_0,
+  ResourcePackage as ReportResourcePackageV3_0_0,
+  ResourcePackageType as ReportResourcePackageTypeV3_0_0,
+  ResourcePackageItem as ReportResourcePackageItemV3_0_0,
+  ResourcePackageItemType as ReportResourcePackageItemTypeV3_0_0,
+  OrganizationCustomVisual as ReportOrganizationCustomVisualV3_0_0,
+  ExplorationSettingsV1_0_0 as ReportExplorationSettingsV3_0_0,
+  ExplorationSlowDataSourceSettings as ReportExplorationSlowDataSourceSettingsV3_0_0,
+} from "./shared.js";

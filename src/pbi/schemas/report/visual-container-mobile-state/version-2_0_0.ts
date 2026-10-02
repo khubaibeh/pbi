@@ -1,36 +1,28 @@
 import { Schema } from "effect";
-import { closed } from "../shared.js";
-import {
-  FormattingObjectDefinitionsDataViewObjectDefinitionsV1_3_0,
-  FormattingObjectDefinitionsDefinitionsV1_3_0,
-} from "../formatting-object-definitions/shared.js";
-import {
-  VisualConfigurationEmbeddedDefinitionsV1_8_0,
-  VisualConfigurationEmbeddedVisualContainerFormattingObjectsV1_8_0,
-} from "../visual-configuration/shared.js";
-import { VisualContainerVisualContainerPositionV1_2_0 } from "../visual-container/shared.js";
+import { VisualContainerPositionV1_2_0, closed } from "../shared.js";
+import { DataViewObjectDefinitionsV1_3_0 } from "../formatting-object-definitions/version-1_3_0.js";
+import { VisualConfigurationVisualContainerFormattingObjectsV1_8_0 } from "../visual-configuration/shared.js";
 
-export type VisualContainerMobileStateV2_0_0 = {
+export type MobileStateV2_0_0 = {
   readonly $schema: "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.0.0/schema.json";
-  readonly objects?: FormattingObjectDefinitionsDataViewObjectDefinitionsV1_3_0;
-  readonly visualContainerObjects?: VisualConfigurationEmbeddedVisualContainerFormattingObjectsV1_8_0;
-  readonly position: VisualContainerVisualContainerPositionV1_2_0;
+  readonly objects?: DataViewObjectDefinitionsV1_3_0;
+  readonly visualContainerObjects?: VisualConfigurationVisualContainerFormattingObjectsV1_8_0;
+  readonly position: VisualContainerPositionV1_2_0;
 };
 
-export const VisualContainerMobileStateV2_0_0: Schema.Codec<VisualContainerMobileStateV2_0_0> =
-  closed({
-    $schema: Schema.Literal(
-      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.0.0/schema.json",
-    ),
-    objects: Schema.optionalKey(
-      Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_3_0.DataViewObjectDefinitions),
-    ),
-    visualContainerObjects: Schema.optionalKey(
-      Schema.suspend(
-        () => VisualConfigurationEmbeddedDefinitionsV1_8_0.VisualContainerFormattingObjects,
-      ),
-    ),
-    position: Schema.suspend(() => VisualContainerVisualContainerPositionV1_2_0),
-  });
+export const MobileStateV2_0_0: Schema.Codec<MobileStateV2_0_0> = closed({
+  $schema: Schema.Literal(
+    "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.0.0/schema.json",
+  ),
+  objects: Schema.optionalKey(Schema.suspend(() => DataViewObjectDefinitionsV1_3_0)),
+  visualContainerObjects: Schema.optionalKey(
+    Schema.suspend(() => VisualConfigurationVisualContainerFormattingObjectsV1_8_0),
+  ),
+  position: Schema.suspend(() => VisualContainerPositionV1_2_0),
+});
+
+export { MobileStateV2_0_0 as VisualContainerMobileStateV2_0_0 };
+
+export { VisualContainerPositionV1_2_0 as VisualContainerMobileStateVisualContainerPositionV2_0_0 } from "../shared.js";
 
 export { VisualContainerMobileStateDefinitionsV1_3_0 as VisualContainerMobileStateDefinitionsV2_0_0 } from "./shared.js";

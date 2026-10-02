@@ -1,289 +1,83 @@
 import { Schema } from "effect";
-import { closed } from "../shared.js";
 import {
-  FormattingObjectDefinitionsDataViewObjectDefinitionsV1_0_0,
-  FormattingObjectDefinitionsDefinitionsV1_0_0,
-  FormattingObjectDefinitionsSelectorV1_0_0,
-} from "../formatting-object-definitions/shared.js";
-import {
+  BorderV1_0_0,
+  DividerV1_0_0,
+  DropShadow,
+  LockAspect,
+  Padding,
+  Spacing,
+  StylePreset,
+  SubTitle,
+  Title,
   VisualConfigurationBackground,
-  VisualConfigurationDropShadow,
-  VisualConfigurationEmbeddedVisualContainerGeneralFormattingObjects,
-  VisualConfigurationLockAspect,
-  VisualConfigurationPadding,
-  VisualConfigurationSpacing,
-  VisualConfigurationStylePreset,
-  VisualConfigurationSubTitle,
-  VisualConfigurationTitle,
-  VisualConfigurationVisualHeaderTooltip,
   VisualConfigurationVisualLinkV1_5_0,
-  VisualConfigurationVisualTooltip,
-} from "../visual-configuration/shared.js";
-import {
-  VisualContainerBorder,
-  VisualContainerDivider,
-  VisualContainerVisualContainerPositionV1_0_0,
-  VisualContainerVisualHeader,
-} from "../visual-container/shared.js";
-
-export type VisualContainerMobileStateVisualContainerFormattingObjectsV1_0_0 = {
-  readonly title?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_0_0;
-    readonly properties: VisualConfigurationTitle;
-  }>;
-  readonly subTitle?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_0_0;
-    readonly properties: VisualConfigurationSubTitle;
-  }>;
-  readonly divider?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_0_0;
-    readonly properties: VisualContainerDivider;
-  }>;
-  readonly spacing?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_0_0;
-    readonly properties: VisualConfigurationSpacing;
-  }>;
-  readonly background?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_0_0;
-    readonly properties: VisualConfigurationBackground;
-  }>;
-  readonly padding?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_0_0;
-    readonly properties: VisualConfigurationPadding;
-  }>;
-  readonly lockAspect?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_0_0;
-    readonly properties: VisualConfigurationLockAspect;
-  }>;
-  readonly general?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_0_0;
-    readonly properties: VisualConfigurationEmbeddedVisualContainerGeneralFormattingObjects;
-  }>;
-  readonly border?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_0_0;
-    readonly properties: VisualContainerBorder;
-  }>;
-  readonly dropShadow?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_0_0;
-    readonly properties: VisualConfigurationDropShadow;
-  }>;
-  readonly visualLink?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_0_0;
-    readonly properties: VisualConfigurationVisualLinkV1_5_0;
-  }>;
-  readonly visualTooltip?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_0_0;
-    readonly properties: VisualConfigurationVisualTooltip;
-  }>;
-  readonly stylePreset?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_0_0;
-    readonly properties: VisualConfigurationStylePreset;
-  }>;
-  readonly visualHeader?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_0_0;
-    readonly properties: VisualContainerVisualHeader;
-  }>;
-  readonly visualHeaderTooltip?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_0_0;
-    readonly properties: VisualConfigurationVisualHeaderTooltip;
-  }>;
-};
-
-export const VisualContainerMobileStateVisualContainerFormattingObjectsV1_0_0: Schema.Codec<VisualContainerMobileStateVisualContainerFormattingObjectsV1_0_0> =
-  closed({
-    title: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.Selector),
-          ),
-          properties: Schema.suspend(() => VisualConfigurationTitle),
-        }),
-      ),
-    ),
-    subTitle: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.Selector),
-          ),
-          properties: Schema.suspend(() => VisualConfigurationSubTitle),
-        }),
-      ),
-    ),
-    divider: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.Selector),
-          ),
-          properties: Schema.suspend(() => VisualContainerDivider),
-        }),
-      ),
-    ),
-    spacing: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.Selector),
-          ),
-          properties: Schema.suspend(() => VisualConfigurationSpacing),
-        }),
-      ),
-    ),
-    background: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.Selector),
-          ),
-          properties: Schema.suspend(() => VisualConfigurationBackground),
-        }),
-      ),
-    ),
-    padding: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.Selector),
-          ),
-          properties: Schema.suspend(() => VisualConfigurationPadding),
-        }),
-      ),
-    ),
-    lockAspect: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.Selector),
-          ),
-          properties: Schema.suspend(() => VisualConfigurationLockAspect),
-        }),
-      ),
-    ),
-    general: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.Selector),
-          ),
-          properties: Schema.suspend(
-            () => VisualConfigurationEmbeddedVisualContainerGeneralFormattingObjects,
-          ),
-        }),
-      ),
-    ),
-    border: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.Selector),
-          ),
-          properties: Schema.suspend(() => VisualContainerBorder),
-        }),
-      ),
-    ),
-    dropShadow: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.Selector),
-          ),
-          properties: Schema.suspend(() => VisualConfigurationDropShadow),
-        }),
-      ),
-    ),
-    visualLink: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.Selector),
-          ),
-          properties: Schema.suspend(() => VisualConfigurationVisualLinkV1_5_0),
-        }),
-      ),
-    ),
-    visualTooltip: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.Selector),
-          ),
-          properties: Schema.suspend(() => VisualConfigurationVisualTooltip),
-        }),
-      ),
-    ),
-    stylePreset: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.Selector),
-          ),
-          properties: Schema.suspend(() => VisualConfigurationStylePreset),
-        }),
-      ),
-    ),
-    visualHeader: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.Selector),
-          ),
-          properties: Schema.suspend(() => VisualContainerVisualHeader),
-        }),
-      ),
-    ),
-    visualHeaderTooltip: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.Selector),
-          ),
-          properties: Schema.suspend(() => VisualConfigurationVisualHeaderTooltip),
-        }),
-      ),
-    ),
-  });
+  VisualContainerGeneralFormattingObjects,
+  VisualContainerPositionV1_0_0,
+  VisualHeaderTooltip,
+  VisualHeaderV1_0_0,
+  VisualTooltip,
+  closed,
+} from "../shared.js";
+import { DataViewObjectDefinitionsV1_0_0 } from "../formatting-object-definitions/version-1_0_0.js";
+import { VisualContainerVisualContainerFormattingObjectsV1_0_0 } from "../visual-container/version-1_0_0.js";
 
 export const VisualContainerMobileStateDefinitionsV1_0_0 = {
-  VisualContainerFormattingObjects:
-    VisualContainerMobileStateVisualContainerFormattingObjectsV1_0_0,
-  Title: VisualConfigurationTitle,
-  SubTitle: VisualConfigurationSubTitle,
-  Divider: VisualContainerDivider,
-  Spacing: VisualConfigurationSpacing,
+  VisualContainerFormattingObjects: VisualContainerVisualContainerFormattingObjectsV1_0_0,
+  Title: Title,
+  SubTitle: SubTitle,
+  Divider: DividerV1_0_0,
+  Spacing: Spacing,
   Background: VisualConfigurationBackground,
-  Padding: VisualConfigurationPadding,
-  LockAspect: VisualConfigurationLockAspect,
-  VisualContainerGeneralFormattingObjects:
-    VisualConfigurationEmbeddedVisualContainerGeneralFormattingObjects,
-  Border: VisualContainerBorder,
-  DropShadow: VisualConfigurationDropShadow,
+  Padding: Padding,
+  LockAspect: LockAspect,
+  VisualContainerGeneralFormattingObjects: VisualContainerGeneralFormattingObjects,
+  Border: BorderV1_0_0,
+  DropShadow: DropShadow,
   VisualLink: VisualConfigurationVisualLinkV1_5_0,
-  VisualTooltip: VisualConfigurationVisualTooltip,
-  StylePreset: VisualConfigurationStylePreset,
-  VisualHeader: VisualContainerVisualHeader,
-  VisualHeaderTooltip: VisualConfigurationVisualHeaderTooltip,
-  VisualContainerPosition: VisualContainerVisualContainerPositionV1_0_0,
+  VisualTooltip: VisualTooltip,
+  StylePreset: StylePreset,
+  VisualHeader: VisualHeaderV1_0_0,
+  VisualHeaderTooltip: VisualHeaderTooltip,
+  VisualContainerPosition: VisualContainerPositionV1_0_0,
 } as const;
 
-export type VisualContainerMobileStateV1_0_0 = {
-  readonly objects?: FormattingObjectDefinitionsDataViewObjectDefinitionsV1_0_0;
-  readonly visualContainerObjects?: VisualContainerMobileStateVisualContainerFormattingObjectsV1_0_0;
-  readonly position: VisualContainerVisualContainerPositionV1_0_0;
+export type MobileStateV1_0_0 = {
+  readonly objects?: DataViewObjectDefinitionsV1_0_0;
+  readonly visualContainerObjects?: VisualContainerVisualContainerFormattingObjectsV1_0_0;
+  readonly position: VisualContainerPositionV1_0_0;
   readonly $schema: "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/1.0.0/schema.json";
 };
 
-export const VisualContainerMobileStateV1_0_0: Schema.Codec<VisualContainerMobileStateV1_0_0> =
-  closed({
-    objects: Schema.optionalKey(
-      Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_0_0.DataViewObjectDefinitions),
-    ),
-    visualContainerObjects: Schema.optionalKey(
-      Schema.suspend(() => VisualContainerMobileStateVisualContainerFormattingObjectsV1_0_0),
-    ),
-    position: Schema.suspend(() => VisualContainerVisualContainerPositionV1_0_0),
-    $schema: Schema.Literal(
-      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/1.0.0/schema.json",
-    ),
-  });
+export const MobileStateV1_0_0: Schema.Codec<MobileStateV1_0_0> = closed({
+  objects: Schema.optionalKey(Schema.suspend(() => DataViewObjectDefinitionsV1_0_0)),
+  visualContainerObjects: Schema.optionalKey(
+    Schema.suspend(() => VisualContainerVisualContainerFormattingObjectsV1_0_0),
+  ),
+  position: Schema.suspend(() => VisualContainerPositionV1_0_0),
+  $schema: Schema.Literal(
+    "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/1.0.0/schema.json",
+  ),
+});
+
+export { MobileStateV1_0_0 as VisualContainerMobileStateV1_0_0 };
+
+export {
+  Title as VisualContainerMobileStateTitleV1_0_0,
+  SubTitle as VisualContainerMobileStateSubTitleV1_0_0,
+  DividerV1_0_0 as VisualContainerMobileStateDividerV1_0_0,
+  Spacing as VisualContainerMobileStateSpacingV1_0_0,
+  VisualConfigurationBackground as VisualContainerMobileStateBackgroundV1_0_0,
+  Padding as VisualContainerMobileStatePaddingV1_0_0,
+  LockAspect as VisualContainerMobileStateLockAspectV1_0_0,
+  VisualContainerGeneralFormattingObjects as VisualContainerMobileStateVisualContainerGeneralFormattingObjectsV1_0_0,
+  BorderV1_0_0 as VisualContainerMobileStateBorderV1_0_0,
+  DropShadow as VisualContainerMobileStateDropShadowV1_0_0,
+  VisualConfigurationVisualLinkV1_5_0 as VisualContainerMobileStateVisualLinkV1_0_0,
+  VisualTooltip as VisualContainerMobileStateVisualTooltipV1_0_0,
+  StylePreset as VisualContainerMobileStateStylePresetV1_0_0,
+  VisualHeaderV1_0_0 as VisualContainerMobileStateVisualHeaderV1_0_0,
+  VisualHeaderTooltip as VisualContainerMobileStateVisualHeaderTooltipV1_0_0,
+  VisualContainerPositionV1_0_0 as VisualContainerMobileStateVisualContainerPositionV1_0_0,
+} from "../shared.js";
+
+export { VisualContainerVisualContainerFormattingObjectsV1_0_0 as VisualContainerMobileStateVisualContainerFormattingObjectsV1_0_0 } from "../visual-container/version-1_0_0.js";

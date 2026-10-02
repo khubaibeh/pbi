@@ -1,23 +1,18 @@
 import { Schema } from "effect";
 import { closed } from "../shared.js";
-import { DefinitionPropertiesReportDatasetReferenceByPath } from "./shared.js";
+import { ReportDatasetReferenceByPath } from "./shared.js";
 
-export type DefinitionPropertiesDatasetReferenceV1_0_0 = {
-  readonly byPath?: DefinitionPropertiesReportDatasetReferenceByPath;
-  readonly byConnection?: DefinitionPropertiesReportDatasetReferenceByConnectionV1_0_0;
+export type DatasetReferenceV1_0_0 = {
+  readonly byPath?: ReportDatasetReferenceByPath;
+  readonly byConnection?: ReportDatasetReferenceByConnectionV1_0_0;
 };
 
-export const DefinitionPropertiesDatasetReferenceV1_0_0: Schema.Codec<DefinitionPropertiesDatasetReferenceV1_0_0> =
-  closed({
-    byPath: Schema.optionalKey(
-      Schema.suspend(() => DefinitionPropertiesReportDatasetReferenceByPath),
-    ),
-    byConnection: Schema.optionalKey(
-      Schema.suspend(() => DefinitionPropertiesReportDatasetReferenceByConnectionV1_0_0),
-    ),
-  });
+export const DatasetReferenceV1_0_0: Schema.Codec<DatasetReferenceV1_0_0> = closed({
+  byPath: Schema.optionalKey(Schema.suspend(() => ReportDatasetReferenceByPath)),
+  byConnection: Schema.optionalKey(Schema.suspend(() => ReportDatasetReferenceByConnectionV1_0_0)),
+});
 
-export type DefinitionPropertiesReportDatasetReferenceByConnectionV1_0_0 = {
+export type ReportDatasetReferenceByConnectionV1_0_0 = {
   readonly connectionString: string | null;
   readonly pbiServiceModelId: number | null;
   readonly pbiModelVirtualServerName: string | null;
@@ -26,7 +21,7 @@ export type DefinitionPropertiesReportDatasetReferenceByConnectionV1_0_0 = {
   readonly connectionType: string | null;
 } | null;
 
-export const DefinitionPropertiesReportDatasetReferenceByConnectionV1_0_0: Schema.Codec<DefinitionPropertiesReportDatasetReferenceByConnectionV1_0_0> =
+export const ReportDatasetReferenceByConnectionV1_0_0: Schema.Codec<ReportDatasetReferenceByConnectionV1_0_0> =
   Schema.Union([
     closed({
       connectionString: Schema.Union([Schema.String, Schema.Null]),
@@ -45,15 +40,15 @@ export const DefinitionPropertiesReportDatasetReferenceByConnectionV1_0_0: Schem
   ]);
 
 export const DefinitionPropertiesDefinitionsV1_0_0 = {
-  DatasetReference: DefinitionPropertiesDatasetReferenceV1_0_0,
-  ReportDatasetReferenceByConnection: DefinitionPropertiesReportDatasetReferenceByConnectionV1_0_0,
-  ReportDatasetReferenceByPath: DefinitionPropertiesReportDatasetReferenceByPath,
+  DatasetReference: DatasetReferenceV1_0_0,
+  ReportDatasetReferenceByConnection: ReportDatasetReferenceByConnectionV1_0_0,
+  ReportDatasetReferenceByPath: ReportDatasetReferenceByPath,
 } as const;
 
 export type DefinitionPropertiesV1_0_0 = {
   readonly $schema: string;
   readonly version: string;
-  readonly datasetReference: DefinitionPropertiesDatasetReferenceV1_0_0;
+  readonly datasetReference: DatasetReferenceV1_0_0;
 };
 
 export const DefinitionPropertiesV1_0_0: Schema.Codec<DefinitionPropertiesV1_0_0> = closed({
@@ -65,5 +60,12 @@ export const DefinitionPropertiesV1_0_0: Schema.Codec<DefinitionPropertiesV1_0_0
     ),
   ),
   version: Schema.String,
-  datasetReference: Schema.suspend(() => DefinitionPropertiesDatasetReferenceV1_0_0),
+  datasetReference: Schema.suspend(() => DatasetReferenceV1_0_0),
 });
+
+export {
+  DatasetReferenceV1_0_0 as DefinitionPropertiesDatasetReferenceV1_0_0,
+  ReportDatasetReferenceByConnectionV1_0_0 as DefinitionPropertiesReportDatasetReferenceByConnectionV1_0_0,
+};
+
+export { ReportDatasetReferenceByPath as DefinitionPropertiesReportDatasetReferenceByPathV1_0_0 } from "./shared.js";

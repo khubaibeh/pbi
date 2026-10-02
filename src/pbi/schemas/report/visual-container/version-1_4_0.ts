@@ -1,23 +1,19 @@
 import { Schema } from "effect";
-import { closed } from "../shared.js";
-import {
-  VisualContainerAnnotation,
-  VisualContainerFilterConfigV1_2_0,
-  VisualContainerVisualConfigV1_2_0,
-  VisualContainerVisualContainerPositionV1_2_0,
-  VisualContainerVisualGroupConfigV1_2_0,
-} from "./shared.js";
+import { Annotation, VisualContainerPositionV1_2_0, closed } from "../shared.js";
+import { FilterConfigurationEmbeddedV1_0_0 } from "../filter-configuration/version-1_0_0.js";
+import { VisualConfigurationEmbeddedV1_5_0 } from "../visual-configuration/shared.js";
+import { VisualGroupConfigV1_2_0 } from "./shared.js";
 
 export type VisualContainerV1_4_0 =
   | ({
       readonly $schema: "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json";
       readonly name: string;
-      readonly position: VisualContainerVisualContainerPositionV1_2_0;
-      readonly visual: VisualContainerVisualConfigV1_2_0;
+      readonly position: VisualContainerPositionV1_2_0;
+      readonly visual: VisualConfigurationEmbeddedV1_5_0;
       readonly parentGroupName?: string;
-      readonly filterConfig?: VisualContainerFilterConfigV1_2_0;
+      readonly filterConfig?: FilterConfigurationEmbeddedV1_0_0;
       readonly isHidden?: boolean;
-      readonly annotations?: ReadonlyArray<VisualContainerAnnotation>;
+      readonly annotations?: ReadonlyArray<Annotation>;
       readonly howCreated?:
         | "Default"
         | "Copilot"
@@ -41,12 +37,12 @@ export type VisualContainerV1_4_0 =
   | ({
       readonly $schema: "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json";
       readonly name: string;
-      readonly position: VisualContainerVisualContainerPositionV1_2_0;
-      readonly visualGroup: VisualContainerVisualGroupConfigV1_2_0;
+      readonly position: VisualContainerPositionV1_2_0;
+      readonly visualGroup: VisualGroupConfigV1_2_0;
       readonly parentGroupName?: string;
-      readonly filterConfig?: VisualContainerFilterConfigV1_2_0;
+      readonly filterConfig?: FilterConfigurationEmbeddedV1_0_0;
       readonly isHidden?: boolean;
-      readonly annotations?: ReadonlyArray<VisualContainerAnnotation>;
+      readonly annotations?: ReadonlyArray<Annotation>;
       readonly howCreated?:
         | "Default"
         | "Copilot"
@@ -74,12 +70,12 @@ export const VisualContainerV1_4_0: Schema.Codec<VisualContainerV1_4_0> = Schema
       "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
     ),
     name: Schema.String.check(Schema.isMaxCodePoints(50)),
-    position: Schema.suspend(() => VisualContainerVisualContainerPositionV1_2_0),
-    visual: Schema.suspend(() => VisualContainerVisualConfigV1_2_0),
+    position: Schema.suspend(() => VisualContainerPositionV1_2_0),
+    visual: Schema.suspend(() => VisualConfigurationEmbeddedV1_5_0),
     parentGroupName: Schema.optionalKey(Schema.String),
-    filterConfig: Schema.optionalKey(Schema.suspend(() => VisualContainerFilterConfigV1_2_0)),
+    filterConfig: Schema.optionalKey(Schema.suspend(() => FilterConfigurationEmbeddedV1_0_0)),
     isHidden: Schema.optionalKey(Schema.Boolean),
-    annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => VisualContainerAnnotation))),
+    annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => Annotation))),
     howCreated: Schema.optionalKey(
       Schema.Union([
         Schema.Literal("Default"),
@@ -106,12 +102,12 @@ export const VisualContainerV1_4_0: Schema.Codec<VisualContainerV1_4_0> = Schema
       "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
     ),
     name: Schema.String.check(Schema.isMaxCodePoints(50)),
-    position: Schema.suspend(() => VisualContainerVisualContainerPositionV1_2_0),
-    visualGroup: Schema.suspend(() => VisualContainerVisualGroupConfigV1_2_0),
+    position: Schema.suspend(() => VisualContainerPositionV1_2_0),
+    visualGroup: Schema.suspend(() => VisualGroupConfigV1_2_0),
     parentGroupName: Schema.optionalKey(Schema.String),
-    filterConfig: Schema.optionalKey(Schema.suspend(() => VisualContainerFilterConfigV1_2_0)),
+    filterConfig: Schema.optionalKey(Schema.suspend(() => FilterConfigurationEmbeddedV1_0_0)),
     isHidden: Schema.optionalKey(Schema.Boolean),
-    annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => VisualContainerAnnotation))),
+    annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => Annotation))),
     howCreated: Schema.optionalKey(
       Schema.Union([
         Schema.Literal("Default"),
@@ -135,4 +131,57 @@ export const VisualContainerV1_4_0: Schema.Codec<VisualContainerV1_4_0> = Schema
   }),
 ]);
 
-export { VisualContainerDefinitionsV1_2_0 as VisualContainerDefinitionsV1_4_0 } from "./shared.js";
+export {
+  FilterConfigurationEmbeddedV1_0_0 as VisualContainerFilterConfigV1_4_0,
+  FilterConfigurationFilterContainerV1_0_0 as VisualContainerFilterContainerV1_4_0,
+  FilterConfigurationFilterContainerFormattingObjectsV1_0_0 as VisualContainerFilterContainerFormattingObjectsV1_4_0,
+} from "../filter-configuration/version-1_0_0.js";
+
+export {
+  VisualContainerPositionV1_2_0 as VisualContainerVisualContainerPositionV1_4_0,
+  VisualConfigurationSortDirection as VisualContainerSortDirectionV1_4_0,
+  VisualQueryOptions as VisualContainerVisualQueryOptionsV1_4_0,
+  AILevelInformation as VisualContainerAILevelInformationV1_4_0,
+  AIDecompositionMethod as VisualContainerAIDecompositionMethodV1_4_0,
+  Title as VisualContainerTitleV1_4_0,
+  SubTitle as VisualContainerSubTitleV1_4_0,
+  DividerV1_5_0 as VisualContainerDividerV1_4_0,
+  Spacing as VisualContainerSpacingV1_4_0,
+  VisualConfigurationBackground as VisualContainerBackgroundV1_4_0,
+  Padding as VisualContainerPaddingV1_4_0,
+  LockAspect as VisualContainerLockAspectV1_4_0,
+  VisualContainerGeneralFormattingObjects as VisualContainerVisualContainerGeneralFormattingObjectsV1_4_0,
+  BorderV1_5_0 as VisualContainerBorderV1_4_0,
+  DropShadow as VisualContainerDropShadowV1_4_0,
+  VisualConfigurationVisualLinkV1_5_0 as VisualContainerVisualLinkV1_4_0,
+  VisualTooltip as VisualContainerVisualTooltipV1_4_0,
+  StylePreset as VisualContainerStylePresetV1_4_0,
+  VisualHeaderV1_5_0 as VisualContainerVisualHeaderV1_4_0,
+  VisualHeaderTooltip as VisualContainerVisualHeaderTooltipV1_4_0,
+  VisualSyncGroup as VisualContainerVisualSyncGroupV1_4_0,
+  FilterContainerFormattingObjectsProperties as VisualContainerFilterContainerFormattingObjectsPropertiesV1_4_0,
+  Annotation as VisualContainerAnnotationV1_4_0,
+} from "../shared.js";
+
+export {
+  VisualConfigurationEmbeddedV1_5_0 as VisualContainerVisualConfigV1_4_0,
+  VisualConfigurationQueryV1_5_0 as VisualContainerQueryV1_4_0,
+  VisualConfigurationSortDefinitionV1_5_0 as VisualContainerSortDefinitionV1_4_0,
+  VisualConfigurationQuerySortV1_5_0 as VisualContainerQuerySortV1_4_0,
+  VisualConfigurationProjectionStateV1_5_0 as VisualContainerProjectionStateV1_4_0,
+  VisualConfigurationRoleProjectionV1_5_0 as VisualContainerRoleProjectionV1_4_0,
+  VisualConfigurationRoleFieldParameterV1_5_0 as VisualContainerRoleFieldParameterV1_4_0,
+  VisualConfigurationExpansionStateV1_5_0 as VisualContainerExpansionStateV1_4_0,
+  VisualConfigurationRootExpansionStateV1_5_0 as VisualContainerRootExpansionStateV1_4_0,
+  VisualConfigurationNodeExpansionStateV1_5_0 as VisualContainerNodeExpansionStateV1_4_0,
+  VisualConfigurationLevelExpansionStateV1_5_0 as VisualContainerLevelExpansionStateV1_4_0,
+  VisualConfigurationVisualContainerFormattingObjectsV1_5_0 as VisualContainerVisualContainerFormattingObjectsV1_4_0,
+} from "../visual-configuration/shared.js";
+
+export {
+  VisualGroupConfigV1_2_0 as VisualContainerVisualGroupConfigV1_4_0,
+  GroupLayoutMode as VisualContainerGroupLayoutModeV1_4_0,
+  VisualGroupFormattingObjectsV1_2_0 as VisualContainerVisualGroupFormattingObjectsV1_4_0,
+  VisualGroupGeneralFormattingObjects as VisualContainerVisualGroupGeneralFormattingObjectsV1_4_0,
+  VisualContainerDefinitionsV1_2_0 as VisualContainerDefinitionsV1_4_0,
+} from "./shared.js";

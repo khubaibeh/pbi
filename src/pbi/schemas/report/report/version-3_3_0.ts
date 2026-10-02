@@ -1,25 +1,23 @@
 import { Schema } from "effect";
-import { closed } from "../shared.js";
-import { FilterConfigurationEmbeddedV1_3_0 } from "../filter-configuration/shared.js";
-import { VisualContainerAnnotation } from "../visual-container/shared.js";
+import { Annotation, DisplayArea, closed } from "../shared.js";
+import { FilterConfigurationEmbeddedV1_3_0 } from "../filter-configuration/version-1_3_0.js";
 import {
-  ReportExplorationSlowDataSourceSettings,
-  ReportFieldParameterReportSettings,
-  ReportOrganizationCustomVisual,
+  ExplorationSlowDataSourceSettings,
+  FieldParameterReportSettings,
+  OrganizationCustomVisual,
+  ReportFormattingObjectsV3_2_0,
   ReportOutspacePane,
-  ReportReportFormattingObjectsV3_2_0,
-  ReportResourcePackage,
-  ReportResourcePackageItem,
-  ReportResourcePackageItemType,
-  ReportResourcePackageType,
-  ReportSection,
-  ReportThemeCollectionV3_0_0,
-  ReportThemeMetadataV3_0_0,
-  ReportThemeResourcePackageType,
-  ReportThemeVersion,
+  ResourcePackage,
+  ResourcePackageItem,
+  ResourcePackageItemType,
+  ResourcePackageType,
+  ThemeCollectionV3_0_0,
+  ThemeMetadataV3_0_0,
+  ThemeResourcePackageType,
+  ThemeVersion,
 } from "./shared.js";
 
-export type ReportExplorationSettingsV3_3_0 = {
+export type ExplorationSettingsV3_3_0 = {
   readonly isPersistentUserStateDisabled?: boolean;
   readonly hideVisualContainerHeader?: boolean;
   readonly useStylableVisualContainerHeader?: boolean;
@@ -49,86 +47,85 @@ export type ReportExplorationSettingsV3_3_0 = {
     | "Auto";
   readonly customMemoryLimit?: string;
   readonly customTimeoutLimit?: string;
-  readonly fieldParameterReportSettings?: ReportFieldParameterReportSettings;
+  readonly fieldParameterReportSettings?: FieldParameterReportSettings;
   readonly defaultDataExplorePerspective?: string;
   readonly locale?: string;
   readonly defaultDisplayUnitsToNone?: boolean;
 };
 
-export const ReportExplorationSettingsV3_3_0: Schema.Codec<ReportExplorationSettingsV3_3_0> =
-  closed({
-    isPersistentUserStateDisabled: Schema.optionalKey(Schema.Boolean),
-    hideVisualContainerHeader: Schema.optionalKey(Schema.Boolean),
-    useStylableVisualContainerHeader: Schema.optionalKey(Schema.Boolean),
-    exportDataMode: Schema.optionalKey(
-      Schema.Union([
-        Schema.Literal("AllowSummarized"),
-        Schema.Literal("AllowSummarizedAndUnderlying"),
-        Schema.Literal("None"),
-      ]),
-    ),
-    isReportAnnotationsDisabled: Schema.optionalKey(Schema.Boolean),
-    defaultFilterActionIsDataFilter: Schema.optionalKey(Schema.Boolean),
-    defaultDrillFilterOtherVisuals: Schema.optionalKey(Schema.Boolean),
-    useCrossReportDrillthrough: Schema.optionalKey(Schema.Boolean),
-    allowChangeFilterTypes: Schema.optionalKey(Schema.Boolean),
-    allowInlineExploration: Schema.optionalKey(Schema.Boolean),
-    useEnhancedTooltips: Schema.optionalKey(Schema.Boolean),
-    useScaledTooltips: Schema.optionalKey(Schema.Boolean),
-    filterPaneHiddenInEditMode: Schema.optionalKey(Schema.Boolean),
-    disableFilterPaneSearch: Schema.optionalKey(Schema.Boolean),
-    pagesPosition: Schema.optionalKey(
-      Schema.Union([Schema.Literal("PagesPane"), Schema.Literal("Bottom")]),
-    ),
-    allowAutomatedInsightsNotification: Schema.optionalKey(Schema.Boolean),
-    useDefaultAggregateDisplayName: Schema.optionalKey(Schema.Boolean),
-    enableDeveloperMode: Schema.optionalKey(Schema.Boolean),
-    pauseQueries: Schema.optionalKey(Schema.Boolean),
-    queryLimitOption: Schema.optionalKey(
-      Schema.Union([
-        Schema.Literal("None"),
-        Schema.Literal("Shared"),
-        Schema.Literal("Premium"),
-        Schema.Literal("SQLServerAS"),
-        Schema.Literal("AzureAS"),
-        Schema.Literal("Custom"),
-        Schema.Literal("Auto"),
-      ]),
-    ),
-    customMemoryLimit: Schema.optionalKey(Schema.String),
-    customTimeoutLimit: Schema.optionalKey(Schema.String),
-    fieldParameterReportSettings: Schema.optionalKey(
-      Schema.suspend(() => ReportFieldParameterReportSettings),
-    ),
-    defaultDataExplorePerspective: Schema.optionalKey(Schema.String),
-    locale: Schema.optionalKey(Schema.String),
-    defaultDisplayUnitsToNone: Schema.optionalKey(Schema.Boolean),
-  });
+export const ExplorationSettingsV3_3_0: Schema.Codec<ExplorationSettingsV3_3_0> = closed({
+  isPersistentUserStateDisabled: Schema.optionalKey(Schema.Boolean),
+  hideVisualContainerHeader: Schema.optionalKey(Schema.Boolean),
+  useStylableVisualContainerHeader: Schema.optionalKey(Schema.Boolean),
+  exportDataMode: Schema.optionalKey(
+    Schema.Union([
+      Schema.Literal("AllowSummarized"),
+      Schema.Literal("AllowSummarizedAndUnderlying"),
+      Schema.Literal("None"),
+    ]),
+  ),
+  isReportAnnotationsDisabled: Schema.optionalKey(Schema.Boolean),
+  defaultFilterActionIsDataFilter: Schema.optionalKey(Schema.Boolean),
+  defaultDrillFilterOtherVisuals: Schema.optionalKey(Schema.Boolean),
+  useCrossReportDrillthrough: Schema.optionalKey(Schema.Boolean),
+  allowChangeFilterTypes: Schema.optionalKey(Schema.Boolean),
+  allowInlineExploration: Schema.optionalKey(Schema.Boolean),
+  useEnhancedTooltips: Schema.optionalKey(Schema.Boolean),
+  useScaledTooltips: Schema.optionalKey(Schema.Boolean),
+  filterPaneHiddenInEditMode: Schema.optionalKey(Schema.Boolean),
+  disableFilterPaneSearch: Schema.optionalKey(Schema.Boolean),
+  pagesPosition: Schema.optionalKey(
+    Schema.Union([Schema.Literal("PagesPane"), Schema.Literal("Bottom")]),
+  ),
+  allowAutomatedInsightsNotification: Schema.optionalKey(Schema.Boolean),
+  useDefaultAggregateDisplayName: Schema.optionalKey(Schema.Boolean),
+  enableDeveloperMode: Schema.optionalKey(Schema.Boolean),
+  pauseQueries: Schema.optionalKey(Schema.Boolean),
+  queryLimitOption: Schema.optionalKey(
+    Schema.Union([
+      Schema.Literal("None"),
+      Schema.Literal("Shared"),
+      Schema.Literal("Premium"),
+      Schema.Literal("SQLServerAS"),
+      Schema.Literal("AzureAS"),
+      Schema.Literal("Custom"),
+      Schema.Literal("Auto"),
+    ]),
+  ),
+  customMemoryLimit: Schema.optionalKey(Schema.String),
+  customTimeoutLimit: Schema.optionalKey(Schema.String),
+  fieldParameterReportSettings: Schema.optionalKey(
+    Schema.suspend(() => FieldParameterReportSettings),
+  ),
+  defaultDataExplorePerspective: Schema.optionalKey(Schema.String),
+  locale: Schema.optionalKey(Schema.String),
+  defaultDisplayUnitsToNone: Schema.optionalKey(Schema.Boolean),
+});
 
 export const ReportDefinitionsV3_3_0 = {
-  ThemeCollection: ReportThemeCollectionV3_0_0,
-  ThemeMetadata: ReportThemeMetadataV3_0_0,
-  ThemeVersion: ReportThemeVersion,
-  ThemeResourcePackageType: ReportThemeResourcePackageType,
-  ReportFormattingObjects: ReportReportFormattingObjectsV3_2_0,
+  ThemeCollection: ThemeCollectionV3_0_0,
+  ThemeMetadata: ThemeMetadataV3_0_0,
+  ThemeVersion: ThemeVersion,
+  ThemeResourcePackageType: ThemeResourcePackageType,
+  ReportFormattingObjects: ReportFormattingObjectsV3_2_0,
   OutspacePane: ReportOutspacePane,
-  Section: ReportSection,
-  ResourcePackage: ReportResourcePackage,
-  ResourcePackageType: ReportResourcePackageType,
-  ResourcePackageItem: ReportResourcePackageItem,
-  ResourcePackageItemType: ReportResourcePackageItemType,
-  OrganizationCustomVisual: ReportOrganizationCustomVisual,
-  Annotation: VisualContainerAnnotation,
-  ExplorationSettings: ReportExplorationSettingsV3_3_0,
-  FieldParameterReportSettings: ReportFieldParameterReportSettings,
-  ExplorationSlowDataSourceSettings: ReportExplorationSlowDataSourceSettings,
+  Section: DisplayArea,
+  ResourcePackage: ResourcePackage,
+  ResourcePackageType: ResourcePackageType,
+  ResourcePackageItem: ResourcePackageItem,
+  ResourcePackageItemType: ResourcePackageItemType,
+  OrganizationCustomVisual: OrganizationCustomVisual,
+  Annotation: Annotation,
+  ExplorationSettings: ExplorationSettingsV3_3_0,
+  FieldParameterReportSettings: FieldParameterReportSettings,
+  ExplorationSlowDataSourceSettings: ExplorationSlowDataSourceSettings,
 } as const;
 
 export type ReportV3_3_0 = {
   readonly $schema: "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json";
-  readonly themeCollection: ReportThemeCollectionV3_0_0;
+  readonly themeCollection: ThemeCollectionV3_0_0;
   readonly filterConfig?: FilterConfigurationEmbeddedV1_3_0;
-  readonly objects?: ReportReportFormattingObjectsV3_2_0;
+  readonly objects?: ReportFormattingObjectsV3_2_0;
   readonly reportSource?:
     | "Default"
     | "SharePoint"
@@ -138,21 +135,21 @@ export type ReportV3_3_0 = {
     | "Datamart"
     | "DataExplore";
   readonly publicCustomVisuals?: ReadonlyArray<string>;
-  readonly resourcePackages?: ReadonlyArray<ReportResourcePackage>;
-  readonly organizationCustomVisuals?: ReadonlyArray<ReportOrganizationCustomVisual>;
-  readonly annotations?: ReadonlyArray<VisualContainerAnnotation>;
+  readonly resourcePackages?: ReadonlyArray<ResourcePackage>;
+  readonly organizationCustomVisuals?: ReadonlyArray<OrganizationCustomVisual>;
+  readonly annotations?: ReadonlyArray<Annotation>;
   readonly dataSourceVariables?: string;
-  readonly settings?: ReportExplorationSettingsV3_3_0;
-  readonly slowDataSourceSettings?: ReportExplorationSlowDataSourceSettings;
+  readonly settings?: ExplorationSettingsV3_3_0;
+  readonly slowDataSourceSettings?: ExplorationSlowDataSourceSettings;
 };
 
 export const ReportV3_3_0: Schema.Codec<ReportV3_3_0> = closed({
   $schema: Schema.Literal(
     "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
   ),
-  themeCollection: Schema.suspend(() => ReportThemeCollectionV3_0_0),
+  themeCollection: Schema.suspend(() => ThemeCollectionV3_0_0),
   filterConfig: Schema.optionalKey(Schema.suspend(() => FilterConfigurationEmbeddedV1_3_0)),
-  objects: Schema.optionalKey(Schema.suspend(() => ReportReportFormattingObjectsV3_2_0)),
+  objects: Schema.optionalKey(Schema.suspend(() => ReportFormattingObjectsV3_2_0)),
   reportSource: Schema.optionalKey(
     Schema.Union([
       Schema.Literal("Default"),
@@ -165,14 +162,37 @@ export const ReportV3_3_0: Schema.Codec<ReportV3_3_0> = closed({
     ]),
   ),
   publicCustomVisuals: Schema.optionalKey(Schema.Array(Schema.String)),
-  resourcePackages: Schema.optionalKey(Schema.Array(Schema.suspend(() => ReportResourcePackage))),
+  resourcePackages: Schema.optionalKey(Schema.Array(Schema.suspend(() => ResourcePackage))),
   organizationCustomVisuals: Schema.optionalKey(
-    Schema.Array(Schema.suspend(() => ReportOrganizationCustomVisual)),
+    Schema.Array(Schema.suspend(() => OrganizationCustomVisual)),
   ),
-  annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => VisualContainerAnnotation))),
+  annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => Annotation))),
   dataSourceVariables: Schema.optionalKey(Schema.String),
-  settings: Schema.optionalKey(Schema.suspend(() => ReportExplorationSettingsV3_3_0)),
+  settings: Schema.optionalKey(Schema.suspend(() => ExplorationSettingsV3_3_0)),
   slowDataSourceSettings: Schema.optionalKey(
-    Schema.suspend(() => ReportExplorationSlowDataSourceSettings),
+    Schema.suspend(() => ExplorationSlowDataSourceSettings),
   ),
 });
+
+export { ExplorationSettingsV3_3_0 as ReportExplorationSettingsV3_3_0 };
+
+export {
+  DisplayArea as ReportSectionV3_3_0,
+  Annotation as ReportAnnotationV3_3_0,
+} from "../shared.js";
+
+export {
+  ThemeCollectionV3_0_0 as ReportThemeCollectionV3_3_0,
+  ThemeMetadataV3_0_0 as ReportThemeMetadataV3_3_0,
+  ThemeVersion as ReportThemeVersionV3_3_0,
+  ThemeResourcePackageType as ReportThemeResourcePackageTypeV3_3_0,
+  ReportFormattingObjectsV3_2_0 as ReportReportFormattingObjectsV3_3_0,
+  ReportOutspacePane as ReportOutspacePaneV3_3_0,
+  ResourcePackage as ReportResourcePackageV3_3_0,
+  ResourcePackageType as ReportResourcePackageTypeV3_3_0,
+  ResourcePackageItem as ReportResourcePackageItemV3_3_0,
+  ResourcePackageItemType as ReportResourcePackageItemTypeV3_3_0,
+  OrganizationCustomVisual as ReportOrganizationCustomVisualV3_3_0,
+  FieldParameterReportSettings as ReportFieldParameterReportSettingsV3_3_0,
+  ExplorationSlowDataSourceSettings as ReportExplorationSlowDataSourceSettingsV3_3_0,
+} from "./shared.js";

@@ -1,8 +1,13 @@
-import { VisualConfigurationEmbeddedV1_5_0, VisualConfigurationV1_5_0 } from "./version-1_5_0.js";
+import {
+  VisualConfigurationEmbeddedV1_5_0,
+  VisualConfigurationEmbeddedV1_8_0,
+  VisualConfigurationV2_0_0,
+} from "./shared.js";
+import { VisualConfigurationV1_5_0 } from "./version-1_5_0.js";
 import { VisualConfigurationEmbeddedV1_6_0, VisualConfigurationV1_6_0 } from "./version-1_6_0.js";
 import { VisualConfigurationEmbeddedV1_7_0, VisualConfigurationV1_7_0 } from "./version-1_7_0.js";
-import { VisualConfigurationEmbeddedV1_8_0, VisualConfigurationV1_8_0 } from "./version-1_8_0.js";
-import { VisualConfigurationEmbeddedV2_0_0, VisualConfigurationV2_0_0 } from "./version-2_0_0.js";
+import { VisualConfigurationV1_8_0 } from "./version-1_8_0.js";
+import { VisualConfigurationEmbeddedV2_0_0 } from "./version-2_0_0.js";
 import { VisualConfigurationEmbeddedV2_1_0, VisualConfigurationV2_1_0 } from "./version-2_1_0.js";
 import { VisualConfigurationEmbeddedV2_2_0, VisualConfigurationV2_2_0 } from "./version-2_2_0.js";
 import { VisualConfigurationEmbeddedV2_3_0, VisualConfigurationV2_3_0 } from "./version-2_3_0.js";

@@ -1,44 +1,41 @@
 import { Schema } from "effect";
-import { closed } from "../shared.js";
-import {
-  FormattingObjectDefinitionsDefinitionsV1_3_0,
-  FormattingObjectDefinitionsDefinitionsV1_4_0,
-  FormattingObjectDefinitionsDefinitionsV1_5_0,
-  FormattingObjectDefinitionsSelectorV1_3_0,
-  FormattingObjectDefinitionsSelectorV1_4_0,
-  FormattingObjectDefinitionsSelectorV1_5_0,
-} from "../formatting-object-definitions/shared.js";
+import { DisplayArea, closed } from "../shared.js";
+import { SelectorV1_3_0 } from "../formatting-object-definitions/version-1_3_0.js";
+import { SelectorV1_4_0 } from "../formatting-object-definitions/version-1_4_0.js";
+import { SelectorV1_5_0 } from "../formatting-object-definitions/version-1_5_0.js";
 
-export type ReportThemeCollectionV1_0_0 = {
-  readonly baseTheme?: ReportThemeMetadataV1_0_0;
-  readonly customTheme?: ReportThemeMetadataV1_0_0;
+export type ThemeCollectionV1_0_0 = {
+  readonly baseTheme?: ThemeMetadataV1_0_0;
+  readonly customTheme?: ThemeMetadataV1_0_0;
 };
 
-export const ReportThemeCollectionV1_0_0: Schema.Codec<ReportThemeCollectionV1_0_0> = closed({
-  baseTheme: Schema.optionalKey(Schema.suspend(() => ReportThemeMetadataV1_0_0)),
-  customTheme: Schema.optionalKey(Schema.suspend(() => ReportThemeMetadataV1_0_0)),
+export const ThemeCollectionV1_0_0: Schema.Codec<ThemeCollectionV1_0_0> = closed({
+  baseTheme: Schema.optionalKey(Schema.suspend(() => ThemeMetadataV1_0_0)),
+  customTheme: Schema.optionalKey(Schema.suspend(() => ThemeMetadataV1_0_0)),
 });
 
-export type ReportThemeMetadataV1_0_0 = {
+export type ThemeMetadataV1_0_0 = {
   readonly name: string;
   readonly reportVersionAtImport: string;
-  readonly type: ReportThemeResourcePackageType;
+  readonly type: ThemeResourcePackageType;
 };
 
-export const ReportThemeMetadataV1_0_0: Schema.Codec<ReportThemeMetadataV1_0_0> = closed({
+export const ThemeMetadataV1_0_0: Schema.Codec<ThemeMetadataV1_0_0> = closed({
   name: Schema.String,
   reportVersionAtImport: Schema.String,
-  type: Schema.suspend(() => ReportThemeResourcePackageType),
+  type: Schema.suspend(() => ThemeResourcePackageType),
 });
 
-export type ReportThemeResourcePackageType = "RegisteredResources" | "SharedResources";
+export type ThemeResourcePackageType = "RegisteredResources" | "SharedResources";
 
-export const ReportThemeResourcePackageType: Schema.Codec<ReportThemeResourcePackageType> =
-  Schema.Union([Schema.Literal("RegisteredResources"), Schema.Literal("SharedResources")]);
+export const ThemeResourcePackageType: Schema.Codec<ThemeResourcePackageType> = Schema.Union([
+  Schema.Literal("RegisteredResources"),
+  Schema.Literal("SharedResources"),
+]);
 
-export type ReportLayoutOptimization = "None" | "PhonePortrait";
+export type LayoutOptimization = "None" | "PhonePortrait";
 
-export const ReportLayoutOptimization: Schema.Codec<ReportLayoutOptimization> = Schema.Union([
+export const LayoutOptimization: Schema.Codec<LayoutOptimization> = Schema.Union([
   Schema.Literal("None"),
   Schema.Literal("PhonePortrait"),
 ]);
@@ -53,58 +50,50 @@ export const ReportOutspacePane: Schema.Codec<ReportOutspacePane> = closed({
   visible: Schema.optionalKey(Schema.Json),
 });
 
-export type ReportSection = {
-  readonly verticalAlignment?: Schema.Json;
-};
-
-export const ReportSection: Schema.Codec<ReportSection> = closed({
-  verticalAlignment: Schema.optionalKey(Schema.Json),
-});
-
-export type ReportResourcePackage = {
+export type ResourcePackage = {
   readonly id?: number;
   readonly name: string;
-  readonly type: ReportResourcePackageType;
-  readonly items: ReadonlyArray<ReportResourcePackageItem>;
+  readonly type: ResourcePackageType;
+  readonly items: ReadonlyArray<ResourcePackageItem>;
   readonly disabled?: boolean;
 };
 
-export const ReportResourcePackage: Schema.Codec<ReportResourcePackage> = closed({
+export const ResourcePackage: Schema.Codec<ResourcePackage> = closed({
   id: Schema.optionalKey(Schema.Finite),
   name: Schema.String,
-  type: Schema.suspend(() => ReportResourcePackageType),
-  items: Schema.Array(Schema.suspend(() => ReportResourcePackageItem)),
+  type: Schema.suspend(() => ResourcePackageType),
+  items: Schema.Array(Schema.suspend(() => ResourcePackageItem)),
   disabled: Schema.optionalKey(Schema.Boolean),
 });
 
-export type ReportResourcePackageType =
+export type ResourcePackageType =
   | "CustomVisual"
   | "RegisteredResources"
   | "SharedResources"
   | "OrganizationalStoreCustomVisual";
 
-export const ReportResourcePackageType: Schema.Codec<ReportResourcePackageType> = Schema.Union([
+export const ResourcePackageType: Schema.Codec<ResourcePackageType> = Schema.Union([
   Schema.Literal("CustomVisual"),
   Schema.Literal("RegisteredResources"),
   Schema.Literal("SharedResources"),
   Schema.Literal("OrganizationalStoreCustomVisual"),
 ]);
 
-export type ReportResourcePackageItem = {
+export type ResourcePackageItem = {
   readonly id?: number;
   readonly name: string;
   readonly path: string;
-  readonly type: ReportResourcePackageItemType;
+  readonly type: ResourcePackageItemType;
 };
 
-export const ReportResourcePackageItem: Schema.Codec<ReportResourcePackageItem> = closed({
+export const ResourcePackageItem: Schema.Codec<ResourcePackageItem> = closed({
   id: Schema.optionalKey(Schema.Finite),
   name: Schema.String,
   path: Schema.String,
-  type: Schema.suspend(() => ReportResourcePackageItemType),
+  type: Schema.suspend(() => ResourcePackageItemType),
 });
 
-export type ReportResourcePackageItemType =
+export type ResourcePackageItemType =
   | "CustomVisualJavascript"
   | "CustomVisualsCss"
   | "CustomVisualScreenshot"
@@ -122,39 +111,38 @@ export type ReportResourcePackageItemType =
   | "AppTheme"
   | "AppBaseTheme";
 
-export const ReportResourcePackageItemType: Schema.Codec<ReportResourcePackageItemType> =
-  Schema.Union([
-    Schema.Literal("CustomVisualJavascript"),
-    Schema.Literal("CustomVisualsCss"),
-    Schema.Literal("CustomVisualScreenshot"),
-    Schema.Literal("CustomVisualIcon"),
-    Schema.Literal("CustomVisualWatermark"),
-    Schema.Literal("CustomVisualMetadata"),
-    Schema.Literal("Image"),
-    Schema.Literal("ShapeMap"),
-    Schema.Literal("CustomTheme"),
-    Schema.Literal("BaseTheme"),
-    Schema.Literal("DashboardTheme"),
-    Schema.Literal("DashboardBaseTheme"),
-    Schema.Literal("HighContrastTheme"),
-    Schema.Literal("AppNavigation"),
-    Schema.Literal("AppTheme"),
-    Schema.Literal("AppBaseTheme"),
-  ]);
+export const ResourcePackageItemType: Schema.Codec<ResourcePackageItemType> = Schema.Union([
+  Schema.Literal("CustomVisualJavascript"),
+  Schema.Literal("CustomVisualsCss"),
+  Schema.Literal("CustomVisualScreenshot"),
+  Schema.Literal("CustomVisualIcon"),
+  Schema.Literal("CustomVisualWatermark"),
+  Schema.Literal("CustomVisualMetadata"),
+  Schema.Literal("Image"),
+  Schema.Literal("ShapeMap"),
+  Schema.Literal("CustomTheme"),
+  Schema.Literal("BaseTheme"),
+  Schema.Literal("DashboardTheme"),
+  Schema.Literal("DashboardBaseTheme"),
+  Schema.Literal("HighContrastTheme"),
+  Schema.Literal("AppNavigation"),
+  Schema.Literal("AppTheme"),
+  Schema.Literal("AppBaseTheme"),
+]);
 
-export type ReportOrganizationCustomVisual = {
+export type OrganizationCustomVisual = {
   readonly name: string;
   readonly path: string;
   readonly disabled?: boolean;
 };
 
-export const ReportOrganizationCustomVisual: Schema.Codec<ReportOrganizationCustomVisual> = closed({
+export const OrganizationCustomVisual: Schema.Codec<OrganizationCustomVisual> = closed({
   name: Schema.String,
   path: Schema.String,
   disabled: Schema.optionalKey(Schema.Boolean),
 });
 
-export type ReportExplorationSettingsV1_0_0 = {
+export type ExplorationSettingsV1_0_0 = {
   readonly isPersistentUserStateDisabled?: boolean;
   readonly hideVisualContainerHeader?: boolean;
   readonly useStylableVisualContainerHeader?: boolean;
@@ -186,51 +174,50 @@ export type ReportExplorationSettingsV1_0_0 = {
   readonly customTimeoutLimit?: string;
 };
 
-export const ReportExplorationSettingsV1_0_0: Schema.Codec<ReportExplorationSettingsV1_0_0> =
-  closed({
-    isPersistentUserStateDisabled: Schema.optionalKey(Schema.Boolean),
-    hideVisualContainerHeader: Schema.optionalKey(Schema.Boolean),
-    useStylableVisualContainerHeader: Schema.optionalKey(Schema.Boolean),
-    exportDataMode: Schema.optionalKey(
-      Schema.Union([
-        Schema.Literal("AllowSummarized"),
-        Schema.Literal("AllowSummarizedAndUnderlying"),
-        Schema.Literal("None"),
-      ]),
-    ),
-    isReportAnnotationsDisabled: Schema.optionalKey(Schema.Boolean),
-    defaultFilterActionIsDataFilter: Schema.optionalKey(Schema.Boolean),
-    defaultDrillFilterOtherVisuals: Schema.optionalKey(Schema.Boolean),
-    useCrossReportDrillthrough: Schema.optionalKey(Schema.Boolean),
-    allowChangeFilterTypes: Schema.optionalKey(Schema.Boolean),
-    allowInlineExploration: Schema.optionalKey(Schema.Boolean),
-    useEnhancedTooltips: Schema.optionalKey(Schema.Boolean),
-    useScaledTooltips: Schema.optionalKey(Schema.Boolean),
-    filterPaneHiddenInEditMode: Schema.optionalKey(Schema.Boolean),
-    disableFilterPaneSearch: Schema.optionalKey(Schema.Boolean),
-    pagesPosition: Schema.optionalKey(
-      Schema.Union([Schema.Literal("PagesPane"), Schema.Literal("Bottom")]),
-    ),
-    allowAutomatedInsightsNotification: Schema.optionalKey(Schema.Boolean),
-    useDefaultAggregateDisplayName: Schema.optionalKey(Schema.Boolean),
-    enableDeveloperMode: Schema.optionalKey(Schema.Boolean),
-    pauseQueries: Schema.optionalKey(Schema.Boolean),
-    queryLimitOption: Schema.optionalKey(
-      Schema.Union([
-        Schema.Literal("None"),
-        Schema.Literal("Shared"),
-        Schema.Literal("Premium"),
-        Schema.Literal("SQLServerAS"),
-        Schema.Literal("AzureAS"),
-        Schema.Literal("Custom"),
-        Schema.Literal("Auto"),
-      ]),
-    ),
-    customMemoryLimit: Schema.optionalKey(Schema.String),
-    customTimeoutLimit: Schema.optionalKey(Schema.String),
-  });
+export const ExplorationSettingsV1_0_0: Schema.Codec<ExplorationSettingsV1_0_0> = closed({
+  isPersistentUserStateDisabled: Schema.optionalKey(Schema.Boolean),
+  hideVisualContainerHeader: Schema.optionalKey(Schema.Boolean),
+  useStylableVisualContainerHeader: Schema.optionalKey(Schema.Boolean),
+  exportDataMode: Schema.optionalKey(
+    Schema.Union([
+      Schema.Literal("AllowSummarized"),
+      Schema.Literal("AllowSummarizedAndUnderlying"),
+      Schema.Literal("None"),
+    ]),
+  ),
+  isReportAnnotationsDisabled: Schema.optionalKey(Schema.Boolean),
+  defaultFilterActionIsDataFilter: Schema.optionalKey(Schema.Boolean),
+  defaultDrillFilterOtherVisuals: Schema.optionalKey(Schema.Boolean),
+  useCrossReportDrillthrough: Schema.optionalKey(Schema.Boolean),
+  allowChangeFilterTypes: Schema.optionalKey(Schema.Boolean),
+  allowInlineExploration: Schema.optionalKey(Schema.Boolean),
+  useEnhancedTooltips: Schema.optionalKey(Schema.Boolean),
+  useScaledTooltips: Schema.optionalKey(Schema.Boolean),
+  filterPaneHiddenInEditMode: Schema.optionalKey(Schema.Boolean),
+  disableFilterPaneSearch: Schema.optionalKey(Schema.Boolean),
+  pagesPosition: Schema.optionalKey(
+    Schema.Union([Schema.Literal("PagesPane"), Schema.Literal("Bottom")]),
+  ),
+  allowAutomatedInsightsNotification: Schema.optionalKey(Schema.Boolean),
+  useDefaultAggregateDisplayName: Schema.optionalKey(Schema.Boolean),
+  enableDeveloperMode: Schema.optionalKey(Schema.Boolean),
+  pauseQueries: Schema.optionalKey(Schema.Boolean),
+  queryLimitOption: Schema.optionalKey(
+    Schema.Union([
+      Schema.Literal("None"),
+      Schema.Literal("Shared"),
+      Schema.Literal("Premium"),
+      Schema.Literal("SQLServerAS"),
+      Schema.Literal("AzureAS"),
+      Schema.Literal("Custom"),
+      Schema.Literal("Auto"),
+    ]),
+  ),
+  customMemoryLimit: Schema.optionalKey(Schema.String),
+  customTimeoutLimit: Schema.optionalKey(Schema.String),
+});
 
-export type ReportExplorationSlowDataSourceSettings = {
+export type ExplorationSlowDataSourceSettings = {
   readonly isCrossHighlightingDisabled?: boolean;
   readonly isSlicerSelectionsButtonEnabled?: boolean;
   readonly isFilterSelectionsButtonEnabled?: boolean;
@@ -238,7 +225,7 @@ export type ReportExplorationSlowDataSourceSettings = {
   readonly isApplyAllButtonEnabled?: boolean;
 };
 
-export const ReportExplorationSlowDataSourceSettings: Schema.Codec<ReportExplorationSlowDataSourceSettings> =
+export const ExplorationSlowDataSourceSettings: Schema.Codec<ExplorationSlowDataSourceSettings> =
   closed({
     isCrossHighlightingDisabled: Schema.optionalKey(Schema.Boolean),
     isSlicerSelectionsButtonEnabled: Schema.optionalKey(Schema.Boolean),
@@ -247,111 +234,101 @@ export const ReportExplorationSlowDataSourceSettings: Schema.Codec<ReportExplora
     isApplyAllButtonEnabled: Schema.optionalKey(Schema.Boolean),
   });
 
-export type ReportReportFormattingObjectsV1_3_0 = {
+export type ReportFormattingObjectsV1_3_0 = {
   readonly outspacePane?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_3_0;
+    readonly selector?: SelectorV1_3_0;
     readonly properties: ReportOutspacePane;
   }>;
   readonly section?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_3_0;
-    readonly properties: ReportSection;
+    readonly selector?: SelectorV1_3_0;
+    readonly properties: DisplayArea;
   }>;
 };
 
-export const ReportReportFormattingObjectsV1_3_0: Schema.Codec<ReportReportFormattingObjectsV1_3_0> =
-  closed({
-    outspacePane: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_3_0.Selector),
-          ),
-          properties: Schema.suspend(() => ReportOutspacePane),
-        }),
-      ),
+export const ReportFormattingObjectsV1_3_0: Schema.Codec<ReportFormattingObjectsV1_3_0> = closed({
+  outspacePane: Schema.optionalKey(
+    Schema.Array(
+      closed({
+        selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_3_0)),
+        properties: Schema.suspend(() => ReportOutspacePane),
+      }),
     ),
-    section: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_3_0.Selector),
-          ),
-          properties: Schema.suspend(() => ReportSection),
-        }),
-      ),
+  ),
+  section: Schema.optionalKey(
+    Schema.Array(
+      closed({
+        selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_3_0)),
+        properties: Schema.suspend(() => DisplayArea),
+      }),
     ),
-  });
-
-export type ReportReportFormattingObjectsV2_1_0 = {
-  readonly outspacePane?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_4_0;
-    readonly properties: ReportOutspacePane;
-  }>;
-  readonly section?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_4_0;
-    readonly properties: ReportSection;
-  }>;
-};
-
-export const ReportReportFormattingObjectsV2_1_0: Schema.Codec<ReportReportFormattingObjectsV2_1_0> =
-  closed({
-    outspacePane: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_4_0.Selector),
-          ),
-          properties: Schema.suspend(() => ReportOutspacePane),
-        }),
-      ),
-    ),
-    section: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_4_0.Selector),
-          ),
-          properties: Schema.suspend(() => ReportSection),
-        }),
-      ),
-    ),
-  });
-
-export type ReportThemeCollectionV3_0_0 = {
-  readonly baseTheme?: ReportThemeMetadataV3_0_0;
-  readonly customTheme?: ReportThemeMetadataV3_0_0;
-};
-
-export const ReportThemeCollectionV3_0_0: Schema.Codec<ReportThemeCollectionV3_0_0> = closed({
-  baseTheme: Schema.optionalKey(Schema.suspend(() => ReportThemeMetadataV3_0_0)),
-  customTheme: Schema.optionalKey(Schema.suspend(() => ReportThemeMetadataV3_0_0)),
+  ),
 });
 
-export type ReportThemeMetadataV3_0_0 = {
+export type ReportFormattingObjectsV2_1_0 = {
+  readonly outspacePane?: ReadonlyArray<{
+    readonly selector?: SelectorV1_4_0;
+    readonly properties: ReportOutspacePane;
+  }>;
+  readonly section?: ReadonlyArray<{
+    readonly selector?: SelectorV1_4_0;
+    readonly properties: DisplayArea;
+  }>;
+};
+
+export const ReportFormattingObjectsV2_1_0: Schema.Codec<ReportFormattingObjectsV2_1_0> = closed({
+  outspacePane: Schema.optionalKey(
+    Schema.Array(
+      closed({
+        selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
+        properties: Schema.suspend(() => ReportOutspacePane),
+      }),
+    ),
+  ),
+  section: Schema.optionalKey(
+    Schema.Array(
+      closed({
+        selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_4_0)),
+        properties: Schema.suspend(() => DisplayArea),
+      }),
+    ),
+  ),
+});
+
+export type ThemeCollectionV3_0_0 = {
+  readonly baseTheme?: ThemeMetadataV3_0_0;
+  readonly customTheme?: ThemeMetadataV3_0_0;
+};
+
+export const ThemeCollectionV3_0_0: Schema.Codec<ThemeCollectionV3_0_0> = closed({
+  baseTheme: Schema.optionalKey(Schema.suspend(() => ThemeMetadataV3_0_0)),
+  customTheme: Schema.optionalKey(Schema.suspend(() => ThemeMetadataV3_0_0)),
+});
+
+export type ThemeMetadataV3_0_0 = {
   readonly name: string;
-  readonly reportVersionAtImport: ReportThemeVersion;
-  readonly type: ReportThemeResourcePackageType;
+  readonly reportVersionAtImport: ThemeVersion;
+  readonly type: ThemeResourcePackageType;
 };
 
-export const ReportThemeMetadataV3_0_0: Schema.Codec<ReportThemeMetadataV3_0_0> = closed({
+export const ThemeMetadataV3_0_0: Schema.Codec<ThemeMetadataV3_0_0> = closed({
   name: Schema.String,
-  reportVersionAtImport: Schema.suspend(() => ReportThemeVersion),
-  type: Schema.suspend(() => ReportThemeResourcePackageType),
+  reportVersionAtImport: Schema.suspend(() => ThemeVersion),
+  type: Schema.suspend(() => ThemeResourcePackageType),
 });
 
-export type ReportThemeVersion = {
+export type ThemeVersion = {
   readonly visual: string;
   readonly page: string;
   readonly report: string;
 };
 
-export const ReportThemeVersion: Schema.Codec<ReportThemeVersion> = closed({
+export const ThemeVersion: Schema.Codec<ThemeVersion> = closed({
   visual: Schema.String.check(Schema.isPattern(new RegExp("^[0-9]+\\.[0-9]+\\.[0-9]+$"))),
   page: Schema.String.check(Schema.isPattern(new RegExp("^[0-9]+\\.[0-9]+\\.[0-9]+$"))),
   report: Schema.String.check(Schema.isPattern(new RegExp("^[0-9]+\\.[0-9]+\\.[0-9]+$"))),
 });
 
-export type ReportExplorationSettingsV3_1_0 = {
+export type ExplorationSettingsV3_1_0 = {
   readonly isPersistentUserStateDisabled?: boolean;
   readonly hideVisualContainerHeader?: boolean;
   readonly useStylableVisualContainerHeader?: boolean;
@@ -381,94 +358,89 @@ export type ReportExplorationSettingsV3_1_0 = {
     | "Auto";
   readonly customMemoryLimit?: string;
   readonly customTimeoutLimit?: string;
-  readonly fieldParameterReportSettings?: ReportFieldParameterReportSettings;
+  readonly fieldParameterReportSettings?: FieldParameterReportSettings;
 };
 
-export const ReportExplorationSettingsV3_1_0: Schema.Codec<ReportExplorationSettingsV3_1_0> =
-  closed({
-    isPersistentUserStateDisabled: Schema.optionalKey(Schema.Boolean),
-    hideVisualContainerHeader: Schema.optionalKey(Schema.Boolean),
-    useStylableVisualContainerHeader: Schema.optionalKey(Schema.Boolean),
-    exportDataMode: Schema.optionalKey(
-      Schema.Union([
-        Schema.Literal("AllowSummarized"),
-        Schema.Literal("AllowSummarizedAndUnderlying"),
-        Schema.Literal("None"),
-      ]),
-    ),
-    isReportAnnotationsDisabled: Schema.optionalKey(Schema.Boolean),
-    defaultFilterActionIsDataFilter: Schema.optionalKey(Schema.Boolean),
-    defaultDrillFilterOtherVisuals: Schema.optionalKey(Schema.Boolean),
-    useCrossReportDrillthrough: Schema.optionalKey(Schema.Boolean),
-    allowChangeFilterTypes: Schema.optionalKey(Schema.Boolean),
-    allowInlineExploration: Schema.optionalKey(Schema.Boolean),
-    useEnhancedTooltips: Schema.optionalKey(Schema.Boolean),
-    useScaledTooltips: Schema.optionalKey(Schema.Boolean),
-    filterPaneHiddenInEditMode: Schema.optionalKey(Schema.Boolean),
-    disableFilterPaneSearch: Schema.optionalKey(Schema.Boolean),
-    pagesPosition: Schema.optionalKey(
-      Schema.Union([Schema.Literal("PagesPane"), Schema.Literal("Bottom")]),
-    ),
-    allowAutomatedInsightsNotification: Schema.optionalKey(Schema.Boolean),
-    useDefaultAggregateDisplayName: Schema.optionalKey(Schema.Boolean),
-    enableDeveloperMode: Schema.optionalKey(Schema.Boolean),
-    pauseQueries: Schema.optionalKey(Schema.Boolean),
-    queryLimitOption: Schema.optionalKey(
-      Schema.Union([
-        Schema.Literal("None"),
-        Schema.Literal("Shared"),
-        Schema.Literal("Premium"),
-        Schema.Literal("SQLServerAS"),
-        Schema.Literal("AzureAS"),
-        Schema.Literal("Custom"),
-        Schema.Literal("Auto"),
-      ]),
-    ),
-    customMemoryLimit: Schema.optionalKey(Schema.String),
-    customTimeoutLimit: Schema.optionalKey(Schema.String),
-    fieldParameterReportSettings: Schema.optionalKey(
-      Schema.suspend(() => ReportFieldParameterReportSettings),
-    ),
-  });
+export const ExplorationSettingsV3_1_0: Schema.Codec<ExplorationSettingsV3_1_0> = closed({
+  isPersistentUserStateDisabled: Schema.optionalKey(Schema.Boolean),
+  hideVisualContainerHeader: Schema.optionalKey(Schema.Boolean),
+  useStylableVisualContainerHeader: Schema.optionalKey(Schema.Boolean),
+  exportDataMode: Schema.optionalKey(
+    Schema.Union([
+      Schema.Literal("AllowSummarized"),
+      Schema.Literal("AllowSummarizedAndUnderlying"),
+      Schema.Literal("None"),
+    ]),
+  ),
+  isReportAnnotationsDisabled: Schema.optionalKey(Schema.Boolean),
+  defaultFilterActionIsDataFilter: Schema.optionalKey(Schema.Boolean),
+  defaultDrillFilterOtherVisuals: Schema.optionalKey(Schema.Boolean),
+  useCrossReportDrillthrough: Schema.optionalKey(Schema.Boolean),
+  allowChangeFilterTypes: Schema.optionalKey(Schema.Boolean),
+  allowInlineExploration: Schema.optionalKey(Schema.Boolean),
+  useEnhancedTooltips: Schema.optionalKey(Schema.Boolean),
+  useScaledTooltips: Schema.optionalKey(Schema.Boolean),
+  filterPaneHiddenInEditMode: Schema.optionalKey(Schema.Boolean),
+  disableFilterPaneSearch: Schema.optionalKey(Schema.Boolean),
+  pagesPosition: Schema.optionalKey(
+    Schema.Union([Schema.Literal("PagesPane"), Schema.Literal("Bottom")]),
+  ),
+  allowAutomatedInsightsNotification: Schema.optionalKey(Schema.Boolean),
+  useDefaultAggregateDisplayName: Schema.optionalKey(Schema.Boolean),
+  enableDeveloperMode: Schema.optionalKey(Schema.Boolean),
+  pauseQueries: Schema.optionalKey(Schema.Boolean),
+  queryLimitOption: Schema.optionalKey(
+    Schema.Union([
+      Schema.Literal("None"),
+      Schema.Literal("Shared"),
+      Schema.Literal("Premium"),
+      Schema.Literal("SQLServerAS"),
+      Schema.Literal("AzureAS"),
+      Schema.Literal("Custom"),
+      Schema.Literal("Auto"),
+    ]),
+  ),
+  customMemoryLimit: Schema.optionalKey(Schema.String),
+  customTimeoutLimit: Schema.optionalKey(Schema.String),
+  fieldParameterReportSettings: Schema.optionalKey(
+    Schema.suspend(() => FieldParameterReportSettings),
+  ),
+});
 
-export type ReportFieldParameterReportSettings = {
+export type FieldParameterReportSettings = {
   readonly skipHierarchyLevelPersistence?: boolean;
 };
 
-export const ReportFieldParameterReportSettings: Schema.Codec<ReportFieldParameterReportSettings> =
-  closed({ skipHierarchyLevelPersistence: Schema.optionalKey(Schema.Boolean) });
+export const FieldParameterReportSettings: Schema.Codec<FieldParameterReportSettings> = closed({
+  skipHierarchyLevelPersistence: Schema.optionalKey(Schema.Boolean),
+});
 
-export type ReportReportFormattingObjectsV3_2_0 = {
+export type ReportFormattingObjectsV3_2_0 = {
   readonly outspacePane?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_5_0;
+    readonly selector?: SelectorV1_5_0;
     readonly properties: ReportOutspacePane;
   }>;
   readonly section?: ReadonlyArray<{
-    readonly selector?: FormattingObjectDefinitionsSelectorV1_5_0;
-    readonly properties: ReportSection;
+    readonly selector?: SelectorV1_5_0;
+    readonly properties: DisplayArea;
   }>;
 };
 
-export const ReportReportFormattingObjectsV3_2_0: Schema.Codec<ReportReportFormattingObjectsV3_2_0> =
-  closed({
-    outspacePane: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
-          ),
-          properties: Schema.suspend(() => ReportOutspacePane),
-        }),
-      ),
+export const ReportFormattingObjectsV3_2_0: Schema.Codec<ReportFormattingObjectsV3_2_0> = closed({
+  outspacePane: Schema.optionalKey(
+    Schema.Array(
+      closed({
+        selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
+        properties: Schema.suspend(() => ReportOutspacePane),
+      }),
     ),
-    section: Schema.optionalKey(
-      Schema.Array(
-        closed({
-          selector: Schema.optionalKey(
-            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
-          ),
-          properties: Schema.suspend(() => ReportSection),
-        }),
-      ),
+  ),
+  section: Schema.optionalKey(
+    Schema.Array(
+      closed({
+        selector: Schema.optionalKey(Schema.suspend(() => SelectorV1_5_0)),
+        properties: Schema.suspend(() => DisplayArea),
+      }),
     ),
-  });
+  ),
+});

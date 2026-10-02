@@ -1,201 +1,194 @@
 import { Schema } from "effect";
 import { closed } from "../shared.js";
 import {
-  FormattingObjectDefinitionsDataViewObjectDefinitionsV1_4_0,
-  FormattingObjectDefinitionsDefinitionsV1_4_0,
-  FormattingObjectDefinitionsSelectorV1_4_0,
-} from "../formatting-object-definitions/shared.js";
-import { QuerySortClauseV1_3_0 } from "../semantic-query/shared.js";
+  DataViewObjectDefinitionsV1_4_0,
+  SelectorV1_4_0,
+} from "../formatting-object-definitions/version-1_4_0.js";
+import { QuerySortClauseV1_3_0 } from "../semantic-query/version-1_3_0.js";
 import {
-  BookmarkBookmarkOptions,
-  BookmarkDecomposedFilterExpressionMetadataV1_4_0,
-  BookmarkDecomposedIdentitiesV1_4_0,
-  BookmarkDecomposedSelectorsV1_4_0,
-  BookmarkDecomposedTreeQueryExpressionContainerV1_4_0,
-  BookmarkFilterContainerStateV1_4_0,
-  BookmarkFilterExpressionMetadataV1_4_0,
-  BookmarkFilterLabelIdPairV1_4_0,
-  BookmarkFiltersStateV1_4_0,
-  BookmarkHighlightStateV1_4_0,
-  BookmarkIdentityValueMapV1_4_0,
-  BookmarkParameterStateByRoleV1_4_0,
-  BookmarkParameterStateV1_4_0,
+  BookmarkOptions,
   BookmarkProjectionStateV1_4_0,
-  BookmarkSelectorsByColumnV1_4_0,
-  BookmarkSelectorsForColumnV1_4_0,
-  BookmarkVisualContainerDisplayMode,
-  BookmarkVisualContainerDisplayState,
-  BookmarkVisualContainerGroupState,
+  DecomposedFilterExpressionMetadataV1_4_0,
+  DecomposedIdentitiesV1_4_0,
+  DecomposedSelectorsV1_4_0,
+  DecomposedTreeQueryExpressionContainerV1_4_0,
+  FilterContainerStateV1_4_0,
+  FilterExpressionMetadataV1_4_0,
+  FilterLabelIdPairV1_4_0,
+  FiltersStateV1_4_0,
+  HighlightStateV1_4_0,
+  IdentityValueMapV1_4_0,
+  ParameterStateByRoleV1_4_0,
+  ParameterStateV1_4_0,
+  SelectorsByColumnV1_4_0,
+  SelectorsForColumnV1_4_0,
+  VisualContainerDisplayMode,
+  VisualContainerDisplayState,
+  VisualContainerGroupState,
 } from "./shared.js";
 
-export type BookmarkExplorationStateV1_4_0 = {
+export type ExplorationStateV1_4_0 = {
   readonly version: string;
   readonly activeSection: string;
-  readonly filters?: BookmarkFiltersStateV1_4_0;
+  readonly filters?: FiltersStateV1_4_0;
   readonly sections: {} & {
-    readonly [key: string]: BookmarkSectionStateV1_4_0;
+    readonly [key: string]: SectionStateV1_4_0;
   };
-  readonly objects?: BookmarkDataViewObjectDefinitionUpdatesV1_4_0;
+  readonly objects?: DataViewObjectDefinitionUpdatesV1_4_0;
   readonly dataSourceVariables?: string;
 };
 
-export const BookmarkExplorationStateV1_4_0: Schema.Codec<BookmarkExplorationStateV1_4_0> = closed({
+export const ExplorationStateV1_4_0: Schema.Codec<ExplorationStateV1_4_0> = closed({
   version: Schema.String,
   activeSection: Schema.String,
-  filters: Schema.optionalKey(Schema.suspend(() => BookmarkFiltersStateV1_4_0)),
+  filters: Schema.optionalKey(Schema.suspend(() => FiltersStateV1_4_0)),
   sections: Schema.Record(
     Schema.String,
-    Schema.suspend(() => BookmarkSectionStateV1_4_0),
+    Schema.suspend(() => SectionStateV1_4_0),
   ),
-  objects: Schema.optionalKey(Schema.suspend(() => BookmarkDataViewObjectDefinitionUpdatesV1_4_0)),
+  objects: Schema.optionalKey(Schema.suspend(() => DataViewObjectDefinitionUpdatesV1_4_0)),
   dataSourceVariables: Schema.optionalKey(Schema.String),
 });
 
-export type BookmarkSectionStateV1_4_0 = {
-  readonly filters?: BookmarkFiltersStateV1_4_0;
+export type SectionStateV1_4_0 = {
+  readonly filters?: FiltersStateV1_4_0;
   readonly visualContainers: {} & {
-    readonly [key: string]: BookmarkVisualContainerStateV1_4_0;
+    readonly [key: string]: VisualContainerStateV1_4_0;
   };
   readonly visualContainerGroups?: {} & {
-    readonly [key: string]: BookmarkVisualContainerGroupState;
+    readonly [key: string]: VisualContainerGroupState;
   };
 };
 
-export const BookmarkSectionStateV1_4_0: Schema.Codec<BookmarkSectionStateV1_4_0> = closed({
-  filters: Schema.optionalKey(Schema.suspend(() => BookmarkFiltersStateV1_4_0)),
+export const SectionStateV1_4_0: Schema.Codec<SectionStateV1_4_0> = closed({
+  filters: Schema.optionalKey(Schema.suspend(() => FiltersStateV1_4_0)),
   visualContainers: Schema.Record(
     Schema.String,
-    Schema.suspend(() => BookmarkVisualContainerStateV1_4_0),
+    Schema.suspend(() => VisualContainerStateV1_4_0),
   ),
   visualContainerGroups: Schema.optionalKey(
     Schema.Record(
       Schema.String,
-      Schema.suspend(() => BookmarkVisualContainerGroupState),
+      Schema.suspend(() => VisualContainerGroupState),
     ),
   ),
 });
 
-export type BookmarkVisualContainerStateV1_4_0 = {
-  readonly filters?: BookmarkFiltersStateV1_4_0;
-  readonly singleVisual?: BookmarkSingleVisualConfigStateV1_4_0;
-  readonly highlight?: BookmarkHighlightStateV1_4_0;
+export type VisualContainerStateV1_4_0 = {
+  readonly filters?: FiltersStateV1_4_0;
+  readonly singleVisual?: SingleVisualConfigStateV1_4_0;
+  readonly highlight?: HighlightStateV1_4_0;
 };
 
-export const BookmarkVisualContainerStateV1_4_0: Schema.Codec<BookmarkVisualContainerStateV1_4_0> =
-  closed({
-    filters: Schema.optionalKey(Schema.suspend(() => BookmarkFiltersStateV1_4_0)),
-    singleVisual: Schema.optionalKey(Schema.suspend(() => BookmarkSingleVisualConfigStateV1_4_0)),
-    highlight: Schema.optionalKey(Schema.suspend(() => BookmarkHighlightStateV1_4_0)),
-  });
+export const VisualContainerStateV1_4_0: Schema.Codec<VisualContainerStateV1_4_0> = closed({
+  filters: Schema.optionalKey(Schema.suspend(() => FiltersStateV1_4_0)),
+  singleVisual: Schema.optionalKey(Schema.suspend(() => SingleVisualConfigStateV1_4_0)),
+  highlight: Schema.optionalKey(Schema.suspend(() => HighlightStateV1_4_0)),
+});
 
-export type BookmarkSingleVisualConfigStateV1_4_0 = {
+export type SingleVisualConfigStateV1_4_0 = {
   readonly visualType?: string;
   readonly autoSelectVisualType?: boolean;
   readonly targetType?: string;
   readonly targetAutoSelectVisualType?: boolean;
-  readonly objects?: BookmarkDataViewObjectDefinitionUpdatesV1_4_0;
+  readonly objects?: DataViewObjectDefinitionUpdatesV1_4_0;
   readonly orderBy?: ReadonlyArray<QuerySortClauseV1_3_0>;
   readonly activeProjections?: BookmarkProjectionStateV1_4_0;
   readonly projections?: BookmarkProjectionStateV1_4_0;
-  readonly parameters?: BookmarkParameterStateByRoleV1_4_0;
-  readonly display?: BookmarkVisualContainerDisplayState;
-  readonly cachedFilterDisplayItems?: ReadonlyArray<BookmarkFilterLabelIdPairV1_4_0>;
+  readonly parameters?: ParameterStateByRoleV1_4_0;
+  readonly display?: VisualContainerDisplayState;
+  readonly cachedFilterDisplayItems?: ReadonlyArray<FilterLabelIdPairV1_4_0>;
   readonly expansionStates?: ReadonlyArray<Schema.Json>;
   readonly filterExpressionMetadata?:
-    | BookmarkFilterExpressionMetadataV1_4_0
-    | BookmarkDecomposedFilterExpressionMetadataV1_4_0;
+    | FilterExpressionMetadataV1_4_0
+    | DecomposedFilterExpressionMetadataV1_4_0;
   readonly isDrillDisabled?: boolean;
 };
 
-export const BookmarkSingleVisualConfigStateV1_4_0: Schema.Codec<BookmarkSingleVisualConfigStateV1_4_0> =
-  closed({
-    visualType: Schema.optionalKey(Schema.String),
-    autoSelectVisualType: Schema.optionalKey(Schema.Boolean),
-    targetType: Schema.optionalKey(Schema.String),
-    targetAutoSelectVisualType: Schema.optionalKey(Schema.Boolean),
-    objects: Schema.optionalKey(
-      Schema.suspend(() => BookmarkDataViewObjectDefinitionUpdatesV1_4_0),
-    ),
-    orderBy: Schema.optionalKey(Schema.Array(Schema.suspend(() => QuerySortClauseV1_3_0))),
-    activeProjections: Schema.optionalKey(Schema.suspend(() => BookmarkProjectionStateV1_4_0)),
-    projections: Schema.optionalKey(Schema.suspend(() => BookmarkProjectionStateV1_4_0)),
-    parameters: Schema.optionalKey(Schema.suspend(() => BookmarkParameterStateByRoleV1_4_0)),
-    display: Schema.optionalKey(Schema.suspend(() => BookmarkVisualContainerDisplayState)),
-    cachedFilterDisplayItems: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => BookmarkFilterLabelIdPairV1_4_0)),
-    ),
-    expansionStates: Schema.optionalKey(Schema.Array(Schema.Json)),
-    filterExpressionMetadata: Schema.optionalKey(
-      Schema.Union([
-        Schema.suspend(() => BookmarkFilterExpressionMetadataV1_4_0),
-        Schema.suspend(() => BookmarkDecomposedFilterExpressionMetadataV1_4_0),
-      ]),
-    ),
-    isDrillDisabled: Schema.optionalKey(Schema.Boolean),
-  });
+export const SingleVisualConfigStateV1_4_0: Schema.Codec<SingleVisualConfigStateV1_4_0> = closed({
+  visualType: Schema.optionalKey(Schema.String),
+  autoSelectVisualType: Schema.optionalKey(Schema.Boolean),
+  targetType: Schema.optionalKey(Schema.String),
+  targetAutoSelectVisualType: Schema.optionalKey(Schema.Boolean),
+  objects: Schema.optionalKey(Schema.suspend(() => DataViewObjectDefinitionUpdatesV1_4_0)),
+  orderBy: Schema.optionalKey(Schema.Array(Schema.suspend(() => QuerySortClauseV1_3_0))),
+  activeProjections: Schema.optionalKey(Schema.suspend(() => BookmarkProjectionStateV1_4_0)),
+  projections: Schema.optionalKey(Schema.suspend(() => BookmarkProjectionStateV1_4_0)),
+  parameters: Schema.optionalKey(Schema.suspend(() => ParameterStateByRoleV1_4_0)),
+  display: Schema.optionalKey(Schema.suspend(() => VisualContainerDisplayState)),
+  cachedFilterDisplayItems: Schema.optionalKey(
+    Schema.Array(Schema.suspend(() => FilterLabelIdPairV1_4_0)),
+  ),
+  expansionStates: Schema.optionalKey(Schema.Array(Schema.Json)),
+  filterExpressionMetadata: Schema.optionalKey(
+    Schema.Union([
+      Schema.suspend(() => FilterExpressionMetadataV1_4_0),
+      Schema.suspend(() => DecomposedFilterExpressionMetadataV1_4_0),
+    ]),
+  ),
+  isDrillDisabled: Schema.optionalKey(Schema.Boolean),
+});
 
-export type BookmarkDataViewObjectDefinitionUpdatesV1_4_0 = {
-  readonly merge?: FormattingObjectDefinitionsDataViewObjectDefinitionsV1_4_0;
-  readonly remove?: ReadonlyArray<BookmarkDataViewObjectPropertyIdWithSelectorV1_4_0>;
+export type DataViewObjectDefinitionUpdatesV1_4_0 = {
+  readonly merge?: DataViewObjectDefinitionsV1_4_0;
+  readonly remove?: ReadonlyArray<DataViewObjectPropertyIdWithSelectorV1_4_0>;
 };
 
-export const BookmarkDataViewObjectDefinitionUpdatesV1_4_0: Schema.Codec<BookmarkDataViewObjectDefinitionUpdatesV1_4_0> =
+export const DataViewObjectDefinitionUpdatesV1_4_0: Schema.Codec<DataViewObjectDefinitionUpdatesV1_4_0> =
   closed({
-    merge: Schema.optionalKey(
-      Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_4_0.DataViewObjectDefinitions),
-    ),
+    merge: Schema.optionalKey(Schema.suspend(() => DataViewObjectDefinitionsV1_4_0)),
     remove: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => BookmarkDataViewObjectPropertyIdWithSelectorV1_4_0)),
+      Schema.Array(Schema.suspend(() => DataViewObjectPropertyIdWithSelectorV1_4_0)),
     ),
   });
 
-export type BookmarkDataViewObjectPropertyIdWithSelectorV1_4_0 = {
+export type DataViewObjectPropertyIdWithSelectorV1_4_0 = {
   readonly object: string;
   readonly property: string;
-  readonly selector: FormattingObjectDefinitionsSelectorV1_4_0;
+  readonly selector: SelectorV1_4_0;
 };
 
-export const BookmarkDataViewObjectPropertyIdWithSelectorV1_4_0: Schema.Codec<BookmarkDataViewObjectPropertyIdWithSelectorV1_4_0> =
+export const DataViewObjectPropertyIdWithSelectorV1_4_0: Schema.Codec<DataViewObjectPropertyIdWithSelectorV1_4_0> =
   closed({
     object: Schema.String,
     property: Schema.String,
-    selector: Schema.suspend(() => FormattingObjectDefinitionsSelectorV1_4_0),
+    selector: Schema.suspend(() => SelectorV1_4_0),
   });
 
 export const BookmarkDefinitionsV1_4_0 = {
-  BookmarkOptions: BookmarkBookmarkOptions,
-  ExplorationState: BookmarkExplorationStateV1_4_0,
-  FiltersState: BookmarkFiltersStateV1_4_0,
-  FilterContainerState: BookmarkFilterContainerStateV1_4_0,
-  FilterLabelIdPair: BookmarkFilterLabelIdPairV1_4_0,
-  FilterExpressionMetadata: BookmarkFilterExpressionMetadataV1_4_0,
-  IdentityValueMap: BookmarkIdentityValueMapV1_4_0,
-  DecomposedFilterExpressionMetadata: BookmarkDecomposedFilterExpressionMetadataV1_4_0,
-  DecomposedIdentities: BookmarkDecomposedIdentitiesV1_4_0,
-  "DecomposedTree<QueryExpressionContainer>": BookmarkDecomposedTreeQueryExpressionContainerV1_4_0,
-  SectionState: BookmarkSectionStateV1_4_0,
-  VisualContainerState: BookmarkVisualContainerStateV1_4_0,
-  SingleVisualConfigState: BookmarkSingleVisualConfigStateV1_4_0,
-  DataViewObjectDefinitionUpdates: BookmarkDataViewObjectDefinitionUpdatesV1_4_0,
-  DataViewObjectPropertyIdWithSelector: BookmarkDataViewObjectPropertyIdWithSelectorV1_4_0,
+  BookmarkOptions: BookmarkOptions,
+  ExplorationState: ExplorationStateV1_4_0,
+  FiltersState: FiltersStateV1_4_0,
+  FilterContainerState: FilterContainerStateV1_4_0,
+  FilterLabelIdPair: FilterLabelIdPairV1_4_0,
+  FilterExpressionMetadata: FilterExpressionMetadataV1_4_0,
+  IdentityValueMap: IdentityValueMapV1_4_0,
+  DecomposedFilterExpressionMetadata: DecomposedFilterExpressionMetadataV1_4_0,
+  DecomposedIdentities: DecomposedIdentitiesV1_4_0,
+  "DecomposedTree<QueryExpressionContainer>": DecomposedTreeQueryExpressionContainerV1_4_0,
+  SectionState: SectionStateV1_4_0,
+  VisualContainerState: VisualContainerStateV1_4_0,
+  SingleVisualConfigState: SingleVisualConfigStateV1_4_0,
+  DataViewObjectDefinitionUpdates: DataViewObjectDefinitionUpdatesV1_4_0,
+  DataViewObjectPropertyIdWithSelector: DataViewObjectPropertyIdWithSelectorV1_4_0,
   ProjectionState: BookmarkProjectionStateV1_4_0,
-  ParameterStateByRole: BookmarkParameterStateByRoleV1_4_0,
-  ParameterState: BookmarkParameterStateV1_4_0,
-  VisualContainerDisplayState: BookmarkVisualContainerDisplayState,
-  VisualContainerDisplayMode: BookmarkVisualContainerDisplayMode,
-  HighlightState: BookmarkHighlightStateV1_4_0,
-  DecomposedSelectors: BookmarkDecomposedSelectorsV1_4_0,
-  SelectorsByColumn: BookmarkSelectorsByColumnV1_4_0,
-  SelectorsForColumn: BookmarkSelectorsForColumnV1_4_0,
-  VisualContainerGroupState: BookmarkVisualContainerGroupState,
+  ParameterStateByRole: ParameterStateByRoleV1_4_0,
+  ParameterState: ParameterStateV1_4_0,
+  VisualContainerDisplayState: VisualContainerDisplayState,
+  VisualContainerDisplayMode: VisualContainerDisplayMode,
+  HighlightState: HighlightStateV1_4_0,
+  DecomposedSelectors: DecomposedSelectorsV1_4_0,
+  SelectorsByColumn: SelectorsByColumnV1_4_0,
+  SelectorsForColumn: SelectorsForColumnV1_4_0,
+  VisualContainerGroupState: VisualContainerGroupState,
 } as const;
 
 export type BookmarkV1_4_0 = {
   readonly $schema: "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json";
   readonly displayName: string;
   readonly name: string;
-  readonly options?: BookmarkBookmarkOptions;
-  readonly explorationState: BookmarkExplorationStateV1_4_0;
+  readonly options?: BookmarkOptions;
+  readonly explorationState: ExplorationStateV1_4_0;
 };
 
 export const BookmarkV1_4_0: Schema.Codec<BookmarkV1_4_0> = closed({
@@ -204,6 +197,36 @@ export const BookmarkV1_4_0: Schema.Codec<BookmarkV1_4_0> = closed({
   ),
   displayName: Schema.String,
   name: Schema.String,
-  options: Schema.optionalKey(Schema.suspend(() => BookmarkBookmarkOptions)),
-  explorationState: Schema.suspend(() => BookmarkExplorationStateV1_4_0),
+  options: Schema.optionalKey(Schema.suspend(() => BookmarkOptions)),
+  explorationState: Schema.suspend(() => ExplorationStateV1_4_0),
 });
+
+export {
+  ExplorationStateV1_4_0 as BookmarkExplorationStateV1_4_0,
+  SectionStateV1_4_0 as BookmarkSectionStateV1_4_0,
+  VisualContainerStateV1_4_0 as BookmarkVisualContainerStateV1_4_0,
+  SingleVisualConfigStateV1_4_0 as BookmarkSingleVisualConfigStateV1_4_0,
+  DataViewObjectDefinitionUpdatesV1_4_0 as BookmarkDataViewObjectDefinitionUpdatesV1_4_0,
+  DataViewObjectPropertyIdWithSelectorV1_4_0 as BookmarkDataViewObjectPropertyIdWithSelectorV1_4_0,
+};
+
+export {
+  BookmarkOptions as BookmarkBookmarkOptionsV1_4_0,
+  FiltersStateV1_4_0 as BookmarkFiltersStateV1_4_0,
+  FilterContainerStateV1_4_0 as BookmarkFilterContainerStateV1_4_0,
+  FilterLabelIdPairV1_4_0 as BookmarkFilterLabelIdPairV1_4_0,
+  FilterExpressionMetadataV1_4_0 as BookmarkFilterExpressionMetadataV1_4_0,
+  IdentityValueMapV1_4_0 as BookmarkIdentityValueMapV1_4_0,
+  DecomposedFilterExpressionMetadataV1_4_0 as BookmarkDecomposedFilterExpressionMetadataV1_4_0,
+  DecomposedIdentitiesV1_4_0 as BookmarkDecomposedIdentitiesV1_4_0,
+  DecomposedTreeQueryExpressionContainerV1_4_0 as BookmarkDecomposedTreeQueryExpressionContainerV1_4_0,
+  ParameterStateByRoleV1_4_0 as BookmarkParameterStateByRoleV1_4_0,
+  ParameterStateV1_4_0 as BookmarkParameterStateV1_4_0,
+  VisualContainerDisplayState as BookmarkVisualContainerDisplayStateV1_4_0,
+  VisualContainerDisplayMode as BookmarkVisualContainerDisplayModeV1_4_0,
+  HighlightStateV1_4_0 as BookmarkHighlightStateV1_4_0,
+  DecomposedSelectorsV1_4_0 as BookmarkDecomposedSelectorsV1_4_0,
+  SelectorsByColumnV1_4_0 as BookmarkSelectorsByColumnV1_4_0,
+  SelectorsForColumnV1_4_0 as BookmarkSelectorsForColumnV1_4_0,
+  VisualContainerGroupState as BookmarkVisualContainerGroupStateV1_4_0,
+} from "./shared.js";

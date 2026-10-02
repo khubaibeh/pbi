@@ -1,5 +1,4 @@
 import { Effect, Schema } from "effect";
-import { closed } from "./shared.js";
 import { bookmarkSchemaCoverage } from "./bookmark/index.js";
 import { BookmarkV1_0_0 } from "./bookmark/version-1_0_0.js";
 import { BookmarkV1_1_0 } from "./bookmark/version-1_1_0.js";
@@ -11,6 +10,7 @@ import { BookmarkV2_1_0 } from "./bookmark/version-2_1_0.js";
 import { bookmarksMetadataSchemaCoverage } from "./bookmarks-metadata/index.js";
 import { BookmarksMetadataV1_0_0 } from "./bookmarks-metadata/version-1_0_0.js";
 import { definitionPropertiesSchemaCoverage } from "./definition-properties/index.js";
+import { DesktopDefinitionPropertiesByPath } from "./definition-properties/shared.js";
 import { DefinitionPropertiesV1_0_0 } from "./definition-properties/version-1_0_0.js";
 import { DefinitionPropertiesV2_0_0 } from "./definition-properties/version-2_0_0.js";
 import { filterConfigurationSchemaCoverage } from "./filter-configuration/index.js";
@@ -660,13 +660,6 @@ export function parseReportFile(
   });
 }
 
-export const DesktopDefinitionPropertiesByPath = closed({
-  version: Schema.Literal("4.0"),
-  datasetReference: closed({ byPath: closed({ path: Schema.String }) }),
-});
-
-export type DesktopDefinitionPropertiesByPath = typeof DesktopDefinitionPropertiesByPath.Type;
-
 export interface ParsedDesktopDefinitionProperties {
   readonly kind: "definitionProperties";
   readonly version: "desktop-by-path";
@@ -698,3 +691,5 @@ export function parseReportFileDesktopCompatibility(
     return result;
   });
 }
+
+export { DesktopDefinitionPropertiesByPath } from "./definition-properties/shared.js";
