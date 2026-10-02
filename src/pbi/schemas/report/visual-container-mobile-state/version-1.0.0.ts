@@ -1,9 +1,28 @@
 import { Schema } from "effect";
 
 import { DataViewObjectDefinitionsV1_0_0 } from "../formatting-object-definitions/version-1.0.0.js";
-import { closed } from "../shared.js";
+import {
+  Background as SharedBackground,
+  closed,
+  Divider,
+  DropShadow,
+  LockAspect,
+  Padding,
+  Spacing,
+  StylePreset,
+  SubTitle,
+  Title,
+  VisualContainerGeneralFormattingObjects,
+  VisualHeaderTooltip,
+  VisualLink as SharedVisualLink,
+  VisualTooltip,
+} from "../shared.js";
 import { VisualContainerPositionV1_0_0 } from "../visual-container/shared.js";
-import { VisualContainerFormattingObjectsV1_0_0 } from "../visual-container/version-1.0.0.js";
+import {
+  Border as VisualContainerBorder,
+  VisualContainerFormattingObjectsV1_0_0,
+  VisualHeader as VisualContainerVisualHeader,
+} from "../visual-container/version-1.0.0.js";
 
 export type VisualContainerMobileStateV1_0_0 = {
   readonly objects?: DataViewObjectDefinitionsV1_0_0;
@@ -25,6 +44,27 @@ export const VisualContainerMobileStateV1_0_0: Schema.Codec<VisualContainerMobil
       "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/1.0.0/schema.json",
     ),
   });
+
+export const VisualContainerMobileStateDefinitionsV1_0_0 = {
+  VisualContainerFormattingObjects: VisualContainerFormattingObjectsV1_0_0,
+  Title: Title,
+  SubTitle: SubTitle,
+  Divider: Divider,
+  Spacing: Spacing,
+  Background: SharedBackground,
+  Padding: Padding,
+  LockAspect: LockAspect,
+  VisualContainerGeneralFormattingObjects:
+    VisualContainerGeneralFormattingObjects,
+  Border: VisualContainerBorder,
+  DropShadow: DropShadow,
+  VisualLink: SharedVisualLink,
+  VisualTooltip: VisualTooltip,
+  StylePreset: StylePreset,
+  VisualHeader: VisualContainerVisualHeader,
+  VisualHeaderTooltip: VisualHeaderTooltip,
+  VisualContainerPosition: VisualContainerPositionV1_0_0,
+} as const;
 
 export {
   VisualContainerFormattingObjectsV1_0_0 as VisualContainerMobileStateVisualContainerFormattingObjectsV1_0_0,
@@ -49,5 +89,3 @@ export {
 } from "../shared.js";
 
 export { VisualContainerPositionV1_0_0 as VisualContainerMobileStateVisualContainerPositionV1_0_0 } from "../visual-container/shared.js";
-
-export { VisualContainerMobileStateDefinitionsV1_0_0 } from "./shared.js";

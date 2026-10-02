@@ -16,4 +16,4 @@ export const PagesMetadataV1_0_0: Schema.Codec<PagesMetadataV1_0_0> = closed({
   ),
 });
 
-export { PagesMetadataDefinitionsV1_0_0 } from "./shared.js";
+export const PagesMetadataDefinitionsV1_0_0 = {} as const;

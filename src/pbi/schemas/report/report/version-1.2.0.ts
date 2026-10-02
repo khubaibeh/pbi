@@ -1,10 +1,10 @@
 import { Schema } from "effect";
 
 import {
+  FilterConfigurationEmbeddedV1_0_0,
   FilterContainerFormattingObjectsV1_0_0 as FilterConfigurationFilterContainerFormattingObjectsV1_0_0,
   FilterContainerV1_0_0 as FilterConfigurationFilterContainerV1_0_0,
-} from "../filter-configuration/shared.js";
-import { FilterConfigurationEmbeddedV1_0_0 } from "../filter-configuration/version-1.0.0.js";
+} from "../filter-configuration/version-1.0.0.js";
 import { SelectorV1_2_0 } from "../formatting-object-definitions/version-1.2.0.js";
 import { DisplayArea } from "../page/shared.js";
 import {
@@ -160,12 +160,11 @@ export {
   ExplorationSlowDataSourceSettings as ReportExplorationSlowDataSourceSettingsV1_2_0,
 } from "./shared.js";
 
-export { FilterConfigurationEmbeddedV1_0_0 as ReportFilterConfigV1_2_0 } from "../filter-configuration/version-1.0.0.js";
-
 export {
+  FilterConfigurationEmbeddedV1_0_0 as ReportFilterConfigV1_2_0,
   FilterContainerV1_0_0 as ReportFilterContainerV1_2_0,
   FilterContainerFormattingObjectsV1_0_0 as ReportFilterContainerFormattingObjectsV1_2_0,
-} from "../filter-configuration/shared.js";
+} from "../filter-configuration/version-1.0.0.js";
 
 export {
   FilterContainerFormattingProperties as ReportFilterContainerFormattingObjectsPropertiesV1_2_0,

@@ -1,10 +1,10 @@
 import { Schema } from "effect";
 
 import {
+  FilterConfigurationEmbeddedV1_0_0,
   FilterContainerFormattingObjectsV1_0_0 as FilterConfigurationFilterContainerFormattingObjectsV1_0_0,
   FilterContainerV1_0_0 as FilterConfigurationFilterContainerV1_0_0,
-} from "../filter-configuration/shared.js";
-import { FilterConfigurationEmbeddedV1_0_0 } from "../filter-configuration/version-1.0.0.js";
+} from "../filter-configuration/version-1.0.0.js";
 import {
   Annotation,
   Background as SharedBackground,
@@ -284,9 +284,8 @@ export {
   Annotation as VisualContainerAnnotationV1_4_0,
 } from "../shared.js";
 
-export { FilterConfigurationEmbeddedV1_0_0 as VisualContainerFilterConfigV1_4_0 } from "../filter-configuration/version-1.0.0.js";
-
 export {
+  FilterConfigurationEmbeddedV1_0_0 as VisualContainerFilterConfigV1_4_0,
   FilterContainerV1_0_0 as VisualContainerFilterContainerV1_4_0,
   FilterContainerFormattingObjectsV1_0_0 as VisualContainerFilterContainerFormattingObjectsV1_4_0,
-} from "../filter-configuration/shared.js";
+} from "../filter-configuration/version-1.0.0.js";

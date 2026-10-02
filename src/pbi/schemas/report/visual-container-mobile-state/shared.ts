@@ -1,123 +1,102 @@
-import {
-  Background as SharedBackground,
-  Border as SharedBorder,
-  Divider,
-  DropShadow,
-  LockAspect,
-  Padding,
-  Spacing,
-  StylePreset,
-  SubTitle,
-  Title,
-  VisualContainerGeneralFormattingObjects,
-  VisualHeader as SharedVisualHeader,
-  VisualHeaderTooltip,
-  VisualLink as SharedVisualLink,
-  VisualTooltip,
-} from "../shared.js";
-import { VisualContainerFormattingObjectsV1_5_0 } from "../visual-configuration/shared.js";
-import {
-  VisualContainerPositionV1_0_0,
-  VisualContainerPositionV1_2_0,
-} from "../visual-container/shared.js";
-import {
-  Border as VisualContainerBorder,
-  VisualContainerFormattingObjectsV1_0_0,
-  VisualHeader as VisualContainerVisualHeader,
-} from "../visual-container/version-1.0.0.js";
-import { VisualContainerFormattingObjectsV1_1_0 } from "../visual-container/version-1.1.0.js";
+import { VisualContainerMobileStateV1_0_0 } from "./version-1.0.0.js";
+import { VisualContainerMobileStateV1_1_0 } from "./version-1.1.0.js";
+import { VisualContainerMobileStateV1_2_0 } from "./version-1.2.0.js";
+import { VisualContainerMobileStateV1_3_0 } from "./version-1.3.0.js";
+import { VisualContainerMobileStateV1_4_0 } from "./version-1.4.0.js";
+import { VisualContainerMobileStateV1_5_0 } from "./version-1.5.0.js";
+import { VisualContainerMobileStateV2_0_0 } from "./version-2.0.0.js";
+import { VisualContainerMobileStateV2_1_0 } from "./version-2.1.0.js";
+import { VisualContainerMobileStateV2_2_0 } from "./version-2.2.0.js";
+import { VisualContainerMobileStateV2_3_0 } from "./version-2.3.0.js";
+import { VisualContainerMobileStateV2_4_0 } from "./version-2.4.0.js";
 
-export const VisualContainerMobileStateDefinitionsV1_0_0 = {
-  VisualContainerFormattingObjects: VisualContainerFormattingObjectsV1_0_0,
-  Title: Title,
-  SubTitle: SubTitle,
-  Divider: Divider,
-  Spacing: Spacing,
-  Background: SharedBackground,
-  Padding: Padding,
-  LockAspect: LockAspect,
-  VisualContainerGeneralFormattingObjects:
-    VisualContainerGeneralFormattingObjects,
-  Border: VisualContainerBorder,
-  DropShadow: DropShadow,
-  VisualLink: SharedVisualLink,
-  VisualTooltip: VisualTooltip,
-  StylePreset: StylePreset,
-  VisualHeader: VisualContainerVisualHeader,
-  VisualHeaderTooltip: VisualHeaderTooltip,
-  VisualContainerPosition: VisualContainerPositionV1_0_0,
-} as const;
-
-export const VisualContainerMobileStateDefinitionsV1_1_0 = {
-  VisualContainerFormattingObjects: VisualContainerFormattingObjectsV1_1_0,
-  Title: Title,
-  SubTitle: SubTitle,
-  Divider: Divider,
-  Spacing: Spacing,
-  Background: SharedBackground,
-  Padding: Padding,
-  LockAspect: LockAspect,
-  VisualContainerGeneralFormattingObjects:
-    VisualContainerGeneralFormattingObjects,
-  Border: SharedBorder,
-  DropShadow: DropShadow,
-  VisualLink: SharedVisualLink,
-  VisualTooltip: VisualTooltip,
-  StylePreset: StylePreset,
-  VisualHeader: SharedVisualHeader,
-  VisualHeaderTooltip: VisualHeaderTooltip,
-  VisualContainerPosition: VisualContainerPositionV1_0_0,
-} as const;
-
-export const VisualContainerMobileStateDefinitionsV1_2_0 = {
-  VisualContainerFormattingObjects: VisualContainerFormattingObjectsV1_5_0,
-  Title: Title,
-  SubTitle: SubTitle,
-  Divider: Divider,
-  Spacing: Spacing,
-  Background: SharedBackground,
-  Padding: Padding,
-  LockAspect: LockAspect,
-  VisualContainerGeneralFormattingObjects:
-    VisualContainerGeneralFormattingObjects,
-  Border: SharedBorder,
-  DropShadow: DropShadow,
-  VisualLink: SharedVisualLink,
-  VisualTooltip: VisualTooltip,
-  StylePreset: StylePreset,
-  VisualHeader: SharedVisualHeader,
-  VisualHeaderTooltip: VisualHeaderTooltip,
-  VisualContainerPosition: VisualContainerPositionV1_2_0,
-} as const;
-
-export const VisualContainerMobileStateDefinitionsV1_3_0 = {
-  VisualContainerPosition: VisualContainerPositionV1_2_0,
-} as const;
-
-export const VisualContainerMobileStateDefinitionsV1_4_0 = {
-  VisualContainerPosition: VisualContainerPositionV1_2_0,
-} as const;
-
-export const VisualContainerMobileStateDefinitionsV1_5_0 = {
-  VisualContainerPosition: VisualContainerPositionV1_2_0,
-} as const;
-
-export const VisualContainerMobileStateDefinitionsV2_0_0 = {
-  VisualContainerPosition: VisualContainerPositionV1_2_0,
-} as const;
-
-export const VisualContainerMobileStateDefinitionsV2_1_0 = {
-  VisualContainerPosition: VisualContainerPositionV1_2_0,
-} as const;
-
-export const VisualContainerMobileStateDefinitionsV2_2_0 = {
-  VisualContainerPosition: VisualContainerPositionV1_2_0,
-} as const;
-
-export const VisualContainerMobileStateDefinitionsV2_3_0 = {
-  VisualContainerPosition: VisualContainerPositionV1_2_0,
-} as const;
-
-export const VisualContainerMobileStateDefinitionsV2_4_0 = {
-  VisualContainerPosition: VisualContainerPositionV1_2_0,
-} as const;
+export const visualContainerMobileStateSchemaCoverage = [
+  {
+    source: "definition/visualContainerMobileState/1.0.0/schema.json",
+    schemaId:
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/1.0.0/schema.json",
+    version: "1.0.0",
+    variant: "standalone",
+    schema: VisualContainerMobileStateV1_0_0,
+  },
+  {
+    source: "definition/visualContainerMobileState/1.1.0/schema.json",
+    schemaId:
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/1.1.0/schema.json",
+    version: "1.1.0",
+    variant: "standalone",
+    schema: VisualContainerMobileStateV1_1_0,
+  },
+  {
+    source: "definition/visualContainerMobileState/1.2.0/schema.json",
+    schemaId:
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/1.2.0/schema.json",
+    version: "1.2.0",
+    variant: "standalone",
+    schema: VisualContainerMobileStateV1_2_0,
+  },
+  {
+    source: "definition/visualContainerMobileState/1.3.0/schema.json",
+    schemaId:
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/1.3.0/schema.json",
+    version: "1.3.0",
+    variant: "standalone",
+    schema: VisualContainerMobileStateV1_3_0,
+  },
+  {
+    source: "definition/visualContainerMobileState/1.4.0/schema.json",
+    schemaId:
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/1.4.0/schema.json",
+    version: "1.4.0",
+    variant: "standalone",
+    schema: VisualContainerMobileStateV1_4_0,
+  },
+  {
+    source: "definition/visualContainerMobileState/1.5.0/schema.json",
+    schemaId:
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/1.5.0/schema.json",
+    version: "1.5.0",
+    variant: "standalone",
+    schema: VisualContainerMobileStateV1_5_0,
+  },
+  {
+    source: "definition/visualContainerMobileState/2.0.0/schema.json",
+    schemaId:
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.0.0/schema.json",
+    version: "2.0.0",
+    variant: "standalone",
+    schema: VisualContainerMobileStateV2_0_0,
+  },
+  {
+    source: "definition/visualContainerMobileState/2.1.0/schema.json",
+    schemaId:
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.1.0/schema.json",
+    version: "2.1.0",
+    variant: "standalone",
+    schema: VisualContainerMobileStateV2_1_0,
+  },
+  {
+    source: "definition/visualContainerMobileState/2.2.0/schema.json",
+    schemaId:
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.2.0/schema.json",
+    version: "2.2.0",
+    variant: "standalone",
+    schema: VisualContainerMobileStateV2_2_0,
+  },
+  {
+    source: "definition/visualContainerMobileState/2.3.0/schema.json",
+    schemaId:
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.3.0/schema.json",
+    version: "2.3.0",
+    variant: "standalone",
+    schema: VisualContainerMobileStateV2_3_0,
+  },
+  {
+    source: "definition/visualContainerMobileState/2.4.0/schema.json",
+    schemaId:
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.4.0/schema.json",
+    version: "2.4.0",
+    variant: "standalone",
+    schema: VisualContainerMobileStateV2_4_0,
+  },
+] as const;

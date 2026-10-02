@@ -26,6 +26,8 @@ export const VisualContainerMobileStateV2_3_0: Schema.Codec<VisualContainerMobil
     position: Schema.suspend(() => VisualContainerPositionV1_2_0),
   });
 
-export { VisualContainerPositionV1_2_0 as VisualContainerMobileStateVisualContainerPositionV2_3_0 } from "../visual-container/shared.js";
+export const VisualContainerMobileStateDefinitionsV2_3_0 = {
+  VisualContainerPosition: VisualContainerPositionV1_2_0,
+} as const;
 
-export { VisualContainerMobileStateDefinitionsV2_3_0 } from "./shared.js";
+export { VisualContainerPositionV1_2_0 as VisualContainerMobileStateVisualContainerPositionV2_3_0 } from "../visual-container/shared.js";

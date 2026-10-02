@@ -1,3 +1,21 @@
-export const PagesMetadataDefinitionsV1_0_0 = {} as const;
+import { PagesMetadataV1_0_0 } from "./version-1.0.0.js";
+import { PagesMetadataV1_1_0 } from "./version-1.1.0.js";
 
-export const PagesMetadataDefinitionsV1_1_0 = {} as const;
+export const pagesMetadataSchemaCoverage = [
+  {
+    source: "definition/pagesMetadata/1.0.0/schema.json",
+    schemaId:
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
+    version: "1.0.0",
+    variant: "standalone",
+    schema: PagesMetadataV1_0_0,
+  },
+  {
+    source: "definition/pagesMetadata/1.1.0/schema.json",
+    schemaId:
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+    version: "1.1.0",
+    variant: "standalone",
+    schema: PagesMetadataV1_1_0,
+  },
+] as const;

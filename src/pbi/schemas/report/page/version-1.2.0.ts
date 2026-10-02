@@ -1,10 +1,10 @@
 import { Schema } from "effect";
 
 import {
+  FilterConfigurationEmbeddedV1_0_0,
   FilterContainerFormattingObjectsV1_0_0 as FilterConfigurationFilterContainerFormattingObjectsV1_0_0,
   FilterContainerV1_0_0 as FilterConfigurationFilterContainerV1_0_0,
-} from "../filter-configuration/shared.js";
-import { FilterConfigurationEmbeddedV1_0_0 } from "../filter-configuration/version-1.0.0.js";
+} from "../filter-configuration/version-1.0.0.js";
 import {
   AutoPageGenerationConfigV1_2_0,
   Background as PageBackground,
@@ -138,12 +138,11 @@ export {
   QuickExploreRelatedLayout as PageQuickExploreCombinationLayoutV1_2_0,
 } from "./shared.js";
 
-export { FilterConfigurationEmbeddedV1_0_0 as PageFilterConfigV1_2_0 } from "../filter-configuration/version-1.0.0.js";
-
 export {
+  FilterConfigurationEmbeddedV1_0_0 as PageFilterConfigV1_2_0,
   FilterContainerV1_0_0 as PageFilterContainerV1_2_0,
   FilterContainerFormattingObjectsV1_0_0 as PageFilterContainerFormattingObjectsV1_2_0,
-} from "../filter-configuration/shared.js";
+} from "../filter-configuration/version-1.0.0.js";
 
 export {
   FilterContainerFormattingProperties as PageFilterContainerFormattingObjectsPropertiesV1_2_0,

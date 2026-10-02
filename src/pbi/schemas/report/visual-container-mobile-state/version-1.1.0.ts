@@ -1,7 +1,24 @@
 import { Schema } from "effect";
 
 import { DataViewObjectDefinitionsV1_1_0 } from "../formatting-object-definitions/version-1.1.0.js";
-import { closed } from "../shared.js";
+import {
+  Background as SharedBackground,
+  Border as SharedBorder,
+  closed,
+  Divider,
+  DropShadow,
+  LockAspect,
+  Padding,
+  Spacing,
+  StylePreset,
+  SubTitle,
+  Title,
+  VisualContainerGeneralFormattingObjects,
+  VisualHeader as SharedVisualHeader,
+  VisualHeaderTooltip,
+  VisualLink as SharedVisualLink,
+  VisualTooltip,
+} from "../shared.js";
 import { VisualContainerPositionV1_0_0 } from "../visual-container/shared.js";
 import { VisualContainerFormattingObjectsV1_1_0 } from "../visual-container/version-1.1.0.js";
 
@@ -26,6 +43,27 @@ export const VisualContainerMobileStateV1_1_0: Schema.Codec<VisualContainerMobil
     position: Schema.suspend(() => VisualContainerPositionV1_0_0),
   });
 
+export const VisualContainerMobileStateDefinitionsV1_1_0 = {
+  VisualContainerFormattingObjects: VisualContainerFormattingObjectsV1_1_0,
+  Title: Title,
+  SubTitle: SubTitle,
+  Divider: Divider,
+  Spacing: Spacing,
+  Background: SharedBackground,
+  Padding: Padding,
+  LockAspect: LockAspect,
+  VisualContainerGeneralFormattingObjects:
+    VisualContainerGeneralFormattingObjects,
+  Border: SharedBorder,
+  DropShadow: DropShadow,
+  VisualLink: SharedVisualLink,
+  VisualTooltip: VisualTooltip,
+  StylePreset: StylePreset,
+  VisualHeader: SharedVisualHeader,
+  VisualHeaderTooltip: VisualHeaderTooltip,
+  VisualContainerPosition: VisualContainerPositionV1_0_0,
+} as const;
+
 export { VisualContainerFormattingObjectsV1_1_0 as VisualContainerMobileStateVisualContainerFormattingObjectsV1_1_0 } from "../visual-container/version-1.1.0.js";
 
 export {
@@ -47,5 +85,3 @@ export {
 } from "../shared.js";
 
 export { VisualContainerPositionV1_0_0 as VisualContainerMobileStateVisualContainerPositionV1_1_0 } from "../visual-container/shared.js";
-
-export { VisualContainerMobileStateDefinitionsV1_1_0 } from "./shared.js";

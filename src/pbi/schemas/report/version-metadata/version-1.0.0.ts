@@ -16,6 +16,6 @@ export const VersionMetadata: Schema.Codec<VersionMetadata> = closed({
   ),
 });
 
-export { VersionMetadataDefinitionsV1_0_0 } from "./shared.js";
+export const VersionMetadataDefinitionsV1_0_0 = {} as const;
 
 export { VersionMetadata as VersionMetadataV1_0_0 };
