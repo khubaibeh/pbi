@@ -145,9 +145,7 @@ export class ReportSchemaFamilyMismatch extends Error {
     readonly schemaId: string,
     readonly schemaFamily: string,
   ) {
-    super(
-      `Schema family ${schemaFamily} is inconsistent with ${kind} at ${path}`,
-    );
+    super(`Schema family ${schemaFamily} is inconsistent with ${kind} at ${path}`);
   }
 }
 
@@ -157,9 +155,7 @@ export class ReportSchemaSelectorRequired extends Error {
     readonly path: string,
     readonly kind: ReportDocumentKind,
   ) {
-    super(
-      `Missing $schema at ${path}; supply an explicit supported schemaSelector`,
-    );
+    super(`Missing $schema at ${path}; supply an explicit supported schemaSelector`);
   }
 }
 
@@ -197,18 +193,17 @@ function documentKind(path: string): ReportDocumentKind | undefined {
     return "visualContainer";
   if (/^definition\/pages\/[^/]+\/visuals\/[^/]+\/mobile\.json$/.test(path))
     return "visualContainerMobileState";
-  if (path === "definition/bookmarks/bookmarks.json")
-    return "bookmarksMetadata";
-  if (/^definition\/bookmarks\/[^/]+\.bookmark\.json$/.test(path))
-    return "bookmark";
+  if (path === "definition/bookmarks/bookmarks.json") return "bookmarksMetadata";
+  if (/^definition\/bookmarks\/[^/]+\.bookmark\.json$/.test(path)) return "bookmark";
   return undefined;
 }
 
-function documentSchema<
-  const Kind extends ReportDocumentKind,
-  const Version extends string,
-  Value,
->(kind: Kind, version: Version, schemaId: string, schema: Schema.Codec<Value>) {
+function documentSchema<const Kind extends ReportDocumentKind, const Version extends string, Value>(
+  kind: Kind,
+  version: Version,
+  schemaId: string,
+  schema: Schema.Codec<Value>,
+) {
   return {
     kind,
     version,
@@ -216,9 +211,7 @@ function documentSchema<
     decode: (value: unknown, path: string) =>
       Schema.decodeUnknownEffect(schema, { errors: "all" })(value).pipe(
         Effect.map((value) => ({ kind, version, schemaId, value }) as const),
-        Effect.mapError(
-          (cause) => new ReportSchemaMismatch(path, kind, schemaId, cause),
-        ),
+        Effect.mapError((cause) => new ReportSchemaMismatch(path, kind, schemaId, cause)),
       ),
   };
 }
@@ -617,10 +610,7 @@ function jsonObject(input: ReportFileInput, kind: ReportDocumentKind) {
       Schema.decodeUnknownEffect(Schema.Record(Schema.String, Schema.Json), {
         errors: "all",
       })(value).pipe(
-        Effect.mapError(
-          (cause) =>
-            new ReportSchemaMismatch(input.path, kind, undefined, cause),
-        ),
+        Effect.mapError((cause) => new ReportSchemaMismatch(input.path, kind, undefined, cause)),
       ),
     ),
   );
@@ -639,50 +629,32 @@ export function parseReportFile(
         ? undefined
         : yield* Schema.decodeUnknownEffect(Schema.String)(value.$schema).pipe(
             Effect.mapError(
-              (cause) =>
-                new ReportSchemaMismatch(input.path, kind, undefined, cause),
+              (cause) => new ReportSchemaMismatch(input.path, kind, undefined, cause),
             ),
           );
     const selector = tag ?? input.schemaSelector;
     if (selector === undefined)
-      return yield* Effect.fail(
-        new ReportSchemaSelectorRequired(input.path, kind),
-      );
+      return yield* Effect.fail(new ReportSchemaSelectorRequired(input.path, kind));
     const coverage = reportSchemaCoverageAll.find(
       (entry) =>
         entry.schemaId === selector ||
-        ("aliases" in entry &&
-          entry.aliases.some((alias) => alias === selector)),
+        ("aliases" in entry && entry.aliases.some((alias) => alias === selector)),
     );
     if (coverage !== undefined) {
       const parts = coverage.source.split("/");
       const family = parts[0] === "definition" ? parts[1] : parts[0];
       if (family !== kind || coverage.variant === "embedded") {
         return yield* Effect.fail(
-          new ReportSchemaFamilyMismatch(
-            input.path,
-            kind,
-            selector,
-            family ?? "unknown",
-          ),
+          new ReportSchemaFamilyMismatch(input.path, kind, selector, family ?? "unknown"),
         );
       }
     }
-    const selected = reportFileSchemas.find(
-      (entry) => entry.schemaId === selector,
-    );
+    const selected = reportFileSchemas.find((entry) => entry.schemaId === selector);
     if (selected === undefined)
-      return yield* Effect.fail(
-        new UnsupportedReportSchemaVersion(input.path, kind, selector),
-      );
+      return yield* Effect.fail(new UnsupportedReportSchemaVersion(input.path, kind, selector));
     if (selected.kind !== kind)
       return yield* Effect.fail(
-        new ReportSchemaFamilyMismatch(
-          input.path,
-          kind,
-          selector,
-          selected.kind,
-        ),
+        new ReportSchemaFamilyMismatch(input.path, kind, selector, selected.kind),
       );
     return yield* selected.decode(value, input.path);
   });
@@ -693,8 +665,7 @@ export const DesktopDefinitionPropertiesByPath = closed({
   datasetReference: closed({ byPath: closed({ path: Schema.String }) }),
 });
 
-export type DesktopDefinitionPropertiesByPath =
-  typeof DesktopDefinitionPropertiesByPath.Type;
+export type DesktopDefinitionPropertiesByPath = typeof DesktopDefinitionPropertiesByPath.Type;
 
 export interface ParsedDesktopDefinitionProperties {
   readonly kind: "definitionProperties";
@@ -705,27 +676,17 @@ export interface ParsedDesktopDefinitionProperties {
 
 export function parseReportFileDesktopCompatibility(
   input: ReportFileInput,
-): Effect.Effect<
-  ParsedReportFile | ParsedDesktopDefinitionProperties,
-  ReportFileParseError
-> {
+): Effect.Effect<ParsedReportFile | ParsedDesktopDefinitionProperties, ReportFileParseError> {
   if (input.path !== "definition.pbir" || input.schemaSelector !== undefined)
     return parseReportFile(input);
   return Effect.gen(function* () {
     const value = yield* jsonObject(input, "definitionProperties");
     if (value.$schema !== undefined) return yield* parseReportFile(input);
-    const parsed = yield* Schema.decodeUnknownEffect(
-      DesktopDefinitionPropertiesByPath,
-      { errors: "all" },
-    )(value).pipe(
+    const parsed = yield* Schema.decodeUnknownEffect(DesktopDefinitionPropertiesByPath, {
+      errors: "all",
+    })(value).pipe(
       Effect.mapError(
-        (cause) =>
-          new ReportSchemaMismatch(
-            input.path,
-            "definitionProperties",
-            undefined,
-            cause,
-          ),
+        (cause) => new ReportSchemaMismatch(input.path, "definitionProperties", undefined, cause),
       ),
     );
     const result: ParsedDesktopDefinitionProperties = {

@@ -1,7 +1,13 @@
 import { Schema } from "effect";
 import { closed } from "../shared.js";
-import { FormattingObjectDefinitionsDataViewObjectDefinitionsV1_4_0, FormattingObjectDefinitionsDefinitionsV1_4_0 } from "../formatting-object-definitions/shared.js";
-import { VisualConfigurationEmbeddedDefinitionsV2_2_0, VisualConfigurationEmbeddedVisualContainerFormattingObjectsV2_2_0 } from "../visual-configuration/shared.js";
+import {
+  FormattingObjectDefinitionsDataViewObjectDefinitionsV1_4_0,
+  FormattingObjectDefinitionsDefinitionsV1_4_0,
+} from "../formatting-object-definitions/shared.js";
+import {
+  VisualConfigurationEmbeddedDefinitionsV2_2_0,
+  VisualConfigurationEmbeddedVisualContainerFormattingObjectsV2_2_0,
+} from "../visual-configuration/shared.js";
 import { VisualContainerMobileStateVisualContainerPositionV1_2_0 } from "./shared.js";
 
 export type VisualContainerMobileStateV2_2_0 = {
@@ -17,22 +23,14 @@ export const VisualContainerMobileStateV2_2_0: Schema.Codec<VisualContainerMobil
       "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.2.0/schema.json",
     ),
     objects: Schema.optionalKey(
-      Schema.suspend(
-        () =>
-          FormattingObjectDefinitionsDefinitionsV1_4_0
-            .DataViewObjectDefinitions,
-      ),
+      Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_4_0.DataViewObjectDefinitions),
     ),
     visualContainerObjects: Schema.optionalKey(
       Schema.suspend(
-        () =>
-          VisualConfigurationEmbeddedDefinitionsV2_2_0
-            .VisualContainerFormattingObjects,
+        () => VisualConfigurationEmbeddedDefinitionsV2_2_0.VisualContainerFormattingObjects,
       ),
     ),
-    position: Schema.suspend(
-      () => VisualContainerMobileStateVisualContainerPositionV1_2_0,
-    ),
+    position: Schema.suspend(() => VisualContainerMobileStateVisualContainerPositionV1_2_0),
   });
 
 export { VisualContainerMobileStateDefinitionsV1_3_0 as VisualContainerMobileStateDefinitionsV2_2_0 } from "./shared.js";

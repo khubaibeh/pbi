@@ -28,23 +28,24 @@ export const BookmarksMetadataDefinitions = {
 
 export type BookmarksMetadata = {
   readonly items: ReadonlyArray<
-    | BookmarksMetadataSingleBookmarkMetadata
-    | BookmarksMetadataBookmarkGroupMetadata
+    BookmarksMetadataSingleBookmarkMetadata | BookmarksMetadataBookmarkGroupMetadata
   >;
   readonly $schema: "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmarksMetadata/1.0.0/schema.json";
 };
 
-export const BookmarksMetadata: Schema.Codec<BookmarksMetadata> =
-  closed({
-    items: Schema.Array(
-      Schema.Union([
-        Schema.suspend(() => BookmarksMetadataSingleBookmarkMetadata),
-        Schema.suspend(() => BookmarksMetadataBookmarkGroupMetadata),
-      ]),
-    ),
-    $schema: Schema.Literal(
-      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmarksMetadata/1.0.0/schema.json",
-    ),
-  });
+export const BookmarksMetadata: Schema.Codec<BookmarksMetadata> = closed({
+  items: Schema.Array(
+    Schema.Union([
+      Schema.suspend(() => BookmarksMetadataSingleBookmarkMetadata),
+      Schema.suspend(() => BookmarksMetadataBookmarkGroupMetadata),
+    ]),
+  ),
+  $schema: Schema.Literal(
+    "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmarksMetadata/1.0.0/schema.json",
+  ),
+});
 
-export { BookmarksMetadataDefinitions as BookmarksMetadataDefinitionsV1_0_0, BookmarksMetadata as BookmarksMetadataV1_0_0 };
+export {
+  BookmarksMetadataDefinitions as BookmarksMetadataDefinitionsV1_0_0,
+  BookmarksMetadata as BookmarksMetadataV1_0_0,
+};

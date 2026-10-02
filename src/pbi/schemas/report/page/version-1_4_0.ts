@@ -1,8 +1,32 @@
 import { Schema } from "effect";
 import { closed } from "../shared.js";
 import { FilterConfigurationEmbeddedV1_1_0 } from "../filter-configuration/shared.js";
-import { FormattingObjectDefinitionsDefinitionsV1_3_0, FormattingObjectDefinitionsSelectorV1_3_0 } from "../formatting-object-definitions/shared.js";
-import { PageAnnotation, PageAutoPageGenerationConfigV1_2_0, PageBackground, PageBindingParameterV1_2_0, PageBindingType, PageDisplayArea, PageFilterCard, PageOutspacePane, PagePageBindingV1_2_0, PagePageDisplayOption, PagePageInformation, PagePageRefresh, PagePageSize, PagePersonalizeVisual, PageQuickExploreCombinationLayout, PageQuickExploreLayoutContainer, PageQuickExploreRelatedLayout, PageQuickExploreVisualContainerConfigV1_2_0, PageVisualInteraction, PageVisualInteractionFilterType } from "./shared.js";
+import {
+  FormattingObjectDefinitionsDefinitionsV1_3_0,
+  FormattingObjectDefinitionsSelectorV1_3_0,
+} from "../formatting-object-definitions/shared.js";
+import {
+  PageAnnotation,
+  PageAutoPageGenerationConfigV1_2_0,
+  PageBackground,
+  PageBindingParameterV1_2_0,
+  PageBindingType,
+  PageDisplayArea,
+  PageFilterCard,
+  PageOutspacePane,
+  PagePageBindingV1_2_0,
+  PagePageDisplayOption,
+  PagePageInformation,
+  PagePageRefresh,
+  PagePageSize,
+  PagePersonalizeVisual,
+  PageQuickExploreCombinationLayout,
+  PageQuickExploreLayoutContainer,
+  PageQuickExploreRelatedLayout,
+  PageQuickExploreVisualContainerConfigV1_2_0,
+  PageVisualInteraction,
+  PageVisualInteractionFilterType,
+} from "./shared.js";
 
 export type PagePageFormattingObjectsV1_4_0 = {
   readonly pageInformation?: ReadonlyArray<{
@@ -49,11 +73,7 @@ export const PagePageFormattingObjectsV1_4_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_3_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_3_0.Selector),
           ),
           properties: Schema.suspend(() => PagePageInformation),
         }),
@@ -63,11 +83,7 @@ export const PagePageFormattingObjectsV1_4_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_3_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_3_0.Selector),
           ),
           properties: Schema.suspend(() => PagePageSize),
         }),
@@ -77,11 +93,7 @@ export const PagePageFormattingObjectsV1_4_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_3_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_3_0.Selector),
           ),
           properties: Schema.suspend(() => PageBackground),
         }),
@@ -91,11 +103,7 @@ export const PagePageFormattingObjectsV1_4_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_3_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_3_0.Selector),
           ),
           properties: Schema.suspend(() => PageDisplayArea),
         }),
@@ -105,11 +113,7 @@ export const PagePageFormattingObjectsV1_4_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_3_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_3_0.Selector),
           ),
           properties: Schema.suspend(() => PageBackground),
         }),
@@ -119,11 +123,7 @@ export const PagePageFormattingObjectsV1_4_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_3_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_3_0.Selector),
           ),
           properties: Schema.suspend(() => PageOutspacePane),
         }),
@@ -133,11 +133,7 @@ export const PagePageFormattingObjectsV1_4_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_3_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_3_0.Selector),
           ),
           properties: Schema.suspend(() => PageFilterCard),
         }),
@@ -147,11 +143,7 @@ export const PagePageFormattingObjectsV1_4_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_3_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_3_0.Selector),
           ),
           properties: Schema.suspend(() => PagePageRefresh),
         }),
@@ -161,11 +153,7 @@ export const PagePageFormattingObjectsV1_4_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_3_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_3_0.Selector),
           ),
           properties: Schema.suspend(() => PagePersonalizeVisual),
         }),
@@ -190,8 +178,7 @@ export const PageDefinitionsV1_4_0 = {
   VisualInteraction: PageVisualInteraction,
   VisualInteractionFilterType: PageVisualInteractionFilterType,
   AutoPageGenerationConfig: PageAutoPageGenerationConfigV1_2_0,
-  QuickExploreVisualContainerConfig:
-    PageQuickExploreVisualContainerConfigV1_2_0,
+  QuickExploreVisualContainerConfig: PageQuickExploreVisualContainerConfigV1_2_0,
   QuickExploreLayoutContainer: PageQuickExploreLayoutContainer,
   QuickExploreRelatedLayout: PageQuickExploreRelatedLayout,
   QuickExploreCombinationLayout: PageQuickExploreCombinationLayout,
@@ -225,31 +212,20 @@ export const PageV1_4_0: Schema.Codec<PageV1_4_0> = closed({
   displayOption: Schema.suspend(() => PagePageDisplayOption),
   height: Schema.optionalKey(Schema.Finite),
   width: Schema.optionalKey(Schema.Finite),
-  filterConfig: Schema.optionalKey(
-    Schema.suspend(() => FilterConfigurationEmbeddedV1_1_0),
-  ),
+  filterConfig: Schema.optionalKey(Schema.suspend(() => FilterConfigurationEmbeddedV1_1_0)),
   pageBinding: Schema.optionalKey(Schema.suspend(() => PagePageBindingV1_2_0)),
-  objects: Schema.optionalKey(
-    Schema.suspend(() => PagePageFormattingObjectsV1_4_0),
-  ),
+  objects: Schema.optionalKey(Schema.suspend(() => PagePageFormattingObjectsV1_4_0)),
   type: Schema.optionalKey(
     Schema.Union([Schema.Literal("Drillthrough"), Schema.Literal("Tooltip")]),
   ),
   visibility: Schema.optionalKey(
-    Schema.Union([
-      Schema.Literal("AlwaysVisible"),
-      Schema.Literal("HiddenInViewMode"),
-    ]),
+    Schema.Union([Schema.Literal("AlwaysVisible"), Schema.Literal("HiddenInViewMode")]),
   ),
-  visualInteractions: Schema.optionalKey(
-    Schema.Array(Schema.suspend(() => PageVisualInteraction)),
-  ),
+  visualInteractions: Schema.optionalKey(Schema.Array(Schema.suspend(() => PageVisualInteraction))),
   autoPageGenerationConfig: Schema.optionalKey(
     Schema.suspend(() => PageAutoPageGenerationConfigV1_2_0),
   ),
-  annotations: Schema.optionalKey(
-    Schema.Array(Schema.suspend(() => PageAnnotation)),
-  ),
+  annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => PageAnnotation))),
   howCreated: Schema.optionalKey(
     Schema.Union([Schema.Literal("Default"), Schema.Literal("Copilot")]),
   ),

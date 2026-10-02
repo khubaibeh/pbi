@@ -15,8 +15,7 @@ export function closed<const Fields extends Schema.Struct.Fields>(fields: Fields
   ]).check(
     Schema.makeFilter(
       (value) =>
-        Object.keys(value).every((key) => allowed.has(key)) ||
-        "Unexpected object property",
+        Object.keys(value).every((key) => allowed.has(key)) || "Unexpected object property",
     ),
   );
 }

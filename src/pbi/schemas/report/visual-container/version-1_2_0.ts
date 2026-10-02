@@ -1,6 +1,12 @@
 import { Schema } from "effect";
 import { closed } from "../shared.js";
-import { VisualContainerAnnotation, VisualContainerFilterConfigV1_2_0, VisualContainerVisualConfigV1_2_0, VisualContainerVisualContainerPositionV1_2_0, VisualContainerVisualGroupConfigV1_2_0 } from "./shared.js";
+import {
+  VisualContainerAnnotation,
+  VisualContainerFilterConfigV1_2_0,
+  VisualContainerVisualConfigV1_2_0,
+  VisualContainerVisualContainerPositionV1_2_0,
+  VisualContainerVisualGroupConfigV1_2_0,
+} from "./shared.js";
 
 export type VisualContainerV1_2_0 =
   | ({
@@ -62,84 +68,71 @@ export type VisualContainerV1_2_0 =
       readonly visual?: never;
     });
 
-export const VisualContainerV1_2_0: Schema.Codec<VisualContainerV1_2_0> =
-  Schema.Union([
-    closed({
-      $schema: Schema.Literal(
-        "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
-      ),
-      name: Schema.String.check(Schema.isMaxCodePoints(50)),
-      position: Schema.suspend(
-        () => VisualContainerVisualContainerPositionV1_2_0,
-      ),
-      visual: Schema.suspend(() => VisualContainerVisualConfigV1_2_0),
-      parentGroupName: Schema.optionalKey(Schema.String),
-      filterConfig: Schema.optionalKey(
-        Schema.suspend(() => VisualContainerFilterConfigV1_2_0),
-      ),
-      isHidden: Schema.optionalKey(Schema.Boolean),
-      annotations: Schema.optionalKey(
-        Schema.Array(Schema.suspend(() => VisualContainerAnnotation)),
-      ),
-      howCreated: Schema.optionalKey(
-        Schema.Union([
-          Schema.Literal("Default"),
-          Schema.Literal("Copilot"),
-          Schema.Literal("CheckboxTickedInFieldList"),
-          Schema.Literal("DraggedToCanvas"),
-          Schema.Literal("VisualTypeIconClicked"),
-          Schema.Literal("DraggedToFieldWell"),
-          Schema.Literal("InsertVisualButton"),
-          Schema.Literal("WhatIfParameterControl"),
-          Schema.Literal("QnaAppBar"),
-          Schema.Literal("QnaDoubleClick"),
-          Schema.Literal("QnaKeyboardShortcut"),
-          Schema.Literal("FieldParameterControl"),
-          Schema.Literal("CanvasBackgroundContextMenu"),
-          Schema.Literal("ContextMenuPaste"),
-          Schema.Literal("CopyPaste"),
-          Schema.Literal("SummarizeVisualContainer"),
-        ]),
-      ),
-    }),
-    closed({
-      $schema: Schema.Literal(
-        "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
-      ),
-      name: Schema.String.check(Schema.isMaxCodePoints(50)),
-      position: Schema.suspend(
-        () => VisualContainerVisualContainerPositionV1_2_0,
-      ),
-      visualGroup: Schema.suspend(() => VisualContainerVisualGroupConfigV1_2_0),
-      parentGroupName: Schema.optionalKey(Schema.String),
-      filterConfig: Schema.optionalKey(
-        Schema.suspend(() => VisualContainerFilterConfigV1_2_0),
-      ),
-      isHidden: Schema.optionalKey(Schema.Boolean),
-      annotations: Schema.optionalKey(
-        Schema.Array(Schema.suspend(() => VisualContainerAnnotation)),
-      ),
-      howCreated: Schema.optionalKey(
-        Schema.Union([
-          Schema.Literal("Default"),
-          Schema.Literal("Copilot"),
-          Schema.Literal("CheckboxTickedInFieldList"),
-          Schema.Literal("DraggedToCanvas"),
-          Schema.Literal("VisualTypeIconClicked"),
-          Schema.Literal("DraggedToFieldWell"),
-          Schema.Literal("InsertVisualButton"),
-          Schema.Literal("WhatIfParameterControl"),
-          Schema.Literal("QnaAppBar"),
-          Schema.Literal("QnaDoubleClick"),
-          Schema.Literal("QnaKeyboardShortcut"),
-          Schema.Literal("FieldParameterControl"),
-          Schema.Literal("CanvasBackgroundContextMenu"),
-          Schema.Literal("ContextMenuPaste"),
-          Schema.Literal("CopyPaste"),
-          Schema.Literal("SummarizeVisualContainer"),
-        ]),
-      ),
-    }),
-  ]);
+export const VisualContainerV1_2_0: Schema.Codec<VisualContainerV1_2_0> = Schema.Union([
+  closed({
+    $schema: Schema.Literal(
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
+    ),
+    name: Schema.String.check(Schema.isMaxCodePoints(50)),
+    position: Schema.suspend(() => VisualContainerVisualContainerPositionV1_2_0),
+    visual: Schema.suspend(() => VisualContainerVisualConfigV1_2_0),
+    parentGroupName: Schema.optionalKey(Schema.String),
+    filterConfig: Schema.optionalKey(Schema.suspend(() => VisualContainerFilterConfigV1_2_0)),
+    isHidden: Schema.optionalKey(Schema.Boolean),
+    annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => VisualContainerAnnotation))),
+    howCreated: Schema.optionalKey(
+      Schema.Union([
+        Schema.Literal("Default"),
+        Schema.Literal("Copilot"),
+        Schema.Literal("CheckboxTickedInFieldList"),
+        Schema.Literal("DraggedToCanvas"),
+        Schema.Literal("VisualTypeIconClicked"),
+        Schema.Literal("DraggedToFieldWell"),
+        Schema.Literal("InsertVisualButton"),
+        Schema.Literal("WhatIfParameterControl"),
+        Schema.Literal("QnaAppBar"),
+        Schema.Literal("QnaDoubleClick"),
+        Schema.Literal("QnaKeyboardShortcut"),
+        Schema.Literal("FieldParameterControl"),
+        Schema.Literal("CanvasBackgroundContextMenu"),
+        Schema.Literal("ContextMenuPaste"),
+        Schema.Literal("CopyPaste"),
+        Schema.Literal("SummarizeVisualContainer"),
+      ]),
+    ),
+  }),
+  closed({
+    $schema: Schema.Literal(
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.2.0/schema.json",
+    ),
+    name: Schema.String.check(Schema.isMaxCodePoints(50)),
+    position: Schema.suspend(() => VisualContainerVisualContainerPositionV1_2_0),
+    visualGroup: Schema.suspend(() => VisualContainerVisualGroupConfigV1_2_0),
+    parentGroupName: Schema.optionalKey(Schema.String),
+    filterConfig: Schema.optionalKey(Schema.suspend(() => VisualContainerFilterConfigV1_2_0)),
+    isHidden: Schema.optionalKey(Schema.Boolean),
+    annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => VisualContainerAnnotation))),
+    howCreated: Schema.optionalKey(
+      Schema.Union([
+        Schema.Literal("Default"),
+        Schema.Literal("Copilot"),
+        Schema.Literal("CheckboxTickedInFieldList"),
+        Schema.Literal("DraggedToCanvas"),
+        Schema.Literal("VisualTypeIconClicked"),
+        Schema.Literal("DraggedToFieldWell"),
+        Schema.Literal("InsertVisualButton"),
+        Schema.Literal("WhatIfParameterControl"),
+        Schema.Literal("QnaAppBar"),
+        Schema.Literal("QnaDoubleClick"),
+        Schema.Literal("QnaKeyboardShortcut"),
+        Schema.Literal("FieldParameterControl"),
+        Schema.Literal("CanvasBackgroundContextMenu"),
+        Schema.Literal("ContextMenuPaste"),
+        Schema.Literal("CopyPaste"),
+        Schema.Literal("SummarizeVisualContainer"),
+      ]),
+    ),
+  }),
+]);
 
 export { VisualContainerDefinitionsV1_2_0 } from "./shared.js";

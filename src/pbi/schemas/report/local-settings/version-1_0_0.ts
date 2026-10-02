@@ -28,15 +28,14 @@ export const LocalSettings: Schema.Codec<LocalSettings> = closed({
   ),
   remoteArtifacts: Schema.optionalKey(
     Schema.Union([
-      Schema.Array(
-        Schema.suspend(() => LocalSettingsReportRemoteArtifact),
-      ),
+      Schema.Array(Schema.suspend(() => LocalSettingsReportRemoteArtifact)),
       Schema.Null,
     ]),
   ),
-  securityBindingsSignature: Schema.optionalKey(
-    Schema.Union([Schema.String, Schema.Null]),
-  ),
+  securityBindingsSignature: Schema.optionalKey(Schema.Union([Schema.String, Schema.Null])),
 });
 
-export { LocalSettingsDefinitions as LocalSettingsDefinitionsV1_0_0, LocalSettings as LocalSettingsV1_0_0 };
+export {
+  LocalSettingsDefinitions as LocalSettingsDefinitionsV1_0_0,
+  LocalSettings as LocalSettingsV1_0_0,
+};

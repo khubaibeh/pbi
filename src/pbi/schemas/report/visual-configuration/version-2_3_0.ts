@@ -1,8 +1,33 @@
 import { Schema } from "effect";
 import { closed } from "../shared.js";
-import { FormattingObjectDefinitionsDataViewObjectDefinitionsV1_5_0, FormattingObjectDefinitionsDefinitionsV1_5_0, FormattingObjectDefinitionsSelectorV1_5_0 } from "../formatting-object-definitions/shared.js";
+import {
+  FormattingObjectDefinitionsDataViewObjectDefinitionsV1_5_0,
+  FormattingObjectDefinitionsDefinitionsV1_5_0,
+  FormattingObjectDefinitionsSelectorV1_5_0,
+} from "../formatting-object-definitions/shared.js";
 import { QueryExpressionContainerV1_4_0 } from "../semantic-query/shared.js";
-import { VisualConfigurationAIDecompositionMethod, VisualConfigurationAILevelInformation, VisualConfigurationBackground, VisualConfigurationBorder, VisualConfigurationDivider, VisualConfigurationDropShadow, VisualConfigurationLockAspect, VisualConfigurationPadding, VisualConfigurationSortDirection, VisualConfigurationSpacing, VisualConfigurationStylePreset, VisualConfigurationSubTitle, VisualConfigurationTitle, VisualConfigurationVisualContainerGeneralFormattingObjects, VisualConfigurationVisualHeader, VisualConfigurationVisualHeaderTooltip, VisualConfigurationVisualLinkV2_2_0, VisualConfigurationVisualQueryOptions, VisualConfigurationVisualSyncGroup, VisualConfigurationVisualTooltip } from "./shared.js";
+import {
+  VisualConfigurationAIDecompositionMethod,
+  VisualConfigurationAILevelInformation,
+  VisualConfigurationBackground,
+  VisualConfigurationBorder,
+  VisualConfigurationDivider,
+  VisualConfigurationDropShadow,
+  VisualConfigurationLockAspect,
+  VisualConfigurationPadding,
+  VisualConfigurationSortDirection,
+  VisualConfigurationSpacing,
+  VisualConfigurationStylePreset,
+  VisualConfigurationSubTitle,
+  VisualConfigurationTitle,
+  VisualConfigurationVisualContainerGeneralFormattingObjects,
+  VisualConfigurationVisualHeader,
+  VisualConfigurationVisualHeaderTooltip,
+  VisualConfigurationVisualLinkV2_2_0,
+  VisualConfigurationVisualQueryOptions,
+  VisualConfigurationVisualSyncGroup,
+  VisualConfigurationVisualTooltip,
+} from "./shared.js";
 
 export type VisualConfigurationQueryV2_3_0 = {
   readonly sortDefinition?: VisualConfigurationSortDefinitionV2_3_0;
@@ -13,20 +38,15 @@ export type VisualConfigurationQueryV2_3_0 = {
   readonly isDrillDisabled?: boolean;
 };
 
-export const VisualConfigurationQueryV2_3_0: Schema.Codec<VisualConfigurationQueryV2_3_0> =
-  closed({
-    sortDefinition: Schema.optionalKey(
-      Schema.suspend(() => VisualConfigurationSortDefinitionV2_3_0),
-    ),
-    options: Schema.optionalKey(
-      Schema.suspend(() => VisualConfigurationVisualQueryOptions),
-    ),
-    queryState: Schema.Record(
-      Schema.String,
-      Schema.suspend(() => VisualConfigurationProjectionStateV2_3_0),
-    ),
-    isDrillDisabled: Schema.optionalKey(Schema.Boolean),
-  });
+export const VisualConfigurationQueryV2_3_0: Schema.Codec<VisualConfigurationQueryV2_3_0> = closed({
+  sortDefinition: Schema.optionalKey(Schema.suspend(() => VisualConfigurationSortDefinitionV2_3_0)),
+  options: Schema.optionalKey(Schema.suspend(() => VisualConfigurationVisualQueryOptions)),
+  queryState: Schema.Record(
+    Schema.String,
+    Schema.suspend(() => VisualConfigurationProjectionStateV2_3_0),
+  ),
+  isDrillDisabled: Schema.optionalKey(Schema.Boolean),
+});
 
 export type VisualConfigurationSortDefinitionV2_3_0 = {
   readonly sort?: ReadonlyArray<VisualConfigurationQuerySortV2_3_0>;
@@ -48,9 +68,7 @@ export type VisualConfigurationQuerySortV2_3_0 = {
 
 export const VisualConfigurationQuerySortV2_3_0: Schema.Codec<VisualConfigurationQuerySortV2_3_0> =
   closed({
-    field: Schema.suspend(
-      () => QueryExpressionContainerV1_4_0,
-    ),
+    field: Schema.suspend(() => QueryExpressionContainerV1_4_0),
     direction: Schema.suspend(() => VisualConfigurationSortDirection),
   });
 
@@ -63,13 +81,9 @@ export type VisualConfigurationProjectionStateV2_3_0 = {
 export const VisualConfigurationProjectionStateV2_3_0: Schema.Codec<VisualConfigurationProjectionStateV2_3_0> =
   closed({
     showAll: Schema.optionalKey(Schema.Boolean),
-    projections: Schema.Array(
-      Schema.suspend(() => VisualConfigurationRoleProjectionV2_3_0),
-    ),
+    projections: Schema.Array(Schema.suspend(() => VisualConfigurationRoleProjectionV2_3_0)),
     fieldParameters: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(() => VisualConfigurationRoleFieldParameterV2_3_0),
-      ),
+      Schema.Array(Schema.suspend(() => VisualConfigurationRoleFieldParameterV2_3_0)),
     ),
   });
 
@@ -85,15 +99,11 @@ export type VisualConfigurationRoleProjectionV2_3_0 = {
 
 export const VisualConfigurationRoleProjectionV2_3_0: Schema.Codec<VisualConfigurationRoleProjectionV2_3_0> =
   closed({
-    field: Schema.suspend(
-      () => QueryExpressionContainerV1_4_0,
-    ),
+    field: Schema.suspend(() => QueryExpressionContainerV1_4_0),
     queryRef: Schema.String,
     nativeQueryRef: Schema.optionalKey(Schema.String),
     displayName: Schema.optionalKey(Schema.String),
-    format: Schema.optionalKey(
-      Schema.String.check(Schema.isMaxCodePoints(255)),
-    ),
+    format: Schema.optionalKey(Schema.String.check(Schema.isMaxCodePoints(255))),
     active: Schema.optionalKey(Schema.Boolean),
     hidden: Schema.optionalKey(Schema.Boolean),
   });
@@ -107,9 +117,7 @@ export type VisualConfigurationRoleFieldParameterV2_3_0 = {
 
 export const VisualConfigurationRoleFieldParameterV2_3_0: Schema.Codec<VisualConfigurationRoleFieldParameterV2_3_0> =
   closed({
-    parameterExpr: Schema.suspend(
-      () => QueryExpressionContainerV1_4_0,
-    ),
+    parameterExpr: Schema.suspend(() => QueryExpressionContainerV1_4_0),
     index: Schema.Finite,
     length: Schema.optionalKey(Schema.Finite),
     sortDirection: Schema.optionalKey(
@@ -126,13 +134,9 @@ export type VisualConfigurationExpansionStateV2_3_0 = {
 export const VisualConfigurationExpansionStateV2_3_0: Schema.Codec<VisualConfigurationExpansionStateV2_3_0> =
   closed({
     roles: Schema.Array(Schema.String),
-    root: Schema.optionalKey(
-      Schema.suspend(() => VisualConfigurationRootExpansionStateV2_3_0),
-    ),
+    root: Schema.optionalKey(Schema.suspend(() => VisualConfigurationRootExpansionStateV2_3_0)),
     levels: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(() => VisualConfigurationLevelExpansionStateV2_3_0),
-      ),
+      Schema.Array(Schema.suspend(() => VisualConfigurationLevelExpansionStateV2_3_0)),
     ),
   });
 
@@ -145,17 +149,11 @@ export type VisualConfigurationRootExpansionStateV2_3_0 = {
 export const VisualConfigurationRootExpansionStateV2_3_0: Schema.Codec<VisualConfigurationRootExpansionStateV2_3_0> =
   closed({
     identityValues: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(
-          () => QueryExpressionContainerV1_4_0,
-        ),
-      ),
+      Schema.Array(Schema.suspend(() => QueryExpressionContainerV1_4_0)),
     ),
     isToggled: Schema.optionalKey(Schema.Boolean),
     children: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(() => VisualConfigurationNodeExpansionStateV2_3_0),
-      ),
+      Schema.Array(Schema.suspend(() => VisualConfigurationNodeExpansionStateV2_3_0)),
     ),
   });
 
@@ -167,16 +165,10 @@ export type VisualConfigurationNodeExpansionStateV2_3_0 = {
 
 export const VisualConfigurationNodeExpansionStateV2_3_0: Schema.Codec<VisualConfigurationNodeExpansionStateV2_3_0> =
   closed({
-    identityValues: Schema.Array(
-      Schema.suspend(
-        () => QueryExpressionContainerV1_4_0,
-      ),
-    ),
+    identityValues: Schema.Array(Schema.suspend(() => QueryExpressionContainerV1_4_0)),
     isToggled: Schema.optionalKey(Schema.Boolean),
     children: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(() => VisualConfigurationNodeExpansionStateV2_3_0),
-      ),
+      Schema.Array(Schema.suspend(() => VisualConfigurationNodeExpansionStateV2_3_0)),
     ),
   });
 
@@ -192,19 +184,13 @@ export type VisualConfigurationLevelExpansionStateV2_3_0 = {
 export const VisualConfigurationLevelExpansionStateV2_3_0: Schema.Codec<VisualConfigurationLevelExpansionStateV2_3_0> =
   closed({
     identityKeys: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(
-          () => QueryExpressionContainerV1_4_0,
-        ),
-      ),
+      Schema.Array(Schema.suspend(() => QueryExpressionContainerV1_4_0)),
     ),
     isCollapsed: Schema.optionalKey(Schema.Boolean),
     queryRefs: Schema.Array(Schema.String),
     isPinned: Schema.optionalKey(Schema.Boolean),
     isLocked: Schema.optionalKey(Schema.Boolean),
-    AIInformation: Schema.optionalKey(
-      Schema.suspend(() => VisualConfigurationAILevelInformation),
-    ),
+    AIInformation: Schema.optionalKey(Schema.suspend(() => VisualConfigurationAILevelInformation)),
   });
 
 export type VisualConfigurationVisualContainerFormattingObjectsV2_3_0 = {
@@ -276,11 +262,7 @@ export const VisualConfigurationVisualContainerFormattingObjectsV2_3_0: Schema.C
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
           properties: Schema.suspend(() => VisualConfigurationTitle),
         }),
@@ -290,11 +272,7 @@ export const VisualConfigurationVisualContainerFormattingObjectsV2_3_0: Schema.C
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
           properties: Schema.suspend(() => VisualConfigurationSubTitle),
         }),
@@ -304,11 +282,7 @@ export const VisualConfigurationVisualContainerFormattingObjectsV2_3_0: Schema.C
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
           properties: Schema.suspend(() => VisualConfigurationDivider),
         }),
@@ -318,11 +292,7 @@ export const VisualConfigurationVisualContainerFormattingObjectsV2_3_0: Schema.C
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
           properties: Schema.suspend(() => VisualConfigurationSpacing),
         }),
@@ -332,11 +302,7 @@ export const VisualConfigurationVisualContainerFormattingObjectsV2_3_0: Schema.C
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
           properties: Schema.suspend(() => VisualConfigurationBackground),
         }),
@@ -346,11 +312,7 @@ export const VisualConfigurationVisualContainerFormattingObjectsV2_3_0: Schema.C
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
           properties: Schema.suspend(() => VisualConfigurationPadding),
         }),
@@ -360,11 +322,7 @@ export const VisualConfigurationVisualContainerFormattingObjectsV2_3_0: Schema.C
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
           properties: Schema.suspend(() => VisualConfigurationLockAspect),
         }),
@@ -374,15 +332,10 @@ export const VisualConfigurationVisualContainerFormattingObjectsV2_3_0: Schema.C
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
           properties: Schema.suspend(
-            () =>
-              VisualConfigurationVisualContainerGeneralFormattingObjects,
+            () => VisualConfigurationVisualContainerGeneralFormattingObjects,
           ),
         }),
       ),
@@ -391,11 +344,7 @@ export const VisualConfigurationVisualContainerFormattingObjectsV2_3_0: Schema.C
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
           properties: Schema.suspend(() => VisualConfigurationBorder),
         }),
@@ -405,11 +354,7 @@ export const VisualConfigurationVisualContainerFormattingObjectsV2_3_0: Schema.C
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
           properties: Schema.suspend(() => VisualConfigurationDropShadow),
         }),
@@ -419,11 +364,7 @@ export const VisualConfigurationVisualContainerFormattingObjectsV2_3_0: Schema.C
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
           properties: Schema.suspend(() => VisualConfigurationVisualLinkV2_2_0),
         }),
@@ -433,15 +374,9 @@ export const VisualConfigurationVisualContainerFormattingObjectsV2_3_0: Schema.C
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
-          properties: Schema.suspend(
-            () => VisualConfigurationVisualTooltip,
-          ),
+          properties: Schema.suspend(() => VisualConfigurationVisualTooltip),
         }),
       ),
     ),
@@ -449,15 +384,9 @@ export const VisualConfigurationVisualContainerFormattingObjectsV2_3_0: Schema.C
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
-          properties: Schema.suspend(
-            () => VisualConfigurationStylePreset,
-          ),
+          properties: Schema.suspend(() => VisualConfigurationStylePreset),
         }),
       ),
     ),
@@ -465,15 +394,9 @@ export const VisualConfigurationVisualContainerFormattingObjectsV2_3_0: Schema.C
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
-          properties: Schema.suspend(
-            () => VisualConfigurationVisualHeader,
-          ),
+          properties: Schema.suspend(() => VisualConfigurationVisualHeader),
         }),
       ),
     ),
@@ -481,15 +404,9 @@ export const VisualConfigurationVisualContainerFormattingObjectsV2_3_0: Schema.C
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
-          properties: Schema.suspend(
-            () => VisualConfigurationVisualHeaderTooltip,
-          ),
+          properties: Schema.suspend(() => VisualConfigurationVisualHeaderTooltip),
         }),
       ),
     ),
@@ -510,8 +427,7 @@ export const VisualConfigurationDefinitionsV2_3_0 = {
   LevelExpansionState: VisualConfigurationLevelExpansionStateV2_3_0,
   AILevelInformation: VisualConfigurationAILevelInformation,
   AIDecompositionMethod: VisualConfigurationAIDecompositionMethod,
-  VisualContainerFormattingObjects:
-    VisualConfigurationVisualContainerFormattingObjectsV2_3_0,
+  VisualContainerFormattingObjects: VisualConfigurationVisualContainerFormattingObjectsV2_3_0,
   Title: VisualConfigurationTitle,
   SubTitle: VisualConfigurationSubTitle,
   Divider: VisualConfigurationDivider,
@@ -543,37 +459,27 @@ export type VisualConfigurationV2_3_0 = {
   readonly drillFilterOtherVisuals?: boolean;
 };
 
-export const VisualConfigurationV2_3_0: Schema.Codec<VisualConfigurationV2_3_0> =
-  closed({
-    $schema: Schema.Literal(
-      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualConfiguration/2.3.0/schema.json",
-    ),
-    visualType: Schema.String,
-    autoSelectVisualType: Schema.optionalKey(Schema.Boolean),
-    query: Schema.optionalKey(
-      Schema.suspend(() => VisualConfigurationQueryV2_3_0),
-    ),
-    expansionStates: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(() => VisualConfigurationExpansionStateV2_3_0),
-      ),
-    ),
-    objects: Schema.optionalKey(
-      Schema.suspend(
-        () =>
-          FormattingObjectDefinitionsDefinitionsV1_5_0
-            .DataViewObjectDefinitions,
-      ),
-    ),
-    visualContainerObjects: Schema.optionalKey(
-      Schema.suspend(
-        () => VisualConfigurationVisualContainerFormattingObjectsV2_3_0,
-      ),
-    ),
-    syncGroup: Schema.optionalKey(
-      Schema.suspend(() => VisualConfigurationVisualSyncGroup),
-    ),
-    drillFilterOtherVisuals: Schema.optionalKey(Schema.Boolean),
-  });
+export const VisualConfigurationV2_3_0: Schema.Codec<VisualConfigurationV2_3_0> = closed({
+  $schema: Schema.Literal(
+    "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualConfiguration/2.3.0/schema.json",
+  ),
+  visualType: Schema.String,
+  autoSelectVisualType: Schema.optionalKey(Schema.Boolean),
+  query: Schema.optionalKey(Schema.suspend(() => VisualConfigurationQueryV2_3_0)),
+  expansionStates: Schema.optionalKey(
+    Schema.Array(Schema.suspend(() => VisualConfigurationExpansionStateV2_3_0)),
+  ),
+  objects: Schema.optionalKey(
+    Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.DataViewObjectDefinitions),
+  ),
+  visualContainerObjects: Schema.optionalKey(
+    Schema.suspend(() => VisualConfigurationVisualContainerFormattingObjectsV2_3_0),
+  ),
+  syncGroup: Schema.optionalKey(Schema.suspend(() => VisualConfigurationVisualSyncGroup)),
+  drillFilterOtherVisuals: Schema.optionalKey(Schema.Boolean),
+});
 
-export { VisualConfigurationEmbeddedDefinitionsV2_3_0, VisualConfigurationEmbeddedV2_3_0 } from "./shared.js";
+export {
+  VisualConfigurationEmbeddedDefinitionsV2_3_0,
+  VisualConfigurationEmbeddedV2_3_0,
+} from "./shared.js";

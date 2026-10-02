@@ -1,1 +1,6 @@
-export { VisualConfigurationDefinitionsV2_0_0, VisualConfigurationV2_0_0, VisualConfigurationEmbeddedDefinitionsV1_8_0 as VisualConfigurationEmbeddedDefinitionsV2_0_0, VisualConfigurationEmbeddedV1_8_0 as VisualConfigurationEmbeddedV2_0_0 } from "./shared.js";
+export {
+  VisualConfigurationDefinitionsV2_0_0,
+  VisualConfigurationV2_0_0,
+  VisualConfigurationEmbeddedDefinitionsV1_8_0 as VisualConfigurationEmbeddedDefinitionsV2_0_0,
+  VisualConfigurationEmbeddedV1_8_0 as VisualConfigurationEmbeddedV2_0_0,
+} from "./shared.js";

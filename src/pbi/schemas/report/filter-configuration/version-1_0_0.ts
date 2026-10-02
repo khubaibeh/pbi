@@ -1,8 +1,16 @@
 import { Schema } from "effect";
 import { closed } from "../shared.js";
 import { FormattingObjectDefinitionsSelectorV1_2_0 } from "../formatting-object-definitions/shared.js";
-import { FilterDefinitionV1_2_0, QueryExpressionContainerV1_2_0 } from "../semantic-query/shared.js";
-import { FilterConfigurationEmbeddedFilterContainerFormattingObjectsProperties, FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_0_0, FilterConfigurationEmbeddedFilterContainerV1_0_0, FilterConfigurationFilterContainerFormattingObjectsProperties } from "./shared.js";
+import {
+  FilterDefinitionV1_2_0,
+  QueryExpressionContainerV1_2_0,
+} from "../semantic-query/shared.js";
+import {
+  FilterConfigurationEmbeddedFilterContainerFormattingObjectsProperties,
+  FilterConfigurationEmbeddedFilterContainerFormattingObjectsV1_0_0,
+  FilterConfigurationEmbeddedFilterContainerV1_0_0,
+  FilterConfigurationFilterContainerFormattingObjectsProperties,
+} from "./shared.js";
 
 export type FilterConfigurationFilterContainerV1_0_0 = {
   readonly name: string;
@@ -23,8 +31,7 @@ export type FilterConfigurationFilterContainerV1_0_0 = {
     | "VisualTopN";
   readonly filter?: FilterDefinitionV1_2_0;
   readonly restatement?: string;
-  readonly howCreated?:
-    "Auto" | "User" | "Drill" | "Include" | "Exclude" | "Drillthrough";
+  readonly howCreated?: "Auto" | "User" | "Drill" | "Include" | "Exclude" | "Drillthrough";
   readonly isHiddenInViewMode?: boolean;
   readonly isLockedInViewMode?: boolean;
   readonly objects?: FilterConfigurationFilterContainerFormattingObjectsV1_0_0;
@@ -35,11 +42,7 @@ export const FilterConfigurationFilterContainerV1_0_0: Schema.Codec<FilterConfig
     name: Schema.String,
     displayName: Schema.optionalKey(Schema.String),
     ordinal: Schema.optionalKey(Schema.Finite),
-    field: Schema.optionalKey(
-      Schema.suspend(
-        () => QueryExpressionContainerV1_2_0,
-      ),
-    ),
+    field: Schema.optionalKey(Schema.suspend(() => QueryExpressionContainerV1_2_0)),
     type: Schema.optionalKey(
       Schema.Union([
         Schema.Literal("Categorical"),
@@ -55,11 +58,7 @@ export const FilterConfigurationFilterContainerV1_0_0: Schema.Codec<FilterConfig
         Schema.Literal("VisualTopN"),
       ]),
     ),
-    filter: Schema.optionalKey(
-      Schema.suspend(
-        () => FilterDefinitionV1_2_0,
-      ),
-    ),
+    filter: Schema.optionalKey(Schema.suspend(() => FilterDefinitionV1_2_0)),
     restatement: Schema.optionalKey(Schema.String),
     howCreated: Schema.optionalKey(
       Schema.Union([
@@ -74,9 +73,7 @@ export const FilterConfigurationFilterContainerV1_0_0: Schema.Codec<FilterConfig
     isHiddenInViewMode: Schema.optionalKey(Schema.Boolean),
     isLockedInViewMode: Schema.optionalKey(Schema.Boolean),
     objects: Schema.optionalKey(
-      Schema.suspend(
-        () => FilterConfigurationFilterContainerFormattingObjectsV1_0_0,
-      ),
+      Schema.suspend(() => FilterConfigurationFilterContainerFormattingObjectsV1_0_0),
     ),
   });
 
@@ -93,13 +90,10 @@ export const FilterConfigurationFilterContainerFormattingObjectsV1_0_0: Schema.C
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () => FormattingObjectDefinitionsSelectorV1_2_0,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsSelectorV1_2_0),
           ),
           properties: Schema.suspend(
-            () =>
-              FilterConfigurationFilterContainerFormattingObjectsProperties,
+            () => FilterConfigurationFilterContainerFormattingObjectsProperties,
           ),
         }),
       ),
@@ -108,8 +102,7 @@ export const FilterConfigurationFilterContainerFormattingObjectsV1_0_0: Schema.C
 
 export const FilterConfigurationDefinitionsV1_0_0 = {
   FilterContainer: FilterConfigurationFilterContainerV1_0_0,
-  FilterContainerFormattingObjects:
-    FilterConfigurationFilterContainerFormattingObjectsV1_0_0,
+  FilterContainerFormattingObjects: FilterConfigurationFilterContainerFormattingObjectsV1_0_0,
   FilterContainerFormattingObjectsProperties:
     FilterConfigurationFilterContainerFormattingObjectsProperties,
 } as const;
@@ -120,24 +113,21 @@ export type FilterConfigurationV1_0_0 = {
   readonly filterSortOrder?: "Ascending" | "Descending" | "Custom";
 };
 
-export const FilterConfigurationV1_0_0: Schema.Codec<FilterConfigurationV1_0_0> =
-  closed({
-    $schema: Schema.Literal(
-      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/filterConfiguration/1.0.0/schema.json",
-    ),
-    filters: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(() => FilterConfigurationFilterContainerV1_0_0),
-      ),
-    ),
-    filterSortOrder: Schema.optionalKey(
-      Schema.Union([
-        Schema.Literal("Ascending"),
-        Schema.Literal("Descending"),
-        Schema.Literal("Custom"),
-      ]),
-    ),
-  });
+export const FilterConfigurationV1_0_0: Schema.Codec<FilterConfigurationV1_0_0> = closed({
+  $schema: Schema.Literal(
+    "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/filterConfiguration/1.0.0/schema.json",
+  ),
+  filters: Schema.optionalKey(
+    Schema.Array(Schema.suspend(() => FilterConfigurationFilterContainerV1_0_0)),
+  ),
+  filterSortOrder: Schema.optionalKey(
+    Schema.Union([
+      Schema.Literal("Ascending"),
+      Schema.Literal("Descending"),
+      Schema.Literal("Custom"),
+    ]),
+  ),
+});
 
 export const FilterConfigurationEmbeddedDefinitionsV1_0_0 = {
   FilterContainer: FilterConfigurationEmbeddedFilterContainerV1_0_0,

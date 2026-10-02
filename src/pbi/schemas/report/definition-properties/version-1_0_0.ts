@@ -10,14 +10,10 @@ export type DefinitionPropertiesDatasetReferenceV1_0_0 = {
 export const DefinitionPropertiesDatasetReferenceV1_0_0: Schema.Codec<DefinitionPropertiesDatasetReferenceV1_0_0> =
   closed({
     byPath: Schema.optionalKey(
-      Schema.suspend(
-        () => DefinitionPropertiesReportDatasetReferenceByPath,
-      ),
+      Schema.suspend(() => DefinitionPropertiesReportDatasetReferenceByPath),
     ),
     byConnection: Schema.optionalKey(
-      Schema.suspend(
-        () => DefinitionPropertiesReportDatasetReferenceByConnectionV1_0_0,
-      ),
+      Schema.suspend(() => DefinitionPropertiesReportDatasetReferenceByConnectionV1_0_0),
     ),
   });
 
@@ -36,9 +32,7 @@ export const DefinitionPropertiesReportDatasetReferenceByConnectionV1_0_0: Schem
       connectionString: Schema.Union([Schema.String, Schema.Null]),
       pbiServiceModelId: Schema.Union([
         Schema.Finite.check(
-          Schema.makeFilter(
-            (value) => Number.isInteger(value) || "Expected integer",
-          ),
+          Schema.makeFilter((value) => Number.isInteger(value) || "Expected integer"),
         ),
         Schema.Null,
       ]),
@@ -52,10 +46,8 @@ export const DefinitionPropertiesReportDatasetReferenceByConnectionV1_0_0: Schem
 
 export const DefinitionPropertiesDefinitionsV1_0_0 = {
   DatasetReference: DefinitionPropertiesDatasetReferenceV1_0_0,
-  ReportDatasetReferenceByConnection:
-    DefinitionPropertiesReportDatasetReferenceByConnectionV1_0_0,
-  ReportDatasetReferenceByPath:
-    DefinitionPropertiesReportDatasetReferenceByPath,
+  ReportDatasetReferenceByConnection: DefinitionPropertiesReportDatasetReferenceByConnectionV1_0_0,
+  ReportDatasetReferenceByPath: DefinitionPropertiesReportDatasetReferenceByPath,
 } as const;
 
 export type DefinitionPropertiesV1_0_0 = {
@@ -64,17 +56,14 @@ export type DefinitionPropertiesV1_0_0 = {
   readonly datasetReference: DefinitionPropertiesDatasetReferenceV1_0_0;
 };
 
-export const DefinitionPropertiesV1_0_0: Schema.Codec<DefinitionPropertiesV1_0_0> =
-  closed({
-    $schema: Schema.String.check(
-      Schema.isPattern(
-        new RegExp(
-          "^https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/1.[0-9]+.[0-9]+/schema.json$",
-        ),
+export const DefinitionPropertiesV1_0_0: Schema.Codec<DefinitionPropertiesV1_0_0> = closed({
+  $schema: Schema.String.check(
+    Schema.isPattern(
+      new RegExp(
+        "^https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/1.[0-9]+.[0-9]+/schema.json$",
       ),
     ),
-    version: Schema.String,
-    datasetReference: Schema.suspend(
-      () => DefinitionPropertiesDatasetReferenceV1_0_0,
-    ),
-  });
+  ),
+  version: Schema.String,
+  datasetReference: Schema.suspend(() => DefinitionPropertiesDatasetReferenceV1_0_0),
+});

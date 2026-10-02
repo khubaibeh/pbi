@@ -1,7 +1,22 @@
 import { Schema } from "effect";
 import { closed } from "../shared.js";
 import { FilterConfigurationEmbeddedV1_2_0 } from "../filter-configuration/shared.js";
-import { ReportAnnotation, ReportExplorationSettingsV1_0_0, ReportExplorationSlowDataSourceSettings, ReportOrganizationCustomVisual, ReportOutspacePane, ReportReportFormattingObjectsV2_1_0, ReportResourcePackage, ReportResourcePackageItem, ReportResourcePackageItemType, ReportResourcePackageType, ReportSection, ReportThemeCollectionV1_0_0, ReportThemeMetadataV1_0_0, ReportThemeResourcePackageType } from "./shared.js";
+import {
+  ReportAnnotation,
+  ReportExplorationSettingsV1_0_0,
+  ReportExplorationSlowDataSourceSettings,
+  ReportOrganizationCustomVisual,
+  ReportOutspacePane,
+  ReportReportFormattingObjectsV2_1_0,
+  ReportResourcePackage,
+  ReportResourcePackageItem,
+  ReportResourcePackageItemType,
+  ReportResourcePackageType,
+  ReportSection,
+  ReportThemeCollectionV1_0_0,
+  ReportThemeMetadataV1_0_0,
+  ReportThemeResourcePackageType,
+} from "./shared.js";
 
 export const ReportDefinitionsV2_1_0 = {
   ThemeCollection: ReportThemeCollectionV1_0_0,
@@ -17,8 +32,7 @@ export const ReportDefinitionsV2_1_0 = {
   OrganizationCustomVisual: ReportOrganizationCustomVisual,
   Annotation: ReportAnnotation,
   ExplorationSettings: ReportExplorationSettingsV1_0_0,
-  ExplorationSlowDataSourceSettings:
-    ReportExplorationSlowDataSourceSettings,
+  ExplorationSlowDataSourceSettings: ReportExplorationSlowDataSourceSettings,
 } as const;
 
 export type ReportV2_1_0 = {
@@ -48,12 +62,8 @@ export const ReportV2_1_0: Schema.Codec<ReportV2_1_0> = closed({
     "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/2.1.0/schema.json",
   ),
   themeCollection: Schema.suspend(() => ReportThemeCollectionV1_0_0),
-  filterConfig: Schema.optionalKey(
-    Schema.suspend(() => FilterConfigurationEmbeddedV1_2_0),
-  ),
-  objects: Schema.optionalKey(
-    Schema.suspend(() => ReportReportFormattingObjectsV2_1_0),
-  ),
+  filterConfig: Schema.optionalKey(Schema.suspend(() => FilterConfigurationEmbeddedV1_2_0)),
+  objects: Schema.optionalKey(Schema.suspend(() => ReportReportFormattingObjectsV2_1_0)),
   reportSource: Schema.optionalKey(
     Schema.Union([
       Schema.Literal("Default"),
@@ -66,19 +76,13 @@ export const ReportV2_1_0: Schema.Codec<ReportV2_1_0> = closed({
     ]),
   ),
   publicCustomVisuals: Schema.optionalKey(Schema.Array(Schema.String)),
-  resourcePackages: Schema.optionalKey(
-    Schema.Array(Schema.suspend(() => ReportResourcePackage)),
-  ),
+  resourcePackages: Schema.optionalKey(Schema.Array(Schema.suspend(() => ReportResourcePackage))),
   organizationCustomVisuals: Schema.optionalKey(
     Schema.Array(Schema.suspend(() => ReportOrganizationCustomVisual)),
   ),
-  annotations: Schema.optionalKey(
-    Schema.Array(Schema.suspend(() => ReportAnnotation)),
-  ),
+  annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => ReportAnnotation))),
   dataSourceVariables: Schema.optionalKey(Schema.String),
-  settings: Schema.optionalKey(
-    Schema.suspend(() => ReportExplorationSettingsV1_0_0),
-  ),
+  settings: Schema.optionalKey(Schema.suspend(() => ReportExplorationSettingsV1_0_0)),
   slowDataSourceSettings: Schema.optionalKey(
     Schema.suspend(() => ReportExplorationSlowDataSourceSettings),
   ),

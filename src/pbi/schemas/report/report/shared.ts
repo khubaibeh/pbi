@@ -1,21 +1,23 @@
 import { Schema } from "effect";
 import { closed } from "../shared.js";
-import { FormattingObjectDefinitionsDefinitionsV1_3_0, FormattingObjectDefinitionsDefinitionsV1_4_0, FormattingObjectDefinitionsDefinitionsV1_5_0, FormattingObjectDefinitionsSelectorV1_3_0, FormattingObjectDefinitionsSelectorV1_4_0, FormattingObjectDefinitionsSelectorV1_5_0 } from "../formatting-object-definitions/shared.js";
+import {
+  FormattingObjectDefinitionsDefinitionsV1_3_0,
+  FormattingObjectDefinitionsDefinitionsV1_4_0,
+  FormattingObjectDefinitionsDefinitionsV1_5_0,
+  FormattingObjectDefinitionsSelectorV1_3_0,
+  FormattingObjectDefinitionsSelectorV1_4_0,
+  FormattingObjectDefinitionsSelectorV1_5_0,
+} from "../formatting-object-definitions/shared.js";
 
 export type ReportThemeCollectionV1_0_0 = {
   readonly baseTheme?: ReportThemeMetadataV1_0_0;
   readonly customTheme?: ReportThemeMetadataV1_0_0;
 };
 
-export const ReportThemeCollectionV1_0_0: Schema.Codec<ReportThemeCollectionV1_0_0> =
-  closed({
-    baseTheme: Schema.optionalKey(
-      Schema.suspend(() => ReportThemeMetadataV1_0_0),
-    ),
-    customTheme: Schema.optionalKey(
-      Schema.suspend(() => ReportThemeMetadataV1_0_0),
-    ),
-  });
+export const ReportThemeCollectionV1_0_0: Schema.Codec<ReportThemeCollectionV1_0_0> = closed({
+  baseTheme: Schema.optionalKey(Schema.suspend(() => ReportThemeMetadataV1_0_0)),
+  customTheme: Schema.optionalKey(Schema.suspend(() => ReportThemeMetadataV1_0_0)),
+});
 
 export type ReportThemeMetadataV1_0_0 = {
   readonly name: string;
@@ -23,26 +25,23 @@ export type ReportThemeMetadataV1_0_0 = {
   readonly type: ReportThemeResourcePackageType;
 };
 
-export const ReportThemeMetadataV1_0_0: Schema.Codec<ReportThemeMetadataV1_0_0> =
-  closed({
-    name: Schema.String,
-    reportVersionAtImport: Schema.String,
-    type: Schema.suspend(() => ReportThemeResourcePackageType),
-  });
+export const ReportThemeMetadataV1_0_0: Schema.Codec<ReportThemeMetadataV1_0_0> = closed({
+  name: Schema.String,
+  reportVersionAtImport: Schema.String,
+  type: Schema.suspend(() => ReportThemeResourcePackageType),
+});
 
-export type ReportThemeResourcePackageType =
-  "RegisteredResources" | "SharedResources";
+export type ReportThemeResourcePackageType = "RegisteredResources" | "SharedResources";
 
 export const ReportThemeResourcePackageType: Schema.Codec<ReportThemeResourcePackageType> =
-  Schema.Union([
-    Schema.Literal("RegisteredResources"),
-    Schema.Literal("SharedResources"),
-  ]);
+  Schema.Union([Schema.Literal("RegisteredResources"), Schema.Literal("SharedResources")]);
 
 export type ReportLayoutOptimization = "None" | "PhonePortrait";
 
-export const ReportLayoutOptimization: Schema.Codec<ReportLayoutOptimization> =
-  Schema.Union([Schema.Literal("None"), Schema.Literal("PhonePortrait")]);
+export const ReportLayoutOptimization: Schema.Codec<ReportLayoutOptimization> = Schema.Union([
+  Schema.Literal("None"),
+  Schema.Literal("PhonePortrait"),
+]);
 
 export type ReportFilterContainerFormattingObjectsProperties = {
   readonly requireSingleSelect?: Schema.Json;
@@ -60,11 +59,10 @@ export type ReportOutspacePane = {
   readonly visible?: Schema.Json;
 };
 
-export const ReportOutspacePane: Schema.Codec<ReportOutspacePane> =
-  closed({
-    expanded: Schema.optionalKey(Schema.Json),
-    visible: Schema.optionalKey(Schema.Json),
-  });
+export const ReportOutspacePane: Schema.Codec<ReportOutspacePane> = closed({
+  expanded: Schema.optionalKey(Schema.Json),
+  visible: Schema.optionalKey(Schema.Json),
+});
 
 export type ReportSection = {
   readonly verticalAlignment?: Schema.Json;
@@ -82,14 +80,13 @@ export type ReportResourcePackage = {
   readonly disabled?: boolean;
 };
 
-export const ReportResourcePackage: Schema.Codec<ReportResourcePackage> =
-  closed({
-    id: Schema.optionalKey(Schema.Finite),
-    name: Schema.String,
-    type: Schema.suspend(() => ReportResourcePackageType),
-    items: Schema.Array(Schema.suspend(() => ReportResourcePackageItem)),
-    disabled: Schema.optionalKey(Schema.Boolean),
-  });
+export const ReportResourcePackage: Schema.Codec<ReportResourcePackage> = closed({
+  id: Schema.optionalKey(Schema.Finite),
+  name: Schema.String,
+  type: Schema.suspend(() => ReportResourcePackageType),
+  items: Schema.Array(Schema.suspend(() => ReportResourcePackageItem)),
+  disabled: Schema.optionalKey(Schema.Boolean),
+});
 
 export type ReportResourcePackageType =
   | "CustomVisual"
@@ -97,13 +94,12 @@ export type ReportResourcePackageType =
   | "SharedResources"
   | "OrganizationalStoreCustomVisual";
 
-export const ReportResourcePackageType: Schema.Codec<ReportResourcePackageType> =
-  Schema.Union([
-    Schema.Literal("CustomVisual"),
-    Schema.Literal("RegisteredResources"),
-    Schema.Literal("SharedResources"),
-    Schema.Literal("OrganizationalStoreCustomVisual"),
-  ]);
+export const ReportResourcePackageType: Schema.Codec<ReportResourcePackageType> = Schema.Union([
+  Schema.Literal("CustomVisual"),
+  Schema.Literal("RegisteredResources"),
+  Schema.Literal("SharedResources"),
+  Schema.Literal("OrganizationalStoreCustomVisual"),
+]);
 
 export type ReportResourcePackageItem = {
   readonly id?: number;
@@ -112,13 +108,12 @@ export type ReportResourcePackageItem = {
   readonly type: ReportResourcePackageItemType;
 };
 
-export const ReportResourcePackageItem: Schema.Codec<ReportResourcePackageItem> =
-  closed({
-    id: Schema.optionalKey(Schema.Finite),
-    name: Schema.String,
-    path: Schema.String,
-    type: Schema.suspend(() => ReportResourcePackageItemType),
-  });
+export const ReportResourcePackageItem: Schema.Codec<ReportResourcePackageItem> = closed({
+  id: Schema.optionalKey(Schema.Finite),
+  name: Schema.String,
+  path: Schema.String,
+  type: Schema.suspend(() => ReportResourcePackageItemType),
+});
 
 export type ReportResourcePackageItemType =
   | "CustomVisualJavascript"
@@ -164,27 +159,27 @@ export type ReportOrganizationCustomVisual = {
   readonly disabled?: boolean;
 };
 
-export const ReportOrganizationCustomVisual: Schema.Codec<ReportOrganizationCustomVisual> =
-  closed({
-    name: Schema.String,
-    path: Schema.String,
-    disabled: Schema.optionalKey(Schema.Boolean),
-  });
+export const ReportOrganizationCustomVisual: Schema.Codec<ReportOrganizationCustomVisual> = closed({
+  name: Schema.String,
+  path: Schema.String,
+  disabled: Schema.optionalKey(Schema.Boolean),
+});
 
 export type ReportAnnotation = {
   readonly name: string;
   readonly value: string;
 };
 
-export const ReportAnnotation: Schema.Codec<ReportAnnotation> =
-  closed({ name: Schema.String, value: Schema.String });
+export const ReportAnnotation: Schema.Codec<ReportAnnotation> = closed({
+  name: Schema.String,
+  value: Schema.String,
+});
 
 export type ReportExplorationSettingsV1_0_0 = {
   readonly isPersistentUserStateDisabled?: boolean;
   readonly hideVisualContainerHeader?: boolean;
   readonly useStylableVisualContainerHeader?: boolean;
-  readonly exportDataMode?:
-    "AllowSummarized" | "AllowSummarizedAndUnderlying" | "None";
+  readonly exportDataMode?: "AllowSummarized" | "AllowSummarizedAndUnderlying" | "None";
   readonly isReportAnnotationsDisabled?: boolean;
   readonly defaultFilterActionIsDataFilter?: boolean;
   readonly defaultDrillFilterOtherVisuals?: boolean;
@@ -290,11 +285,7 @@ export const ReportReportFormattingObjectsV1_3_0: Schema.Codec<ReportReportForma
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_3_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_3_0.Selector),
           ),
           properties: Schema.suspend(() => ReportOutspacePane),
         }),
@@ -304,11 +295,7 @@ export const ReportReportFormattingObjectsV1_3_0: Schema.Codec<ReportReportForma
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_3_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_3_0.Selector),
           ),
           properties: Schema.suspend(() => ReportSection),
         }),
@@ -333,11 +320,7 @@ export const ReportReportFormattingObjectsV2_1_0: Schema.Codec<ReportReportForma
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_4_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_4_0.Selector),
           ),
           properties: Schema.suspend(() => ReportOutspacePane),
         }),
@@ -347,11 +330,7 @@ export const ReportReportFormattingObjectsV2_1_0: Schema.Codec<ReportReportForma
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_4_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_4_0.Selector),
           ),
           properties: Schema.suspend(() => ReportSection),
         }),
@@ -364,15 +343,10 @@ export type ReportThemeCollectionV3_0_0 = {
   readonly customTheme?: ReportThemeMetadataV3_0_0;
 };
 
-export const ReportThemeCollectionV3_0_0: Schema.Codec<ReportThemeCollectionV3_0_0> =
-  closed({
-    baseTheme: Schema.optionalKey(
-      Schema.suspend(() => ReportThemeMetadataV3_0_0),
-    ),
-    customTheme: Schema.optionalKey(
-      Schema.suspend(() => ReportThemeMetadataV3_0_0),
-    ),
-  });
+export const ReportThemeCollectionV3_0_0: Schema.Codec<ReportThemeCollectionV3_0_0> = closed({
+  baseTheme: Schema.optionalKey(Schema.suspend(() => ReportThemeMetadataV3_0_0)),
+  customTheme: Schema.optionalKey(Schema.suspend(() => ReportThemeMetadataV3_0_0)),
+});
 
 export type ReportThemeMetadataV3_0_0 = {
   readonly name: string;
@@ -380,12 +354,11 @@ export type ReportThemeMetadataV3_0_0 = {
   readonly type: ReportThemeResourcePackageType;
 };
 
-export const ReportThemeMetadataV3_0_0: Schema.Codec<ReportThemeMetadataV3_0_0> =
-  closed({
-    name: Schema.String,
-    reportVersionAtImport: Schema.suspend(() => ReportThemeVersion),
-    type: Schema.suspend(() => ReportThemeResourcePackageType),
-  });
+export const ReportThemeMetadataV3_0_0: Schema.Codec<ReportThemeMetadataV3_0_0> = closed({
+  name: Schema.String,
+  reportVersionAtImport: Schema.suspend(() => ReportThemeVersion),
+  type: Schema.suspend(() => ReportThemeResourcePackageType),
+});
 
 export type ReportThemeVersion = {
   readonly visual: string;
@@ -393,25 +366,17 @@ export type ReportThemeVersion = {
   readonly report: string;
 };
 
-export const ReportThemeVersion: Schema.Codec<ReportThemeVersion> =
-  closed({
-    visual: Schema.String.check(
-      Schema.isPattern(new RegExp("^[0-9]+\\.[0-9]+\\.[0-9]+$")),
-    ),
-    page: Schema.String.check(
-      Schema.isPattern(new RegExp("^[0-9]+\\.[0-9]+\\.[0-9]+$")),
-    ),
-    report: Schema.String.check(
-      Schema.isPattern(new RegExp("^[0-9]+\\.[0-9]+\\.[0-9]+$")),
-    ),
-  });
+export const ReportThemeVersion: Schema.Codec<ReportThemeVersion> = closed({
+  visual: Schema.String.check(Schema.isPattern(new RegExp("^[0-9]+\\.[0-9]+\\.[0-9]+$"))),
+  page: Schema.String.check(Schema.isPattern(new RegExp("^[0-9]+\\.[0-9]+\\.[0-9]+$"))),
+  report: Schema.String.check(Schema.isPattern(new RegExp("^[0-9]+\\.[0-9]+\\.[0-9]+$"))),
+});
 
 export type ReportExplorationSettingsV3_1_0 = {
   readonly isPersistentUserStateDisabled?: boolean;
   readonly hideVisualContainerHeader?: boolean;
   readonly useStylableVisualContainerHeader?: boolean;
-  readonly exportDataMode?:
-    "AllowSummarized" | "AllowSummarizedAndUnderlying" | "None";
+  readonly exportDataMode?: "AllowSummarized" | "AllowSummarizedAndUnderlying" | "None";
   readonly isReportAnnotationsDisabled?: boolean;
   readonly defaultFilterActionIsDataFilter?: boolean;
   readonly defaultDrillFilterOtherVisuals?: boolean;
@@ -511,11 +476,7 @@ export const ReportReportFormattingObjectsV3_2_0: Schema.Codec<ReportReportForma
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
           properties: Schema.suspend(() => ReportOutspacePane),
         }),
@@ -525,11 +486,7 @@ export const ReportReportFormattingObjectsV3_2_0: Schema.Codec<ReportReportForma
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_5_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.Selector),
           ),
           properties: Schema.suspend(() => ReportSection),
         }),

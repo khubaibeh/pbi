@@ -10,9 +10,7 @@ export const ReportExtensionReportExtensionEntity: Schema.Codec<ReportExtensionR
   closed({
     name: Schema.String,
     measures: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(() => ReportExtensionReportExtensionMeasure),
-      ),
+      Schema.Array(Schema.suspend(() => ReportExtensionReportExtensionMeasure)),
     ),
   });
 
@@ -44,13 +42,9 @@ export const ReportExtensionReportExtensionMeasure: Schema.Codec<ReportExtension
     description: Schema.optionalKey(Schema.String),
     displayFolder: Schema.optionalKey(Schema.String),
     annotations: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(() => ReportExtensionMeasureExtensionAnnotation),
-      ),
+      Schema.Array(Schema.suspend(() => ReportExtensionMeasureExtensionAnnotation)),
     ),
-    references: Schema.optionalKey(
-      Schema.suspend(() => ReportExtensionExpressionReferences),
-    ),
+    references: Schema.optionalKey(Schema.suspend(() => ReportExtensionExpressionReferences)),
   });
 
 export type ReportExtensionPrimitiveTypeName =
@@ -135,8 +129,7 @@ export const ReportExtensionDefinitions = {
   ReportExtensionEntity: ReportExtensionReportExtensionEntity,
   ReportExtensionMeasure: ReportExtensionReportExtensionMeasure,
   PrimitiveTypeName: ReportExtensionPrimitiveTypeName,
-  ReportExtensionMeasureTemplate:
-    ReportExtensionReportExtensionMeasureTemplate,
+  ReportExtensionMeasureTemplate: ReportExtensionReportExtensionMeasureTemplate,
   MeasureExtensionAnnotation: ReportExtensionMeasureExtensionAnnotation,
   ExpressionReferences: ReportExtensionExpressionReferences,
   MeasureReference: ReportExtensionMeasureReference,
@@ -148,17 +141,17 @@ export type ReportExtension = {
   readonly $schema: "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/reportExtension/1.0.0/schema.json";
 };
 
-export const ReportExtension: Schema.Codec<ReportExtension> =
-  closed({
-    name: Schema.String,
-    entities: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(() => ReportExtensionReportExtensionEntity),
-      ),
-    ),
-    $schema: Schema.Literal(
-      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/reportExtension/1.0.0/schema.json",
-    ),
-  });
+export const ReportExtension: Schema.Codec<ReportExtension> = closed({
+  name: Schema.String,
+  entities: Schema.optionalKey(
+    Schema.Array(Schema.suspend(() => ReportExtensionReportExtensionEntity)),
+  ),
+  $schema: Schema.Literal(
+    "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/reportExtension/1.0.0/schema.json",
+  ),
+});
 
-export { ReportExtensionDefinitions as ReportExtensionDefinitionsV1_0_0, ReportExtension as ReportExtensionV1_0_0 };
+export {
+  ReportExtensionDefinitions as ReportExtensionDefinitionsV1_0_0,
+  ReportExtension as ReportExtensionV1_0_0,
+};

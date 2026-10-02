@@ -1,8 +1,41 @@
 import { Schema } from "effect";
 import { closed } from "../shared.js";
-import { FormattingObjectDefinitionsDataViewObjectDefinitionsV1_1_0, FormattingObjectDefinitionsDefinitionsV1_1_0, FormattingObjectDefinitionsSelectorV1_1_0 } from "../formatting-object-definitions/shared.js";
-import { FilterDefinitionV1_1_0, QueryExpressionContainerV1_1_0 } from "../semantic-query/shared.js";
-import { VisualContainerAIDecompositionMethod, VisualContainerAILevelInformation, VisualContainerAnnotation, VisualContainerBackground, VisualContainerBorderV1_1_0, VisualContainerDividerV1_1_0, VisualContainerDropShadow, VisualContainerFilterContainerFormattingObjectsProperties, VisualContainerGroupLayoutMode, VisualContainerLockAspect, VisualContainerPadding, VisualContainerSortDirection, VisualContainerSpacing, VisualContainerStylePreset, VisualContainerSubTitle, VisualContainerTitle, VisualContainerVisualContainerGeneralFormattingObjects, VisualContainerVisualContainerPositionV1_0_0, VisualContainerVisualGroupGeneralFormattingObjects, VisualContainerVisualHeaderTooltip, VisualContainerVisualHeaderV1_1_0, VisualContainerVisualLink, VisualContainerVisualQueryOptions, VisualContainerVisualSyncGroup, VisualContainerVisualTooltip } from "./shared.js";
+import {
+  FormattingObjectDefinitionsDataViewObjectDefinitionsV1_1_0,
+  FormattingObjectDefinitionsDefinitionsV1_1_0,
+  FormattingObjectDefinitionsSelectorV1_1_0,
+} from "../formatting-object-definitions/shared.js";
+import {
+  FilterDefinitionV1_1_0,
+  QueryExpressionContainerV1_1_0,
+} from "../semantic-query/shared.js";
+import {
+  VisualContainerAIDecompositionMethod,
+  VisualContainerAILevelInformation,
+  VisualContainerAnnotation,
+  VisualContainerBackground,
+  VisualContainerBorderV1_1_0,
+  VisualContainerDividerV1_1_0,
+  VisualContainerDropShadow,
+  VisualContainerFilterContainerFormattingObjectsProperties,
+  VisualContainerGroupLayoutMode,
+  VisualContainerLockAspect,
+  VisualContainerPadding,
+  VisualContainerSortDirection,
+  VisualContainerSpacing,
+  VisualContainerStylePreset,
+  VisualContainerSubTitle,
+  VisualContainerTitle,
+  VisualContainerVisualContainerGeneralFormattingObjects,
+  VisualContainerVisualContainerPositionV1_0_0,
+  VisualContainerVisualGroupGeneralFormattingObjects,
+  VisualContainerVisualHeaderTooltip,
+  VisualContainerVisualHeaderV1_1_0,
+  VisualContainerVisualLink,
+  VisualContainerVisualQueryOptions,
+  VisualContainerVisualSyncGroup,
+  VisualContainerVisualTooltip,
+} from "./shared.js";
 
 export type VisualContainerVisualConfigV1_1_0 = {
   readonly visualType: string;
@@ -24,20 +57,12 @@ export const VisualContainerVisualConfigV1_1_0: Schema.Codec<VisualContainerVisu
       Schema.Array(Schema.suspend(() => VisualContainerExpansionStateV1_1_0)),
     ),
     objects: Schema.optionalKey(
-      Schema.suspend(
-        () =>
-          FormattingObjectDefinitionsDefinitionsV1_1_0
-            .DataViewObjectDefinitions,
-      ),
+      Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.DataViewObjectDefinitions),
     ),
     visualContainerObjects: Schema.optionalKey(
-      Schema.suspend(
-        () => VisualContainerVisualContainerFormattingObjectsV1_1_0,
-      ),
+      Schema.suspend(() => VisualContainerVisualContainerFormattingObjectsV1_1_0),
     ),
-    syncGroup: Schema.optionalKey(
-      Schema.suspend(() => VisualContainerVisualSyncGroup),
-    ),
+    syncGroup: Schema.optionalKey(Schema.suspend(() => VisualContainerVisualSyncGroup)),
     drillFilterOtherVisuals: Schema.optionalKey(Schema.Boolean),
   });
 
@@ -50,20 +75,15 @@ export type VisualContainerQueryV1_1_0 = {
   readonly isDrillDisabled?: boolean;
 };
 
-export const VisualContainerQueryV1_1_0: Schema.Codec<VisualContainerQueryV1_1_0> =
-  closed({
-    sortDefinition: Schema.optionalKey(
-      Schema.suspend(() => VisualContainerSortDefinitionV1_1_0),
-    ),
-    options: Schema.optionalKey(
-      Schema.suspend(() => VisualContainerVisualQueryOptions),
-    ),
-    queryState: Schema.Record(
-      Schema.String,
-      Schema.suspend(() => VisualContainerProjectionStateV1_1_0),
-    ),
-    isDrillDisabled: Schema.optionalKey(Schema.Boolean),
-  });
+export const VisualContainerQueryV1_1_0: Schema.Codec<VisualContainerQueryV1_1_0> = closed({
+  sortDefinition: Schema.optionalKey(Schema.suspend(() => VisualContainerSortDefinitionV1_1_0)),
+  options: Schema.optionalKey(Schema.suspend(() => VisualContainerVisualQueryOptions)),
+  queryState: Schema.Record(
+    Schema.String,
+    Schema.suspend(() => VisualContainerProjectionStateV1_1_0),
+  ),
+  isDrillDisabled: Schema.optionalKey(Schema.Boolean),
+});
 
 export type VisualContainerSortDefinitionV1_1_0 = {
   readonly sort?: ReadonlyArray<VisualContainerQuerySortV1_1_0>;
@@ -72,9 +92,7 @@ export type VisualContainerSortDefinitionV1_1_0 = {
 
 export const VisualContainerSortDefinitionV1_1_0: Schema.Codec<VisualContainerSortDefinitionV1_1_0> =
   closed({
-    sort: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => VisualContainerQuerySortV1_1_0)),
-    ),
+    sort: Schema.optionalKey(Schema.Array(Schema.suspend(() => VisualContainerQuerySortV1_1_0))),
     isDefaultSort: Schema.optionalKey(Schema.Boolean),
   });
 
@@ -83,13 +101,10 @@ export type VisualContainerQuerySortV1_1_0 = {
   readonly direction: VisualContainerSortDirection;
 };
 
-export const VisualContainerQuerySortV1_1_0: Schema.Codec<VisualContainerQuerySortV1_1_0> =
-  closed({
-    field: Schema.suspend(
-      () => QueryExpressionContainerV1_1_0,
-    ),
-    direction: Schema.suspend(() => VisualContainerSortDirection),
-  });
+export const VisualContainerQuerySortV1_1_0: Schema.Codec<VisualContainerQuerySortV1_1_0> = closed({
+  field: Schema.suspend(() => QueryExpressionContainerV1_1_0),
+  direction: Schema.suspend(() => VisualContainerSortDirection),
+});
 
 export type VisualContainerProjectionStateV1_1_0 = {
   readonly showAll?: boolean;
@@ -100,13 +115,9 @@ export type VisualContainerProjectionStateV1_1_0 = {
 export const VisualContainerProjectionStateV1_1_0: Schema.Codec<VisualContainerProjectionStateV1_1_0> =
   closed({
     showAll: Schema.optionalKey(Schema.Boolean),
-    projections: Schema.Array(
-      Schema.suspend(() => VisualContainerRoleProjectionV1_1_0),
-    ),
+    projections: Schema.Array(Schema.suspend(() => VisualContainerRoleProjectionV1_1_0)),
     fieldParameters: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(() => VisualContainerRoleFieldParameterV1_1_0),
-      ),
+      Schema.Array(Schema.suspend(() => VisualContainerRoleFieldParameterV1_1_0)),
     ),
   });
 
@@ -122,9 +133,7 @@ export type VisualContainerRoleProjectionV1_1_0 = {
 
 export const VisualContainerRoleProjectionV1_1_0: Schema.Codec<VisualContainerRoleProjectionV1_1_0> =
   closed({
-    field: Schema.suspend(
-      () => QueryExpressionContainerV1_1_0,
-    ),
+    field: Schema.suspend(() => QueryExpressionContainerV1_1_0),
     queryRef: Schema.String,
     nativeQueryRef: Schema.optionalKey(Schema.String),
     displayName: Schema.optionalKey(Schema.String),
@@ -141,9 +150,7 @@ export type VisualContainerRoleFieldParameterV1_1_0 = {
 
 export const VisualContainerRoleFieldParameterV1_1_0: Schema.Codec<VisualContainerRoleFieldParameterV1_1_0> =
   closed({
-    parameterExpr: Schema.suspend(
-      () => QueryExpressionContainerV1_1_0,
-    ),
+    parameterExpr: Schema.suspend(() => QueryExpressionContainerV1_1_0),
     index: Schema.Finite,
     length: Schema.optionalKey(Schema.Finite),
   });
@@ -157,13 +164,9 @@ export type VisualContainerExpansionStateV1_1_0 = {
 export const VisualContainerExpansionStateV1_1_0: Schema.Codec<VisualContainerExpansionStateV1_1_0> =
   closed({
     roles: Schema.Array(Schema.String),
-    root: Schema.optionalKey(
-      Schema.suspend(() => VisualContainerRootExpansionStateV1_1_0),
-    ),
+    root: Schema.optionalKey(Schema.suspend(() => VisualContainerRootExpansionStateV1_1_0)),
     levels: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(() => VisualContainerLevelExpansionStateV1_1_0),
-      ),
+      Schema.Array(Schema.suspend(() => VisualContainerLevelExpansionStateV1_1_0)),
     ),
   });
 
@@ -176,17 +179,11 @@ export type VisualContainerRootExpansionStateV1_1_0 = {
 export const VisualContainerRootExpansionStateV1_1_0: Schema.Codec<VisualContainerRootExpansionStateV1_1_0> =
   closed({
     identityValues: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(
-          () => QueryExpressionContainerV1_1_0,
-        ),
-      ),
+      Schema.Array(Schema.suspend(() => QueryExpressionContainerV1_1_0)),
     ),
     isToggled: Schema.optionalKey(Schema.Boolean),
     children: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(() => VisualContainerNodeExpansionStateV1_1_0),
-      ),
+      Schema.Array(Schema.suspend(() => VisualContainerNodeExpansionStateV1_1_0)),
     ),
   });
 
@@ -198,16 +195,10 @@ export type VisualContainerNodeExpansionStateV1_1_0 = {
 
 export const VisualContainerNodeExpansionStateV1_1_0: Schema.Codec<VisualContainerNodeExpansionStateV1_1_0> =
   closed({
-    identityValues: Schema.Array(
-      Schema.suspend(
-        () => QueryExpressionContainerV1_1_0,
-      ),
-    ),
+    identityValues: Schema.Array(Schema.suspend(() => QueryExpressionContainerV1_1_0)),
     isToggled: Schema.optionalKey(Schema.Boolean),
     children: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(() => VisualContainerNodeExpansionStateV1_1_0),
-      ),
+      Schema.Array(Schema.suspend(() => VisualContainerNodeExpansionStateV1_1_0)),
     ),
   });
 
@@ -223,19 +214,13 @@ export type VisualContainerLevelExpansionStateV1_1_0 = {
 export const VisualContainerLevelExpansionStateV1_1_0: Schema.Codec<VisualContainerLevelExpansionStateV1_1_0> =
   closed({
     identityKeys: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(
-          () => QueryExpressionContainerV1_1_0,
-        ),
-      ),
+      Schema.Array(Schema.suspend(() => QueryExpressionContainerV1_1_0)),
     ),
     isCollapsed: Schema.optionalKey(Schema.Boolean),
     queryRefs: Schema.Array(Schema.String),
     isPinned: Schema.optionalKey(Schema.Boolean),
     isLocked: Schema.optionalKey(Schema.Boolean),
-    AIInformation: Schema.optionalKey(
-      Schema.suspend(() => VisualContainerAILevelInformation),
-    ),
+    AIInformation: Schema.optionalKey(Schema.suspend(() => VisualContainerAILevelInformation)),
   });
 
 export type VisualContainerVisualContainerFormattingObjectsV1_1_0 = {
@@ -307,11 +292,7 @@ export const VisualContainerVisualContainerFormattingObjectsV1_1_0: Schema.Codec
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => VisualContainerTitle),
         }),
@@ -321,11 +302,7 @@ export const VisualContainerVisualContainerFormattingObjectsV1_1_0: Schema.Codec
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => VisualContainerSubTitle),
         }),
@@ -335,11 +312,7 @@ export const VisualContainerVisualContainerFormattingObjectsV1_1_0: Schema.Codec
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => VisualContainerDividerV1_1_0),
         }),
@@ -349,11 +322,7 @@ export const VisualContainerVisualContainerFormattingObjectsV1_1_0: Schema.Codec
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => VisualContainerSpacing),
         }),
@@ -363,11 +332,7 @@ export const VisualContainerVisualContainerFormattingObjectsV1_1_0: Schema.Codec
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => VisualContainerBackground),
         }),
@@ -377,11 +342,7 @@ export const VisualContainerVisualContainerFormattingObjectsV1_1_0: Schema.Codec
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => VisualContainerPadding),
         }),
@@ -391,11 +352,7 @@ export const VisualContainerVisualContainerFormattingObjectsV1_1_0: Schema.Codec
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => VisualContainerLockAspect),
         }),
@@ -405,15 +362,9 @@ export const VisualContainerVisualContainerFormattingObjectsV1_1_0: Schema.Codec
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
-          properties: Schema.suspend(
-            () => VisualContainerVisualContainerGeneralFormattingObjects,
-          ),
+          properties: Schema.suspend(() => VisualContainerVisualContainerGeneralFormattingObjects),
         }),
       ),
     ),
@@ -421,11 +372,7 @@ export const VisualContainerVisualContainerFormattingObjectsV1_1_0: Schema.Codec
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => VisualContainerBorderV1_1_0),
         }),
@@ -435,11 +382,7 @@ export const VisualContainerVisualContainerFormattingObjectsV1_1_0: Schema.Codec
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => VisualContainerDropShadow),
         }),
@@ -449,11 +392,7 @@ export const VisualContainerVisualContainerFormattingObjectsV1_1_0: Schema.Codec
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => VisualContainerVisualLink),
         }),
@@ -463,11 +402,7 @@ export const VisualContainerVisualContainerFormattingObjectsV1_1_0: Schema.Codec
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => VisualContainerVisualTooltip),
         }),
@@ -477,11 +412,7 @@ export const VisualContainerVisualContainerFormattingObjectsV1_1_0: Schema.Codec
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => VisualContainerStylePreset),
         }),
@@ -491,11 +422,7 @@ export const VisualContainerVisualContainerFormattingObjectsV1_1_0: Schema.Codec
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => VisualContainerVisualHeaderV1_1_0),
         }),
@@ -505,15 +432,9 @@ export const VisualContainerVisualContainerFormattingObjectsV1_1_0: Schema.Codec
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
-          properties: Schema.suspend(
-            () => VisualContainerVisualHeaderTooltip,
-          ),
+          properties: Schema.suspend(() => VisualContainerVisualHeaderTooltip),
         }),
       ),
     ),
@@ -555,11 +476,7 @@ export const VisualContainerVisualGroupFormattingObjectsV1_1_0: Schema.Codec<Vis
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => VisualContainerBackground),
         }),
@@ -569,11 +486,7 @@ export const VisualContainerVisualGroupFormattingObjectsV1_1_0: Schema.Codec<Vis
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => VisualContainerLockAspect),
         }),
@@ -583,15 +496,9 @@ export const VisualContainerVisualGroupFormattingObjectsV1_1_0: Schema.Codec<Vis
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
-          properties: Schema.suspend(
-            () => VisualContainerVisualGroupGeneralFormattingObjects,
-          ),
+          properties: Schema.suspend(() => VisualContainerVisualGroupGeneralFormattingObjects),
         }),
       ),
     ),
@@ -635,8 +542,7 @@ export type VisualContainerFilterContainerV1_1_0 = {
     | "VisualTopN";
   readonly filter?: FilterDefinitionV1_1_0;
   readonly restatement?: string;
-  readonly howCreated?:
-    "Auto" | "User" | "Drill" | "Include" | "Exclude" | "Drillthrough";
+  readonly howCreated?: "Auto" | "User" | "Drill" | "Include" | "Exclude" | "Drillthrough";
   readonly isHiddenInViewMode?: boolean;
   readonly isLockedInViewMode?: boolean;
   readonly objects?: VisualContainerFilterContainerFormattingObjectsV1_1_0;
@@ -647,11 +553,7 @@ export const VisualContainerFilterContainerV1_1_0: Schema.Codec<VisualContainerF
     name: Schema.String,
     displayName: Schema.optionalKey(Schema.String),
     ordinal: Schema.optionalKey(Schema.Finite),
-    field: Schema.optionalKey(
-      Schema.suspend(
-        () => QueryExpressionContainerV1_1_0,
-      ),
-    ),
+    field: Schema.optionalKey(Schema.suspend(() => QueryExpressionContainerV1_1_0)),
     type: Schema.optionalKey(
       Schema.Union([
         Schema.Literal("Categorical"),
@@ -667,11 +569,7 @@ export const VisualContainerFilterContainerV1_1_0: Schema.Codec<VisualContainerF
         Schema.Literal("VisualTopN"),
       ]),
     ),
-    filter: Schema.optionalKey(
-      Schema.suspend(
-        () => FilterDefinitionV1_1_0,
-      ),
-    ),
+    filter: Schema.optionalKey(Schema.suspend(() => FilterDefinitionV1_1_0)),
     restatement: Schema.optionalKey(Schema.String),
     howCreated: Schema.optionalKey(
       Schema.Union([
@@ -686,9 +584,7 @@ export const VisualContainerFilterContainerV1_1_0: Schema.Codec<VisualContainerF
     isHiddenInViewMode: Schema.optionalKey(Schema.Boolean),
     isLockedInViewMode: Schema.optionalKey(Schema.Boolean),
     objects: Schema.optionalKey(
-      Schema.suspend(
-        () => VisualContainerFilterContainerFormattingObjectsV1_1_0,
-      ),
+      Schema.suspend(() => VisualContainerFilterContainerFormattingObjectsV1_1_0),
     ),
   });
 
@@ -705,15 +601,10 @@ export const VisualContainerFilterContainerFormattingObjectsV1_1_0: Schema.Codec
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(
-            () =>
-              VisualContainerFilterContainerFormattingObjectsProperties,
+            () => VisualContainerFilterContainerFormattingObjectsProperties,
           ),
         }),
       ),
@@ -737,8 +628,7 @@ export const VisualContainerDefinitionsV1_1_0 = {
   LevelExpansionState: VisualContainerLevelExpansionStateV1_1_0,
   AILevelInformation: VisualContainerAILevelInformation,
   AIDecompositionMethod: VisualContainerAIDecompositionMethod,
-  VisualContainerFormattingObjects:
-    VisualContainerVisualContainerFormattingObjectsV1_1_0,
+  VisualContainerFormattingObjects: VisualContainerVisualContainerFormattingObjectsV1_1_0,
   Title: VisualContainerTitle,
   SubTitle: VisualContainerSubTitle,
   Divider: VisualContainerDividerV1_1_0,
@@ -746,8 +636,7 @@ export const VisualContainerDefinitionsV1_1_0 = {
   Background: VisualContainerBackground,
   Padding: VisualContainerPadding,
   LockAspect: VisualContainerLockAspect,
-  VisualContainerGeneralFormattingObjects:
-    VisualContainerVisualContainerGeneralFormattingObjects,
+  VisualContainerGeneralFormattingObjects: VisualContainerVisualContainerGeneralFormattingObjects,
   Border: VisualContainerBorderV1_1_0,
   DropShadow: VisualContainerDropShadow,
   VisualLink: VisualContainerVisualLink,
@@ -758,14 +647,11 @@ export const VisualContainerDefinitionsV1_1_0 = {
   VisualSyncGroup: VisualContainerVisualSyncGroup,
   VisualGroupConfig: VisualContainerVisualGroupConfigV1_1_0,
   GroupLayoutMode: VisualContainerGroupLayoutMode,
-  VisualGroupFormattingObjects:
-    VisualContainerVisualGroupFormattingObjectsV1_1_0,
-  VisualGroupGeneralFormattingObjects:
-    VisualContainerVisualGroupGeneralFormattingObjects,
+  VisualGroupFormattingObjects: VisualContainerVisualGroupFormattingObjectsV1_1_0,
+  VisualGroupGeneralFormattingObjects: VisualContainerVisualGroupGeneralFormattingObjects,
   FilterConfig: VisualContainerFilterConfigV1_1_0,
   FilterContainer: VisualContainerFilterContainerV1_1_0,
-  FilterContainerFormattingObjects:
-    VisualContainerFilterContainerFormattingObjectsV1_1_0,
+  FilterContainerFormattingObjects: VisualContainerFilterContainerFormattingObjectsV1_1_0,
   FilterContainerFormattingObjectsProperties:
     VisualContainerFilterContainerFormattingObjectsProperties,
   Annotation: VisualContainerAnnotation,
@@ -831,82 +717,69 @@ export type VisualContainerV1_1_0 =
       readonly visual?: never;
     });
 
-export const VisualContainerV1_1_0: Schema.Codec<VisualContainerV1_1_0> =
-  Schema.Union([
-    closed({
-      $schema: Schema.Literal(
-        "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.1.0/schema.json",
-      ),
-      name: Schema.String.check(Schema.isMaxCodePoints(50)),
-      position: Schema.suspend(
-        () => VisualContainerVisualContainerPositionV1_0_0,
-      ),
-      visual: Schema.suspend(() => VisualContainerVisualConfigV1_1_0),
-      parentGroupName: Schema.optionalKey(Schema.String),
-      filterConfig: Schema.optionalKey(
-        Schema.suspend(() => VisualContainerFilterConfigV1_1_0),
-      ),
-      isHidden: Schema.optionalKey(Schema.Boolean),
-      annotations: Schema.optionalKey(
-        Schema.Array(Schema.suspend(() => VisualContainerAnnotation)),
-      ),
-      howCreated: Schema.optionalKey(
-        Schema.Union([
-          Schema.Literal("Default"),
-          Schema.Literal("Copilot"),
-          Schema.Literal("CheckboxTickedInFieldList"),
-          Schema.Literal("DraggedToCanvas"),
-          Schema.Literal("VisualTypeIconClicked"),
-          Schema.Literal("DraggedToFieldWell"),
-          Schema.Literal("InsertVisualButton"),
-          Schema.Literal("WhatIfParameterControl"),
-          Schema.Literal("QnaAppBar"),
-          Schema.Literal("QnaDoubleClick"),
-          Schema.Literal("QnaKeyboardShortcut"),
-          Schema.Literal("FieldParameterControl"),
-          Schema.Literal("CanvasBackgroundContextMenu"),
-          Schema.Literal("ContextMenuPaste"),
-          Schema.Literal("CopyPaste"),
-          Schema.Literal("SummarizeVisualContainer"),
-        ]),
-      ),
-    }),
-    closed({
-      $schema: Schema.Literal(
-        "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.1.0/schema.json",
-      ),
-      name: Schema.String.check(Schema.isMaxCodePoints(50)),
-      position: Schema.suspend(
-        () => VisualContainerVisualContainerPositionV1_0_0,
-      ),
-      visualGroup: Schema.suspend(() => VisualContainerVisualGroupConfigV1_1_0),
-      parentGroupName: Schema.optionalKey(Schema.String),
-      filterConfig: Schema.optionalKey(
-        Schema.suspend(() => VisualContainerFilterConfigV1_1_0),
-      ),
-      isHidden: Schema.optionalKey(Schema.Boolean),
-      annotations: Schema.optionalKey(
-        Schema.Array(Schema.suspend(() => VisualContainerAnnotation)),
-      ),
-      howCreated: Schema.optionalKey(
-        Schema.Union([
-          Schema.Literal("Default"),
-          Schema.Literal("Copilot"),
-          Schema.Literal("CheckboxTickedInFieldList"),
-          Schema.Literal("DraggedToCanvas"),
-          Schema.Literal("VisualTypeIconClicked"),
-          Schema.Literal("DraggedToFieldWell"),
-          Schema.Literal("InsertVisualButton"),
-          Schema.Literal("WhatIfParameterControl"),
-          Schema.Literal("QnaAppBar"),
-          Schema.Literal("QnaDoubleClick"),
-          Schema.Literal("QnaKeyboardShortcut"),
-          Schema.Literal("FieldParameterControl"),
-          Schema.Literal("CanvasBackgroundContextMenu"),
-          Schema.Literal("ContextMenuPaste"),
-          Schema.Literal("CopyPaste"),
-          Schema.Literal("SummarizeVisualContainer"),
-        ]),
-      ),
-    }),
-  ]);
+export const VisualContainerV1_1_0: Schema.Codec<VisualContainerV1_1_0> = Schema.Union([
+  closed({
+    $schema: Schema.Literal(
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.1.0/schema.json",
+    ),
+    name: Schema.String.check(Schema.isMaxCodePoints(50)),
+    position: Schema.suspend(() => VisualContainerVisualContainerPositionV1_0_0),
+    visual: Schema.suspend(() => VisualContainerVisualConfigV1_1_0),
+    parentGroupName: Schema.optionalKey(Schema.String),
+    filterConfig: Schema.optionalKey(Schema.suspend(() => VisualContainerFilterConfigV1_1_0)),
+    isHidden: Schema.optionalKey(Schema.Boolean),
+    annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => VisualContainerAnnotation))),
+    howCreated: Schema.optionalKey(
+      Schema.Union([
+        Schema.Literal("Default"),
+        Schema.Literal("Copilot"),
+        Schema.Literal("CheckboxTickedInFieldList"),
+        Schema.Literal("DraggedToCanvas"),
+        Schema.Literal("VisualTypeIconClicked"),
+        Schema.Literal("DraggedToFieldWell"),
+        Schema.Literal("InsertVisualButton"),
+        Schema.Literal("WhatIfParameterControl"),
+        Schema.Literal("QnaAppBar"),
+        Schema.Literal("QnaDoubleClick"),
+        Schema.Literal("QnaKeyboardShortcut"),
+        Schema.Literal("FieldParameterControl"),
+        Schema.Literal("CanvasBackgroundContextMenu"),
+        Schema.Literal("ContextMenuPaste"),
+        Schema.Literal("CopyPaste"),
+        Schema.Literal("SummarizeVisualContainer"),
+      ]),
+    ),
+  }),
+  closed({
+    $schema: Schema.Literal(
+      "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.1.0/schema.json",
+    ),
+    name: Schema.String.check(Schema.isMaxCodePoints(50)),
+    position: Schema.suspend(() => VisualContainerVisualContainerPositionV1_0_0),
+    visualGroup: Schema.suspend(() => VisualContainerVisualGroupConfigV1_1_0),
+    parentGroupName: Schema.optionalKey(Schema.String),
+    filterConfig: Schema.optionalKey(Schema.suspend(() => VisualContainerFilterConfigV1_1_0)),
+    isHidden: Schema.optionalKey(Schema.Boolean),
+    annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => VisualContainerAnnotation))),
+    howCreated: Schema.optionalKey(
+      Schema.Union([
+        Schema.Literal("Default"),
+        Schema.Literal("Copilot"),
+        Schema.Literal("CheckboxTickedInFieldList"),
+        Schema.Literal("DraggedToCanvas"),
+        Schema.Literal("VisualTypeIconClicked"),
+        Schema.Literal("DraggedToFieldWell"),
+        Schema.Literal("InsertVisualButton"),
+        Schema.Literal("WhatIfParameterControl"),
+        Schema.Literal("QnaAppBar"),
+        Schema.Literal("QnaDoubleClick"),
+        Schema.Literal("QnaKeyboardShortcut"),
+        Schema.Literal("FieldParameterControl"),
+        Schema.Literal("CanvasBackgroundContextMenu"),
+        Schema.Literal("ContextMenuPaste"),
+        Schema.Literal("CopyPaste"),
+        Schema.Literal("SummarizeVisualContainer"),
+      ]),
+    ),
+  }),
+]);

@@ -1,8 +1,22 @@
 import { Schema } from "effect";
 import { closed, numericDictionary } from "../shared.js";
-import { FormattingObjectDefinitionsDataRepetitionSelectorV1_5_0, FormattingObjectDefinitionsDataViewObjectDefinitionsV1_5_0, FormattingObjectDefinitionsDefinitionsV1_5_0, FormattingObjectDefinitionsSelectorV1_5_0 } from "../formatting-object-definitions/shared.js";
-import { FilterDefinitionV1_4_0, QueryExpressionContainerV1_4_0, QuerySortClauseV1_4_0 } from "../semantic-query/shared.js";
-import { BookmarkBookmarkOptions, BookmarkVisualContainerDisplayMode, BookmarkVisualContainerDisplayState, BookmarkVisualContainerGroupState } from "./shared.js";
+import {
+  FormattingObjectDefinitionsDataRepetitionSelectorV1_5_0,
+  FormattingObjectDefinitionsDataViewObjectDefinitionsV1_5_0,
+  FormattingObjectDefinitionsDefinitionsV1_5_0,
+  FormattingObjectDefinitionsSelectorV1_5_0,
+} from "../formatting-object-definitions/shared.js";
+import {
+  FilterDefinitionV1_4_0,
+  QueryExpressionContainerV1_4_0,
+  QuerySortClauseV1_4_0,
+} from "../semantic-query/shared.js";
+import {
+  BookmarkBookmarkOptions,
+  BookmarkVisualContainerDisplayMode,
+  BookmarkVisualContainerDisplayState,
+  BookmarkVisualContainerGroupState,
+} from "./shared.js";
 
 export type BookmarkExplorationStateV2_1_0 = {
   readonly version: string;
@@ -15,22 +29,17 @@ export type BookmarkExplorationStateV2_1_0 = {
   readonly dataSourceVariables?: string;
 };
 
-export const BookmarkExplorationStateV2_1_0: Schema.Codec<BookmarkExplorationStateV2_1_0> =
-  closed({
-    version: Schema.String,
-    activeSection: Schema.String,
-    filters: Schema.optionalKey(
-      Schema.suspend(() => BookmarkFiltersStateV2_1_0),
-    ),
-    sections: Schema.Record(
-      Schema.String,
-      Schema.suspend(() => BookmarkSectionStateV2_1_0),
-    ),
-    objects: Schema.optionalKey(
-      Schema.suspend(() => BookmarkDataViewObjectDefinitionUpdatesV2_1_0),
-    ),
-    dataSourceVariables: Schema.optionalKey(Schema.String),
-  });
+export const BookmarkExplorationStateV2_1_0: Schema.Codec<BookmarkExplorationStateV2_1_0> = closed({
+  version: Schema.String,
+  activeSection: Schema.String,
+  filters: Schema.optionalKey(Schema.suspend(() => BookmarkFiltersStateV2_1_0)),
+  sections: Schema.Record(
+    Schema.String,
+    Schema.suspend(() => BookmarkSectionStateV2_1_0),
+  ),
+  objects: Schema.optionalKey(Schema.suspend(() => BookmarkDataViewObjectDefinitionUpdatesV2_1_0)),
+  dataSourceVariables: Schema.optionalKey(Schema.String),
+});
 
 export type BookmarkFiltersStateV2_1_0 = {
   readonly byName?: {} & {
@@ -41,24 +50,23 @@ export type BookmarkFiltersStateV2_1_0 = {
   readonly byTransientState?: ReadonlyArray<BookmarkFilterContainerStateV2_1_0>;
 };
 
-export const BookmarkFiltersStateV2_1_0: Schema.Codec<BookmarkFiltersStateV2_1_0> =
-  closed({
-    byName: Schema.optionalKey(
-      Schema.Record(
-        Schema.String,
-        Schema.suspend(() => BookmarkFilterContainerStateV2_1_0),
-      ),
+export const BookmarkFiltersStateV2_1_0: Schema.Codec<BookmarkFiltersStateV2_1_0> = closed({
+  byName: Schema.optionalKey(
+    Schema.Record(
+      Schema.String,
+      Schema.suspend(() => BookmarkFilterContainerStateV2_1_0),
     ),
-    byExpr: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => BookmarkFilterContainerStateV2_1_0)),
-    ),
-    byType: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => BookmarkFilterContainerStateV2_1_0)),
-    ),
-    byTransientState: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => BookmarkFilterContainerStateV2_1_0)),
-    ),
-  });
+  ),
+  byExpr: Schema.optionalKey(
+    Schema.Array(Schema.suspend(() => BookmarkFilterContainerStateV2_1_0)),
+  ),
+  byType: Schema.optionalKey(
+    Schema.Array(Schema.suspend(() => BookmarkFilterContainerStateV2_1_0)),
+  ),
+  byTransientState: Schema.optionalKey(
+    Schema.Array(Schema.suspend(() => BookmarkFilterContainerStateV2_1_0)),
+  ),
+});
 
 export type BookmarkFilterContainerStateV2_1_0 = {
   readonly name: string;
@@ -79,16 +87,8 @@ export const BookmarkFilterContainerStateV2_1_0: Schema.Codec<BookmarkFilterCont
   closed({
     name: Schema.String,
     type: Schema.optionalKey(Schema.String),
-    filter: Schema.optionalKey(
-      Schema.suspend(
-        () => FilterDefinitionV1_4_0,
-      ),
-    ),
-    expression: Schema.optionalKey(
-      Schema.suspend(
-        () => QueryExpressionContainerV1_4_0,
-      ),
-    ),
+    filter: Schema.optionalKey(Schema.suspend(() => FilterDefinitionV1_4_0)),
+    expression: Schema.optionalKey(Schema.suspend(() => QueryExpressionContainerV1_4_0)),
     restatement: Schema.optionalKey(Schema.String),
     howCreated: Schema.optionalKey(
       Schema.Union([
@@ -122,11 +122,7 @@ export type BookmarkFilterLabelIdPairV2_1_0 = {
 
 export const BookmarkFilterLabelIdPairV2_1_0: Schema.Codec<BookmarkFilterLabelIdPairV2_1_0> =
   closed({
-    id: Schema.suspend(
-      () =>
-        FormattingObjectDefinitionsDefinitionsV1_5_0
-          .DataRepetitionSelector,
-    ),
+    id: Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.DataRepetitionSelector),
     displayName: Schema.String,
   });
 
@@ -140,11 +136,7 @@ export type BookmarkFilterExpressionMetadataV2_1_0 = {
 
 export const BookmarkFilterExpressionMetadataV2_1_0: Schema.Codec<BookmarkFilterExpressionMetadataV2_1_0> =
   closed({
-    expressions: Schema.Array(
-      Schema.suspend(
-        () => QueryExpressionContainerV1_4_0,
-      ),
-    ),
+    expressions: Schema.Array(Schema.suspend(() => QueryExpressionContainerV1_4_0)),
     cachedValueItems: Schema.optionalKey(
       Schema.Array(Schema.suspend(() => BookmarkIdentityValueMapV2_1_0)),
     ),
@@ -158,17 +150,12 @@ export type BookmarkIdentityValueMapV2_1_0 = {
   };
 };
 
-export const BookmarkIdentityValueMapV2_1_0: Schema.Codec<BookmarkIdentityValueMapV2_1_0> =
-  closed({
-    identities: Schema.Array(
-      Schema.suspend(
-        () =>
-          FormattingObjectDefinitionsDefinitionsV1_5_0
-            .DataRepetitionSelector,
-      ),
-    ),
-    valueMap: numericDictionary(Schema.String),
-  });
+export const BookmarkIdentityValueMapV2_1_0: Schema.Codec<BookmarkIdentityValueMapV2_1_0> = closed({
+  identities: Schema.Array(
+    Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.DataRepetitionSelector),
+  ),
+  valueMap: numericDictionary(Schema.String),
+});
 
 export type BookmarkDecomposedFilterExpressionMetadataV2_1_0 = {
   readonly decomposedIdentities?: BookmarkDecomposedIdentitiesV2_1_0;
@@ -187,18 +174,14 @@ export const BookmarkDecomposedFilterExpressionMetadataV2_1_0: Schema.Codec<Book
       Schema.suspend(() => BookmarkDecomposedIdentitiesV2_1_0),
     ),
     expressions: Schema.Array(Schema.Json),
-    valueMap: Schema.optionalKey(
-      Schema.Array(numericDictionary(Schema.String)),
-    ),
+    valueMap: Schema.optionalKey(Schema.Array(numericDictionary(Schema.String))),
     jsonFilter: Schema.optionalKey(closed({ filterType: Schema.Json })),
   });
 
 export type BookmarkDecomposedIdentitiesV2_1_0 = {
   readonly values: ReadonlyArray<
     ReadonlyArray<{
-      readonly [
-        key: string
-      ]: ReadonlyArray<QueryExpressionContainerV1_4_0>;
+      readonly [key: string]: ReadonlyArray<QueryExpressionContainerV1_4_0>;
     }>
   >;
   readonly columns: ReadonlyArray<BookmarkDecomposedTreeQueryExpressionContainerV2_1_0>;
@@ -208,20 +191,11 @@ export const BookmarkDecomposedIdentitiesV2_1_0: Schema.Codec<BookmarkDecomposed
   closed({
     values: Schema.Array(
       Schema.Array(
-        numericDictionary(
-          Schema.Array(
-            Schema.suspend(
-              () =>
-                QueryExpressionContainerV1_4_0,
-            ),
-          ),
-        ),
+        numericDictionary(Schema.Array(Schema.suspend(() => QueryExpressionContainerV1_4_0))),
       ),
     ),
     columns: Schema.Array(
-      Schema.suspend(
-        () => BookmarkDecomposedTreeQueryExpressionContainerV2_1_0,
-      ),
+      Schema.suspend(() => BookmarkDecomposedTreeQueryExpressionContainerV2_1_0),
     ),
   });
 
@@ -234,20 +208,12 @@ export type BookmarkDecomposedTreeQueryExpressionContainerV2_1_0 = {
 export const BookmarkDecomposedTreeQueryExpressionContainerV2_1_0: Schema.Codec<BookmarkDecomposedTreeQueryExpressionContainerV2_1_0> =
   closed({
     left: Schema.optionalKey(
-      Schema.suspend(
-        () => BookmarkDecomposedTreeQueryExpressionContainerV2_1_0,
-      ),
+      Schema.suspend(() => BookmarkDecomposedTreeQueryExpressionContainerV2_1_0),
     ),
     right: Schema.optionalKey(
-      Schema.suspend(
-        () => BookmarkDecomposedTreeQueryExpressionContainerV2_1_0,
-      ),
+      Schema.suspend(() => BookmarkDecomposedTreeQueryExpressionContainerV2_1_0),
     ),
-    value: Schema.optionalKey(
-      Schema.suspend(
-        () => QueryExpressionContainerV1_4_0,
-      ),
-    ),
+    value: Schema.optionalKey(Schema.suspend(() => QueryExpressionContainerV1_4_0)),
   });
 
 export type BookmarkSectionStateV2_1_0 = {
@@ -260,22 +226,19 @@ export type BookmarkSectionStateV2_1_0 = {
   };
 };
 
-export const BookmarkSectionStateV2_1_0: Schema.Codec<BookmarkSectionStateV2_1_0> =
-  closed({
-    filters: Schema.optionalKey(
-      Schema.suspend(() => BookmarkFiltersStateV2_1_0),
-    ),
-    visualContainers: Schema.Record(
+export const BookmarkSectionStateV2_1_0: Schema.Codec<BookmarkSectionStateV2_1_0> = closed({
+  filters: Schema.optionalKey(Schema.suspend(() => BookmarkFiltersStateV2_1_0)),
+  visualContainers: Schema.Record(
+    Schema.String,
+    Schema.suspend(() => BookmarkVisualContainerStateV2_1_0),
+  ),
+  visualContainerGroups: Schema.optionalKey(
+    Schema.Record(
       Schema.String,
-      Schema.suspend(() => BookmarkVisualContainerStateV2_1_0),
+      Schema.suspend(() => BookmarkVisualContainerGroupState),
     ),
-    visualContainerGroups: Schema.optionalKey(
-      Schema.Record(
-        Schema.String,
-        Schema.suspend(() => BookmarkVisualContainerGroupState),
-      ),
-    ),
-  });
+  ),
+});
 
 export type BookmarkVisualContainerStateV2_1_0 = {
   readonly filters?: BookmarkFiltersStateV2_1_0;
@@ -285,15 +248,9 @@ export type BookmarkVisualContainerStateV2_1_0 = {
 
 export const BookmarkVisualContainerStateV2_1_0: Schema.Codec<BookmarkVisualContainerStateV2_1_0> =
   closed({
-    filters: Schema.optionalKey(
-      Schema.suspend(() => BookmarkFiltersStateV2_1_0),
-    ),
-    singleVisual: Schema.optionalKey(
-      Schema.suspend(() => BookmarkSingleVisualConfigStateV2_1_0),
-    ),
-    highlight: Schema.optionalKey(
-      Schema.suspend(() => BookmarkHighlightStateV2_1_0),
-    ),
+    filters: Schema.optionalKey(Schema.suspend(() => BookmarkFiltersStateV2_1_0)),
+    singleVisual: Schema.optionalKey(Schema.suspend(() => BookmarkSingleVisualConfigStateV2_1_0)),
+    highlight: Schema.optionalKey(Schema.suspend(() => BookmarkHighlightStateV2_1_0)),
   });
 
 export type BookmarkSingleVisualConfigStateV2_1_0 = {
@@ -324,25 +281,11 @@ export const BookmarkSingleVisualConfigStateV2_1_0: Schema.Codec<BookmarkSingleV
     objects: Schema.optionalKey(
       Schema.suspend(() => BookmarkDataViewObjectDefinitionUpdatesV2_1_0),
     ),
-    orderBy: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(
-          () => QuerySortClauseV1_4_0,
-        ),
-      ),
-    ),
-    activeProjections: Schema.optionalKey(
-      Schema.suspend(() => BookmarkProjectionStateV2_1_0),
-    ),
-    projections: Schema.optionalKey(
-      Schema.suspend(() => BookmarkProjectionStateV2_1_0),
-    ),
-    parameters: Schema.optionalKey(
-      Schema.suspend(() => BookmarkParameterStateByRoleV2_1_0),
-    ),
-    display: Schema.optionalKey(
-      Schema.suspend(() => BookmarkVisualContainerDisplayState),
-    ),
+    orderBy: Schema.optionalKey(Schema.Array(Schema.suspend(() => QuerySortClauseV1_4_0))),
+    activeProjections: Schema.optionalKey(Schema.suspend(() => BookmarkProjectionStateV2_1_0)),
+    projections: Schema.optionalKey(Schema.suspend(() => BookmarkProjectionStateV2_1_0)),
+    parameters: Schema.optionalKey(Schema.suspend(() => BookmarkParameterStateByRoleV2_1_0)),
+    display: Schema.optionalKey(Schema.suspend(() => BookmarkVisualContainerDisplayState)),
     cachedFilterDisplayItems: Schema.optionalKey(
       Schema.Array(Schema.suspend(() => BookmarkFilterLabelIdPairV2_1_0)),
     ),
@@ -364,18 +307,10 @@ export type BookmarkDataViewObjectDefinitionUpdatesV2_1_0 = {
 export const BookmarkDataViewObjectDefinitionUpdatesV2_1_0: Schema.Codec<BookmarkDataViewObjectDefinitionUpdatesV2_1_0> =
   closed({
     merge: Schema.optionalKey(
-      Schema.suspend(
-        () =>
-          FormattingObjectDefinitionsDefinitionsV1_5_0
-            .DataViewObjectDefinitions,
-      ),
+      Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.DataViewObjectDefinitions),
     ),
     remove: Schema.optionalKey(
-      Schema.Array(
-        Schema.suspend(
-          () => BookmarkDataViewObjectPropertyIdWithSelectorV2_1_0,
-        ),
-      ),
+      Schema.Array(Schema.suspend(() => BookmarkDataViewObjectPropertyIdWithSelectorV2_1_0)),
     ),
   });
 
@@ -389,11 +324,7 @@ export const BookmarkDataViewObjectPropertyIdWithSelectorV2_1_0: Schema.Codec<Bo
   closed({
     object: Schema.String,
     property: Schema.String,
-    selector: Schema.optionalKey(
-      Schema.suspend(
-        () => FormattingObjectDefinitionsSelectorV1_5_0,
-      ),
-    ),
+    selector: Schema.optionalKey(Schema.suspend(() => FormattingObjectDefinitionsSelectorV1_5_0)),
   });
 
 export type BookmarkProjectionStateV2_1_0 = {} & {
@@ -401,24 +332,14 @@ export type BookmarkProjectionStateV2_1_0 = {} & {
 };
 
 export const BookmarkProjectionStateV2_1_0: Schema.Codec<BookmarkProjectionStateV2_1_0> =
-  Schema.Record(
-    Schema.String,
-    Schema.Array(
-      Schema.suspend(
-        () => QueryExpressionContainerV1_4_0,
-      ),
-    ),
-  );
+  Schema.Record(Schema.String, Schema.Array(Schema.suspend(() => QueryExpressionContainerV1_4_0)));
 
 export type BookmarkParameterStateByRoleV2_1_0 = {} & {
   readonly [key: string]: ReadonlyArray<BookmarkParameterStateV2_1_0>;
 };
 
 export const BookmarkParameterStateByRoleV2_1_0: Schema.Codec<BookmarkParameterStateByRoleV2_1_0> =
-  Schema.Record(
-    Schema.String,
-    Schema.Array(Schema.suspend(() => BookmarkParameterStateV2_1_0)),
-  );
+  Schema.Record(Schema.String, Schema.Array(Schema.suspend(() => BookmarkParameterStateV2_1_0)));
 
 export type BookmarkParameterStateV2_1_0 = {
   readonly expr: QueryExpressionContainerV1_4_0;
@@ -427,17 +348,12 @@ export type BookmarkParameterStateV2_1_0 = {
   readonly sortDirection?: 1 | 2;
 };
 
-export const BookmarkParameterStateV2_1_0: Schema.Codec<BookmarkParameterStateV2_1_0> =
-  closed({
-    expr: Schema.suspend(
-      () => QueryExpressionContainerV1_4_0,
-    ),
-    index: Schema.Finite,
-    length: Schema.Finite,
-    sortDirection: Schema.optionalKey(
-      Schema.Union([Schema.Literal(1), Schema.Literal(2)]),
-    ),
-  });
+export const BookmarkParameterStateV2_1_0: Schema.Codec<BookmarkParameterStateV2_1_0> = closed({
+  expr: Schema.suspend(() => QueryExpressionContainerV1_4_0),
+  index: Schema.Finite,
+  length: Schema.Finite,
+  sortDirection: Schema.optionalKey(Schema.Union([Schema.Literal(1), Schema.Literal(2)])),
+});
 
 export type BookmarkHighlightStateV2_1_0 = {
   readonly selection:
@@ -448,19 +364,18 @@ export type BookmarkHighlightStateV2_1_0 = {
     | BookmarkDecomposedFilterExpressionMetadataV2_1_0;
 };
 
-export const BookmarkHighlightStateV2_1_0: Schema.Codec<BookmarkHighlightStateV2_1_0> =
-  closed({
-    selection: Schema.Union([
-      Schema.suspend(() => BookmarkDecomposedSelectorsV2_1_0),
-      Schema.Array(Schema.suspend(() => BookmarkSelectorsByColumnV2_1_0)),
+export const BookmarkHighlightStateV2_1_0: Schema.Codec<BookmarkHighlightStateV2_1_0> = closed({
+  selection: Schema.Union([
+    Schema.suspend(() => BookmarkDecomposedSelectorsV2_1_0),
+    Schema.Array(Schema.suspend(() => BookmarkSelectorsByColumnV2_1_0)),
+  ]),
+  filterExpressionMetadata: Schema.optionalKey(
+    Schema.Union([
+      Schema.suspend(() => BookmarkFilterExpressionMetadataV2_1_0),
+      Schema.suspend(() => BookmarkDecomposedFilterExpressionMetadataV2_1_0),
     ]),
-    filterExpressionMetadata: Schema.optionalKey(
-      Schema.Union([
-        Schema.suspend(() => BookmarkFilterExpressionMetadataV2_1_0),
-        Schema.suspend(() => BookmarkDecomposedFilterExpressionMetadataV2_1_0),
-      ]),
-    ),
-  });
+  ),
+});
 
 export type BookmarkDecomposedSelectorsV2_1_0 = {
   readonly decomposedIdentities?: BookmarkDecomposedIdentitiesV2_1_0;
@@ -477,9 +392,7 @@ export const BookmarkDecomposedSelectorsV2_1_0: Schema.Codec<BookmarkDecomposedS
     decomposedIdentities: Schema.optionalKey(
       Schema.suspend(() => BookmarkDecomposedIdentitiesV2_1_0),
     ),
-    queryNameMap: Schema.optionalKey(
-      Schema.Array(numericDictionary(Schema.Array(Schema.Finite))),
-    ),
+    queryNameMap: Schema.optionalKey(Schema.Array(numericDictionary(Schema.Array(Schema.Finite)))),
     queryNames: Schema.optionalKey(Schema.Array(Schema.String)),
     metadata: Schema.optionalKey(Schema.Array(Schema.Array(Schema.String))),
     id: Schema.optionalKey(Schema.Array(Schema.String)),
@@ -493,28 +406,20 @@ export type BookmarkSelectorsByColumnV2_1_0 = {
 
 export const BookmarkSelectorsByColumnV2_1_0: Schema.Codec<BookmarkSelectorsByColumnV2_1_0> =
   closed({
-    dataMap: Schema.optionalKey(
-      Schema.suspend(() => BookmarkSelectorsForColumnV2_1_0),
-    ),
+    dataMap: Schema.optionalKey(Schema.suspend(() => BookmarkSelectorsForColumnV2_1_0)),
     metadata: Schema.optionalKey(Schema.Array(Schema.String)),
     id: Schema.optionalKey(Schema.String),
   });
 
 export type BookmarkSelectorsForColumnV2_1_0 = {} & {
-  readonly [
-    key: string
-  ]: ReadonlyArray<FormattingObjectDefinitionsDataRepetitionSelectorV1_5_0>;
+  readonly [key: string]: ReadonlyArray<FormattingObjectDefinitionsDataRepetitionSelectorV1_5_0>;
 };
 
 export const BookmarkSelectorsForColumnV2_1_0: Schema.Codec<BookmarkSelectorsForColumnV2_1_0> =
   Schema.Record(
     Schema.String,
     Schema.Array(
-      Schema.suspend(
-        () =>
-          FormattingObjectDefinitionsDefinitionsV1_5_0
-            .DataRepetitionSelector,
-      ),
+      Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_5_0.DataRepetitionSelector),
     ),
   );
 
@@ -526,18 +431,14 @@ export const BookmarkDefinitionsV2_1_0 = {
   FilterLabelIdPair: BookmarkFilterLabelIdPairV2_1_0,
   FilterExpressionMetadata: BookmarkFilterExpressionMetadataV2_1_0,
   IdentityValueMap: BookmarkIdentityValueMapV2_1_0,
-  DecomposedFilterExpressionMetadata:
-    BookmarkDecomposedFilterExpressionMetadataV2_1_0,
+  DecomposedFilterExpressionMetadata: BookmarkDecomposedFilterExpressionMetadataV2_1_0,
   DecomposedIdentities: BookmarkDecomposedIdentitiesV2_1_0,
-  "DecomposedTree<QueryExpressionContainer>":
-    BookmarkDecomposedTreeQueryExpressionContainerV2_1_0,
+  "DecomposedTree<QueryExpressionContainer>": BookmarkDecomposedTreeQueryExpressionContainerV2_1_0,
   SectionState: BookmarkSectionStateV2_1_0,
   VisualContainerState: BookmarkVisualContainerStateV2_1_0,
   SingleVisualConfigState: BookmarkSingleVisualConfigStateV2_1_0,
-  DataViewObjectDefinitionUpdates:
-    BookmarkDataViewObjectDefinitionUpdatesV2_1_0,
-  DataViewObjectPropertyIdWithSelector:
-    BookmarkDataViewObjectPropertyIdWithSelectorV2_1_0,
+  DataViewObjectDefinitionUpdates: BookmarkDataViewObjectDefinitionUpdatesV2_1_0,
+  DataViewObjectPropertyIdWithSelector: BookmarkDataViewObjectPropertyIdWithSelectorV2_1_0,
   ProjectionState: BookmarkProjectionStateV2_1_0,
   ParameterStateByRole: BookmarkParameterStateByRoleV2_1_0,
   ParameterState: BookmarkParameterStateV2_1_0,
@@ -564,8 +465,6 @@ export const BookmarkV2_1_0: Schema.Codec<BookmarkV2_1_0> = closed({
   ),
   displayName: Schema.String,
   name: Schema.String,
-  options: Schema.optionalKey(
-    Schema.suspend(() => BookmarkBookmarkOptions),
-  ),
+  options: Schema.optionalKey(Schema.suspend(() => BookmarkBookmarkOptions)),
   explorationState: Schema.suspend(() => BookmarkExplorationStateV2_1_0),
 });

@@ -113,17 +113,16 @@ export type VisualContainerMobileStateLockAspect = {
 export const VisualContainerMobileStateLockAspect: Schema.Codec<VisualContainerMobileStateLockAspect> =
   closed({ show: Schema.optionalKey(Schema.Json) });
 
-export type VisualContainerMobileStateVisualContainerGeneralFormattingObjects =
-  {
-    readonly x?: Schema.Json;
-    readonly y?: Schema.Json;
-    readonly width?: Schema.Json;
-    readonly height?: Schema.Json;
-    readonly altText?: Schema.Json;
-    readonly allowBinnedLineSample?: Schema.Json;
-    readonly allowOverlappingPointsSample?: Schema.Json;
-    readonly keepLayerOrder?: Schema.Json;
-  };
+export type VisualContainerMobileStateVisualContainerGeneralFormattingObjects = {
+  readonly x?: Schema.Json;
+  readonly y?: Schema.Json;
+  readonly width?: Schema.Json;
+  readonly height?: Schema.Json;
+  readonly altText?: Schema.Json;
+  readonly allowBinnedLineSample?: Schema.Json;
+  readonly allowOverlappingPointsSample?: Schema.Json;
+  readonly keepLayerOrder?: Schema.Json;
+};
 
 export const VisualContainerMobileStateVisualContainerGeneralFormattingObjects: Schema.Codec<VisualContainerMobileStateVisualContainerGeneralFormattingObjects> =
   closed({
@@ -404,6 +403,5 @@ export const VisualContainerMobileStateVisualContainerPositionV1_2_0: Schema.Cod
   });
 
 export const VisualContainerMobileStateDefinitionsV1_3_0 = {
-  VisualContainerPosition:
-    VisualContainerMobileStateVisualContainerPositionV1_2_0,
+  VisualContainerPosition: VisualContainerMobileStateVisualContainerPositionV1_2_0,
 } as const;

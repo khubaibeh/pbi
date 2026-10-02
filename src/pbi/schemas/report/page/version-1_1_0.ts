@@ -1,27 +1,48 @@
 import { Schema } from "effect";
 import { closed } from "../shared.js";
-import { FormattingObjectDefinitionsDefinitionsV1_1_0, FormattingObjectDefinitionsSelectorV1_1_0 } from "../formatting-object-definitions/shared.js";
-import { FilterDefinitionV1_1_0, QueryExpressionContainerV1_1_0 } from "../semantic-query/shared.js";
-import { PageAnnotation, PageBackground, PageBindingType, PageDisplayArea, PageFilterCard, PageFilterContainerFormattingObjectsProperties, PageOutspacePane, PagePageDisplayOption, PagePageInformation, PagePageRefresh, PagePageSize, PagePersonalizeVisual, PageQuickExploreCombinationLayout, PageQuickExploreLayoutContainer, PageQuickExploreRelatedLayout, PageVisualInteraction, PageVisualInteractionFilterType } from "./shared.js";
+import {
+  FormattingObjectDefinitionsDefinitionsV1_1_0,
+  FormattingObjectDefinitionsSelectorV1_1_0,
+} from "../formatting-object-definitions/shared.js";
+import {
+  FilterDefinitionV1_1_0,
+  QueryExpressionContainerV1_1_0,
+} from "../semantic-query/shared.js";
+import {
+  PageAnnotation,
+  PageBackground,
+  PageBindingType,
+  PageDisplayArea,
+  PageFilterCard,
+  PageFilterContainerFormattingObjectsProperties,
+  PageOutspacePane,
+  PagePageDisplayOption,
+  PagePageInformation,
+  PagePageRefresh,
+  PagePageSize,
+  PagePersonalizeVisual,
+  PageQuickExploreCombinationLayout,
+  PageQuickExploreLayoutContainer,
+  PageQuickExploreRelatedLayout,
+  PageVisualInteraction,
+  PageVisualInteractionFilterType,
+} from "./shared.js";
 
 export type PageFilterConfigV1_1_0 = {
   readonly filters?: ReadonlyArray<PageFilterContainerV1_1_0>;
   readonly filterSortOrder?: "Ascending" | "Descending" | "Custom";
 };
 
-export const PageFilterConfigV1_1_0: Schema.Codec<PageFilterConfigV1_1_0> =
-  closed({
-    filters: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => PageFilterContainerV1_1_0)),
-    ),
-    filterSortOrder: Schema.optionalKey(
-      Schema.Union([
-        Schema.Literal("Ascending"),
-        Schema.Literal("Descending"),
-        Schema.Literal("Custom"),
-      ]),
-    ),
-  });
+export const PageFilterConfigV1_1_0: Schema.Codec<PageFilterConfigV1_1_0> = closed({
+  filters: Schema.optionalKey(Schema.Array(Schema.suspend(() => PageFilterContainerV1_1_0))),
+  filterSortOrder: Schema.optionalKey(
+    Schema.Union([
+      Schema.Literal("Ascending"),
+      Schema.Literal("Descending"),
+      Schema.Literal("Custom"),
+    ]),
+  ),
+});
 
 export type PageFilterContainerV1_1_0 = {
   readonly name: string;
@@ -42,60 +63,48 @@ export type PageFilterContainerV1_1_0 = {
     | "VisualTopN";
   readonly filter?: FilterDefinitionV1_1_0;
   readonly restatement?: string;
-  readonly howCreated?:
-    "Auto" | "User" | "Drill" | "Include" | "Exclude" | "Drillthrough";
+  readonly howCreated?: "Auto" | "User" | "Drill" | "Include" | "Exclude" | "Drillthrough";
   readonly isHiddenInViewMode?: boolean;
   readonly isLockedInViewMode?: boolean;
   readonly objects?: PageFilterContainerFormattingObjectsV1_1_0;
 };
 
-export const PageFilterContainerV1_1_0: Schema.Codec<PageFilterContainerV1_1_0> =
-  closed({
-    name: Schema.String,
-    displayName: Schema.optionalKey(Schema.String),
-    ordinal: Schema.optionalKey(Schema.Finite),
-    field: Schema.optionalKey(
-      Schema.suspend(
-        () => QueryExpressionContainerV1_1_0,
-      ),
-    ),
-    type: Schema.optionalKey(
-      Schema.Union([
-        Schema.Literal("Categorical"),
-        Schema.Literal("Range"),
-        Schema.Literal("Advanced"),
-        Schema.Literal("Passthrough"),
-        Schema.Literal("TopN"),
-        Schema.Literal("Include"),
-        Schema.Literal("Exclude"),
-        Schema.Literal("RelativeDate"),
-        Schema.Literal("Tuple"),
-        Schema.Literal("RelativeTime"),
-        Schema.Literal("VisualTopN"),
-      ]),
-    ),
-    filter: Schema.optionalKey(
-      Schema.suspend(
-        () => FilterDefinitionV1_1_0,
-      ),
-    ),
-    restatement: Schema.optionalKey(Schema.String),
-    howCreated: Schema.optionalKey(
-      Schema.Union([
-        Schema.Literal("Auto"),
-        Schema.Literal("User"),
-        Schema.Literal("Drill"),
-        Schema.Literal("Include"),
-        Schema.Literal("Exclude"),
-        Schema.Literal("Drillthrough"),
-      ]),
-    ),
-    isHiddenInViewMode: Schema.optionalKey(Schema.Boolean),
-    isLockedInViewMode: Schema.optionalKey(Schema.Boolean),
-    objects: Schema.optionalKey(
-      Schema.suspend(() => PageFilterContainerFormattingObjectsV1_1_0),
-    ),
-  });
+export const PageFilterContainerV1_1_0: Schema.Codec<PageFilterContainerV1_1_0> = closed({
+  name: Schema.String,
+  displayName: Schema.optionalKey(Schema.String),
+  ordinal: Schema.optionalKey(Schema.Finite),
+  field: Schema.optionalKey(Schema.suspend(() => QueryExpressionContainerV1_1_0)),
+  type: Schema.optionalKey(
+    Schema.Union([
+      Schema.Literal("Categorical"),
+      Schema.Literal("Range"),
+      Schema.Literal("Advanced"),
+      Schema.Literal("Passthrough"),
+      Schema.Literal("TopN"),
+      Schema.Literal("Include"),
+      Schema.Literal("Exclude"),
+      Schema.Literal("RelativeDate"),
+      Schema.Literal("Tuple"),
+      Schema.Literal("RelativeTime"),
+      Schema.Literal("VisualTopN"),
+    ]),
+  ),
+  filter: Schema.optionalKey(Schema.suspend(() => FilterDefinitionV1_1_0)),
+  restatement: Schema.optionalKey(Schema.String),
+  howCreated: Schema.optionalKey(
+    Schema.Union([
+      Schema.Literal("Auto"),
+      Schema.Literal("User"),
+      Schema.Literal("Drill"),
+      Schema.Literal("Include"),
+      Schema.Literal("Exclude"),
+      Schema.Literal("Drillthrough"),
+    ]),
+  ),
+  isHiddenInViewMode: Schema.optionalKey(Schema.Boolean),
+  isLockedInViewMode: Schema.optionalKey(Schema.Boolean),
+  objects: Schema.optionalKey(Schema.suspend(() => PageFilterContainerFormattingObjectsV1_1_0)),
+});
 
 export type PageFilterContainerFormattingObjectsV1_1_0 = {
   readonly general?: ReadonlyArray<{
@@ -110,15 +119,9 @@ export const PageFilterContainerFormattingObjectsV1_1_0: Schema.Codec<PageFilter
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
-          properties: Schema.suspend(
-            () => PageFilterContainerFormattingObjectsProperties,
-          ),
+          properties: Schema.suspend(() => PageFilterContainerFormattingObjectsProperties),
         }),
       ),
     ),
@@ -132,20 +135,17 @@ export type PagePageBindingV1_1_0 = {
   readonly acceptsFilterContext?: "Default" | "None";
 };
 
-export const PagePageBindingV1_1_0: Schema.Codec<PagePageBindingV1_1_0> =
-  closed({
-    name: Schema.String,
-    type: Schema.suspend(() => PageBindingType),
-    referenceScope: Schema.optionalKey(
-      Schema.Union([Schema.Literal("Default"), Schema.Literal("CrossReport")]),
-    ),
-    parameters: Schema.optionalKey(
-      Schema.Array(Schema.suspend(() => PageBindingParameterV1_1_0)),
-    ),
-    acceptsFilterContext: Schema.optionalKey(
-      Schema.Union([Schema.Literal("Default"), Schema.Literal("None")]),
-    ),
-  });
+export const PagePageBindingV1_1_0: Schema.Codec<PagePageBindingV1_1_0> = closed({
+  name: Schema.String,
+  type: Schema.suspend(() => PageBindingType),
+  referenceScope: Schema.optionalKey(
+    Schema.Union([Schema.Literal("Default"), Schema.Literal("CrossReport")]),
+  ),
+  parameters: Schema.optionalKey(Schema.Array(Schema.suspend(() => PageBindingParameterV1_1_0))),
+  acceptsFilterContext: Schema.optionalKey(
+    Schema.Union([Schema.Literal("Default"), Schema.Literal("None")]),
+  ),
+});
 
 export type PageBindingParameterV1_1_0 = {
   readonly name: string;
@@ -155,18 +155,13 @@ export type PageBindingParameterV1_1_0 = {
   readonly fieldExpr?: QueryExpressionContainerV1_1_0;
 };
 
-export const PageBindingParameterV1_1_0: Schema.Codec<PageBindingParameterV1_1_0> =
-  closed({
-    name: Schema.String,
-    boundFilter: Schema.String,
-    asAggregation: Schema.optionalKey(Schema.Boolean),
-    qnaSingleSelectRequired: Schema.optionalKey(Schema.Boolean),
-    fieldExpr: Schema.optionalKey(
-      Schema.suspend(
-        () => QueryExpressionContainerV1_1_0,
-      ),
-    ),
-  });
+export const PageBindingParameterV1_1_0: Schema.Codec<PageBindingParameterV1_1_0> = closed({
+  name: Schema.String,
+  boundFilter: Schema.String,
+  asAggregation: Schema.optionalKey(Schema.Boolean),
+  qnaSingleSelectRequired: Schema.optionalKey(Schema.Boolean),
+  fieldExpr: Schema.optionalKey(Schema.suspend(() => QueryExpressionContainerV1_1_0)),
+});
 
 export type PagePageFormattingObjectsV1_1_0 = {
   readonly pageInformation?: ReadonlyArray<{
@@ -213,11 +208,7 @@ export const PagePageFormattingObjectsV1_1_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => PagePageInformation),
         }),
@@ -227,11 +218,7 @@ export const PagePageFormattingObjectsV1_1_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => PagePageSize),
         }),
@@ -241,11 +228,7 @@ export const PagePageFormattingObjectsV1_1_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => PageBackground),
         }),
@@ -255,11 +238,7 @@ export const PagePageFormattingObjectsV1_1_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => PageDisplayArea),
         }),
@@ -269,11 +248,7 @@ export const PagePageFormattingObjectsV1_1_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => PageBackground),
         }),
@@ -283,11 +258,7 @@ export const PagePageFormattingObjectsV1_1_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => PageOutspacePane),
         }),
@@ -297,11 +268,7 @@ export const PagePageFormattingObjectsV1_1_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => PageFilterCard),
         }),
@@ -311,11 +278,7 @@ export const PagePageFormattingObjectsV1_1_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => PagePageRefresh),
         }),
@@ -325,11 +288,7 @@ export const PagePageFormattingObjectsV1_1_0: Schema.Codec<PagePageFormattingObj
       Schema.Array(
         closed({
           selector: Schema.optionalKey(
-            Schema.suspend(
-              () =>
-                FormattingObjectDefinitionsDefinitionsV1_1_0
-                  .Selector,
-            ),
+            Schema.suspend(() => FormattingObjectDefinitionsDefinitionsV1_1_0.Selector),
           ),
           properties: Schema.suspend(() => PagePersonalizeVisual),
         }),
@@ -345,17 +304,11 @@ export type PageAutoPageGenerationConfigV1_1_0 = {
 
 export const PageAutoPageGenerationConfigV1_1_0: Schema.Codec<PageAutoPageGenerationConfigV1_1_0> =
   closed({
-    selectedFields: Schema.Array(
-      Schema.suspend(
-        () => QueryExpressionContainerV1_1_0,
-      ),
-    ),
+    selectedFields: Schema.Array(Schema.suspend(() => QueryExpressionContainerV1_1_0)),
     visualContainerConfigurations: Schema.Array(
       Schema.suspend(() => PageQuickExploreVisualContainerConfigV1_1_0),
     ),
-    layout: Schema.optionalKey(
-      Schema.suspend(() => PageQuickExploreLayoutContainer),
-    ),
+    layout: Schema.optionalKey(Schema.suspend(() => PageQuickExploreLayoutContainer)),
   });
 
 export type PageQuickExploreVisualContainerConfigV1_1_0 = {
@@ -366,11 +319,7 @@ export type PageQuickExploreVisualContainerConfigV1_1_0 = {
 export const PageQuickExploreVisualContainerConfigV1_1_0: Schema.Codec<PageQuickExploreVisualContainerConfigV1_1_0> =
   closed({
     name: Schema.String,
-    fields: Schema.Array(
-      Schema.suspend(
-        () => QueryExpressionContainerV1_1_0,
-      ),
-    ),
+    fields: Schema.Array(Schema.suspend(() => QueryExpressionContainerV1_1_0)),
   });
 
 export const PageDefinitionsV1_1_0 = {
@@ -378,8 +327,7 @@ export const PageDefinitionsV1_1_0 = {
   FilterConfig: PageFilterConfigV1_1_0,
   FilterContainer: PageFilterContainerV1_1_0,
   FilterContainerFormattingObjects: PageFilterContainerFormattingObjectsV1_1_0,
-  FilterContainerFormattingObjectsProperties:
-    PageFilterContainerFormattingObjectsProperties,
+  FilterContainerFormattingObjectsProperties: PageFilterContainerFormattingObjectsProperties,
   PageBinding: PagePageBindingV1_1_0,
   BindingType: PageBindingType,
   BindingParameter: PageBindingParameterV1_1_0,
@@ -395,8 +343,7 @@ export const PageDefinitionsV1_1_0 = {
   VisualInteraction: PageVisualInteraction,
   VisualInteractionFilterType: PageVisualInteractionFilterType,
   AutoPageGenerationConfig: PageAutoPageGenerationConfigV1_1_0,
-  QuickExploreVisualContainerConfig:
-    PageQuickExploreVisualContainerConfigV1_1_0,
+  QuickExploreVisualContainerConfig: PageQuickExploreVisualContainerConfigV1_1_0,
   QuickExploreLayoutContainer: PageQuickExploreLayoutContainer,
   QuickExploreRelatedLayout: PageQuickExploreRelatedLayout,
   QuickExploreCombinationLayout: PageQuickExploreCombinationLayout,
@@ -429,28 +376,17 @@ export const PageV1_1_0: Schema.Codec<PageV1_1_0> = closed({
   displayOption: Schema.suspend(() => PagePageDisplayOption),
   height: Schema.optionalKey(Schema.Finite),
   width: Schema.optionalKey(Schema.Finite),
-  filterConfig: Schema.optionalKey(
-    Schema.suspend(() => PageFilterConfigV1_1_0),
-  ),
+  filterConfig: Schema.optionalKey(Schema.suspend(() => PageFilterConfigV1_1_0)),
   pageBinding: Schema.optionalKey(Schema.suspend(() => PagePageBindingV1_1_0)),
-  objects: Schema.optionalKey(
-    Schema.suspend(() => PagePageFormattingObjectsV1_1_0),
-  ),
+  objects: Schema.optionalKey(Schema.suspend(() => PagePageFormattingObjectsV1_1_0)),
   visibility: Schema.optionalKey(
-    Schema.Union([
-      Schema.Literal("AlwaysVisible"),
-      Schema.Literal("HiddenInViewMode"),
-    ]),
+    Schema.Union([Schema.Literal("AlwaysVisible"), Schema.Literal("HiddenInViewMode")]),
   ),
-  visualInteractions: Schema.optionalKey(
-    Schema.Array(Schema.suspend(() => PageVisualInteraction)),
-  ),
+  visualInteractions: Schema.optionalKey(Schema.Array(Schema.suspend(() => PageVisualInteraction))),
   autoPageGenerationConfig: Schema.optionalKey(
     Schema.suspend(() => PageAutoPageGenerationConfigV1_1_0),
   ),
-  annotations: Schema.optionalKey(
-    Schema.Array(Schema.suspend(() => PageAnnotation)),
-  ),
+  annotations: Schema.optionalKey(Schema.Array(Schema.suspend(() => PageAnnotation))),
   howCreated: Schema.optionalKey(
     Schema.Union([Schema.Literal("Default"), Schema.Literal("Copilot")]),
   ),

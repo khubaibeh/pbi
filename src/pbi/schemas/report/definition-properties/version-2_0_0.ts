@@ -10,14 +10,10 @@ export type DefinitionPropertiesDatasetReferenceV2_0_0 = {
 export const DefinitionPropertiesDatasetReferenceV2_0_0: Schema.Codec<DefinitionPropertiesDatasetReferenceV2_0_0> =
   closed({
     byPath: Schema.optionalKey(
-      Schema.suspend(
-        () => DefinitionPropertiesReportDatasetReferenceByPath,
-      ),
+      Schema.suspend(() => DefinitionPropertiesReportDatasetReferenceByPath),
     ),
     byConnection: Schema.optionalKey(
-      Schema.suspend(
-        () => DefinitionPropertiesReportDatasetReferenceByConnectionV2_0_0,
-      ),
+      Schema.suspend(() => DefinitionPropertiesReportDatasetReferenceByConnectionV2_0_0),
     ),
   });
 
@@ -30,10 +26,8 @@ export const DefinitionPropertiesReportDatasetReferenceByConnectionV2_0_0: Schem
 
 export const DefinitionPropertiesDefinitionsV2_0_0 = {
   DatasetReference: DefinitionPropertiesDatasetReferenceV2_0_0,
-  ReportDatasetReferenceByConnection:
-    DefinitionPropertiesReportDatasetReferenceByConnectionV2_0_0,
-  ReportDatasetReferenceByPath:
-    DefinitionPropertiesReportDatasetReferenceByPath,
+  ReportDatasetReferenceByConnection: DefinitionPropertiesReportDatasetReferenceByConnectionV2_0_0,
+  ReportDatasetReferenceByPath: DefinitionPropertiesReportDatasetReferenceByPath,
 } as const;
 
 export type DefinitionPropertiesV2_0_0 = {
@@ -42,17 +36,14 @@ export type DefinitionPropertiesV2_0_0 = {
   readonly datasetReference: DefinitionPropertiesDatasetReferenceV2_0_0;
 };
 
-export const DefinitionPropertiesV2_0_0: Schema.Codec<DefinitionPropertiesV2_0_0> =
-  closed({
-    $schema: Schema.String.check(
-      Schema.isPattern(
-        new RegExp(
-          "^https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/2.[0-9]+.[0-9]+/schema.json$",
-        ),
+export const DefinitionPropertiesV2_0_0: Schema.Codec<DefinitionPropertiesV2_0_0> = closed({
+  $schema: Schema.String.check(
+    Schema.isPattern(
+      new RegExp(
+        "^https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/2.[0-9]+.[0-9]+/schema.json$",
       ),
     ),
-    version: Schema.String,
-    datasetReference: Schema.suspend(
-      () => DefinitionPropertiesDatasetReferenceV2_0_0,
-    ),
-  });
+  ),
+  version: Schema.String,
+  datasetReference: Schema.suspend(() => DefinitionPropertiesDatasetReferenceV2_0_0),
+});
