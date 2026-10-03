@@ -85,7 +85,7 @@ const SparklineData = Struct({
 	ApplyCalculationGroupTo: opt(Literals(["Sparkline", "Point"])),
 });
 
-export const QueryExpressionContainer = oneKeyOf(
+export const QueryExpressionContainer: ReturnType<typeof oneKeyOf> = oneKeyOf(
 	{
 		Name: opt(String),
 		NativeReferenceName: opt(String),
@@ -151,4 +151,4 @@ export const QueryExpressionContainer = oneKeyOf(
 		NativeColumn,
 		VisualTopN: Struct({ ItemCount: Number }),
 	},
-);
+).annotate({ identifier: "SemanticQuery.QueryExpressionContainer" });

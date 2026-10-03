@@ -24,35 +24,54 @@ export const EntitySource = Struct({
 	Schema: opt(String),
 	Expression: opt(Expression),
 	Type: opt(Literals([0, 1, 2])),
-});
+}).annotate({ identifier: "SemanticQuery.EntitySource" });
 
 export const QueryFilter = Struct({
 	Target: opt(Array(Expression)),
 	Condition: Expression,
 	Annotations: opt(Record(String, Unknown)),
-});
+}).annotate({ identifier: "SemanticQuery.QueryFilter" });
 
 export const QuerySortClause = Struct({
 	Expression: Expression,
 	Direction: Literals([1, 2]),
-});
+}).annotate({ identifier: "SemanticQuery.QuerySortClause" });
+
+const AxisGroup = Struct({
+	Keys: Array(Expression),
+	Subtotal: Boolean,
+}).annotate({ identifier: "SemanticQuery.AxisGroup" });
 
 export const Axis = Struct({
 	Name: String,
-	Groups: Array(Struct({ Keys: Array(Expression), Subtotal: Boolean })),
-});
+	Groups: Array(AxisGroup),
+}).annotate({ identifier: "SemanticQuery.Axis" });
+
+const QueryTransformColumn = Struct({
+	Role: opt(String),
+	Expression,
+}).annotate({ identifier: "SemanticQuery.QueryTransformColumn" });
 
 export const QueryTransformTable = Struct({
 	Name: String,
-	Columns: Array(Struct({ Role: opt(String), Expression: Expression })),
-});
+	Columns: Array(QueryTransformColumn),
+}).annotate({ identifier: "SemanticQuery.QueryTransformTable" });
+
+const QueryTransformInput = Struct({
+	Parameters: Array(Expression),
+	Table: opt(QueryTransformTable),
+}).annotate({ identifier: "SemanticQuery.QueryTransformInput" });
+
+const QueryTransformOutput = Struct({
+	Table: opt(QueryTransformTable),
+}).annotate({ identifier: "SemanticQuery.QueryTransformOutput" });
 
 export const QueryTransform = Struct({
 	Name: String,
 	Algorithm: String,
-	Input: Struct({ Parameters: Array(Expression), Table: opt(QueryTransformTable) }),
-	Output: Struct({ Table: opt(QueryTransformTable) }),
-});
+	Input: QueryTransformInput,
+	Output: QueryTransformOutput,
+}).annotate({ identifier: "SemanticQuery.QueryTransform" });
 
 export const QueryDefinition = Struct({
 	Version: opt(Literal(2)),
@@ -64,10 +83,10 @@ export const QueryDefinition = Struct({
 	GroupBy: opt(Array(Expression)),
 	Transform: opt(Array(QueryTransform)),
 	Top: opt(Number),
-});
+}).annotate({ identifier: "SemanticQuery.QueryDefinition" });
 
 export const FilterDefinition = Struct({
 	Version: opt(Literal(2)),
 	From: Array(EntitySource),
 	Where: Array(QueryFilter),
-});
+}).annotate({ identifier: "SemanticQuery.FilterDefinition" });
