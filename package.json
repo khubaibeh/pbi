@@ -7,6 +7,10 @@
 		"pbi": "./src/pbi/cli/main.ts"
 	},
 	"type": "module",
+	"imports": {
+		"#pbi/*.ts": "./src/pbi/*.ts",
+		"#pbi/*": "./src/pbi/*/index.ts"
+	},
 	"scripts": {
 		"prepare": "vp config",
 		"pbi": "node src/pbi/cli/main.ts",

@@ -22,7 +22,7 @@ export default defineConfig({
 				"style",
 				"unknown",
 			],
-			internalPattern: ["#/"],
+			internalPattern: ["#pbi/"],
 			newlinesBetween: true,
 			order: "asc",
 			ignoreCase: true,

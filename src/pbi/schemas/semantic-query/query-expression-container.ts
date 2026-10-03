@@ -15,7 +15,8 @@ import {
 	suspend,
 } from "effect/Schema";
 
-import { oneKeyOf } from "../shared.ts";
+import { oneKeyOf } from "#pbi/schemas/shared.ts";
+
 import { QueryDefinition, QueryFilter } from "./version-1.4.ts";
 
 const Expression = suspend(() => QueryExpressionContainer);
