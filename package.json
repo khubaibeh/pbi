@@ -5,11 +5,15 @@
 	"license": "MIT",
 	"description": "[EXPERIMENTAL] Tool(s) for interacting with power bi reports.",
 	"packageManager": "pnpm@11.22.0",
+	"bin": {
+		"pbi": "./src/pbi/cli/main.ts"
+	},
 	"scripts": {
+		"pbi": "node src/pbi/cli/main.ts",
 		"typecheck": "tsgo --noEmit"
 	},
 	"dependencies": {
-		"@effect/platform-node": "4.0.0-rc.111",
+		"@effect/platform-node": "4.0.0",
 		"effect": "4.0.0"
 	},
 	"devDependencies": {
