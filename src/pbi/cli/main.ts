@@ -11,4 +11,4 @@ const pbi = Command.make("pbi").pipe(
 	Command.withSubcommands([greet]),
 );
 
-pbi.pipe(Command.run({ version: "0.1.0" }), Effect.provide(NodeServices.layer), NodeRuntime.runMain);
+NodeRuntime.runMain(pbi.pipe(Command.run({ version: "0.1.0" }), Effect.provide(NodeServices.layer)));

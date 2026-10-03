@@ -1,9 +1,31 @@
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@1.0.0
+  vite-plus: 1.0.0
+
 allowBuilds:
   msgpackr-extract: true
 
 minimumReleaseAge: 4320 # 3 days
+minimumReleaseAgeStrict: true
 minimumReleaseAgeExclude:
   - effect@4.0.0
   - "@effect/platform-node@4.0.0"
   - "@effect/platform-node-shared@4.0.0"
-minimumReleaseAgeStrict: true
+  - vite-plus
+  - "@voidzero-dev/*"
+  - oxlint
+  - "@oxlint/*"
+  - oxlint-tsgolint
+  - "@oxlint-tsgolint/*"
+  - oxfmt
+  - "@oxfmt/*"
+  - vitest
+  - "@vitest/*"
+
+overrides:
+  vite@*: "catalog:"
+peerDependencyRules:
+  allowAny:
+    - vite
+  allowedVersions:
+    vite: "*"

@@ -20,23 +20,23 @@ The local collection is enough to validate the structured PBIR report documents 
 
 Paths below are relative to `.local/ms-json-schemas/fabric/item/report/`. “Newest local” means the newest version in this checkout, not a claim about the newest published Microsoft version.
 
-| Schema family | File or responsibility | Examples use | Newest local |
-| --- | --- | --- | --- |
-| `definitionProperties` | `definition.pbir`: report format version and semantic-model binding | No `$schema`; content version `4.0` | `2.0.0` |
-| `definition/versionMetadata` | `definition/version.json`: PBIR content-format version | Schema `1.0.0`; content version `2.0.0` | `1.0.0` |
-| `definition/report` | `definition/report.json`: settings, theme references, resources, report filters | `3.1.0` | `3.3.0` |
-| `definition/pagesMetadata` | `definition/pages/pages.json`: page order, active page, landing page | `1.0.0` | `1.1.0` |
-| `definition/page` | `definition/pages/<id>/page.json`: canvas, filters, interactions | `2.0.0` | `2.1.0` |
-| `definition/visualContainer` | `.../visuals/<id>/visual.json`: position, group membership, visibility, visual content | `2.5.0` | `2.9.0` |
-| `definition/visualConfiguration` | Nested visual type, query projections, sorting, formatting, slicer sync | Embedded `2.2.0` | `2.3.0` |
-| `definition/semanticQuery` | Shared expression/query structures, including columns, measures, aggregations | Dependency `1.3.0` | `1.4.0` |
-| `definition/filterConfiguration` | Report/page/visual filters | Embedded dependency `1.2.0` | `1.3.0` |
-| `definition/formattingObjectDefinitions` | Shared formatting objects and expression-backed property values | Dependency `1.4.0` | `1.5.0` |
-| `definition/bookmarksMetadata` | `definition/bookmarks/bookmarks.json`: order and groups | `1.0.0` | `1.0.0` |
-| `definition/bookmark` | `definition/bookmarks/<id>.bookmark.json`: saved page and visual state | `2.0.0` | `2.1.0` |
-| `definition/visualContainerMobileState` | Per-visual `mobile.json`: mobile layout and formatting | Absent | `2.4.0` |
-| `definition/reportExtension` | `definition/reportExtensions.json`: report-level model extensions | Absent | `1.0.0` |
-| `localSettings` | `.pbi/localSettings.json`: local machine/user state | Present without `$schema` | `1.0.0` |
+| Schema family                            | File or responsibility                                                                 | Examples use                            | Newest local |
+| ---------------------------------------- | -------------------------------------------------------------------------------------- | --------------------------------------- | ------------ |
+| `definitionProperties`                   | `definition.pbir`: report format version and semantic-model binding                    | No `$schema`; content version `4.0`     | `2.0.0`      |
+| `definition/versionMetadata`             | `definition/version.json`: PBIR content-format version                                 | Schema `1.0.0`; content version `2.0.0` | `1.0.0`      |
+| `definition/report`                      | `definition/report.json`: settings, theme references, resources, report filters        | `3.1.0`                                 | `3.3.0`      |
+| `definition/pagesMetadata`               | `definition/pages/pages.json`: page order, active page, landing page                   | `1.0.0`                                 | `1.1.0`      |
+| `definition/page`                        | `definition/pages/<id>/page.json`: canvas, filters, interactions                       | `2.0.0`                                 | `2.1.0`      |
+| `definition/visualContainer`             | `.../visuals/<id>/visual.json`: position, group membership, visibility, visual content | `2.5.0`                                 | `2.9.0`      |
+| `definition/visualConfiguration`         | Nested visual type, query projections, sorting, formatting, slicer sync                | Embedded `2.2.0`                        | `2.3.0`      |
+| `definition/semanticQuery`               | Shared expression/query structures, including columns, measures, aggregations          | Dependency `1.3.0`                      | `1.4.0`      |
+| `definition/filterConfiguration`         | Report/page/visual filters                                                             | Embedded dependency `1.2.0`             | `1.3.0`      |
+| `definition/formattingObjectDefinitions` | Shared formatting objects and expression-backed property values                        | Dependency `1.4.0`                      | `1.5.0`      |
+| `definition/bookmarksMetadata`           | `definition/bookmarks/bookmarks.json`: order and groups                                | `1.0.0`                                 | `1.0.0`      |
+| `definition/bookmark`                    | `definition/bookmarks/<id>.bookmark.json`: saved page and visual state                 | `2.0.0`                                 | `2.1.0`      |
+| `definition/visualContainerMobileState`  | Per-visual `mobile.json`: mobile layout and formatting                                 | Absent                                  | `2.4.0`      |
+| `definition/reportExtension`             | `definition/reportExtensions.json`: report-level model extensions                      | Absent                                  | `1.0.0`      |
+| `localSettings`                          | `.pbi/localSettings.json`: local machine/user state                                    | Present without `$schema`               | `1.0.0`      |
 
 Include mobile state and report extensions in the registry, even though these fixtures do not exercise them. Local settings can be inspected optionally and preserved; they should not be a prerequisite for report editing.
 
@@ -46,16 +46,16 @@ Microsoft documents expanded PBIR as externally editable, with separate files fo
 
 Paths in this table are relative to `.local/ms-json-schemas/`.
 
-| Priority | Schema path | Why it matters |
-| --- | --- | --- |
-| Initial scope | `fabric/pbip/pbipProperties/1.0.0` | Discover report folders from a `.pbip` file; validate project settings and relative artifact references. |
-| Initial scope | `fabric/gitIntegration/platformProperties/{2.0.0,2.1.0}` | Read `.platform` item type, display name, description, and logical ID. Both reports and their models use `2.0.0` in the fixtures. |
-| Initial scope, metadata only | `fabric/item/semanticModel/definitionProperties/1.0.0` | Read `definition.pbism` and recognize a local semantic-model item. This does not define the model itself. |
-| When supporting external model references | `fabric/item/semanticModel/modelReference/2.0.0` | Optional `modelReference.json` for a model hosted outside Power BI. This is distinct from the report's `datasetReference`. |
-| Optional local-state support | `fabric/item/semanticModel/{localSettings,editorSettings,unappliedChanges}` | Preserve or inspect authoring state; not needed to manipulate report pages and visuals. |
-| Later Fabric support | `fabric/gitIntegration/schedules/1.0.0` | Item schedules exported through Git integration; not a report layout dependency. |
-| Later Fabric support | `fabric/common/{auxiliaryTypes,itemReference,connectionReference,variableReference}` | Reusable IDs and references for workloads that depend on them. They are not dependencies of the example PBIR reports. |
-| Later, feature-specific | `fabric/item/semanticModel/copilot/*`, `fabric/item/version/1.0.0` | Copilot metadata and versioned auxiliary content when encountered. |
+| Priority                                  | Schema path                                                                          | Why it matters                                                                                                                    |
+| ----------------------------------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| Initial scope                             | `fabric/pbip/pbipProperties/1.0.0`                                                   | Discover report folders from a `.pbip` file; validate project settings and relative artifact references.                          |
+| Initial scope                             | `fabric/gitIntegration/platformProperties/{2.0.0,2.1.0}`                             | Read `.platform` item type, display name, description, and logical ID. Both reports and their models use `2.0.0` in the fixtures. |
+| Initial scope, metadata only              | `fabric/item/semanticModel/definitionProperties/1.0.0`                               | Read `definition.pbism` and recognize a local semantic-model item. This does not define the model itself.                         |
+| When supporting external model references | `fabric/item/semanticModel/modelReference/2.0.0`                                     | Optional `modelReference.json` for a model hosted outside Power BI. This is distinct from the report's `datasetReference`.        |
+| Optional local-state support              | `fabric/item/semanticModel/{localSettings,editorSettings,unappliedChanges}`          | Preserve or inspect authoring state; not needed to manipulate report pages and visuals.                                           |
+| Later Fabric support                      | `fabric/gitIntegration/schedules/1.0.0`                                              | Item schedules exported through Git integration; not a report layout dependency.                                                  |
+| Later Fabric support                      | `fabric/common/{auxiliaryTypes,itemReference,connectionReference,variableReference}` | Reusable IDs and references for workloads that depend on them. They are not dependencies of the example PBIR reports.             |
+| Later, feature-specific                   | `fabric/item/semanticModel/copilot/*`, `fabric/item/version/1.0.0`                   | Copilot metadata and versioned auxiliary content when encountered.                                                                |
 
 Defer the other workload-specific schemas until there is an explicit CLI use case: data agents, variable libraries, metric sets, organizational apps/audiences, user data functions, GraphQL, graph indexes/query sets, ontology, maps, planning, Cosmos DB, mirrored catalogs, Databricks storage, and ML items. Their presence does not imply coverage of all Fabric item types.
 
@@ -65,10 +65,10 @@ Fabric can use the same PBIR content through item-definition API parts containin
 
 Both ZIPs contain a `.context/` directory with a PBIP file, report folder, and semantic-model folder. They are project archives, not PBIX containers.
 
-| Fixture | Pages | Visual containers | Of which groups | Bookmarks | TMDL files |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| `report1.zip`: Ada - Schedule | 3 | 133 | 15 | 9 | 57 |
-| `report2.zip`: Ada - Executive Summary | 4 | 219 | 33 | 8 | 70 |
+| Fixture                                | Pages | Visual containers | Of which groups | Bookmarks | TMDL files |
+| -------------------------------------- | ----: | ----------------: | --------------: | --------: | ---------: |
+| `report1.zip`: Ada - Schedule          |     3 |               133 |              15 |         9 |         57 |
+| `report2.zip`: Ada - Executive Summary |     4 |               219 |              33 |         8 |         70 |
 
 Both include custom themes, image resources, custom visual references, bookmark state, grouped visuals, and local model bindings. The second also includes a packaged custom visual. Neither contains per-visual `mobile.json` or `reportExtensions.json`, so more fixtures will be needed for those features.
 

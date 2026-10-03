@@ -1,15 +1,20 @@
 {
 	"name": "pbi",
 	"version": "0.1.0",
-	"type": "module",
-	"license": "MIT",
 	"description": "[EXPERIMENTAL] Tool(s) for interacting with power bi reports.",
-	"packageManager": "pnpm@11.22.0",
+	"license": "MIT",
 	"bin": {
 		"pbi": "./src/pbi/cli/main.ts"
 	},
+	"type": "module",
 	"scripts": {
+		"prepare": "vp config",
 		"pbi": "node src/pbi/cli/main.ts",
+		"check": "vp check",
+		"lint": "vp lint",
+		"lint:fix": "vp lint --fix",
+		"format": "vp fmt",
+		"format:check": "vp fmt --check",
 		"typecheck": "tsgo --noEmit"
 	},
 	"dependencies": {
@@ -18,6 +23,19 @@
 	},
 	"devDependencies": {
 		"@types/node": "^26.2.0",
-		"@typescript/native-preview": "7.0.0-dev.20260707.2"
+		"@typescript/native-preview": "7.0.0-dev.20260707.2",
+		"vite-plus": "catalog:"
+	},
+	"devEngines": {
+		"packageManager": {
+			"name": "pnpm",
+			"version": "12.4.0",
+			"onFail": "download"
+		},
+		"runtime": {
+			"name": "node",
+			"version": "24.21.0",
+			"onFail": "download"
+		}
 	}
 }
