@@ -1,0 +1,24 @@
+{
+	"$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/reportExtension/1.0.0/schema.json",
+	"name": "extension",
+	"entities": [
+		{
+			"name": "Table1",
+			"measures": [
+				{
+					"name": "Field1",
+					"dataType": "Float",
+					"expression": "SUM(Table1[Field2])",
+					"formatString": "0.00",
+					"displayFolder": "Text1",
+					"measureTemplate": { "daxTemplateName": "Text2", "version": 1 },
+					"annotations": [{ "name": "Text3", "value": "Text4" }],
+					"references": {
+						"unrecognizedReferences": false,
+						"measures": [{ "entity": "Table1", "name": "Field3" }]
+					}
+				}
+			]
+		}
+	]
+}
