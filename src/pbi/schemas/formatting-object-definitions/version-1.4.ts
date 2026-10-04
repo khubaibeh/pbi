@@ -3,6 +3,6 @@ import { versions as semanticQuery } from "#pbi/schemas/semantic-query";
 import { makeSchemas } from "./shared.ts";
 
 export const { DataViewObjectDefinitions, Selector, DataRepetitionSelector } = makeSchemas(
-	semanticQuery["1.4"].QueryExpressionContainer,
+	semanticQuery["1.3"].QueryExpressionContainer,
 	{ hierarchyMatching: true },
 );
