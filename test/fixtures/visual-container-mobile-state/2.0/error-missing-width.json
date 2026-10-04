@@ -1,5 +1,5 @@
 {
-	"$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.5.0/schema.json",
+	"$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.0.0/schema.json",
 	"objects": {
 		"categoryLabels": [
 			{
@@ -60,7 +60,6 @@
 		"y": 2,
 		"z": 5000,
 		"height": 23.333333333333332,
-		"width": 60,
 		"tabOrder": 5000
 	}
 }
