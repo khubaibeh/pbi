@@ -1,14 +1,26 @@
 import { Effect } from "effect";
 import { Argument, Command, Flag } from "effect/cli";
 
-import { latest } from "#pbi/schemas/page";
+import { latest, versions } from "#pbi/schemas/page";
 
 import { checkFiles, decodeJson, logResults, parseJson } from "../shared/index.ts";
+
+const schemaOf = (value: unknown) => {
+	const url = typeof value === "object" && value !== null && "$schema" in value ? value.$schema : undefined;
+
+	const found = Object.entries(versions).find(
+		([version]) =>
+			url ===
+			`https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/${version}.0/schema.json`,
+	);
+
+	return found?.[1] ?? latest;
+};
 
 const check = Effect.fn("cli.subset.page.check")(function* (text: string, file: string) {
 	const json = yield* parseJson(text, file);
 
-	const decoded = yield* decodeJson(latest.Page, json, file);
+	const decoded = yield* decodeJson(schemaOf(json.value).Page, json, file);
 
 	return {
 		name: "Page",

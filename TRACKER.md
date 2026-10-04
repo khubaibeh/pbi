@@ -29,4 +29,10 @@
 ### Not started
 
 - [ ] Error output: short paths (`a.b[0]`), line and column in the source file, expected shape.
-- [ ] Older semantic-query versions (1.0 to 1.3).
+- [x] Older semantic-query versions (1.0 to 1.3).
+
+## Formatting property values
+
+- [x] `PropertyValue` in `src/pbi/schemas/shared.ts`: `Unknown` with an identifier and description, for fields Microsoft leaves open (`{}`). Used in page.
+- [ ] Final pass: swap `opt(Unknown)` formatting property fields for `PropertyValue` in report, visual-container, visual-configuration and filter-configuration. Leave other `Unknown`s, such as `properties: Record(String, Unknown)` in formatting-object-definitions, unless we decide otherwise.
+- [ ] Check known shapes and let the rest through: `expr` must be a valid semantic-query expression, `solid.color.expr` and `image.{name,url}.expr` too. Needs each version's semantic query, so `PropertyValue` becomes a builder. In our reports, 97% of values are `expr` or `solid.color.expr`; 42 are text box paragraph arrays; none are bare strings, numbers or booleans.

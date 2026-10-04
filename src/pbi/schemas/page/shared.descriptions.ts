@@ -14,7 +14,6 @@ export const descriptions = {
 				"Filters that apply to all the visuals on this page - on top of the filters defined for the whole report.",
 			pageBinding: "Additional metadata defined for how this page is used (tooltip, drillthrough, etc).",
 			objects: "Defines the formatting for different objects on a page.",
-			type: "Specific usage of this page (for example drillthrough).",
 			visibility: "Defines when this page should be visible - by default it is always visible.",
 			visualInteractions: [
 				"Defines how data point selection on a specific visual flow (as filters) to other visuals on the page.",
@@ -25,6 +24,9 @@ export const descriptions = {
 			annotations: "Additional information to be saved (for example comments, readme, etc) for this page.",
 			howCreated: "Source of creation of this page.",
 		},
+	},
+	PageType: {
+		type: "Specific usage of this page (for example drillthrough).",
 	},
 	PageBinding: {
 		fields: {

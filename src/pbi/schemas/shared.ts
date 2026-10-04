@@ -1,5 +1,5 @@
 import { Effect, type SchemaAST, SchemaIssue, SchemaParser } from "effect";
-import { type Codec, Struct, declareConstructor } from "effect/Schema";
+import { type Codec, Struct, Unknown, declareConstructor } from "effect/Schema";
 
 declare module "effect/Schema" {
 	namespace Annotations {
@@ -8,6 +8,16 @@ declare module "effect/Schema" {
 		}
 	}
 }
+
+export const PropertyValue = Unknown.annotate({
+	identifier: "Shared.PropertyValue",
+	description: [
+		"A formatting property value. Power BI saves it as an expression object such as",
+		"{ expr: { Literal: { Value } } } or",
+		"{ solid: { color: { expr } } },",
+		"or as an array for text box paragraphs.",
+	].join("\n"),
+});
 
 type Fields = { readonly [key: string]: Codec<unknown> };
 
