@@ -7,7 +7,6 @@ import {
 	Record,
 	String,
 	Struct,
-	StructWithRest,
 	Unknown,
 	optionalKey as opt,
 	suspend,
@@ -16,10 +15,19 @@ import {
 import { describe, oneKeyOf } from "#pbi/schemas/shared.ts";
 
 import * as shared from "./shared.ts";
-import { descriptions as d } from "./version-1.4.descriptions.ts";
-import { QueryDefinition, QueryFilter } from "./version-1.4.ts";
+import { descriptions as d } from "./version-1.2.descriptions.ts";
+import { QueryDefinition } from "./version-1.2.ts";
 
 const Expression = suspend(() => QueryExpressionContainer);
+
+const QueryFilter = describe(
+	Struct({
+		Target: opt(Array(Expression)),
+		Condition: Expression,
+		Annotations: opt(Record(String, Unknown)),
+	}),
+	d.QueryFilter,
+).annotate({ identifier: "SemanticQuery.QueryFilter" });
 
 const Unary = Struct({ Expression });
 const Binary = Struct({ Left: Expression, Right: Expression });
@@ -50,21 +58,13 @@ const SparklineData = Struct({
 	Measure: Expression,
 	Groupings: Array(Expression),
 	PointsPerSparkline: opt(Literal(52)),
-	ApplyCalculationGroupTo: opt(Literals(["Sparkline", "Point"])),
 });
 
 export const QueryExpressionContainer: ReturnType<typeof oneKeyOf> = oneKeyOf(
 	{
 		Name: opt(String),
 		NativeReferenceName: opt(String),
-		Annotations: opt(
-			StructWithRest(
-				Struct({
-					customTotalMetadata: opt(describe(Struct({ baseQueryName: String }), d.QueryCustomTotalMetadata)),
-				}),
-				[Record(String, Unknown)],
-			),
-		),
+		Annotations: opt(Record(String, Unknown)),
 	},
 	{
 		SourceRef: shared.SourceRef,

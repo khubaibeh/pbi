@@ -27,12 +27,4 @@ export const descriptions = {
 		},
 	},
 	SortDirection: {},
-	QueryCustomTotalMetadata: {
-		description:
-			"Metadata for custom total calculations. Used to differentiate custom total calculations from normal visual calculations, enabling operations that need to identify which column a custom total belongs to.",
-		fields: {
-			baseQueryName:
-				"The query name of the base column that this custom total references. This establishes the relationship between a custom total and the column it refers to.",
-		},
-	},
 };
