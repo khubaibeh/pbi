@@ -1,0 +1,17 @@
+{
+	"filters": [
+		{
+			"name": "AmountFilter",
+			"objects": {
+				"general": [
+					{
+						"selector": {
+							"hierarchyMatching": 2
+						},
+						"properties": {}
+					}
+				]
+			}
+		}
+	]
+}

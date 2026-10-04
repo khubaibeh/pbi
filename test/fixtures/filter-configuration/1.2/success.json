@@ -1,0 +1,139 @@
+{
+	"filterSortOrder": "Custom",
+	"filters": [
+		{
+			"name": "AmountFilter",
+			"displayName": "Amount",
+			"ordinal": 1,
+			"field": {
+				"SparklineData": {
+					"Measure": {
+						"Column": {
+							"Expression": {
+								"SourceRef": {
+									"Entity": "Sales"
+								}
+							},
+							"Property": "Amount"
+						}
+					},
+					"Groupings": [
+						{
+							"Column": {
+								"Expression": {
+									"SourceRef": {
+										"Entity": "Sales"
+									}
+								},
+								"Property": "Amount"
+							}
+						}
+					],
+					"PointsPerSparkline": 52,
+					"ApplyCalculationGroupTo": "Point"
+				}
+			},
+			"type": "Categorical",
+			"filter": {
+				"Version": 2,
+				"From": [],
+				"Where": [
+					{
+						"Condition": {
+							"Comparison": {
+								"ComparisonKind": 0,
+								"Left": {
+									"Column": {
+										"Expression": {
+											"SourceRef": {
+												"Entity": "Sales"
+											}
+										},
+										"Property": "Amount"
+									}
+								},
+								"Right": {
+									"Literal": {
+										"Value": "1L"
+									}
+								}
+							}
+						}
+					}
+				]
+			},
+			"howCreated": "User",
+			"isHiddenInViewMode": false,
+			"isLockedInViewMode": false,
+			"objects": {
+				"general": [
+					{
+						"selector": {
+							"data": [
+								{
+									"scopeId": {
+										"NativeVisualCalculation": {
+											"Language": "dax",
+											"Expression": "1",
+											"Name": "Calculation",
+											"DataType": "Integer"
+										}
+									},
+									"wildcard": [
+										{
+											"SparklineData": {
+												"Measure": {
+													"Column": {
+														"Expression": {
+															"SourceRef": {
+																"Entity": "Sales"
+															}
+														},
+														"Property": "Amount"
+													}
+												},
+												"Groupings": [
+													{
+														"Column": {
+															"Expression": {
+																"SourceRef": {
+																	"Entity": "Sales"
+																}
+															},
+															"Property": "Amount"
+														}
+													}
+												],
+												"PointsPerSparkline": 52,
+												"ApplyCalculationGroupTo": "Point"
+											}
+										}
+									],
+									"total": [
+										{
+											"VisualTopN": {
+												"ItemCount": 5
+											}
+										}
+									],
+									"roles": ["Values"],
+									"dataViewWildcard": {
+										"matchingOption": 0
+									}
+								}
+							],
+							"metadata": "Amount",
+							"highlightMatching": 0,
+							"order": 1,
+							"hierarchyMatching": 1
+						},
+						"properties": {
+							"requireSingleSelect": true,
+							"isInvertedSelectionMode": false
+						}
+					}
+				]
+			}
+		}
+	]
+}

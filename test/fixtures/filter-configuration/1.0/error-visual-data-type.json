@@ -1,0 +1,15 @@
+{
+	"filters": [
+		{
+			"name": "AmountFilter",
+			"field": {
+				"NativeVisualCalculation": {
+					"Language": "dax",
+					"Expression": "1",
+					"Name": "Calculation",
+					"DataType": "Invalid"
+				}
+			}
+		}
+	]
+}

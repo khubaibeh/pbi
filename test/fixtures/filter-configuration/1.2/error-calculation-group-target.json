@@ -1,0 +1,42 @@
+{
+	"filters": [
+		{
+			"name": "AmountFilter",
+			"filter": {
+				"From": [],
+				"Where": [
+					{
+						"Condition": {
+							"SparklineData": {
+								"Measure": {
+									"Column": {
+										"Expression": {
+											"SourceRef": {
+												"Entity": "Sales"
+											}
+										},
+										"Property": "Amount"
+									}
+								},
+								"Groupings": [
+									{
+										"Column": {
+											"Expression": {
+												"SourceRef": {
+													"Entity": "Sales"
+												}
+											},
+											"Property": "Amount"
+										}
+									}
+								],
+								"PointsPerSparkline": 52,
+								"ApplyCalculationGroupTo": "Invalid"
+							}
+						}
+					}
+				]
+			}
+		}
+	]
+}

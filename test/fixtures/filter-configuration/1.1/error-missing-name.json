@@ -1,0 +1,17 @@
+{
+	"filters": [
+		{
+			"type": "Categorical",
+			"field": {
+				"Column": {
+					"Expression": {
+						"SourceRef": {
+							"Entity": "Sales"
+						}
+					},
+					"Property": "Amount"
+				}
+			}
+		}
+	]
+}
