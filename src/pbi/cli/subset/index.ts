@@ -3,6 +3,7 @@ import { Command } from "effect/cli";
 import { filterConfiguration } from "./filter-configuration.ts";
 import { page } from "./page.ts";
 import { pagesMetadata } from "./pages-metadata.ts";
+import { reportExtension } from "./report-extension.ts";
 import { report } from "./report.ts";
 import { semanticQuery } from "./semantic-query.ts";
 import { versionMetadata } from "./version-metadata.ts";
@@ -17,6 +18,7 @@ export const subset = Command.make("subset").pipe(
 		page,
 		pagesMetadata,
 		report,
+		reportExtension,
 		semanticQuery,
 		versionMetadata,
 		visualConfiguration,
