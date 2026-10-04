@@ -37,6 +37,16 @@ export const descriptions = {
 			type: "Built-in or user specific custom theme.",
 		},
 	},
+	LegacyThemeMetadata: {
+		fields: {
+			name: "Name of the theme.",
+			reportVersionAtImport: "Version when the theme was added to the report.",
+			type: "Built-in or user specific custom theme.",
+		},
+	},
+	LayoutOptimization: {
+		layoutOptimization: "Is the report optimized for mobile consumption.",
+	},
 	ThemeVersion: {
 		fields: {
 			visual: "The max visual container version at import.",
@@ -111,12 +121,16 @@ export const descriptions = {
 			].join("\n"),
 			customMemoryLimit: "If custom query limit is applied, this value defines the memory limit.",
 			customTimeoutLimit: "If custom query limit is applied, this value defines the timeout limit.",
-			fieldParameterReportSettings:
-				"Settings that will control the field parameter across all the visual in the report",
-			defaultDataExplorePerspective: "The default perspective that can be used with the report.",
-			locale: "Report specific locale that takes precedence over browser and os locale.",
-			defaultDisplayUnitsToNone: "Report specific setting to default display units to none.",
 		},
+	},
+	FieldParameterSettings: {
+		fieldParameterReportSettings:
+			"Settings that will control the field parameter across all the visual in the report",
+	},
+	LocaleSettings: {
+		defaultDataExplorePerspective: "The default perspective that can be used with the report.",
+		locale: "Report specific locale that takes precedence over browser and os locale.",
+		defaultDisplayUnitsToNone: "Report specific setting to default display units to none.",
 	},
 	FieldParameterReportSettings: {
 		fields: {

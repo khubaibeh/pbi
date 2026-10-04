@@ -33,8 +33,8 @@
 
 ## Formatting property values
 
-- [x] `PropertyValue` in `src/pbi/schemas/shared.ts`: `Unknown` with an identifier and description, for fields Microsoft leaves open (`{}`). Used in page, visual-configuration and visual-container.
-- [ ] Final pass: swap `opt(Unknown)` formatting property fields for `PropertyValue` in report, filter-configuration and visual-container-mobile-state. Leave other `Unknown`s, such as `properties: Record(String, Unknown)` in formatting-object-definitions, unless we decide otherwise.
+- [x] `PropertyValue` in `src/pbi/schemas/shared.ts`: `Unknown` with an identifier and description, for fields Microsoft leaves open (`{}`). Used in page, visual-configuration, visual-container and report.
+- [ ] Final pass: swap `opt(Unknown)` formatting property fields for `PropertyValue` in filter-configuration and visual-container-mobile-state. Leave other `Unknown`s, such as `properties: Record(String, Unknown)` in formatting-object-definitions, unless we decide otherwise.
 - [ ] Check known shapes and let the rest through: `expr` must be a valid semantic-query expression, `solid.color.expr` and `image.{name,url}.expr` too. Needs each version's semantic query, so `PropertyValue` becomes a builder. In our reports, 97% of values are `expr` or `solid.color.expr`; 42 are text box paragraph arrays; none are bare strings, numbers or booleans.
 
 ## Tested against
@@ -46,7 +46,7 @@ Real files are the two local reports in `.local/corpus` (gitignored, client data
 | page                          | 1.0–2.1          | 7 `page.json` (2.0.0)                    | pass as is           | 21, all as named                                             | yes, 28 of 28 (21 fixtures, 7 real)     |
 | version-metadata              | 1.0              | 2 `version.json` (1.0.0)                 | pass as is           | 3                                                            | not run                                 |
 | pages-metadata                | 1.1              | 2 `pages.json` (1.0.0)                   | pass bumped          | 3                                                            | not run                                 |
-| report                        | 3.3              | 2 `report.json` (3.1.0)                  | pass bumped          | 3                                                            | not run                                 |
+| report                        | 1.0–3.3          | 2 `report.json` (3.1.0)                  | pass as is           | 30, all as named                                             | yes, 32 of 32 (30 fixtures, 2 real)     |
 | visual-container              | 1.0–2.9          | 352 `visual.json` (2.5.0)                | pass as is           | 57, all as named                                             | yes, 409 of 409 (57 fixtures, 352 real) |
 | semantic-query                | 1.0–1.4          | only inside visuals and pages            | pass                 | 34, all as named                                             | yes, run by the agent with `ajv`        |
 | formatting-object-definitions | 1.0–1.5          | only inside visuals and pages            | pass                 | 18, all as named                                             | yes, run by the agent with `ajv`        |
@@ -57,4 +57,4 @@ Real files are the two local reports in `.local/corpus` (gitignored, client data
 | bookmark, bookmarks-metadata  | none             | 14 `*.bookmark.json`, 2 `bookmarks.json` | not run              | –                                                            | –                                       |
 
 - [ ] Rerun the real files when a family gets its older versions; each "pass bumped" row should become "pass as is".
-- [ ] Compare against Microsoft's schema for the families marked "not run" (script: `.local/scripts/compare-contract.ts page|visual`).
+- [ ] Compare against Microsoft's schema for the families marked "not run" (script: `.local/scripts/compare-contract.ts page|visual|report`).
