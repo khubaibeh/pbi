@@ -1,0 +1,33 @@
+{
+	"filters": [
+		{
+			"name": "8cde8964befdcd2f2c0c",
+			"field": {
+				"Column": {
+					"Expression": {
+						"SourceRef": {
+							"Entity": "Table10"
+						}
+					},
+					"Property": "Field32"
+				}
+			},
+			"type": "Categorical",
+			"objects": {
+				"general": [
+					{
+						"properties": {
+							"isInvertedSelectionMode": {
+								"expr": {
+									"Literal": {
+										"Value": "true"
+									}
+								}
+							}
+						}
+					}
+				]
+			}
+		}
+	]
+}
