@@ -1,9 +1,9 @@
-import { Console, Effect, Schema } from "effect";
+import { Console, Effect } from "effect";
 import { Argument, Command } from "effect/cli";
 
 import { latest } from "#pbi/schemas/semantic-query";
 
-import { JsonParseError, SchemaValidationError, checkFiles } from "../shared.ts";
+import { checkFiles, decodeJson, parseJson } from "../shared/index.ts";
 
 const definitionOf = (value: unknown) => {
 	const has = (key: string) => typeof value === "object" && value !== null && Object.hasOwn(value, key);
@@ -16,16 +16,11 @@ const definitionOf = (value: unknown) => {
 };
 
 const check = Effect.fn("cli.subset.semanticQuery.check")(function* (text: string, file: string) {
-	const value = yield* Effect.try({
-		try: (): unknown => JSON.parse(text),
-		catch: (cause) => new JsonParseError({ path: file, cause }),
-	});
+	const json = yield* parseJson(text, file);
 
-	const { name, schema } = definitionOf(value);
+	const { name, schema } = definitionOf(json.value);
 
-	const decoded = yield* Schema.decodeUnknownEffect(schema)(value).pipe(
-		Effect.mapError((cause) => new SchemaValidationError({ path: file, schemaName: name, cause })),
-	);
+	const decoded = yield* decodeJson(schema, json, file);
 
 	return {
 		name,
@@ -41,7 +36,7 @@ export const semanticQuery = Command.make(
 			Argument.variadic({ min: 1 }),
 		),
 	},
-	Effect.fn("subset.semanticQuery")(function* ({ files }) {
+	Effect.fn("cli.subset.semanticQuery")(function* ({ files }) {
 		const { passed, logs } = yield* checkFiles(files, check, (_checked, file) => `[SUCCESS] ${file}`);
 
 		yield* Effect.forEach(
@@ -50,11 +45,9 @@ export const semanticQuery = Command.make(
 			{ discard: true },
 		);
 
-		yield* Effect.forEach(
-			logs.filter((log) => log.level === "error"),
-			(log) => Console.error(log.message),
-			{ discard: true },
-		);
+		const errors = logs.filter((log) => log.level === "error").map((log) => log.message);
+
+		if (errors.length > 0) yield* Console.error(errors.join("\n\n"));
 
 		if (!passed) process.exitCode = 1;
 	}),
