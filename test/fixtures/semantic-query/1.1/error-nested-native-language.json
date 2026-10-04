@@ -22,10 +22,9 @@
 					"Select": [
 						{
 							"NativeVisualCalculation": {
-								"Language": "dax",
+								"Language": "sql",
 								"Expression": "1",
-								"Name": "Calculation",
-								"DataType": "Integer"
+								"Name": "Calculation"
 							}
 						}
 					]

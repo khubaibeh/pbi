@@ -21,20 +21,11 @@
 					],
 					"Select": [
 						{
-							"SparklineData": {
-								"Measure": {
-									"Column": {
-										"Expression": {
-											"SourceRef": {
-												"Source": "s"
-											}
-										},
-										"Property": "Amount"
-									}
-								},
-								"Groupings": [],
-								"PointsPerSparkline": 52,
-								"ApplyCalculationGroupTo": "Point"
+							"NativeVisualCalculation": {
+								"Language": "dax",
+								"Expression": "1",
+								"Name": "Calculation",
+								"DataType": "Invalid"
 							}
 						}
 					]
