@@ -31,7 +31,7 @@ export const descriptions = {
 		},
 	},
 	FilterContainerFormattingObjects: {},
-	"FilterContainerFormattingObjects.general": {
+	General: {
 		fields: {
 			selector: [
 				"Defines the scope at which to apply the formatting for this object.",
