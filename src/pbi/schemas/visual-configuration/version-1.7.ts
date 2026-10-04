@@ -4,15 +4,15 @@ import { versions as semanticQuery } from "#pbi/schemas/semantic-query";
 import { makeSchemas } from "./shared.ts";
 
 export const { Visual, VisualContainerFormattingObjects, Background, LockAspect } = makeSchemas(
-	formattingObjectDefinitions["1.5"],
-	semanticQuery["1.4"],
+	formattingObjectDefinitions["1.2"],
+	semanticQuery["1.2"],
 	{
 		formatMaxLength: true,
 		currentFormatText: true,
-		sortDirection: true,
-		currentFieldParameterText: true,
+		sortDirection: false,
+		currentFieldParameterText: false,
 		borderWidth: true,
 		headerAlertButtons: true,
-		dataFunction: true,
+		dataFunction: false,
 	},
 );

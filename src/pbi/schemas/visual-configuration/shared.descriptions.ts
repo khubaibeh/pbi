@@ -84,13 +84,25 @@ export const descriptions = {
 				"",
 				"This value will be re-computed when the parameter is evaluated, which is when the visual is rendered.",
 			].join("\n"),
-			sortDirection: [
-				"If the sort direction is set, the visual is sorted by this field parameter.",
-				"The implication of a visual being sorted by a field parameter is as follows:",
-				"- If none of the newly projected fields exist in the sort list, apply the parameter sort direction to the first projected field and add it to the end of the sort list.",
-				"- If all the projected fields in the sort list have the opposite sort direction as the parameter's sort direction, flip the parameter's sort direction.",
-			].join("\n"),
 		},
+	},
+	RoleFieldParameterSortDirection: {
+		sortDirection: [
+			"If the sort direction is set, the visual is sorted by this field parameter.",
+			"The implication of a visual being sorted by a field parameter is as follows:",
+			"- If none of the newly projected fields exist in the sort list, apply the parameter sort direction to the first projected field and add it to the end of the sort list.",
+			"- If all the projected fields in the sort list have the opposite sort direction as the parameter's sort direction, flip the parameter's sort direction.",
+		].join("\n"),
+	},
+	LegacyRoleFieldParameter: {
+		fields: {
+			parameterExpr: "Defines the parameter field.",
+			index: "Index at which parameter fields begin in the projections list.",
+			length: "Number of fields replaced by the parameter in the projections list.",
+		},
+	},
+	LegacyRoleProjectionFormat: {
+		format: "A custom format defined for this field.",
 	},
 	ExpansionState: {
 		fields: {
