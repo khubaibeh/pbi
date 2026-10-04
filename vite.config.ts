@@ -61,6 +61,13 @@ export default defineConfig({
 			},
 		],
 	},
+	pack: {
+		entry: ["src/pbi/cli/main.ts"],
+		platform: "node",
+		format: "esm",
+		outDir: "dist",
+		clean: true,
+	},
 	staged: {
 		"*.{ts,mts,cts,js,mjs,cjs}": "vp check --fix",
 		"*.json": "vp fmt",

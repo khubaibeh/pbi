@@ -13,6 +13,7 @@
 	},
 	"scripts": {
 		"prepare": "vp config",
+		"build": "vp pack",
 		"pbi": "node src/pbi/cli/main.ts",
 		"check": "vp check",
 		"lint": "vp lint",

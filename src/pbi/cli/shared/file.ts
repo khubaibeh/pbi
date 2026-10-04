@@ -72,31 +72,17 @@ export const readFile = Effect.fn("cli.shared.readFile")(function* (path: string
 	return text;
 });
 
-interface CheckError extends Error {
-	readonly _tag: string;
-	readonly details?: ReadonlyArray<string>;
-}
-
-const errorLog = (error: CheckError) =>
-	(error.details ?? [error.message]).map((detail) => `[ERROR] ${error._tag}: ${detail}`).join("\n\n");
-
-export const checkFiles = Effect.fn("cli.shared.checkFiles")(function* <A, E extends CheckError, R>(
+export const checkFiles = Effect.fn("cli.shared.checkFiles")(function* <A, E, R>(
 	files: ReadonlyArray<string>,
 	check: (text: string, file: string) => Effect.Effect<A, E, R>,
-	successMessage: (checked: A, file: string) => string,
 ) {
-	const logs = yield* Effect.forEach(files, (file) =>
+	return yield* Effect.forEach(files, (file) =>
 		readFile(file).pipe(
 			Effect.flatMap((text) => check(text, file)),
 			Effect.match({
-				onSuccess: (checked) => ({ level: "info", message: successMessage(checked, file) }) as const,
-				onFailure: (error) => ({ level: "error", message: errorLog(error) }) as const,
+				onSuccess: (checked) => ({ path: file, status: "success", checked }) as const,
+				onFailure: (error) => ({ path: file, status: "error", error }) as const,
 			}),
 		),
 	);
-
-	return {
-		passed: !logs.some((log) => log.level === "error"),
-		logs,
-	};
 });
