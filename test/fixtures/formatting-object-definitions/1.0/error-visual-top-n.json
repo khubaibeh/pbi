@@ -1,0 +1,20 @@
+{
+	"dataPoint": [
+		{
+			"selector": {
+				"data": [
+					{
+						"scopeId": {
+							"VisualTopN": {
+								"ItemCount": 5
+							}
+						}
+					}
+				]
+			},
+			"properties": {
+				"fill": "blue"
+			}
+		}
+	]
+}

@@ -1,0 +1,69 @@
+{
+	"dataPoint": [
+		{
+			"selector": {
+				"data": [
+					{
+						"scopeId": {
+							"NativeVisualCalculation": {
+								"Language": "dax",
+								"Expression": "1",
+								"Name": "Calculation",
+								"DataType": "Integer"
+							}
+						},
+						"wildcard": [
+							{
+								"SparklineData": {
+									"Measure": {
+										"Column": {
+											"Expression": {
+												"SourceRef": {
+													"Entity": "Sales"
+												}
+											},
+											"Property": "Amount"
+										}
+									},
+									"Groupings": [
+										{
+											"Column": {
+												"Expression": {
+													"SourceRef": {
+														"Entity": "Sales"
+													}
+												},
+												"Property": "Amount"
+											}
+										}
+									],
+									"PointsPerSparkline": 52,
+									"ApplyCalculationGroupTo": "Point"
+								}
+							}
+						],
+						"total": [
+							{
+								"VisualTopN": {
+									"ItemCount": 5
+								}
+							}
+						],
+						"roles": ["Values"],
+						"dataViewWildcard": {
+							"matchingOption": 0
+						}
+					}
+				],
+				"metadata": "Amount",
+				"id": "AmountStyle",
+				"highlightMatching": 0,
+				"order": 1,
+				"hierarchyMatching": 1
+			},
+			"properties": {
+				"fill": "blue"
+			}
+		}
+	]
+}

@@ -1,0 +1,23 @@
+{
+	"dataPoint": [
+		{
+			"selector": {
+				"data": [
+					{
+						"scopeId": {
+							"NativeVisualCalculation": {
+								"Language": "dax",
+								"Expression": "1",
+								"Name": "Calculation",
+								"DataType": "Invalid"
+							}
+						}
+					}
+				]
+			},
+			"properties": {
+				"fill": "blue"
+			}
+		}
+	]
+}

@@ -1,0 +1,43 @@
+{
+	"dataPoint": [
+		{
+			"selector": {
+				"data": [
+					{
+						"scopeId": {
+							"SparklineData": {
+								"Measure": {
+									"Column": {
+										"Expression": {
+											"SourceRef": {
+												"Entity": "Sales"
+											}
+										},
+										"Property": "Amount"
+									}
+								},
+								"Groupings": [
+									{
+										"Column": {
+											"Expression": {
+												"SourceRef": {
+													"Entity": "Sales"
+												}
+											},
+											"Property": "Amount"
+										}
+									}
+								],
+								"PointsPerSparkline": 52,
+								"ApplyCalculationGroupTo": "Invalid"
+							}
+						}
+					}
+				]
+			},
+			"properties": {
+				"fill": "blue"
+			}
+		}
+	]
+}

@@ -1,0 +1,22 @@
+{
+	"dataPoint": [
+		{
+			"selector": {
+				"data": [
+					{
+						"scopeId": {
+							"NativeVisualCalculation": {
+								"Language": "sql",
+								"Expression": "1",
+								"Name": "Calculation"
+							}
+						}
+					}
+				]
+			},
+			"properties": {
+				"fill": "blue"
+			}
+		}
+	]
+}
