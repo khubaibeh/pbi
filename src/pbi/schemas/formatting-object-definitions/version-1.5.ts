@@ -5,7 +5,7 @@ import { describe } from "#pbi/schemas/shared.ts";
 
 import { descriptions as d } from "./version-1.5.descriptions.ts";
 
-const Expression = semanticQuery["1.4"].QueryExpressionContainer;
+const { QueryExpressionContainer: Expression } = semanticQuery["1.4"];
 
 const DataViewWildcard = describe(
 	Struct({
