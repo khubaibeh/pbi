@@ -5,7 +5,7 @@ class FileNotFoundError extends Data.TaggedError("FileNotFoundError")<{
 	readonly path: string;
 }> {
 	override get message() {
-		return `[ERROR] FileNotFound: ${this.path}`;
+		return this.path;
 	}
 }
 
@@ -13,7 +13,7 @@ class FileAccessDeniedError extends Data.TaggedError("FileAccessDeniedError")<{
 	readonly path: string;
 }> {
 	override get message() {
-		return `[ERROR] FileAccessDenied: ${this.path}`;
+		return this.path;
 	}
 }
 
@@ -22,7 +22,7 @@ class NotAFileError extends Data.TaggedError("NotAFileError")<{
 	readonly fileType: FileSystem.File.Type;
 }> {
 	override get message() {
-		return `[ERROR] NotAFile: ${this.path} (${this.fileType})`;
+		return `${this.path} (${this.fileType})`;
 	}
 }
 
@@ -30,7 +30,7 @@ class EmptyFileError extends Data.TaggedError("EmptyFileError")<{
 	readonly path: string;
 }> {
 	override get message() {
-		return `[ERROR] EmptyFile: ${this.path}`;
+		return this.path;
 	}
 }
 
@@ -39,7 +39,7 @@ class FileReadFailedError extends Data.TaggedError("FileReadFailedError")<{
 	readonly cause: PlatformError;
 }> {
 	override get message() {
-		return `[ERROR] FileReadFailedError: (${this.path}) Could not access or read the file (${this.cause.message})`;
+		return `(${this.path}) Could not access or read the file (${this.cause.message})`;
 	}
 }
 
@@ -72,7 +72,15 @@ export const readFile = Effect.fn("cli.shared.readFile")(function* (path: string
 	return text;
 });
 
-export const checkFiles = Effect.fn("cli.shared.checkFiles")(function* <A, E extends Error, R>(
+interface CheckError extends Error {
+	readonly _tag: string;
+	readonly details?: ReadonlyArray<string>;
+}
+
+const errorLog = (error: CheckError) =>
+	(error.details ?? [error.message]).map((detail) => `[ERROR] ${error._tag}: ${detail}`).join("\n\n");
+
+export const checkFiles = Effect.fn("cli.shared.checkFiles")(function* <A, E extends CheckError, R>(
 	files: ReadonlyArray<string>,
 	check: (text: string, file: string) => Effect.Effect<A, E, R>,
 	successMessage: (checked: A, file: string) => string,
@@ -82,7 +90,7 @@ export const checkFiles = Effect.fn("cli.shared.checkFiles")(function* <A, E ext
 			Effect.flatMap((text) => check(text, file)),
 			Effect.match({
 				onSuccess: (checked) => ({ level: "info", message: successMessage(checked, file) }) as const,
-				onFailure: (error) => ({ level: "error", message: error.message }) as const,
+				onFailure: (error) => ({ level: "error", message: errorLog(error) }) as const,
 			}),
 		),
 	);

@@ -43,6 +43,9 @@ export default defineConfig({
 		},
 		rules: {
 			"max-classes-per-file": "off",
+			"no-underscore-dangle": "off",
+			"max-lines": "off",
+			"max-lines-per-function": ["warn", { max: 150 }],
 			"typescript/prefer-readonly-parameter-types": "off",
 			"vite-plus/prefer-vite-plus-imports": "error",
 		},
