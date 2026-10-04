@@ -1,0 +1,179 @@
+{
+	"$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+	"name": "1602680c0c457443d1af",
+	"position": {
+		"x": 0,
+		"y": 0,
+		"z": 2000,
+		"height": 60,
+		"width": 153,
+		"tabOrder": 2000
+	},
+	"visual": {
+		"visualType": "card",
+		"query": {
+			"queryState": {
+				"Values": {
+					"projections": [
+						{
+							"field": {
+								"Measure": {
+									"Expression": {
+										"SourceRef": {
+											"Entity": "Table2"
+										}
+									},
+									"Property": "Field51"
+								}
+							},
+							"queryRef": "Table3.Field51",
+							"nativeQueryRef": "Text61"
+						}
+					],
+					"fieldParameters": [
+						{
+							"parameterExpr": {
+								"Measure": {
+									"Expression": {
+										"SourceRef": {
+											"Entity": "Table2"
+										}
+									},
+									"Property": "Field51"
+								}
+							},
+							"index": 0,
+							"sortDirection": "Descending"
+						}
+					]
+				}
+			},
+			"sortDefinition": {
+				"sort": [
+					{
+						"field": {
+							"Measure": {
+								"Expression": {
+									"SourceRef": {
+										"Entity": "Table2"
+									}
+								},
+								"Property": "Field51"
+							}
+						},
+						"direction": "Ascending"
+					}
+				],
+				"isDefaultSort": true
+			}
+		},
+		"objects": {
+			"labels": [
+				{
+					"properties": {
+						"fontSize": {
+							"expr": {
+								"Literal": {
+									"Value": "14D"
+								}
+							}
+						},
+						"preserveWhitespace": {
+							"expr": {
+								"Literal": {
+									"Value": "true"
+								}
+							}
+						}
+					}
+				}
+			]
+		},
+		"visualContainerObjects": {
+			"border": [
+				{
+					"properties": {
+						"show": {
+							"expr": {
+								"Literal": {
+									"Value": "true"
+								}
+							}
+						},
+						"color": {
+							"solid": {
+								"color": {
+									"expr": {
+										"Literal": {
+											"Value": "'#9D9D9D'"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			]
+		},
+		"drillFilterOtherVisuals": true
+	},
+	"parentGroupName": "a6c86d9a573cb67ee792",
+	"filterConfig": {
+		"filters": [
+			{
+				"name": "926252077505f50f182b",
+				"field": {
+					"Column": {
+						"Expression": {
+							"SourceRef": {
+								"Entity": "Table10"
+							}
+						},
+						"Property": "Field32"
+					}
+				},
+				"type": "Categorical",
+				"filter": {
+					"Version": 2,
+					"From": [
+						{
+							"Name": "e",
+							"Entity": "Table10",
+							"Type": 0
+						}
+					],
+					"Where": [
+						{
+							"Condition": {
+								"In": {
+									"Expressions": [
+										{
+											"Column": {
+												"Expression": {
+													"SourceRef": {
+														"Source": "e"
+													}
+												},
+												"Property": "Field32"
+											}
+										}
+									],
+									"Values": [
+										[
+											{
+												"Literal": {
+													"Value": "'Text1'"
+												}
+											}
+										]
+									]
+								}
+							}
+						}
+					]
+				},
+				"howCreated": "User"
+			}
+		]
+	}
+}
