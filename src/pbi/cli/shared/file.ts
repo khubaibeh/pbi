@@ -79,10 +79,8 @@ export const checkFiles = Effect.fn("cli.shared.checkFiles")(function* <A, E, R>
 	return yield* Effect.forEach(files, (file) =>
 		readFile(file).pipe(
 			Effect.flatMap((text) => check(text, file)),
-			Effect.match({
-				onSuccess: (checked) => ({ path: file, status: "success", checked }) as const,
-				onFailure: (error) => ({ path: file, status: "error", error }) as const,
-			}),
+			Effect.result,
+			Effect.map((result) => ({ path: file, result })),
 		),
 	);
 });
