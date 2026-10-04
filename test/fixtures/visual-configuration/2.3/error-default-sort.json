@@ -1,0 +1,84 @@
+{
+	"visualType": "card",
+	"query": {
+		"queryState": {
+			"Values": {
+				"projections": [
+					{
+						"field": {
+							"Measure": {
+								"Expression": {
+									"SourceRef": {
+										"Entity": "Table2"
+									}
+								},
+								"Property": "Field204"
+							}
+						},
+						"queryRef": "Table2.Field204",
+						"nativeQueryRef": "Text310"
+					}
+				]
+			}
+		},
+		"sortDefinition": {
+			"isDefaultSort": "true"
+		}
+	},
+	"objects": {
+		"categoryLabels": [
+			{
+				"properties": {
+					"show": {
+						"expr": {
+							"Literal": {
+								"Value": "false"
+							}
+						}
+					}
+				}
+			}
+		],
+		"labels": [
+			{
+				"properties": {
+					"fontSize": {
+						"expr": {
+							"Literal": {
+								"Value": "10D"
+							}
+						}
+					},
+					"color": {
+						"solid": {
+							"color": {
+								"expr": {
+									"ThemeDataColor": {
+										"ColorId": 2,
+										"Percent": 0
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		]
+	},
+	"visualContainerObjects": {
+		"padding": [
+			{
+				"properties": {
+					"top": {
+						"expr": {
+							"Literal": {
+								"Value": "4D"
+							}
+						}
+					}
+				}
+			}
+		]
+	},
+	"drillFilterOtherVisuals": true
+}
