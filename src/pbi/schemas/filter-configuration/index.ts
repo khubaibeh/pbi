@@ -11,3 +11,5 @@ export const versions = {
 } as const;
 
 export const latest = versions["1.3"];
+
+export { makeSchemas } from "./shared.ts";

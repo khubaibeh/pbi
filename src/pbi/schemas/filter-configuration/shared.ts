@@ -22,12 +22,26 @@ const FilterContainerFormattingObjectsProperties = describe(
 	d.FilterContainerFormattingObjectsProperties,
 ).annotate({ identifier: "FilterConfiguration.FilterContainerFormattingObjectsProperties" });
 
+const filterTypes = [
+	"Categorical",
+	"Range",
+	"Advanced",
+	"Passthrough",
+	"TopN",
+	"Include",
+	"Exclude",
+	"RelativeDate",
+	"Tuple",
+	"RelativeTime",
+] as const;
+
 export function makeSchemas(
 	formattingObjectDefinitions: { readonly Selector: Codec<unknown> },
 	semanticQuery: {
 		readonly QueryExpressionContainer: Codec<unknown>;
 		readonly FilterDefinition: Codec<unknown>;
 	},
+	options: { readonly visualTopN: boolean },
 ) {
 	const { Selector } = formattingObjectDefinitions;
 	const { QueryExpressionContainer: Expression, FilterDefinition } = semanticQuery;
@@ -50,21 +64,7 @@ export function makeSchemas(
 			displayName: opt(String),
 			ordinal: opt(Number),
 			field: opt(Expression),
-			type: opt(
-				Literals([
-					"Categorical",
-					"Range",
-					"Advanced",
-					"Passthrough",
-					"TopN",
-					"Include",
-					"Exclude",
-					"RelativeDate",
-					"Tuple",
-					"RelativeTime",
-					"VisualTopN",
-				]),
-			),
+			type: opt(Literals(options.visualTopN ? [...filterTypes, "VisualTopN"] : filterTypes)),
 			filter: opt(FilterDefinition),
 			restatement: opt(String),
 			howCreated: opt(Literals(["Auto", "User", "Drill", "Include", "Exclude", "Drillthrough"])),

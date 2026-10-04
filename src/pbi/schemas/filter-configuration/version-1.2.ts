@@ -3,4 +3,6 @@ import { versions as semanticQuery } from "#pbi/schemas/semantic-query";
 
 import { makeSchemas } from "./shared.ts";
 
-export const { FilterConfig } = makeSchemas(formattingObjectDefinitions["1.4"], semanticQuery["1.3"]);
+export const { FilterConfig } = makeSchemas(formattingObjectDefinitions["1.4"], semanticQuery["1.3"], {
+	visualTopN: true,
+});
