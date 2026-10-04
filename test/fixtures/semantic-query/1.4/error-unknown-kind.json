@@ -1,0 +1,38 @@
+{
+	"Version": 2,
+	"From": [
+		{
+			"Name": "d",
+			"Entity": "Table13",
+			"Type": 0
+		}
+	],
+	"Where": [
+		{
+			"Condition": {
+				"Not": {
+					"Expression": {
+						"Comparison": {
+							"ComparisonKind": 0,
+							"Left": {
+								"Colum": {
+									"Expression": {
+										"SourceRef": {
+											"Source": "d"
+										}
+									},
+									"Property": "Field60"
+								}
+							},
+							"Right": {
+								"Literal": {
+									"Value": "null"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	]
+}

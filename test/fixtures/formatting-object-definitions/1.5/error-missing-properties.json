@@ -1,0 +1,89 @@
+{
+	"valueAxis": [{}],
+	"dataPoint": [
+		{
+			"properties": {
+				"fill": {
+					"solid": {
+						"color": {
+							"expr": {
+								"ThemeDataColor": {
+									"ColorId": 4,
+									"Percent": 0
+								}
+							}
+						}
+					}
+				}
+			},
+			"selector": {
+				"data": [
+					{
+						"scopeId": {
+							"Comparison": {
+								"ComparisonKind": 0,
+								"Left": {
+									"Column": {
+										"Expression": {
+											"SourceRef": {
+												"Entity": "Table10"
+											}
+										},
+										"Property": "Field58"
+									}
+								},
+								"Right": {
+									"Literal": {
+										"Value": "'Text30'"
+									}
+								}
+							}
+						}
+					}
+				]
+			}
+		},
+		{
+			"properties": {
+				"fill": {
+					"solid": {
+						"color": {
+							"expr": {
+								"ThemeDataColor": {
+									"ColorId": 5,
+									"Percent": 0
+								}
+							}
+						}
+					}
+				}
+			},
+			"selector": {
+				"data": [
+					{
+						"scopeId": {
+							"Comparison": {
+								"ComparisonKind": 0,
+								"Left": {
+									"Column": {
+										"Expression": {
+											"SourceRef": {
+												"Entity": "Table10"
+											}
+										},
+										"Property": "Field58"
+									}
+								},
+								"Right": {
+									"Literal": {
+										"Value": "'Text31'"
+									}
+								}
+							}
+						}
+					}
+				]
+			}
+		}
+	]
+}
