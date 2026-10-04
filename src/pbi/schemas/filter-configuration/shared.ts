@@ -6,18 +6,17 @@ import {
 	Number,
 	String,
 	Struct,
-	Unknown,
 	optionalKey as opt,
 } from "effect/Schema";
 
-import { describe } from "#pbi/schemas/shared.ts";
+import { PropertyValue, describe } from "#pbi/schemas/shared.ts";
 
 import { descriptions as d } from "./shared.descriptions.ts";
 
 const FilterContainerFormattingObjectsProperties = describe(
 	Struct({
-		requireSingleSelect: opt(Unknown),
-		isInvertedSelectionMode: opt(Unknown),
+		requireSingleSelect: opt(PropertyValue),
+		isInvertedSelectionMode: opt(PropertyValue),
 	}),
 	d.FilterContainerFormattingObjectsProperties,
 ).annotate({ identifier: "FilterConfiguration.FilterContainerFormattingObjectsProperties" });

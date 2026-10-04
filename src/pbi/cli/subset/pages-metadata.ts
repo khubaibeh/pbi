@@ -1,14 +1,27 @@
 import { Effect } from "effect";
 import { Argument, Command, Flag } from "effect/cli";
+import type { Codec } from "effect/Schema";
 
-import { latest } from "#pbi/schemas/pages-metadata";
+import { latest, versions } from "#pbi/schemas/pages-metadata";
 
 import { checkFiles, decodeJson, logResults, parseJson } from "../shared/index.ts";
+
+const schemaOf = (value: unknown): { readonly PagesMetadata: Codec<unknown> } => {
+	const url = typeof value === "object" && value !== null && "$schema" in value ? value.$schema : undefined;
+
+	const found = Object.entries(versions).find(
+		([version]) =>
+			url ===
+			`https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/${version}.0/schema.json`,
+	);
+
+	return found?.[1] ?? latest;
+};
 
 const check = Effect.fn("cli.subset.pagesMetadata.check")(function* (text: string, file: string) {
 	const json = yield* parseJson(text, file);
 
-	const decoded = yield* decodeJson(latest.PagesMetadata, json, file);
+	const decoded = yield* decodeJson(schemaOf(json.value).PagesMetadata, json, file);
 
 	return {
 		name: "PagesMetadata",
