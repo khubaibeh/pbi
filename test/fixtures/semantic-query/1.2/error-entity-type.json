@@ -1,0 +1,22 @@
+{
+	"Version": 2,
+	"From": [
+		{
+			"Name": "s",
+			"Entity": "Sales",
+			"Type": 5
+		}
+	],
+	"Select": [
+		{
+			"Column": {
+				"Expression": {
+					"SourceRef": {
+						"Source": "s"
+					}
+				},
+				"Property": "Amount"
+			}
+		}
+	]
+}

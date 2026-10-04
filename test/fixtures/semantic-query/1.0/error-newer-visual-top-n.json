@@ -1,0 +1,17 @@
+{
+	"Version": 2,
+	"From": [
+		{
+			"Name": "s",
+			"Entity": "Sales",
+			"Type": 0
+		}
+	],
+	"Select": [
+		{
+			"VisualTopN": {
+				"ItemCount": 5
+			}
+		}
+	]
+}

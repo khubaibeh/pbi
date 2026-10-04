@@ -1,0 +1,60 @@
+{
+	"Version": 2,
+	"From": [
+		{
+			"Name": "s",
+			"Entity": "Sales",
+			"Type": 0
+		}
+	],
+	"Select": [
+		{
+			"Column": {
+				"Expression": {
+					"SourceRef": {
+						"Source": "s"
+					}
+				},
+				"Property": "Amount"
+			}
+		},
+		{
+			"NativeVisualCalculation": {
+				"Language": "dax",
+				"Expression": "1",
+				"Name": "Calculation"
+			}
+		},
+		{
+			"SparklineData": {
+				"Measure": {
+					"Column": {
+						"Expression": {
+							"SourceRef": {
+								"Source": "s"
+							}
+						},
+						"Property": "Amount"
+					}
+				},
+				"Groupings": [],
+				"PointsPerSparkline": 52
+			}
+		}
+	],
+	"OrderBy": [
+		{
+			"Expression": {
+				"Column": {
+					"Expression": {
+						"SourceRef": {
+							"Source": "s"
+						}
+					},
+					"Property": "Amount"
+				}
+			},
+			"Direction": 9
+		}
+	]
+}

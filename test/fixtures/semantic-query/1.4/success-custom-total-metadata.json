@@ -1,0 +1,11 @@
+{
+	"Literal": {
+		"Value": "1L"
+	},
+	"Annotations": {
+		"customTotalMetadata": {
+			"baseQueryName": "Amount"
+		},
+		"clientMetadata": true
+	}
+}

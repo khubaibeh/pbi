@@ -1,0 +1,20 @@
+{
+	"Version": 2,
+	"From": [
+		{
+			"Name": "s",
+			"Entity": "Sales",
+			"Type": 0
+		}
+	],
+	"Select": [
+		{
+			"NativeVisualCalculation": {
+				"Language": "dax",
+				"Expression": "1",
+				"Name": "Calculation",
+				"DataType": "Integer"
+			}
+		}
+	]
+}

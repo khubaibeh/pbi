@@ -1,0 +1,34 @@
+{
+	"Version": 2,
+	"From": [
+		{
+			"Name": "s",
+			"Entity": "Sales",
+			"Type": 0
+		}
+	],
+	"Where": [
+		{
+			"Condition": {
+				"Comparison": {
+					"ComparisonKind": 0,
+					"Left": {
+						"Column": {
+							"Expression": {
+								"SourceRef": {
+									"Source": "s"
+								}
+							},
+							"Property": "Amount"
+						}
+					},
+					"Right": {
+						"Literal": {
+							"Value": "1L"
+						}
+					}
+				}
+			}
+		}
+	]
+}

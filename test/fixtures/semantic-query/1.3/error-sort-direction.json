@@ -1,0 +1,37 @@
+{
+	"Version": 2,
+	"From": [
+		{
+			"Name": "s",
+			"Entity": "Sales",
+			"Type": 0
+		}
+	],
+	"Select": [
+		{
+			"Column": {
+				"Expression": {
+					"SourceRef": {
+						"Source": "s"
+					}
+				},
+				"Property": "Amount"
+			}
+		}
+	],
+	"OrderBy": [
+		{
+			"Expression": {
+				"Column": {
+					"Expression": {
+						"SourceRef": {
+							"Source": "s"
+						}
+					},
+					"Property": "Amount"
+				}
+			},
+			"Direction": 9
+		}
+	]
+}
