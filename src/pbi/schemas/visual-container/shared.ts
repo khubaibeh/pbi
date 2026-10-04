@@ -7,13 +7,12 @@ import {
 	Number,
 	String,
 	Struct,
-	Unknown,
 	isMaxLength,
 	makeFilter,
 	optionalKey as opt,
 } from "effect/Schema";
 
-import { describe } from "#pbi/schemas/shared.ts";
+import { PropertyValue, describe } from "#pbi/schemas/shared.ts";
 
 import { descriptions as d } from "./shared.descriptions.ts";
 
@@ -52,11 +51,11 @@ const howCreated = [
 
 const VisualGroupGeneralFormattingObjects = describe(
 	Struct({
-		x: opt(Unknown),
-		y: opt(Unknown),
-		width: opt(Unknown),
-		height: opt(Unknown),
-		altText: opt(Unknown),
+		x: opt(PropertyValue),
+		y: opt(PropertyValue),
+		width: opt(PropertyValue),
+		height: opt(PropertyValue),
+		altText: opt(PropertyValue),
 	}),
 	d.VisualGroupGeneralFormattingObjects,
 ).annotate({ identifier: "VisualContainer.VisualGroupGeneralFormattingObjects" });

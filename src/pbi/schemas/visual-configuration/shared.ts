@@ -7,13 +7,12 @@ import {
 	Record,
 	String,
 	Struct,
-	Unknown,
 	isMaxLength,
 	optionalKey as opt,
 	suspend,
 } from "effect/Schema";
 
-import { describe } from "#pbi/schemas/shared.ts";
+import { PropertyValue, describe } from "#pbi/schemas/shared.ts";
 
 import { descriptions as d } from "./shared.descriptions.ts";
 
@@ -47,160 +46,160 @@ const AILevelInformation = describe(
 
 const Title = describe(
 	Struct({
-		show: opt(Unknown),
-		text: opt(Unknown),
-		heading: opt(Unknown),
-		titleWrap: opt(Unknown),
-		fontColor: opt(Unknown),
-		background: opt(Unknown),
-		alignment: opt(Unknown),
-		fontSize: opt(Unknown),
-		bold: opt(Unknown),
-		italic: opt(Unknown),
-		underline: opt(Unknown),
-		fontFamily: opt(Unknown),
+		show: opt(PropertyValue),
+		text: opt(PropertyValue),
+		heading: opt(PropertyValue),
+		titleWrap: opt(PropertyValue),
+		fontColor: opt(PropertyValue),
+		background: opt(PropertyValue),
+		alignment: opt(PropertyValue),
+		fontSize: opt(PropertyValue),
+		bold: opt(PropertyValue),
+		italic: opt(PropertyValue),
+		underline: opt(PropertyValue),
+		fontFamily: opt(PropertyValue),
 	}),
 	d.Title,
 ).annotate({ identifier: "VisualConfiguration.Title" });
 
 const SubTitle = describe(
 	Struct({
-		show: opt(Unknown),
-		text: opt(Unknown),
-		heading: opt(Unknown),
-		titleWrap: opt(Unknown),
-		fontColor: opt(Unknown),
-		alignment: opt(Unknown),
-		fontSize: opt(Unknown),
-		bold: opt(Unknown),
-		italic: opt(Unknown),
-		underline: opt(Unknown),
-		fontFamily: opt(Unknown),
+		show: opt(PropertyValue),
+		text: opt(PropertyValue),
+		heading: opt(PropertyValue),
+		titleWrap: opt(PropertyValue),
+		fontColor: opt(PropertyValue),
+		alignment: opt(PropertyValue),
+		fontSize: opt(PropertyValue),
+		bold: opt(PropertyValue),
+		italic: opt(PropertyValue),
+		underline: opt(PropertyValue),
+		fontFamily: opt(PropertyValue),
 	}),
 	d.SubTitle,
 ).annotate({ identifier: "VisualConfiguration.SubTitle" });
 
 const Divider = describe(
 	Struct({
-		ignorePadding: opt(Unknown),
-		show: opt(Unknown),
-		color: opt(Unknown),
-		width: opt(Unknown),
-		style: opt(Unknown),
+		ignorePadding: opt(PropertyValue),
+		show: opt(PropertyValue),
+		color: opt(PropertyValue),
+		width: opt(PropertyValue),
+		style: opt(PropertyValue),
 	}),
 	d.Divider,
 ).annotate({ identifier: "VisualConfiguration.Divider" });
 
 const Spacing = describe(
 	Struct({
-		customizeSpacing: opt(Unknown),
-		verticalSpacing: opt(Unknown),
-		spaceBelowTitle: opt(Unknown),
-		spaceBelowSubTitle: opt(Unknown),
-		spaceBelowTitleArea: opt(Unknown),
+		customizeSpacing: opt(PropertyValue),
+		verticalSpacing: opt(PropertyValue),
+		spaceBelowTitle: opt(PropertyValue),
+		spaceBelowSubTitle: opt(PropertyValue),
+		spaceBelowTitleArea: opt(PropertyValue),
 	}),
 	d.Spacing,
 ).annotate({ identifier: "VisualConfiguration.Spacing" });
 
 const Background = describe(
 	Struct({
-		show: opt(Unknown),
-		color: opt(Unknown),
-		transparency: opt(Unknown),
+		show: opt(PropertyValue),
+		color: opt(PropertyValue),
+		transparency: opt(PropertyValue),
 	}),
 	d.Background,
 ).annotate({ identifier: "VisualConfiguration.Background" });
 
 const Padding = describe(
 	Struct({
-		top: opt(Unknown),
-		bottom: opt(Unknown),
-		left: opt(Unknown),
-		right: opt(Unknown),
+		top: opt(PropertyValue),
+		bottom: opt(PropertyValue),
+		left: opt(PropertyValue),
+		right: opt(PropertyValue),
 	}),
 	d.Padding,
 ).annotate({ identifier: "VisualConfiguration.Padding" });
 
 const LockAspect = describe(
 	Struct({
-		show: opt(Unknown),
+		show: opt(PropertyValue),
 	}),
 	d.LockAspect,
 ).annotate({ identifier: "VisualConfiguration.LockAspect" });
 
 const VisualContainerGeneralFormattingObjects = describe(
 	Struct({
-		x: opt(Unknown),
-		y: opt(Unknown),
-		width: opt(Unknown),
-		height: opt(Unknown),
-		altText: opt(Unknown),
-		allowBinnedLineSample: opt(Unknown),
-		allowOverlappingPointsSample: opt(Unknown),
-		keepLayerOrder: opt(Unknown),
+		x: opt(PropertyValue),
+		y: opt(PropertyValue),
+		width: opt(PropertyValue),
+		height: opt(PropertyValue),
+		altText: opt(PropertyValue),
+		allowBinnedLineSample: opt(PropertyValue),
+		allowOverlappingPointsSample: opt(PropertyValue),
+		keepLayerOrder: opt(PropertyValue),
 	}),
 	d.VisualContainerGeneralFormattingObjects,
 ).annotate({ identifier: "VisualConfiguration.VisualContainerGeneralFormattingObjects" });
 
 const DropShadow = describe(
 	Struct({
-		show: opt(Unknown),
-		preset: opt(Unknown),
-		position: opt(Unknown),
-		color: opt(Unknown),
-		transparency: opt(Unknown),
-		shadowSpread: opt(Unknown),
-		shadowBlur: opt(Unknown),
-		angle: opt(Unknown),
-		shadowDistance: opt(Unknown),
+		show: opt(PropertyValue),
+		preset: opt(PropertyValue),
+		position: opt(PropertyValue),
+		color: opt(PropertyValue),
+		transparency: opt(PropertyValue),
+		shadowSpread: opt(PropertyValue),
+		shadowBlur: opt(PropertyValue),
+		angle: opt(PropertyValue),
+		shadowDistance: opt(PropertyValue),
 	}),
 	d.DropShadow,
 ).annotate({ identifier: "VisualConfiguration.DropShadow" });
 
 const VisualTooltip = describe(
 	Struct({
-		show: opt(Unknown),
-		type: opt(Unknown),
-		section: opt(Unknown),
-		titleFontColor: opt(Unknown),
-		valueFontColor: opt(Unknown),
-		fontSize: opt(Unknown),
-		bold: opt(Unknown),
-		italic: opt(Unknown),
-		underline: opt(Unknown),
-		fontFamily: opt(Unknown),
-		background: opt(Unknown),
-		transparency: opt(Unknown),
-		actionFontColor: opt(Unknown),
-		themedTitleFontColor: opt(Unknown),
-		themedBackground: opt(Unknown),
-		themedValueFontColor: opt(Unknown),
+		show: opt(PropertyValue),
+		type: opt(PropertyValue),
+		section: opt(PropertyValue),
+		titleFontColor: opt(PropertyValue),
+		valueFontColor: opt(PropertyValue),
+		fontSize: opt(PropertyValue),
+		bold: opt(PropertyValue),
+		italic: opt(PropertyValue),
+		underline: opt(PropertyValue),
+		fontFamily: opt(PropertyValue),
+		background: opt(PropertyValue),
+		transparency: opt(PropertyValue),
+		actionFontColor: opt(PropertyValue),
+		themedTitleFontColor: opt(PropertyValue),
+		themedBackground: opt(PropertyValue),
+		themedValueFontColor: opt(PropertyValue),
 	}),
 	d.VisualTooltip,
 ).annotate({ identifier: "VisualConfiguration.VisualTooltip" });
 
 const StylePreset = describe(
 	Struct({
-		name: opt(Unknown),
+		name: opt(PropertyValue),
 	}),
 	d.StylePreset,
 ).annotate({ identifier: "VisualConfiguration.StylePreset" });
 
 const VisualHeaderTooltip = describe(
 	Struct({
-		type: opt(Unknown),
-		section: opt(Unknown),
-		text: opt(Unknown),
-		titleFontColor: opt(Unknown),
-		fontSize: opt(Unknown),
-		fontFamily: opt(Unknown),
-		bold: opt(Unknown),
-		italic: opt(Unknown),
-		underline: opt(Unknown),
-		background: opt(Unknown),
-		transparency: opt(Unknown),
-		themedTitleFontColor: opt(Unknown),
-		themedBackground: opt(Unknown),
+		type: opt(PropertyValue),
+		section: opt(PropertyValue),
+		text: opt(PropertyValue),
+		titleFontColor: opt(PropertyValue),
+		fontSize: opt(PropertyValue),
+		fontFamily: opt(PropertyValue),
+		bold: opt(PropertyValue),
+		italic: opt(PropertyValue),
+		underline: opt(PropertyValue),
+		background: opt(PropertyValue),
+		transparency: opt(PropertyValue),
+		themedTitleFontColor: opt(PropertyValue),
+		themedBackground: opt(PropertyValue),
 	}),
 	d.VisualHeaderTooltip,
 ).annotate({ identifier: "VisualConfiguration.VisualHeaderTooltip" });
@@ -221,69 +220,73 @@ interface ExpandedNode {
 }
 
 const borderFields = {
-	show: opt(Unknown),
-	color: opt(Unknown),
-	radius: opt(Unknown),
+	show: opt(PropertyValue),
+	color: opt(PropertyValue),
+	radius: opt(PropertyValue),
 };
 
 const makeBorder = (width: boolean) =>
-	describe(Struct(width ? { ...borderFields, width: opt(Unknown) } : borderFields), d.Border).annotate({
+	describe(Struct(width ? { ...borderFields, width: opt(PropertyValue) } : borderFields), d.Border).annotate({
 		identifier: "VisualConfiguration.Border",
 	});
 
 const visualLinkFields = {
-	show: opt(Unknown),
-	type: opt(Unknown),
-	bookmark: opt(Unknown),
-	disabledTooltip: opt(Unknown),
-	drillthroughSection: opt(Unknown),
-	enabledTooltip: opt(Unknown),
-	qna: opt(Unknown),
-	suppressDefaultTooltip: opt(Unknown),
-	showDefaultTooltip: opt(Unknown),
-	navigationSection: opt(Unknown),
-	tooltip: opt(Unknown),
-	tooltipPlaceholderText: opt(Unknown),
-	webUrl: opt(Unknown),
+	show: opt(PropertyValue),
+	type: opt(PropertyValue),
+	bookmark: opt(PropertyValue),
+	disabledTooltip: opt(PropertyValue),
+	drillthroughSection: opt(PropertyValue),
+	enabledTooltip: opt(PropertyValue),
+	qna: opt(PropertyValue),
+	suppressDefaultTooltip: opt(PropertyValue),
+	showDefaultTooltip: opt(PropertyValue),
+	navigationSection: opt(PropertyValue),
+	tooltip: opt(PropertyValue),
+	tooltipPlaceholderText: opt(PropertyValue),
+	webUrl: opt(PropertyValue),
 };
 
 const makeVisualLink = (dataFunction: boolean) =>
 	describe(
-		Struct(dataFunction ? { ...visualLinkFields, dataFunction: opt(Unknown) } : visualLinkFields),
+		Struct(dataFunction ? { ...visualLinkFields, dataFunction: opt(PropertyValue) } : visualLinkFields),
 		d.VisualLink,
 	).annotate({ identifier: "VisualConfiguration.VisualLink" });
 
 const visualHeaderFields = {
-	show: opt(Unknown),
-	background: opt(Unknown),
-	border: opt(Unknown),
-	transparency: opt(Unknown),
-	foreground: opt(Unknown),
-	showVisualInformationButton: opt(Unknown),
-	showVisualWarningButton: opt(Unknown),
-	showVisualErrorButton: opt(Unknown),
-	showDrillRoleSelector: opt(Unknown),
-	showDrillUpButton: opt(Unknown),
-	showDrillToggleButton: opt(Unknown),
-	showDrillDownLevelButton: opt(Unknown),
-	showDrillDownExpandButton: opt(Unknown),
-	showPinButton: opt(Unknown),
-	showFilterRestatementButton: opt(Unknown),
-	showFocusModeButton: opt(Unknown),
-	showCopyVisualImageButton: opt(Unknown),
-	showSeeDataLayoutToggleButton: opt(Unknown),
-	showOptionsMenu: opt(Unknown),
-	showCommentButton: opt(Unknown),
-	showTooltipButton: opt(Unknown),
-	showPersonalizeVisualButton: opt(Unknown),
-	showSmartNarrativeButton: opt(Unknown),
+	show: opt(PropertyValue),
+	background: opt(PropertyValue),
+	border: opt(PropertyValue),
+	transparency: opt(PropertyValue),
+	foreground: opt(PropertyValue),
+	showVisualInformationButton: opt(PropertyValue),
+	showVisualWarningButton: opt(PropertyValue),
+	showVisualErrorButton: opt(PropertyValue),
+	showDrillRoleSelector: opt(PropertyValue),
+	showDrillUpButton: opt(PropertyValue),
+	showDrillToggleButton: opt(PropertyValue),
+	showDrillDownLevelButton: opt(PropertyValue),
+	showDrillDownExpandButton: opt(PropertyValue),
+	showPinButton: opt(PropertyValue),
+	showFilterRestatementButton: opt(PropertyValue),
+	showFocusModeButton: opt(PropertyValue),
+	showCopyVisualImageButton: opt(PropertyValue),
+	showSeeDataLayoutToggleButton: opt(PropertyValue),
+	showOptionsMenu: opt(PropertyValue),
+	showCommentButton: opt(PropertyValue),
+	showTooltipButton: opt(PropertyValue),
+	showPersonalizeVisualButton: opt(PropertyValue),
+	showSmartNarrativeButton: opt(PropertyValue),
 };
 
 const makeVisualHeader = (alertButtons: boolean) =>
 	describe(
 		Struct(
 			alertButtons
-				? { ...visualHeaderFields, showSetAlertButton: opt(Unknown), showFollowVisualButton: opt(Unknown) }
+				? {
+						...visualHeaderFields,
+						showSetAlertButton: opt(PropertyValue),
+						showFollowVisualButton: opt(PropertyValue),
+					}
 				: visualHeaderFields,
 		),
 		d.VisualHeader,
