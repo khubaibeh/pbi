@@ -1,0 +1,46 @@
+{
+	"$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.4.0/schema.json",
+	"name": "8e8609fd09ba79775d5b",
+	"displayName": "Text56",
+	"displayOption": "FitToPage",
+	"height": 720,
+	"width": 1280,
+	"filterConfig": {
+		"filters": [
+			{
+				"name": "Filter1",
+				"type": "Categorical"
+			}
+		],
+		"filterSortOrder": "Custom"
+	},
+	"pageBinding": {
+		"name": "1c7b607105747ee0e4ec",
+		"type": "Default",
+		"parameters": [
+			{
+				"name": "Parameter1"
+			}
+		]
+	},
+	"objects": {
+		"background": [
+			{
+				"properties": {
+					"color": {
+						"solid": {
+							"color": {
+								"expr": {
+									"ThemeDataColor": {
+										"ColorId": 7,
+										"Percent": -0.25
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		]
+	}
+}
