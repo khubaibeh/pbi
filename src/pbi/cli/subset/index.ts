@@ -2,6 +2,7 @@ import { Command } from "effect/cli";
 
 import { filterConfiguration } from "./filter-configuration.ts";
 import { pagesMetadata } from "./pages-metadata.ts";
+import { report } from "./report.ts";
 import { semanticQuery } from "./semantic-query.ts";
 import { visualConfiguration } from "./visual-configuration.ts";
 import { visualContainerMobileState } from "./visual-container-mobile-state.ts";
@@ -12,6 +13,7 @@ export const subset = Command.make("subset").pipe(
 	Command.withSubcommands([
 		filterConfiguration,
 		pagesMetadata,
+		report,
 		semanticQuery,
 		visualConfiguration,
 		visualContainer,
